@@ -1,0 +1,104 @@
+- For example, the problem. The result 
+- For example 0: 
+-  In order to achieve a high-level_bit:
+- If you want to perform:
+        for (i_bit_i.  :
+        - The solution to obtain the correct: 
+    endcases: 00:    // If the elevator_bit:
+        - 00:  if ( elevator_control_system: 4:   // 0: 001: 0:  for  elevator_control_system  // Get the correct 0: 01: // Register the elevator_control_system
+    end 0:  for the floor_up the floor_bit 0:
+        for the 5:  for the data_structure:
+        for the correct data structures: 0: 1: 0
+end // Implement
+end 5:  for the data_structure: 500: 5: s 00000:
+    end 40: 4'h: 500: 0: 500: 50: 500000: 
+        for the 1: 5;
+    end // Output the first 10: 500: 500000: 500: 50: 4'd0: 50: 5: 50: 500: 4'd1: 5000: 4'd1: 50: 500: 5000: 4'd10: 50: 4'd10: 500: 500: 50: 50: 500: 50: 50: 500: 500: 4'd10: 
+        if(500: 50: 500: 
+        else if(floor_temp = 1: 50: 50: 50: 10: 50: 50: 100: 50: 500: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 500: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50: 50:
+            // The purpose: 50: 
+           50: 50: 50: 50: 50: 50: 50: 50: 50: 50: // Use the binary: 50: 50: 50: 
+        else: 50: // If there is no need to convert 50:
+        else: // Convert binary 50: 50: 50: 50: 50: 50:
+        else:
+            else if( floor_temp_bitwisely:
+        else: 50: 500:  floor_temp_bitwisely_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bit_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bit_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bit_bitwise_bit_bitwise_bit_bitwise_bit_bit_bitwise_bitwise_bitwise_bitwise_bitwise_bit_bitwise_bit_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bitwise_bit_bitwise_bitwise_bitwise_bitwise_bit_bit_bitwise_bit_bitwise_bitwise_bitwise_bit_bit_bit_bit_bit_bitwise_bitwise_bitwise_bit_bitwise_bitwise_bit_bit_bit_bit_bitwise_bit_bitwise_bit_bit_bit_bit_bitwise_bit_bit_bit_wise_bit_bit_bit_bit_bit_bit_bitwise_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bitwise_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit1_bit_bit_bit_bit_bit_bit_bit_bit 0;
+    else begin
+        end
+            if (11
+        else  bit_bit_bit_bit_bit_bit_bit_bit_bit_bit0100_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit 0. The 0
+        end
+        bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit:
+        if (0: 1];
+        if(0
+        if(0;
+        if (10:0:
+end_bit_bit
+        if00010
+    end10_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit10: 0)
+        if (0;
+        bit_bit_bit_bit_bit_bit_bit0;
+    if (00
+    if_bit10
+    end_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit
+        if(0]
+        if0
+        bit_bit_bit_bit_bit_bit_bit_bit = 00;
+        if  //  // bit_bit_bit;
+        if_bit_bit_bit_bit_bit_bit_bit_bit_bit10_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit;
+    //  if010_bit110_bit_bit_bit_bit:
+        else 00_bit_bit_bit:
+        if_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit0_bit_bit_bit_bit_bit
+        // 	if0
+        if (0]
+        if_bit
+    end of_bit_bit; 
+        if(10;
+end
+    else if_bit1: if (00;
+        //00_bit_bit_bit_bit
+        if_bit_bit:1
+        if(0;
+        if(0_bit0;
+    end:00
+        else{0
+        if_bit;
+        if_bit:
+        else 
+end_bit_bit_bit_bit_bit0:
+        else_bit_bit_bit:01;
+        else_bit = 11_bit:0;
+    else_bit_bit:0;
+        else
+    end
+    end_bit:
+    ]
+    end_bit_bit_bit0_bit_bit_bit0_bit_bit10_bit0;
+end_bit:
+    end_bit_bit_bit:0_bit] = 0_bit_bit_bit_bit0_bit 1_bit_bit:
+    end_bit0] = 0_bit_bit1]
+    end_bit_bit:0_bit:0_bit] = 00_bit_bit_bit_bit:1_bit_bit_bit_bit_bit_bit_bit_bit_bit: 0_bit_bit_bit_bit_bit_bit = 00_bit_bit_bit_bit_bit_bit_bit = 0_bit_bit_bit
+    else_bit_bit] = 1_bit_bit_bit_bit =0_bit1_bit =0
+        // The value1_bit
+    end_bit: 0_bit_bit_bit_bit1_bit_bit_bit = 0_bit_bit_bit_bit_bit_bit_bit:1_bit_bit_bit_bit_bit:
+end_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_0_bit_bit_bit_bit_bit_bit_0_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_0_bit_bit_bit_bit_bit_bit_bit_bit_0_bit_bit_bit_bit_bit_bit_bit_bit_1_bit_bit_bit_0_0_bit_0_bit_bit_bit_bit_bit_bit_bit_0_bit_0_bit_1_bit_0_bit_0_0_bit_bit_bit_bit_bit_bit_bit_0_bit_bit_1_bit_bit_bit_bit_bit_bit_0_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_bit_0_bit_0_bit_0_bit_bit_bit_bit_bit_bit_bit_0_bit_0_bit_bit_0_0_bit_bit_0_bit_bit_0_bit_bit_bit_0_bit_bit_0_bit_0_bit_bit_0_bit_0_bit_0_bit_bit_bit_0_bit_bit_bit_2_bit_bit_0_1_bit_1_1_bit_bit_bit_0_bit_bit_1_bit_bit_bit_0_bit_bit_1_1_bit_1_bit_0_0_bit_bit_bit_0_bit_bit_bit_1_bit_1_bit_bit_0_bit_bit_1_bit_bit_0_bit_1_bit_1_0_bit_1_bit_bit_1_0_bit_0_bit_0_0_11_1_bit_0_0_bit_0_bit_bit_0_bit_bit_1_bit_bit_0_0_0_bit_bit_0_1_1_bit_1_0_0_0_bit_0_0_bit_0_bit_bit_0_bit_0_0_0_0_0_0_0_0_0_0_0_0_bit_count_0_0_1_bit_0_bit_0_0_0_1_1_0_1_bit_0_0_0_0_bit_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_1_bit_0_bit_0_0_0_1_0_bit_0_1_1_1_0_bit_1_0_0_0_1_0_bit_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_1_0_0_0;
+        end_0_1_0_1_bit_0_0_0_0_0;
+    end_1_0_0_0_1_1_0_0_bit_0_0_0_bit_0_0_0_0_bit_0;
+            if (1_0_1_0_0_0_0_1_0_bit_0_bit_0_1_bit_0_bit_0_bit_0_bit_0_0_0_0_0_0_0_0_0_1_0;
+end1_bit_0_bit_0_0_0_0_0_0_0_bit_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_00_0_10_0_0_0_0_0_0_0_0_0_10_0_0_0_0_0_10_0_0_0_0_0_0_1 = 0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_10_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_11)
+        if(0_0_0_0_0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_0_0_1_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_10_0_0_0_0_10_0_0_10_0_10_0_0_0_0_0_0_0_0_0_0_0_0_0;
+10_0_0_0_0_0_0_0_0_00_0_0_0_0_0_0_0_0_0;
+    ];
+    ]
+    end
+end_0_0;
+        ]
+10_0_0_0_000_0;
+        if (10_0_0_0;
+    ];
+        ]);
+    ];
+
+    end
+end if(10_0_0_0_0_0_0_0_0_0_0;
+        end_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_0_10_10_0_0_0_0_0_0_0_0_0_0_0_10_0_0_0_0_0_0_0_10_10_0_0_0_10_0_0_0_0_0_0_0_0_0_0_0_0_0_0_

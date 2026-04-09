@@ -1,0 +1,60 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1e98e90 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1e99020 .scope module, "hmac_reg_interface" "hmac_reg_interface" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "write_en";
+    .port_info 3 /INPUT 1 "read_en";
+    .port_info 4 /INPUT 8 "addr";
+    .port_info 5 /INPUT 128 "wdata";
+    .port_info 6 /INPUT 1 "i_wait_en";
+    .port_info 7 /OUTPUT 128 "rdata";
+    .port_info 8 /OUTPUT 1 "hmac_valid";
+    .port_info 9 /OUTPUT 1 "hmac_key_error";
+P_0x1e991b0 .param/l "ADDR_WIDTH" 0 3 3, +C4<00000000000000000000000000001000>;
+P_0x1e991f0 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000010000000>;
+P_0x1e99230 .param/l "NUM_REGS" 1 3 18, +C4<0000000000000000000000000000000100000000>;
+P_0x1e99270 .param/l "XOR" 1 3 19, C4<01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101>;
+enum0x1e80ae0 .enum4 (3)
+   "IDLE" 3'b000,
+   "ANALYZE" 3'b001,
+   "XOR_DATA" 3'b010,
+   "WRITE" 3'b011,
+   "LOST" 3'b100,
+   "CHECK_KEY" 3'b101,
+   "TRIG_WAIT" 3'b110
+ ;
+o0x7ad849beb018 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1e98250_0 .net "addr", 7 0, o0x7ad849beb018;  0 drivers
+o0x7ad849beb048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1eb85d0_0 .net "clk", 0 0, o0x7ad849beb048;  0 drivers
+v0x1eb8690_0 .var "hmac_key_error", 0 0;
+v0x1eb8760_0 .var "hmac_valid", 0 0;
+o0x7ad849beb0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1eb8820_0 .net "i_wait_en", 0 0, o0x7ad849beb0d8;  0 drivers
+v0x1eb8930_0 .var "rdata", 127 0;
+o0x7ad849beb138 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1eb8a10_0 .net "read_en", 0 0, o0x7ad849beb138;  0 drivers
+o0x7ad849beb168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1eb8ad0_0 .net "rst_n", 0 0, o0x7ad849beb168;  0 drivers
+o0x7ad849beb198 .functor BUFZ 128, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1eb8b90_0 .net "wdata", 127 0, o0x7ad849beb198;  0 drivers
+o0x7ad849beb1c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1eb8c70_0 .net "write_en", 0 0, o0x7ad849beb1c8;  0 drivers
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/hmac_reg_interface.sv";

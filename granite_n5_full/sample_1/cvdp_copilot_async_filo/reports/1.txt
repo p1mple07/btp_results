@@ -1,0 +1,692 @@
+Running harness with project name: cvdp_copilot_async_filo_1_1774386349
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 5 items
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774386352
+     0.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_default_clocks (1/2)
+                                                            Run FILO test with default clock frequencies.
+     0.00ns INFO     cocotb                             Running FILO test with DEPTH=16, DATA_WIDTH=8, w_clk_period=10ns, r_clk_period=15ns
+     0.00ns INFO     cocotb                             Starting reset test...
+    20.00ns INFO     cocotb                             Reset complete
+    20.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+    20.00ns INFO     cocotb                             Starting push to full test...
+    30.00ns INFO     cocotb                             Pushed: 0xc6 | Counter: 1 | Full=0 | Empty=0
+    40.00ns INFO     cocotb                             Pushed: 0x91 | Counter: 2 | Full=0 | Empty=0
+    50.00ns INFO     cocotb                             Pushed: 0x62 | Counter: 3 | Full=0 | Empty=0
+    60.00ns INFO     cocotb                             Pushed: 0xc9 | Counter: 4 | Full=0 | Empty=0
+    70.00ns INFO     cocotb                             Pushed: 0xe3 | Counter: 5 | Full=0 | Empty=0
+    80.00ns INFO     cocotb                             Pushed: 0xba | Counter: 6 | Full=0 | Empty=0
+    90.00ns INFO     cocotb                             Pushed: 0x70 | Counter: 7 | Full=0 | Empty=0
+   100.00ns INFO     cocotb                             Pushed: 0x5f | Counter: 8 | Full=0 | Empty=0
+   110.00ns INFO     cocotb                             Pushed: 0xdb | Counter: 9 | Full=0 | Empty=0
+   120.00ns INFO     cocotb                             Pushed: 0x2f | Counter: 10 | Full=0 | Empty=0
+   130.00ns INFO     cocotb                             Pushed: 0x72 | Counter: 11 | Full=0 | Empty=0
+   140.00ns INFO     cocotb                             Pushed: 0xa0 | Counter: 12 | Full=0 | Empty=0
+   150.00ns INFO     cocotb                             Pushed: 0x66 | Counter: 13 | Full=0 | Empty=0
+   160.00ns INFO     cocotb                             Pushed: 0xc7 | Counter: 14 | Full=0 | Empty=0
+   170.00ns INFO     cocotb                             Pushed: 0x63 | Counter: 15 | Full=0 | Empty=0
+   180.00ns INFO     cocotb                             Pushed: 0x51 | Counter: 16 | Full=1 | Empty=0
+   180.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   180.00ns INFO     cocotb                             Starting pop to empty test...
+   196.00ns INFO     cocotb.regression                  test_async_filo.test_filo_default_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 121, in test_filo_default_clocks
+                                                            await run_filo_test(dut, w_clk_period=10, r_clk_period=15)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   196.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_random_clocks (2/2)
+                                                            Run FILO test with random clock frequencies.
+   197.00ns INFO     cocotb                             Running FILO test with random clocks: w_clk=11ns, r_clk=20ns
+   197.00ns INFO     cocotb                             Running FILO test with DEPTH=16, DATA_WIDTH=8, w_clk_period=11ns, r_clk_period=20ns
+   197.00ns INFO     cocotb                             Starting reset test...
+   219.00ns INFO     cocotb                             Reset complete
+   219.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+   219.00ns INFO     cocotb                             Starting push to full test...
+   230.00ns INFO     cocotb                             Pushed: 0x66 | Counter: 1 | Full=0 | Empty=0
+   241.00ns INFO     cocotb                             Pushed: 0xe7 | Counter: 2 | Full=0 | Empty=0
+   252.00ns INFO     cocotb                             Pushed: 0x1c | Counter: 3 | Full=0 | Empty=0
+   263.00ns INFO     cocotb                             Pushed: 0xf7 | Counter: 4 | Full=0 | Empty=0
+   274.00ns INFO     cocotb                             Pushed: 0xa4 | Counter: 5 | Full=0 | Empty=0
+   285.00ns INFO     cocotb                             Pushed: 0xa6 | Counter: 6 | Full=0 | Empty=0
+   296.00ns INFO     cocotb                             Pushed: 0x11 | Counter: 7 | Full=0 | Empty=0
+   307.00ns INFO     cocotb                             Pushed: 0xdd | Counter: 8 | Full=0 | Empty=0
+   318.00ns INFO     cocotb                             Pushed: 0xc | Counter: 9 | Full=0 | Empty=0
+   329.00ns INFO     cocotb                             Pushed: 0xc3 | Counter: 10 | Full=0 | Empty=0
+   340.00ns INFO     cocotb                             Pushed: 0xb1 | Counter: 11 | Full=0 | Empty=0
+   351.00ns INFO     cocotb                             Pushed: 0xf3 | Counter: 12 | Full=0 | Empty=0
+   362.00ns INFO     cocotb                             Pushed: 0x5 | Counter: 13 | Full=0 | Empty=0
+   373.00ns INFO     cocotb                             Pushed: 0xb6 | Counter: 14 | Full=0 | Empty=0
+   384.00ns INFO     cocotb                             Pushed: 0x17 | Counter: 15 | Full=0 | Empty=0
+   395.00ns INFO     cocotb                             Pushed: 0xea | Counter: 16 | Full=1 | Empty=0
+   395.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   395.00ns INFO     cocotb                             Starting pop to empty test...
+   398.00ns INFO     cocotb.regression                  test_async_filo.test_filo_random_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 130, in test_filo_random_clocks
+                                                            await run_filo_test(dut, w_clk_period=random_w_clk, r_clk_period=random_r_clk)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   398.00ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** test_async_filo.test_filo_default_clocks   FAIL         196.00           0.01      35089.79  **
+                                                        ** test_async_filo.test_filo_random_clocks    FAIL         202.00           0.00      44861.24  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=2 PASS=0 FAIL=2 SKIP=0                            398.00           0.01      28829.32  **
+                                                        **************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/async_filo.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=8, DEPTH=16
+[DEBUG] Parameters: {'DATA_WIDTH': 8, 'DEPTH': 16}
+FAILED
+../../src/test_runner.py::test_filo[8-8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774386353
+     0.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_default_clocks (1/2)
+                                                            Run FILO test with default clock frequencies.
+     0.00ns INFO     cocotb                             Running FILO test with DEPTH=8, DATA_WIDTH=8, w_clk_period=10ns, r_clk_period=15ns
+     0.00ns INFO     cocotb                             Starting reset test...
+    20.00ns INFO     cocotb                             Reset complete
+    20.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+    20.00ns INFO     cocotb                             Starting push to full test...
+    30.00ns INFO     cocotb                             Pushed: 0xb8 | Counter: 1 | Full=0 | Empty=0
+    40.00ns INFO     cocotb                             Pushed: 0xc | Counter: 2 | Full=0 | Empty=0
+    50.00ns INFO     cocotb                             Pushed: 0xf1 | Counter: 3 | Full=0 | Empty=0
+    60.00ns INFO     cocotb                             Pushed: 0x7b | Counter: 4 | Full=0 | Empty=0
+    70.00ns INFO     cocotb                             Pushed: 0xed | Counter: 5 | Full=0 | Empty=0
+    80.00ns INFO     cocotb                             Pushed: 0x32 | Counter: 6 | Full=0 | Empty=0
+    90.00ns INFO     cocotb                             Pushed: 0xaa | Counter: 7 | Full=0 | Empty=0
+   100.00ns INFO     cocotb                             Pushed: 0xcb | Counter: 8 | Full=1 | Empty=0
+   100.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   100.00ns INFO     cocotb                             Starting pop to empty test...
+   106.00ns INFO     cocotb.regression                  test_async_filo.test_filo_default_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 121, in test_filo_default_clocks
+                                                            await run_filo_test(dut, w_clk_period=10, r_clk_period=15)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   106.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_random_clocks (2/2)
+                                                            Run FILO test with random clock frequencies.
+   107.00ns INFO     cocotb                             Running FILO test with random clocks: w_clk=36ns, r_clk=13ns
+   107.00ns INFO     cocotb                             Running FILO test with DEPTH=8, DATA_WIDTH=8, w_clk_period=36ns, r_clk_period=13ns
+   107.00ns INFO     cocotb                             Starting reset test...
+   143.00ns INFO     cocotb                             Reset complete
+   143.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+   143.00ns INFO     cocotb                             Starting push to full test...
+   179.00ns INFO     cocotb                             Pushed: 0xb | Counter: 1 | Full=0 | Empty=0
+   215.00ns INFO     cocotb                             Pushed: 0xbc | Counter: 2 | Full=0 | Empty=0
+   251.00ns INFO     cocotb                             Pushed: 0x8d | Counter: 3 | Full=0 | Empty=0
+   287.00ns INFO     cocotb                             Pushed: 0x14 | Counter: 4 | Full=0 | Empty=0
+   323.00ns INFO     cocotb                             Pushed: 0x20 | Counter: 5 | Full=0 | Empty=0
+   359.00ns INFO     cocotb                             Pushed: 0x7c | Counter: 6 | Full=0 | Empty=0
+   395.00ns INFO     cocotb                             Pushed: 0xf0 | Counter: 7 | Full=0 | Empty=0
+   431.00ns INFO     cocotb                             Pushed: 0xc1 | Counter: 8 | Full=1 | Empty=0
+   431.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   431.00ns INFO     cocotb                             Starting pop to empty test...
+   433.00ns INFO     cocotb.regression                  test_async_filo.test_filo_random_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 130, in test_filo_random_clocks
+                                                            await run_filo_test(dut, w_clk_period=random_w_clk, r_clk_period=random_r_clk)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   433.00ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** test_async_filo.test_filo_default_clocks   FAIL         106.00           0.00      28083.90  **
+                                                        ** test_async_filo.test_filo_random_clocks    FAIL         327.00           0.00      70069.35  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=2 PASS=0 FAIL=2 SKIP=0                            433.00           0.01      35279.12  **
+                                                        **************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/async_filo.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=8, DEPTH=8
+[DEBUG] Parameters: {'DATA_WIDTH': 8, 'DEPTH': 8}
+FAILED
+../../src/test_runner.py::test_filo[8-12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774386353
+     0.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_default_clocks (1/2)
+                                                            Run FILO test with default clock frequencies.
+     0.00ns INFO     cocotb                             Running FILO test with DEPTH=8, DATA_WIDTH=12, w_clk_period=10ns, r_clk_period=15ns
+     0.00ns INFO     cocotb                             Starting reset test...
+    20.00ns INFO     cocotb                             Reset complete
+    20.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+    20.00ns INFO     cocotb                             Starting push to full test...
+    30.00ns INFO     cocotb                             Pushed: 0xb8c | Counter: 1 | Full=0 | Empty=0
+    40.00ns INFO     cocotb                             Pushed: 0xc5 | Counter: 2 | Full=0 | Empty=0
+    50.00ns INFO     cocotb                             Pushed: 0xf15 | Counter: 3 | Full=0 | Empty=0
+    60.00ns INFO     cocotb                             Pushed: 0x7be | Counter: 4 | Full=0 | Empty=0
+    70.00ns INFO     cocotb                             Pushed: 0xed8 | Counter: 5 | Full=0 | Empty=0
+    80.00ns INFO     cocotb                             Pushed: 0x325 | Counter: 6 | Full=0 | Empty=0
+    90.00ns INFO     cocotb                             Pushed: 0xaaf | Counter: 7 | Full=0 | Empty=0
+   100.00ns INFO     cocotb                             Pushed: 0xcb5 | Counter: 8 | Full=1 | Empty=0
+   100.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   100.00ns INFO     cocotb                             Starting pop to empty test...
+   106.00ns INFO     cocotb.regression                  test_async_filo.test_filo_default_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 121, in test_filo_default_clocks
+                                                            await run_filo_test(dut, w_clk_period=10, r_clk_period=15)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   106.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_random_clocks (2/2)
+                                                            Run FILO test with random clock frequencies.
+   107.00ns INFO     cocotb                             Running FILO test with random clocks: w_clk=36ns, r_clk=13ns
+   107.00ns INFO     cocotb                             Running FILO test with DEPTH=8, DATA_WIDTH=12, w_clk_period=36ns, r_clk_period=13ns
+   107.00ns INFO     cocotb                             Starting reset test...
+   143.00ns INFO     cocotb                             Reset complete
+   143.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+   143.00ns INFO     cocotb                             Starting push to full test...
+   179.00ns INFO     cocotb                             Pushed: 0xbb | Counter: 1 | Full=0 | Empty=0
+   215.00ns INFO     cocotb                             Pushed: 0xbce | Counter: 2 | Full=0 | Empty=0
+   251.00ns INFO     cocotb                             Pushed: 0x8d2 | Counter: 3 | Full=0 | Empty=0
+   287.00ns INFO     cocotb                             Pushed: 0x140 | Counter: 4 | Full=0 | Empty=0
+   323.00ns INFO     cocotb                             Pushed: 0x203 | Counter: 5 | Full=0 | Empty=0
+   359.00ns INFO     cocotb                             Pushed: 0x7c3 | Counter: 6 | Full=0 | Empty=0
+   395.00ns INFO     cocotb                             Pushed: 0xf06 | Counter: 7 | Full=0 | Empty=0
+   431.00ns INFO     cocotb                             Pushed: 0xc13 | Counter: 8 | Full=1 | Empty=0
+   431.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   431.00ns INFO     cocotb                             Starting pop to empty test...
+   433.00ns INFO     cocotb.regression                  test_async_filo.test_filo_random_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 130, in test_filo_random_clocks
+                                                            await run_filo_test(dut, w_clk_period=random_w_clk, r_clk_period=random_r_clk)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   433.00ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** test_async_filo.test_filo_default_clocks   FAIL         106.00           0.00      30389.35  **
+                                                        ** test_async_filo.test_filo_random_clocks    FAIL         327.00           0.01      63397.31  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=2 PASS=0 FAIL=2 SKIP=0                            433.00           0.01      35184.80  **
+                                                        **************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/async_filo.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=12, DEPTH=8
+[DEBUG] Parameters: {'DATA_WIDTH': 12, 'DEPTH': 8}
+FAILED
+../../src/test_runner.py::test_filo[16-8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774386353
+     0.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_default_clocks (1/2)
+                                                            Run FILO test with default clock frequencies.
+     0.00ns INFO     cocotb                             Running FILO test with DEPTH=16, DATA_WIDTH=8, w_clk_period=10ns, r_clk_period=15ns
+     0.00ns INFO     cocotb                             Starting reset test...
+    20.00ns INFO     cocotb                             Reset complete
+    20.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+    20.00ns INFO     cocotb                             Starting push to full test...
+    30.00ns INFO     cocotb                             Pushed: 0xb8 | Counter: 1 | Full=0 | Empty=0
+    40.00ns INFO     cocotb                             Pushed: 0xc | Counter: 2 | Full=0 | Empty=0
+    50.00ns INFO     cocotb                             Pushed: 0xf1 | Counter: 3 | Full=0 | Empty=0
+    60.00ns INFO     cocotb                             Pushed: 0x7b | Counter: 4 | Full=0 | Empty=0
+    70.00ns INFO     cocotb                             Pushed: 0xed | Counter: 5 | Full=0 | Empty=0
+    80.00ns INFO     cocotb                             Pushed: 0x32 | Counter: 6 | Full=0 | Empty=0
+    90.00ns INFO     cocotb                             Pushed: 0xaa | Counter: 7 | Full=0 | Empty=0
+   100.00ns INFO     cocotb                             Pushed: 0xcb | Counter: 8 | Full=0 | Empty=0
+   110.00ns INFO     cocotb                             Pushed: 0xaf | Counter: 9 | Full=0 | Empty=0
+   120.00ns INFO     cocotb                             Pushed: 0xb1 | Counter: 10 | Full=0 | Empty=0
+   130.00ns INFO     cocotb                             Pushed: 0x70 | Counter: 11 | Full=0 | Empty=0
+   140.00ns INFO     cocotb                             Pushed: 0xf1 | Counter: 12 | Full=0 | Empty=0
+   150.00ns INFO     cocotb                             Pushed: 0xe7 | Counter: 13 | Full=0 | Empty=0
+   160.00ns INFO     cocotb                             Pushed: 0xc2 | Counter: 14 | Full=0 | Empty=0
+   170.00ns INFO     cocotb                             Pushed: 0x9 | Counter: 15 | Full=0 | Empty=0
+   180.00ns INFO     cocotb                             Pushed: 0xe6 | Counter: 16 | Full=1 | Empty=0
+   180.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   180.00ns INFO     cocotb                             Starting pop to empty test...
+   196.00ns INFO     cocotb.regression                  test_async_filo.test_filo_default_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 121, in test_filo_default_clocks
+                                                            await run_filo_test(dut, w_clk_period=10, r_clk_period=15)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   196.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_random_clocks (2/2)
+                                                            Run FILO test with random clock frequencies.
+   197.00ns INFO     cocotb                             Running FILO test with random clocks: w_clk=36ns, r_clk=13ns
+   197.00ns INFO     cocotb                             Running FILO test with DEPTH=16, DATA_WIDTH=8, w_clk_period=36ns, r_clk_period=13ns
+   197.00ns INFO     cocotb                             Starting reset test...
+   233.00ns INFO     cocotb                             Reset complete
+   233.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+   233.00ns INFO     cocotb                             Starting push to full test...
+   269.00ns INFO     cocotb                             Pushed: 0xb | Counter: 1 | Full=0 | Empty=0
+   305.00ns INFO     cocotb                             Pushed: 0xbc | Counter: 2 | Full=0 | Empty=0
+   341.00ns INFO     cocotb                             Pushed: 0x8d | Counter: 3 | Full=0 | Empty=0
+   377.00ns INFO     cocotb                             Pushed: 0x14 | Counter: 4 | Full=0 | Empty=0
+   413.00ns INFO     cocotb                             Pushed: 0x20 | Counter: 5 | Full=0 | Empty=0
+   449.00ns INFO     cocotb                             Pushed: 0x7c | Counter: 6 | Full=0 | Empty=0
+   485.00ns INFO     cocotb                             Pushed: 0xf0 | Counter: 7 | Full=0 | Empty=0
+   521.00ns INFO     cocotb                             Pushed: 0xc1 | Counter: 8 | Full=0 | Empty=0
+   557.00ns INFO     cocotb                             Pushed: 0xee | Counter: 9 | Full=0 | Empty=0
+   593.00ns INFO     cocotb                             Pushed: 0x30 | Counter: 10 | Full=0 | Empty=0
+   629.00ns INFO     cocotb                             Pushed: 0x9f | Counter: 11 | Full=0 | Empty=0
+   665.00ns INFO     cocotb                             Pushed: 0x79 | Counter: 12 | Full=0 | Empty=0
+   701.00ns INFO     cocotb                             Pushed: 0x31 | Counter: 13 | Full=0 | Empty=0
+   737.00ns INFO     cocotb                             Pushed: 0xfe | Counter: 14 | Full=0 | Empty=0
+   773.00ns INFO     cocotb                             Pushed: 0x30 | Counter: 15 | Full=0 | Empty=0
+   809.00ns INFO     cocotb                             Pushed: 0x59 | Counter: 16 | Full=1 | Empty=0
+   809.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   809.00ns INFO     cocotb                             Starting pop to empty test...
+   822.00ns INFO     cocotb.regression                  test_async_filo.test_filo_random_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 130, in test_filo_random_clocks
+                                                            await run_filo_test(dut, w_clk_period=random_w_clk, r_clk_period=random_r_clk)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   822.00ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** test_async_filo.test_filo_default_clocks   FAIL         196.00           0.01      36135.54  **
+                                                        ** test_async_filo.test_filo_random_clocks    FAIL         626.00           0.01      85350.40  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=2 PASS=0 FAIL=2 SKIP=0                            822.00           0.02      50019.12  **
+                                                        **************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/async_filo.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=8, DEPTH=16
+[DEBUG] Parameters: {'DATA_WIDTH': 8, 'DEPTH': 16}
+FAILED
+../../src/test_runner.py::test_filo[16-12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774386353
+     0.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_default_clocks (1/2)
+                                                            Run FILO test with default clock frequencies.
+     0.00ns INFO     cocotb                             Running FILO test with DEPTH=16, DATA_WIDTH=12, w_clk_period=10ns, r_clk_period=15ns
+     0.00ns INFO     cocotb                             Starting reset test...
+    20.00ns INFO     cocotb                             Reset complete
+    20.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+    20.00ns INFO     cocotb                             Starting push to full test...
+    30.00ns INFO     cocotb                             Pushed: 0xb8c | Counter: 1 | Full=0 | Empty=0
+    40.00ns INFO     cocotb                             Pushed: 0xc5 | Counter: 2 | Full=0 | Empty=0
+    50.00ns INFO     cocotb                             Pushed: 0xf15 | Counter: 3 | Full=0 | Empty=0
+    60.00ns INFO     cocotb                             Pushed: 0x7be | Counter: 4 | Full=0 | Empty=0
+    70.00ns INFO     cocotb                             Pushed: 0xed8 | Counter: 5 | Full=0 | Empty=0
+    80.00ns INFO     cocotb                             Pushed: 0x325 | Counter: 6 | Full=0 | Empty=0
+    90.00ns INFO     cocotb                             Pushed: 0xaaf | Counter: 7 | Full=0 | Empty=0
+   100.00ns INFO     cocotb                             Pushed: 0xcb5 | Counter: 8 | Full=0 | Empty=0
+   110.00ns INFO     cocotb                             Pushed: 0xaf4 | Counter: 9 | Full=0 | Empty=0
+   120.00ns INFO     cocotb                             Pushed: 0xb19 | Counter: 10 | Full=0 | Empty=0
+   130.00ns INFO     cocotb                             Pushed: 0x703 | Counter: 11 | Full=0 | Empty=0
+   140.00ns INFO     cocotb                             Pushed: 0xf13 | Counter: 12 | Full=0 | Empty=0
+   150.00ns INFO     cocotb                             Pushed: 0xe7f | Counter: 13 | Full=0 | Empty=0
+   160.00ns INFO     cocotb                             Pushed: 0xc25 | Counter: 14 | Full=0 | Empty=0
+   170.00ns INFO     cocotb                             Pushed: 0x90 | Counter: 15 | Full=0 | Empty=0
+   180.00ns INFO     cocotb                             Pushed: 0xe64 | Counter: 16 | Full=1 | Empty=0
+   180.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   180.00ns INFO     cocotb                             Starting pop to empty test...
+   196.00ns INFO     cocotb.regression                  test_async_filo.test_filo_default_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 121, in test_filo_default_clocks
+                                                            await run_filo_test(dut, w_clk_period=10, r_clk_period=15)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   196.00ns INFO     cocotb.regression                  running test_async_filo.test_filo_random_clocks (2/2)
+                                                            Run FILO test with random clock frequencies.
+   197.00ns INFO     cocotb                             Running FILO test with random clocks: w_clk=36ns, r_clk=13ns
+   197.00ns INFO     cocotb                             Running FILO test with DEPTH=16, DATA_WIDTH=12, w_clk_period=36ns, r_clk_period=13ns
+   197.00ns INFO     cocotb                             Starting reset test...
+   233.00ns INFO     cocotb                             Reset complete
+   233.00ns INFO     cocotb                             Reset test passed: FILO is empty after reset.
+   233.00ns INFO     cocotb                             Starting push to full test...
+   269.00ns INFO     cocotb                             Pushed: 0xbb | Counter: 1 | Full=0 | Empty=0
+   305.00ns INFO     cocotb                             Pushed: 0xbce | Counter: 2 | Full=0 | Empty=0
+   341.00ns INFO     cocotb                             Pushed: 0x8d2 | Counter: 3 | Full=0 | Empty=0
+   377.00ns INFO     cocotb                             Pushed: 0x140 | Counter: 4 | Full=0 | Empty=0
+   413.00ns INFO     cocotb                             Pushed: 0x203 | Counter: 5 | Full=0 | Empty=0
+   449.00ns INFO     cocotb                             Pushed: 0x7c3 | Counter: 6 | Full=0 | Empty=0
+   485.00ns INFO     cocotb                             Pushed: 0xf06 | Counter: 7 | Full=0 | Empty=0
+   521.00ns INFO     cocotb                             Pushed: 0xc13 | Counter: 8 | Full=0 | Empty=0
+   557.00ns INFO     cocotb                             Pushed: 0xee1 | Counter: 9 | Full=0 | Empty=0
+   593.00ns INFO     cocotb                             Pushed: 0x30c | Counter: 10 | Full=0 | Empty=0
+   629.00ns INFO     cocotb                             Pushed: 0x9f7 | Counter: 11 | Full=0 | Empty=0
+   665.00ns INFO     cocotb                             Pushed: 0x79f | Counter: 12 | Full=0 | Empty=0
+   701.00ns INFO     cocotb                             Pushed: 0x318 | Counter: 13 | Full=0 | Empty=0
+   737.00ns INFO     cocotb                             Pushed: 0xfe5 | Counter: 14 | Full=0 | Empty=0
+   773.00ns INFO     cocotb                             Pushed: 0x308 | Counter: 15 | Full=0 | Empty=0
+   809.00ns INFO     cocotb                             Pushed: 0x596 | Counter: 16 | Full=1 | Empty=0
+   809.00ns INFO     cocotb                             Push to full test passed: FILO is full.
+   809.00ns INFO     cocotb                             Starting pop to empty test...
+   822.00ns INFO     cocotb.regression                  test_async_filo.test_filo_random_clocks failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_async_filo.py", line 130, in test_filo_random_clocks
+                                                            await run_filo_test(dut, w_clk_period=random_w_clk, r_clk_period=random_r_clk)
+                                                          File "/src/test_async_filo.py", line 113, in run_filo_test
+                                                            await pop_to_empty_test()
+                                                          File "/src/test_async_filo.py", line 101, in pop_to_empty_test
+                                                            await pop()
+                                                          File "/src/test_async_filo.py", line 69, in pop
+                                                            popped_value = int(dut.r_data.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   822.00ns INFO     cocotb.regression                  **************************************************************************************************
+                                                        ** TEST                                      STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************
+                                                        ** test_async_filo.test_filo_default_clocks   FAIL         196.00           0.01      33531.17  **
+                                                        ** test_async_filo.test_filo_random_clocks    FAIL         626.00           0.01      81334.31  **
+                                                        **************************************************************************************************
+                                                        ** TESTS=2 PASS=0 FAIL=2 SKIP=0                            822.00           0.02      47449.36  **
+                                                        **************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/async_filo.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=12, DEPTH=16
+[DEBUG] Parameters: {'DATA_WIDTH': 12, 'DEPTH': 16}
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+DATA_WIDTH = 8, DEPTH = 16
+
+    def test_runner(DATA_WIDTH: int=8, DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "DEPTH":DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, DEPTH={DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 2 of 2 tests.
+
+/src/test_runner.py:33: SystemExit
+________________________________ test_filo[8-8] ________________________________
+
+DATA_WIDTH = 8, DEPTH = 8
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, DEPTH=DEPTH)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 8, DEPTH = 8
+
+    def test_runner(DATA_WIDTH: int=8, DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "DEPTH":DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, DEPTH={DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 2 of 2 tests.
+
+/src/test_runner.py:33: SystemExit
+_______________________________ test_filo[8-12] ________________________________
+
+DATA_WIDTH = 12, DEPTH = 8
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, DEPTH=DEPTH)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 12, DEPTH = 8
+
+    def test_runner(DATA_WIDTH: int=8, DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "DEPTH":DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, DEPTH={DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 2 of 2 tests.
+
+/src/test_runner.py:33: SystemExit
+_______________________________ test_filo[16-8] ________________________________
+
+DATA_WIDTH = 8, DEPTH = 16
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, DEPTH=DEPTH)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 8, DEPTH = 16
+
+    def test_runner(DATA_WIDTH: int=8, DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "DEPTH":DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, DEPTH={DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 2 of 2 tests.
+
+/src/test_runner.py:33: SystemExit
+_______________________________ test_filo[16-12] _______________________________
+
+DATA_WIDTH = 12, DEPTH = 16
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, DEPTH=DEPTH)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 12, DEPTH = 16
+
+    def test_runner(DATA_WIDTH: int=8, DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "DEPTH":DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, DEPTH={DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 2 of 2 tests.
+
+/src/test_runner.py:33: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 2 of...
+FAILED ../../src/test_runner.py::test_filo[8-8] - SystemExit: ERROR: Failed 2...
+FAILED ../../src/test_runner.py::test_filo[8-12] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_filo[16-8] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_filo[16-12] - SystemExit: ERROR: Failed...
+============================== 5 failed in 1.02s ===============================
+Cleaning up Docker resources...

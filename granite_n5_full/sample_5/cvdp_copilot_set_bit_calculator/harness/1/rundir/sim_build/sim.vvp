@@ -1,0 +1,95 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xed99c0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0xeeb6d0 .scope module, "SetBitStreamCalculator" "SetBitStreamCalculator" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "i_clk";
+    .port_info 1 /INPUT 1 "i_reset_n";
+    .port_info 2 /INPUT 1 "i_ready";
+    .port_info 3 /INPUT 8 "i_bit_in";
+    .port_info 4 /OUTPUT 8 "o_set_bit_count";
+P_0xeeb860 .param/l "p_max_set_bit_count_width" 0 3 2, +C4<00000000000000000000000000001000>;
+v0xeebab0_0 .net *"_ivl_0", 31 0, L_0xefe430;  1 drivers
+v0xefd850_0 .net *"_ivl_10", 31 0, L_0xf0e700;  1 drivers
+L_0x76ddbfaaa0f0 .functor BUFT 1, C4<000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0xefd930_0 .net *"_ivl_13", 23 0, L_0x76ddbfaaa0f0;  1 drivers
+v0xefda20_0 .net *"_ivl_14", 31 0, L_0xf0e870;  1 drivers
+L_0x76ddbfaaa018 .functor BUFT 1, C4<000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0xefdb00_0 .net *"_ivl_3", 23 0, L_0x76ddbfaaa018;  1 drivers
+L_0x76ddbfaaa060 .functor BUFT 1, C4<00000000000000000000000011111111>, C4<0>, C4<0>, C4<0>;
+v0xefdc30_0 .net/2u *"_ivl_4", 31 0, L_0x76ddbfaaa060;  1 drivers
+v0xefdd10_0 .net *"_ivl_6", 0 0, L_0xf0e590;  1 drivers
+L_0x76ddbfaaa0a8 .functor BUFT 1, C4<00000000000000000000000011111111>, C4<0>, C4<0>, C4<0>;
+v0xefddd0_0 .net/2u *"_ivl_8", 31 0, L_0x76ddbfaaa0a8;  1 drivers
+v0xefdeb0_0 .var "count", 7 0;
+o0x76ddbfaf31c8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0xefdf90_0 .net "i_bit_in", 7 0, o0x76ddbfaf31c8;  0 drivers
+o0x76ddbfaf31f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xefe070_0 .net "i_clk", 0 0, o0x76ddbfaf31f8;  0 drivers
+o0x76ddbfaf3228 .functor BUFZ 1, c4<z>; HiZ drive
+v0xefe130_0 .net "i_ready", 0 0, o0x76ddbfaf3228;  0 drivers
+o0x76ddbfaf3258 .functor BUFZ 1, c4<z>; HiZ drive
+v0xefe1f0_0 .net "i_reset_n", 0 0, o0x76ddbfaf3258;  0 drivers
+v0xefe2b0_0 .net "o_set_bit_count", 7 0, L_0xf0ea30;  1 drivers
+E_0xec4230/0 .event negedge, v0xefe1f0_0;
+E_0xec4230/1 .event posedge, v0xefe070_0;
+E_0xec4230 .event/or E_0xec4230/0, E_0xec4230/1;
+L_0xefe430 .concat [ 8 24 0 0], v0xefdeb0_0, L_0x76ddbfaaa018;
+L_0xf0e590 .cmp/gt 32, L_0xefe430, L_0x76ddbfaaa060;
+L_0xf0e700 .concat [ 8 24 0 0], v0xefdeb0_0, L_0x76ddbfaaa0f0;
+L_0xf0e870 .functor MUXZ 32, L_0xf0e700, L_0x76ddbfaaa0a8, L_0xf0e590, C4<>;
+L_0xf0ea30 .part L_0xf0e870, 0, 8;
+S_0xeeb900 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0xeeb6d0;
+T_0 ;
+    %wait E_0xec4230;
+    %load/vec4 v0xefe1f0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xefdeb0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xefe130_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_0.4, 9;
+    %load/vec4 v0xefdf90_0;
+    %pushi/vec4 1, 0, 8;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+T_0.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0xefdeb0_0;
+    %addi 1, 0, 8;
+    %assign/vec4 v0xefdeb0_0, 0;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xeeb900;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/SetBitStreamCalculator.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xeeb6d0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/SetBitStreamCalculator.v";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

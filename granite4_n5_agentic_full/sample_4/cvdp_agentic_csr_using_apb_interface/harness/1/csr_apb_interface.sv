@@ -1,0 +1,1 @@
+module csr_apb_interface (input pselx, input penable, input pwrite, input[31:0] pwdata, output reg[31:0] prdata, input mclk, input srst, input[19:0] data1, input[9:0] data2, output[31:0] isr_reg, input enable, input mode, output overflow_ie, output sign_ie, output parity_ie, output zero_ie);  // Your implementation hereendmodule

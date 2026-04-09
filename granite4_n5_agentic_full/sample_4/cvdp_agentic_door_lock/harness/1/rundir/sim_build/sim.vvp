@@ -1,0 +1,62 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xbe9700 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0xbd5960 .scope module, "door_lock" "door_lock" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "rst";
+    .port_info 1 /INPUT 1 "clk";
+    .port_info 2 /INPUT 4 "key_input";
+    .port_info 3 /INPUT 1 "key_valid";
+    .port_info 4 /INPUT 1 "confirm";
+    .port_info 5 /INPUT 1 "admin_override";
+    .port_info 6 /INPUT 1 "admin_set_mode";
+    .port_info 7 /INPUT 28 "new_password";
+    .port_info 8 /INPUT 1 "new_password_valid";
+    .port_info 9 /OUTPUT 1 "door_unlock";
+    .port_info 10 /OUTPUT 1 "lockout";
+P_0xbe8a90 .param/l "MAX_TRIALS" 0 3 3, +C4<00000000000000000000000000000100>;
+P_0xbe8ad0 .param/l "PASSWORD_LENGTH" 0 3 2, +C4<00000000000000000000000000000111>;
+o0x7a677584d018 .functor BUFZ 1, c4<z>; HiZ drive
+v0xbe9ed0_0 .net "admin_override", 0 0, o0x7a677584d018;  0 drivers
+o0x7a677584d048 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc0c730_0 .net "admin_set_mode", 0 0, o0x7a677584d048;  0 drivers
+o0x7a677584d078 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc0c7f0_0 .net "clk", 0 0, o0x7a677584d078;  0 drivers
+o0x7a677584d0a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc0c8c0_0 .net "confirm", 0 0, o0x7a677584d0a8;  0 drivers
+v0xc0c980_0 .var "door_unlock", 0 0;
+o0x7a677584d108 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0xc0ca90_0 .net "key_input", 3 0, o0x7a677584d108;  0 drivers
+o0x7a677584d138 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc0cb70_0 .net "key_valid", 0 0, o0x7a677584d138;  0 drivers
+v0xc0cc30_0 .var "lockout", 0 0;
+o0x7a677584d198 .functor BUFZ 28, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xc0ccf0_0 .net "new_password", 27 0, o0x7a677584d198;  0 drivers
+o0x7a677584d1c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc0cdd0_0 .net "new_password_valid", 0 0, o0x7a677584d1c8;  0 drivers
+o0x7a677584d1f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc0ce90_0 .net "rst", 0 0, o0x7a677584d1f8;  0 drivers
+S_0xbe9d20 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0xbe9d20;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/door_lock.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xbd5960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/door_lock.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

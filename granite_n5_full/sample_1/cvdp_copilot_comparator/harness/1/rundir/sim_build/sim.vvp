@@ -1,0 +1,79 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xe75070 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0xe5d960 .scope module, "signed_unsigned_comparator" "signed_unsigned_comparator" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 5 "i_A";
+    .port_info 1 /INPUT 5 "i_B";
+    .port_info 2 /INPUT 1 "i_enable";
+    .port_info 3 /INPUT 1 "i_mode";
+    .port_info 4 /OUTPUT 1 "o_greater";
+    .port_info 5 /OUTPUT 1 "o_less";
+    .port_info 6 /OUTPUT 1 "o_equal";
+P_0xe5daf0 .param/l "WIDTH" 0 3 1, +C4<00000000000000000000000000000101>;
+L_0xe74b90 .functor OR 1, L_0xe992e0, L_0xe993b0, C4<0>, C4<0>;
+o0x71b2429f5318 .functor BUFZ 1, c4<z>; HiZ drive
+L_0xe74c00 .functor AND 1, o0x71b2429f5318, L_0xe74b90, C4<1>, C4<1>;
+L_0xe99850 .functor AND 1, o0x71b2429f5318, L_0xe99780, C4<1>, C4<1>;
+L_0xe99c90 .functor AND 1, o0x71b2429f5318, L_0xe99b20, C4<1>, C4<1>;
+v0xe75200_0 .net *"_ivl_0", 0 0, L_0xe992e0;  1 drivers
+L_0x71b2429ac060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0xe980c0_0 .net/2u *"_ivl_10", 0 0, L_0x71b2429ac060;  1 drivers
+v0xe981a0_0 .net *"_ivl_14", 0 0, L_0xe99780;  1 drivers
+v0xe98240_0 .net *"_ivl_17", 0 0, L_0xe99850;  1 drivers
+L_0x71b2429ac0a8 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0xe98300_0 .net/2u *"_ivl_18", 0 0, L_0x71b2429ac0a8;  1 drivers
+v0xe98430_0 .net *"_ivl_2", 0 0, L_0xe993b0;  1 drivers
+L_0x71b2429ac0f0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0xe984f0_0 .net/2u *"_ivl_20", 0 0, L_0x71b2429ac0f0;  1 drivers
+v0xe985d0_0 .net *"_ivl_24", 0 0, L_0xe99b20;  1 drivers
+v0xe98690_0 .net *"_ivl_27", 0 0, L_0xe99c90;  1 drivers
+L_0x71b2429ac138 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0xe98750_0 .net/2u *"_ivl_28", 0 0, L_0x71b2429ac138;  1 drivers
+L_0x71b2429ac180 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0xe98830_0 .net/2u *"_ivl_30", 0 0, L_0x71b2429ac180;  1 drivers
+v0xe98910_0 .net *"_ivl_5", 0 0, L_0xe74b90;  1 drivers
+v0xe989d0_0 .net *"_ivl_7", 0 0, L_0xe74c00;  1 drivers
+L_0x71b2429ac018 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0xe98a90_0 .net/2u *"_ivl_8", 0 0, L_0x71b2429ac018;  1 drivers
+o0x71b2429f52b8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0xe98b70_0 .net "i_A", 4 0, o0x71b2429f52b8;  0 drivers
+o0x71b2429f52e8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0xe98c50_0 .net "i_B", 4 0, o0x71b2429f52e8;  0 drivers
+v0xe98d30_0 .net "i_enable", 0 0, o0x71b2429f5318;  0 drivers
+o0x71b2429f5348 .functor BUFZ 1, c4<z>; HiZ drive
+v0xe98f00_0 .net "i_mode", 0 0, o0x71b2429f5348;  0 drivers
+v0xe98fc0_0 .net "o_equal", 0 0, L_0xe99d30;  1 drivers
+v0xe99080_0 .net "o_greater", 0 0, L_0xe995c0;  1 drivers
+v0xe99140_0 .net "o_less", 0 0, L_0xe99960;  1 drivers
+L_0xe992e0 .cmp/gt 5, o0x71b2429f52b8, o0x71b2429f52e8;
+L_0xe993b0 .cmp/eq 5, o0x71b2429f52b8, o0x71b2429f52e8;
+L_0xe995c0 .functor MUXZ 1, L_0x71b2429ac060, L_0x71b2429ac018, L_0xe74c00, C4<>;
+L_0xe99780 .cmp/gt 5, o0x71b2429f52e8, o0x71b2429f52b8;
+L_0xe99960 .functor MUXZ 1, L_0x71b2429ac0f0, L_0x71b2429ac0a8, L_0xe99850, C4<>;
+L_0xe99b20 .cmp/eq 5, o0x71b2429f52b8, o0x71b2429f52e8;
+L_0xe99d30 .functor MUXZ 1, L_0x71b2429ac180, L_0x71b2429ac138, L_0xe99c90, C4<>;
+S_0xe5dc80 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0xe5dc80;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/signed_unsigned_comparator.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xe5d960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/signed_comparator.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

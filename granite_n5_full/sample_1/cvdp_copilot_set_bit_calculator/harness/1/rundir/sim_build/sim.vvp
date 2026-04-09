@@ -1,0 +1,90 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x11b33c0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x11b3550 .scope module, "SetBitStreamCalculator" "SetBitStreamCalculator" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "i_clk";
+    .port_info 1 /INPUT 1 "i_ready";
+    .port_info 2 /INPUT 1 "i_rst_n";
+    .port_info 3 /INPUT 8 "i_bit_in";
+    .port_info 4 /OUTPUT 8 "o_set_bit_count";
+P_0x11b0e40 .param/l "MAX_SET_BIT_COUNT" 1 3 10, +C4<00000000000000000000000000000000011111111>;
+P_0x11b0e80 .param/l "p_max_set_bit_count_width" 0 3 9, +C4<00000000000000000000000000001000>;
+L_0x11b3000 .functor BUFZ 8, v0x11d7220_0, C4<00000000>, C4<00000000>, C4<00000000>;
+o0x74a9eed64018 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x119eaf0_0 .net "i_bit_in", 7 0, o0x74a9eed64018;  0 drivers
+o0x74a9eed64048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x11d6fd0_0 .net "i_clk", 0 0, o0x74a9eed64048;  0 drivers
+o0x74a9eed64078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x11d7090_0 .net "i_ready", 0 0, o0x74a9eed64078;  0 drivers
+o0x74a9eed640a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x11d7160_0 .net "i_rst_n", 0 0, o0x74a9eed640a8;  0 drivers
+v0x11d7220_0 .var "internal_count", 7 0;
+v0x11d7350_0 .net "o_set_bit_count", 7 0, L_0x11b3000;  1 drivers
+E_0x11c4910 .event posedge, v0x11d7160_0, v0x11d6fd0_0;
+S_0x119e960 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x11b3550;
+T_0 ;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x11d7220_0, 0, 8;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x11b3550;
+T_1 ;
+    %wait E_0x11c4910;
+    %load/vec4 v0x11d7160_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x11d7220_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x11d7090_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.2, 8;
+    %load/vec4 v0x11d7220_0;
+    %pad/u 41;
+    %cmpi/u 255, 0, 41;
+    %flag_get/vec4 5;
+    %jmp/0 T_1.6, 5;
+    %load/vec4 v0x119eaf0_0;
+    %pad/u 32;
+    %pushi/vec4 1, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+T_1.6;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.4, 8;
+    %load/vec4 v0x11d7220_0;
+    %addi 1, 0, 8;
+    %assign/vec4 v0x11d7220_0, 0;
+T_1.4 ;
+T_1.2 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x119e960;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/SetBitStreamCalculator.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x11b3550 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/SetBitStreamCalculator.v";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

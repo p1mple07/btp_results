@@ -1,0 +1,47 @@
+%Warning-WIDTHTRUNC: /code/rtl/caesar_cipher.sv:10:24: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's CONST '64'h5a5a5a5a5a5a5a5a' generates 64 bits.
+                                                     : ... note: In instance 'caesar_cipher'
+   10 | wire [7:0] upper_bound = "ZZZZZZZZ";  
+      |                        ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.027
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /code/rtl/caesar_cipher.sv:11:24: Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's CONST '64'h7171717171717171' generates 64 bits.
+                                                     : ... note: In instance 'caesar_cipher'
+   11 | wire [7:0] lower_bound = "qqqqqqqq";  
+      |                        ^
+%Warning-MULTIDRIVEN: /code/rtl/caesar_cipher.sv:8:11: Bits [3:0] of signal 'char_mod' have multiple combinational drivers
+                                                     : ... note: In instance 'caesar_cipher'
+                      /code/rtl/caesar_cipher.sv:14:17: ... Location of first driver
+   14 | assign char_mod = input_char[7:0];  
+      |                 ^
+                      /code/rtl/caesar_cipher.sv:17:22: ... Location of other driver
+   17 | assign char_mod[3:0] = (input_char[3:0] > mod_result)? (input_char[3:0] - mod_result) : (upper_bound[3:0] - (mod_result - input_char[3:0]));  
+      |                      ^
+                      /code/rtl/caesar_cipher.sv:8:11: ... Only the first driver will be respected
+%Warning-MULTIDRIVEN: /code/rtl/caesar_cipher.sv:8:11: Bits [3:0] of signal 'char_mod' have multiple combinational drivers
+                                                     : ... note: In instance 'caesar_cipher'
+                      /code/rtl/caesar_cipher.sv:14:17: ... Location of first driver
+   14 | assign char_mod = input_char[7:0];  
+      |                 ^
+                      /code/rtl/caesar_cipher.sv:19:22: ... Location of other driver
+   19 | assign char_mod[3:0] = (char_mod[3:0] < lower_bound[3:0])? (lower_bound[3:0] + (lower_bound[3:0] - char_mod[3:0])) : char_mod[3:0];  
+      |                      ^
+                      /code/rtl/caesar_cipher.sv:8:11: ... Only the first driver will be respected
+%Warning-MULTIDRIVEN: /code/rtl/caesar_cipher.sv:8:11: Bits [7:4] of signal 'char_mod' have multiple combinational drivers
+                                                     : ... note: In instance 'caesar_cipher'
+                      /code/rtl/caesar_cipher.sv:14:17: ... Location of first driver
+   14 | assign char_mod = input_char[7:0];  
+      |                 ^
+                      /code/rtl/caesar_cipher.sv:16:22: ... Location of other driver
+   16 | assign char_mod[7:4] = (input_char[7:4] > mod_result)? (input_char[7:4] - mod_result) : (upper_bound[7:4] - (mod_result - input_char[7:4]));  
+      |                      ^
+                      /code/rtl/caesar_cipher.sv:8:11: ... Only the first driver will be respected
+%Warning-MULTIDRIVEN: /code/rtl/caesar_cipher.sv:8:11: Bits [7:4] of signal 'char_mod' have multiple combinational drivers
+                                                     : ... note: In instance 'caesar_cipher'
+                      /code/rtl/caesar_cipher.sv:14:17: ... Location of first driver
+   14 | assign char_mod = input_char[7:0];  
+      |                 ^
+                      /code/rtl/caesar_cipher.sv:18:22: ... Location of other driver
+   18 | assign char_mod[7:4] = (char_mod[7:4] < lower_bound[7:4])? (lower_bound[7:4] + (lower_bound[7:4] - char_mod[7:4])) : char_mod[7:4];  
+      |                      ^
+                      /code/rtl/caesar_cipher.sv:8:11: ... Only the first driver will be respected
+%Error: Exiting due to 6 warning(s)

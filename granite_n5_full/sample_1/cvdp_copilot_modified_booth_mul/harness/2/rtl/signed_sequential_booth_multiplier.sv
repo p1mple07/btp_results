@@ -1,0 +1,192 @@
+The above information has been provided to the booth_encoder. It's not possible to implement multiplication with 32-bit inputs. It's not possible to implement multiplication.
+    - The first three input bits are concatenated to make the multiplication.
+    - The remaining two input bits are concatenated to make the multiplication.
+
+The code snippet below shows the implementation of the logic. The code snippet below shows how the multiplication.
+
+- `rtl/signed_sequential_booth_encoder`.
+- `rtl/signed_sequential_booth_encoder.
+    - `rtl/signed_sequential_booth_encoder`.
+
+- The `rtl/signed_sequential_booth_encoder`.
+- The `rtl/signed_sequential_booth_encoder`.
+- The `rtl/signed_sequential_booth_encoder`.
+
+Therefore, we can use the following two modules for synthesizing the synthesis of the top-level module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+
+Here are some examples:
+    - `rtl/signed_sequential_booth_encoder` module.
+    - `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+
+Note:
+    - The sequential_booth_encoder is used.
+    - The encoder is used to generate the results of the multiplication.
+    - The `rtl/signed_sequential_booth_encoder`.
+    - The `rtl/signed_sequential_booth_encoder` module is used for the multiplication.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The code is generated and verified.
+    - The `rtl/signed_sequential_booth_encoder` module.
+
+- The `rtl/signed_sequential_booth_encoder` module.
+- The `rtl/signed_sequential_booth_encoder` module.
+- The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+- The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+- The `rtl/signed_sequential_booth_encoder` module.
+- The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+    - The `rtl/signed_sequential_booth_encoder` module.
+                - The `rtl/signed_sequential_booth_encoder` module.
+                - The `rtl/signed_sequential_booth_encoder` module.
+                - The `rtl/signed_sequential_booth_encoder:begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin 
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                    - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder: begin
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+            end
+            - The `rtl/signed_sequential_booth_encoder:
+            - The `rtl/signed_sequential_booth_encoder: 
+            - The `rtl/signed_sequential_booth_encoder: 
+                    - The `rtl/signed_sequential_booth_encoder:
+                    - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                    - The `rtl/signed_sequential_booth_encoder:
+            - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                    - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                    - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_sequential_booth_encoder:
+                    - The `rtl/signed_sequential_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder: 
+                - The `rtl/signed_booth_encoder:
+                - The `rtl/signed_booth_encoder:
+end
+
+end
+-bit.
+-bit signed_booth_encoder:
+    - The `rtl/signed_booth_encoder:
+- bit | The `rtl/booth_encoder: 
+    - The `rtl/signed_booth_encoder | 00-bit_encoder:
+    - The `rtl/signed_booth_encoder:
+    - The `rtl/signed_booth_encoder:
+    - The `rtl/signed_booth_encoder:
+
+- The `rtl/2-bit_1:
+    - The `rtl/signed_booth_encoder:
+    - The `rtl/2-bit_encoder:
+    - The `rtl/2-bit_encoder:
+    - The `rtl/2-bit_encoder:
+- The `rtl/2-bit_encoder:
+    - The `rtl/2-bit_2-bit_2-bit_encoder:
+    - The `rtl/2-bit_encoder:
+    - The `rtl/2-bit_2-bit_2-bit_encoder:
+    - The `rtl/2-bit_2-bit_2-bit_2-bit_encoder:
+    - The `rtl/2-bit_2-bit_2-bit_2bit_2-bit_encoder:
+    - The `rtl/2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2bit_2-bit_2-bit_2-bit_2-bit_2-bit_2:
+    - The `rtl2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2
+
+ - The `rtl2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2 - 
+-bit_2-bit_2-bit_2 - 2-bit_2 - 2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2 - 1-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2 - 2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2 - 2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2 - 2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2 - Bit  2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-bit_2-2-bit_2-bit_2-bit_2-bit_2-2-bit_2-2-bit_2-bit_2-2-bit_2-bit_2-2-bit_2-2-bit_2-2-2-2-bit_2-2-2-bit_2-2-2-bit_2-2-bit_2-2-bit_2-2-bit_2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2-2 -2 -2-2-2-2-2 -2-2-2 -2 -2-2-2-2 -2-2-2 -2 -2 -2 -2 -2 -2 -2 -2 -2-2-2 -2 -2-2 -2 -2 - 2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2-2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2-2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -1 -2 -2 -2 -2 -2 -2 -2 -2 -2 -2 -1 -1 -2 -2 -2 -2 -2 -10 -2 -2 -2 -2 -2 -10 -1 -2 -2 -2 -2 -2 -2 -10 -1 -2 -2 -10 -2 -2 -1 -2 -1 -2 -1 -2 -2 -2 -10 -2 -2 -1 -1 -1 -2 -10 -1 -2 -2 -1 -10 -2 -1 -2 -1 -1 -1 -1 -1 -1 -1 -2 -2 -1 -1 -10 -1 -1 -1 -1 -2 -1 -  -2 -1 -2 -1 -1 -1 -1 -0 -1 -1 -0 -1 -1 -2 -1 -1 -1 -10 -1 -1 -10 -10 -1 -1 -10 -10 -1 -1 -0 -10 -1 -1 -10 -1 -10 -1 -0 -1 -1 -1 -10 -10 -1 -10 -1 -10 -1 -10 -10 -0 -0 -2 -0 -10 -0 -0 -10 -10 -0 -1 -10 -10 -1 - 1 -0 -0 -10 -1 - 10 -10 -10 - 10 -0 -0 -0 -10 -10 -10 -10 -0 -10 - 0 -10 -10 -10 -0 -1 -10 -0 -0 -10 -10 -10 -10 -0 -10 -0 -10 -10 -0 -10 -10 -0 -10 -10 -10 -10 -10 -10 -0 -10 -10 -10 -10 -10 -10 -10 -10 -10 -1 -1 -10 -10 -1 -0 -10 - 10 -10 -0 -10 -0 -10 -0 -10 -10 -10 -10 -10 -10 -10 -0 -10 -10 -0 -10 -10 -10 -10 -10 -10 -10 -0 -0 -10 -10 -10 -10 - 10 - 0 -10 -10 -10 -0 -10 -0 -0 -0 -10 -10 - 0 -10 -10 - 10 -0 -10 -0 - 0 -0 -10 - 10 -10 - 0 -0 -0 -10 -10 -0 -10 - 10 -10 -0 -10 -0 -0 -0 -0 -0 -0 -0 -10 -0 -10 -0 -0 -0 -10 -0 -0 - 0 -0 -0 -1 -10 - 0 - 0 - 0 - 1 - 0 -10 - 0 - 0 - 1 -0 - 0 - 0 -1 - 0 -0 -0 - 1 -0 - 0 - 0 - 0 - 0 -0 - 0 - 1 - 0 - 0 - 10 - 0 -0 - 0 - 0 - 0 -10 -10 -10 - 10 -10 - 0 - 10 - 0 - 0 -0 - 10 - 10 - 0 - 10 - 0 - 0 - 0 - 0 - 0 - 0 - 10 - 0 - 0 - 1 - 0 - 0 - 0 - 0 - 0 - 0 -0 - 0 0 - 0 - 0 - 0 - 0 10 - 0 - 10 - 0 - 0 - 0 - 0 0 0 - 0 10 - 0 - 0 - 00 - 0 - 10 - 0 0 0 - 0 0 - 0 10 - 0 00 0 -0 0 0  10 - 0 0 - 0 -0 - 0 0 -0 - 0 -010 - 0 0  -0 -0 - 0 -0 00 -0 -00 0 -00 -0 -0 -0 -00 0 -0 00 -0 -0 00 00 -0 - 0 -0 -0 - 0 -0 -0 -0 -0 -010 - 0 - 0 - 0 -0 0 - 10 0 - 0 - 0 0 -0 -0 -0 - 0 0 -0 -0 -10 -0 - 0 -0 -0 -0 - 0 -0 -0 -0 -0 -0 -0 - 0 - 0 - 0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 - 0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -0 -00 - 0 -0 - 00 - 0 - 0 - 0 - 0 -0 - 0 -0 - 0 - 0 - 0 - 0 -0 - 0 00 -0 -0 -0 -0 -0 - 0 -0 -0 - 0 -0 -0 - 0 -0 -0

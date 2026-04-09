@@ -1,0 +1,84 @@
+Running harness with project name: cvdp_copilot_binary_to_bcd_36_1774386494
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774386497
+     0.00ns INFO     cocotb.regression                  running test_binary_to_bcd.test_binary_to_bcd (1/1)
+                                                            Test binary to BCD conversion using a reference model, with predefined and random test cases 
+    10.00ns INFO     cocotb.binary_to_bcd               Binary Input: 0 | Expected BCD Output: 000000000000 | DUT BCD Output: 000000000000
+    20.00ns INFO     cocotb.regression                  test_binary_to_bcd.test_binary_to_bcd failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_binary_to_bcd.py", line 50, in test_binary_to_bcd
+                                                            assert bcd_out == expected_bcd, f"Test failed for binary {binary_value}: Expected {expected_bcd:012b}, got {bcd_out:012b}"
+                                                        AssertionError: Test failed for binary 20: Expected 000000100000, got 000000000000
+                                                        assert 0 == 32
+    20.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_binary_to_bcd.test_binary_to_bcd   FAIL          20.00           0.00      22919.69  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                          20.00           0.00       4723.05  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/binary_to_bcd.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        # List from Files
+        verilog_sources = os.getenv("VERILOG_SOURCES").split()
+    
+        # Language of Top Level File
+        toplevel_lang   = os.getenv("TOPLEVEL_LANG")
+    
+        sim             = os.getenv("SIM", "icarus")
+        toplevel        = os.getenv("TOPLEVEL")
+        module          = os.getenv("MODULE")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log",
+    
+        )
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:32: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+======================== 1 failed, 3 warnings in 0.17s =========================
+Cleaning up Docker resources...

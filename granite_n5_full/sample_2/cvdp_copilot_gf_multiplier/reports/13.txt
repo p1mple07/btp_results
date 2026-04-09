@@ -1,0 +1,246 @@
+Running harness with project name: cvdp_copilot_gf_multiplier_13_1774404194
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner 
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s gf_mac -g2012 -Pgf_mac.WIDTH=64 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/gf_mac.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774404197
+     0.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.test_gf_multiplier (1/5)
+                                                            Test Galois Field Multiplier with calculated expected result for any 8-bit multiple width 
+     0.00ns INFO     cocotb                             Calculating expected GF multiplication result for WIDTH=64 (in 8-bit segments)
+     0.00ns INFO     cocotb                             Segment 1: a_segment=0xe4, b_segment=0x48, segment_result=0x44
+     0.00ns INFO     cocotb                             After XORing segment 1: intermediate result=0x44
+     0.00ns INFO     cocotb                             Segment 2: a_segment=0x46, b_segment=0xa2, segment_result=0xf4
+     0.00ns INFO     cocotb                             After XORing segment 2: intermediate result=0xb0
+     0.00ns INFO     cocotb                             Segment 3: a_segment=0xc1, b_segment=0xcc, segment_result=0x8a
+     0.00ns INFO     cocotb                             After XORing segment 3: intermediate result=0x3a
+     0.00ns INFO     cocotb                             Segment 4: a_segment=0x10, b_segment=0x40, segment_result=0x6c
+     0.00ns INFO     cocotb                             After XORing segment 4: intermediate result=0x56
+     0.00ns INFO     cocotb                             Segment 5: a_segment=0x3d, b_segment=0x9, segment_result=0xce
+     0.00ns INFO     cocotb                             After XORing segment 5: intermediate result=0x98
+     0.00ns INFO     cocotb                             Segment 6: a_segment=0x90, b_segment=0xdf, segment_result=0x91
+     0.00ns INFO     cocotb                             After XORing segment 6: intermediate result=0x9
+     0.00ns INFO     cocotb                             Segment 7: a_segment=0x93, b_segment=0x5d, segment_result=0xf
+     0.00ns INFO     cocotb                             After XORing segment 7: intermediate result=0x6
+     0.00ns INFO     cocotb                             Segment 8: a_segment=0xba, b_segment=0x28, segment_result=0xd
+     0.00ns INFO     cocotb                             After XORing segment 8: intermediate result=0xb
+     0.00ns INFO     cocotb                             Final calculated expected result: 0xb
+     0.00ns INFO     cocotb.gf_mac                      Testing GF multiplier with WIDTH=64, A=0xba93903d10c146e4, B=0x285ddf0940cca248, Calculated Expected=0xb
+    10.00ns INFO     cocotb.regression                  test_gf_mult_8bit.test_gf_multiplier failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gf_mult_8bit.py", line 58, in test_gf_multiplier
+                                                            actual_result = int(dut.result.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    10.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.test_all_zeros (2/5)
+                                                            Test with all-zero input for A and B 
+    11.00ns INFO     cocotb                             Calculating expected GF multiplication result for WIDTH=64 (in 8-bit segments)
+    11.00ns INFO     cocotb                             Segment 1: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 1: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 2: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 2: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 3: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 3: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 4: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 4: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 5: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 5: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 6: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 6: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 7: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 7: intermediate result=0x0
+    11.00ns INFO     cocotb                             Segment 8: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    11.00ns INFO     cocotb                             After XORing segment 8: intermediate result=0x0
+    11.00ns INFO     cocotb                             Final calculated expected result: 0x0
+    11.00ns INFO     cocotb.gf_mac                      Testing all-zero input: A=0x0, B=0x0, Expected=0x0
+    21.00ns INFO     cocotb.regression                  test_gf_mult_8bit.test_all_zeros failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gf_mult_8bit.py", line 76, in test_all_zeros
+                                                            actual_result = int(dut.result.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    21.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.test_single_bit (3/5)
+                                                            Test with single-bit set in A and B 
+    22.00ns INFO     cocotb                             Calculating expected GF multiplication result for WIDTH=64 (in 8-bit segments)
+    22.00ns INFO     cocotb                             Segment 1: a_segment=0x0, b_segment=0x1, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 1: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 2: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 2: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 3: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 3: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 4: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 4: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 5: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 5: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 6: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 6: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 7: a_segment=0x0, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 7: intermediate result=0x0
+    22.00ns INFO     cocotb                             Segment 8: a_segment=0x80, b_segment=0x0, segment_result=0x0
+    22.00ns INFO     cocotb                             After XORing segment 8: intermediate result=0x0
+    22.00ns INFO     cocotb                             Final calculated expected result: 0x0
+    22.00ns INFO     cocotb.gf_mac                      Testing single-bit input: A=0x8000000000000000, B=0x1, Expected=0x0
+    32.00ns INFO     cocotb.regression                  test_gf_mult_8bit.test_single_bit failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gf_mult_8bit.py", line 91, in test_single_bit
+                                                            actual_result = int(dut.result.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    32.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.test_alternating_bits (4/5)
+                                                            Test with alternating bits pattern in A and B 
+    33.00ns INFO     cocotb                             Calculating expected GF multiplication result for WIDTH=64 (in 8-bit segments)
+    33.00ns INFO     cocotb                             Segment 1: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 1: intermediate result=0x59
+    33.00ns INFO     cocotb                             Segment 2: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 2: intermediate result=0x0
+    33.00ns INFO     cocotb                             Segment 3: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 3: intermediate result=0x59
+    33.00ns INFO     cocotb                             Segment 4: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 4: intermediate result=0x0
+    33.00ns INFO     cocotb                             Segment 5: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 5: intermediate result=0x59
+    33.00ns INFO     cocotb                             Segment 6: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 6: intermediate result=0x0
+    33.00ns INFO     cocotb                             Segment 7: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 7: intermediate result=0x59
+    33.00ns INFO     cocotb                             Segment 8: a_segment=0xaa, b_segment=0x55, segment_result=0x59
+    33.00ns INFO     cocotb                             After XORing segment 8: intermediate result=0x0
+    33.00ns INFO     cocotb                             Final calculated expected result: 0x0
+    33.00ns INFO     cocotb.gf_mac                      Testing alternating bits input: A=0xaaaaaaaaaaaaaaaa, B=0x5555555555555555, Expected=0x0
+    43.00ns INFO     cocotb.regression                  test_gf_mult_8bit.test_alternating_bits failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gf_mult_8bit.py", line 106, in test_alternating_bits
+                                                            actual_result = int(dut.result.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    43.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.test_maximum_values (5/5)
+                                                            Test with maximum values for A and B 
+    44.00ns INFO     cocotb                             Calculating expected GF multiplication result for WIDTH=64 (in 8-bit segments)
+    44.00ns INFO     cocotb                             Segment 1: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 1: intermediate result=0x13
+    44.00ns INFO     cocotb                             Segment 2: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 2: intermediate result=0x0
+    44.00ns INFO     cocotb                             Segment 3: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 3: intermediate result=0x13
+    44.00ns INFO     cocotb                             Segment 4: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 4: intermediate result=0x0
+    44.00ns INFO     cocotb                             Segment 5: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 5: intermediate result=0x13
+    44.00ns INFO     cocotb                             Segment 6: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 6: intermediate result=0x0
+    44.00ns INFO     cocotb                             Segment 7: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 7: intermediate result=0x13
+    44.00ns INFO     cocotb                             Segment 8: a_segment=0xff, b_segment=0xff, segment_result=0x13
+    44.00ns INFO     cocotb                             After XORing segment 8: intermediate result=0x0
+    44.00ns INFO     cocotb                             Final calculated expected result: 0x0
+    44.00ns INFO     cocotb.gf_mac                      Testing maximum values input: A=0xffffffffffffffff, B=0xffffffffffffffff, Expected=0x0
+    54.00ns INFO     cocotb.regression                  test_gf_mult_8bit.test_maximum_values failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gf_mult_8bit.py", line 121, in test_maximum_values
+                                                            actual_result = int(dut.result.value)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    54.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_gf_mult_8bit.test_gf_multiplier      FAIL          10.00           0.00       6526.07  **
+                                                        ** test_gf_mult_8bit.test_all_zeros          FAIL          11.00           0.00      10314.63  **
+                                                        ** test_gf_mult_8bit.test_single_bit         FAIL          11.00           0.00      10762.15  **
+                                                        ** test_gf_mult_8bit.test_alternating_bits   FAIL          11.00           0.00      11863.55  **
+                                                        ** test_gf_mult_8bit.test_maximum_values     FAIL          11.00           0.00      12119.08  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                            54.00           0.01       4477.64  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/gf_mac.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+        # Set WIDTH in the environment for the testbench to access
+        os.environ["WIDTH"] = WIDTH
+    
+        runner = get_runner(sim)
+    
+        # Build the design with dynamic parameter for WIDTH
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="build.log",
+            # Pass WIDTH parameter dynamically to the simulator
+            parameters={
+                "WIDTH": WIDTH  # Add WIDTH parameter for dynamic configuration
+            }
+        )
+    
+        # Run the test
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:38: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s gf_mac -g2012 -Pgf_mac.WIDTH=64 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/gf_mac.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 5 of...
+======================== 1 failed, 3 warnings in 0.18s =========================
+Cleaning up Docker resources...

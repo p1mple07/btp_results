@@ -1,0 +1,61 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x10c2960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x10c2af0 .scope module, "divider" "divider" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 16 "dividend";
+    .port_info 4 /INPUT 16 "divisor";
+    .port_info 5 /OUTPUT 16 "quotient";
+    .port_info 6 /OUTPUT 16 "remainder";
+    .port_info 7 /OUTPUT 1 "valid";
+P_0x10c2c80 .param/l "AW" 1 3 16, +C4<000000000000000000000000000010001>;
+P_0x10c2cc0 .param/l "BUSY" 1 3 20, C4<01>;
+P_0x10c2d00 .param/l "DONE" 1 3 21, C4<10>;
+P_0x10c2d40 .param/l "IDLE" 1 3 19, C4<00>;
+P_0x10c2d80 .param/l "WIDTH" 0 3 3, +C4<00000000000000000000000000010000>;
+L_0x10feeb0 .functor BUFZ 16, v0x10fe7a0_0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+L_0x10fef40 .functor BUFZ 16, v0x10fe9b0_0, C4<0000000000000000>, C4<0000000000000000>, C4<0000000000000000>;
+o0x72409ab8f018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x10da350_0 .net "clk", 0 0, o0x72409ab8f018;  0 drivers
+o0x72409ab8f048 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x10fe520_0 .net "dividend", 15 0, o0x72409ab8f048;  0 drivers
+o0x72409ab8f078 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x10fe600_0 .net "divisor", 15 0, o0x72409ab8f078;  0 drivers
+v0x10fe6c0_0 .net "quotient", 15 0, L_0x10feeb0;  1 drivers
+v0x10fe7a0_0 .var "quotient_reg", 15 0;
+v0x10fe8d0_0 .net "remainder", 15 0, L_0x10fef40;  1 drivers
+v0x10fe9b0_0 .var "remainder_reg", 15 0;
+o0x72409ab8f168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x10fea90_0 .net "rst_n", 0 0, o0x72409ab8f168;  0 drivers
+o0x72409ab8f198 .functor BUFZ 1, c4<z>; HiZ drive
+v0x10feb50_0 .net "start", 0 0, o0x72409ab8f198;  0 drivers
+v0x10fec10_0 .net "valid", 0 0, L_0x10ff010;  1 drivers
+v0x10fecd0_0 .var "valid_reg", 15 0;
+L_0x10ff010 .part v0x10fecd0_0, 0, 1;
+S_0x10da1c0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x10da1c0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/divider.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x10c2af0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/divider.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

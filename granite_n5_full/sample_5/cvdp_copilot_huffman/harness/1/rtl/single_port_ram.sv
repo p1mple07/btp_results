@@ -1,0 +1,1 @@
+The file containing the implementation of the single_port_ram module.

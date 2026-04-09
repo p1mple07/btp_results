@@ -1,0 +1,56 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x7b9e00 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x7a6960 .scope module, "convolutional_encoder" "convolutional_encoder" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 1 "data_in";
+    .port_info 3 /OUTPUT 1 "encoded_bit1";
+    .port_info 4 /OUTPUT 1 "encoded_bit2";
+o0x7d057969b018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7a6cc0_0 .net "clk", 0 0, o0x7d057969b018;  0 drivers
+o0x7d057969b048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7dc430_0 .net "data_in", 0 0, o0x7d057969b048;  0 drivers
+v0x7dc4f0_0 .var "encoded_bit1", 0 0;
+v0x7dc590_0 .var "encoded_bit2", 0 0;
+o0x7d057969b0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7dc650_0 .net "rst", 0 0, o0x7d057969b0d8;  0 drivers
+E_0x7a7090 .event posedge, v0x7dc650_0, v0x7a6cc0_0;
+S_0x7a6af0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x7a6960;
+T_0 ;
+    %wait E_0x7a7090;
+    %load/vec4 v0x7dc650_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7dc4f0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7dc590_0, 0;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x7a6af0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/convolutional_encoder.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x7a6960 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/convolutional_encoder.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

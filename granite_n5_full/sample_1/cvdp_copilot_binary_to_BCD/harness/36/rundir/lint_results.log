@@ -1,0 +1,22 @@
+%Warning-IMPLICIT: /code/rtl/binary_to_bcd.sv:11:10: Signal definition not found, creating implicitly: 'unused_signal'
+   11 |   assign unused_signal = shift_reg[31:28];
+      |          ^~~~~~~~~~~~~
+                   ... For warning description see https://verilator.org/warn/IMPLICIT?v=5.027
+                   ... Use "/* verilator lint_off IMPLICIT */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /code/rtl/binary_to_bcd.sv:11:24: Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's SEL generates 4 bits.
+                                                     : ... note: In instance 'binary_to_bcd'
+   11 |   assign unused_signal = shift_reg[31:28];
+      |                        ^
+%Warning-WIDTHEXPAND: /code/rtl/binary_to_bcd.sv:14:15: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's REPLICATE generates 20 bits.
+                                                      : ... note: In instance 'binary_to_bcd'
+   14 |     shift_reg = {12'd0, binary_in};
+      |               ^
+%Warning-WIDTHTRUNC: /code/rtl/binary_to_bcd.sv:20:13: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's SEL generates 16 bits.
+                                                     : ... note: In instance 'binary_to_bcd'
+   20 |     bcd_out = shift_reg[31:16];
+      |             ^
+%Warning-UNUSEDSIGNAL: /code/rtl/binary_to_bcd.sv:7:16: Signal is not driven, nor used: 'shift_reg_temp'
+                                                      : ... note: In instance 'binary_to_bcd'
+    7 |   logic [27:0] shift_reg_temp;
+      |                ^~~~~~~~~~~~~~
+%Error: Exiting due to 5 warning(s)

@@ -1,0 +1,51 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1340970 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1340b00 .scope module, "sgd_linear_regression" "sgd_linear_regression" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 14 "x_in";
+    .port_info 3 /INPUT 14 "y_true";
+    .port_info 4 /OUTPUT 14 "w";
+    .port_info 5 /OUTPUT 14 "b";
+P_0x1340c90 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000001110>;
+P_0x1340cd0 .param/l "LEARNING_RATE" 0 3 3, +C4<00000000000000000000000000000010>;
+P_0x1340d10 .param/l "NBW_DELTA" 1 3 14, +C4<00000000000000000000000000000000000000000000000000000000000000101111>;
+P_0x1340d50 .param/l "NBW_ERROR" 1 3 13, +C4<000000000000000000000000000000000000000000000000000000000000011110>;
+P_0x1340d90 .param/l "NBW_PRED" 1 3 12, +C4<00000000000000000000000000000000000000000000000000000000000011101>;
+v0x1356ec0_0 .net/s *"_ivl_0", 28 0, L_0x137a850;  1 drivers
+v0x1379ee0_0 .net/s *"_ivl_2", 28 0, L_0x137a8f0;  1 drivers
+v0x1379fc0_0 .net/s *"_ivl_5", 28 0, L_0x137a9f0;  1 drivers
+v0x137a080_0 .net/s *"_ivl_6", 28 0, L_0x137ab10;  1 drivers
+v0x137a160_0 .var/s "b", 13 0;
+o0x77b5b5d72108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x137a290_0 .net "clk", 0 0, o0x77b5b5d72108;  0 drivers
+o0x77b5b5d72138 .functor BUFZ 1, c4<z>; HiZ drive
+v0x137a350_0 .net "reset", 0 0, o0x77b5b5d72138;  0 drivers
+v0x137a410_0 .var/s "w", 13 0;
+o0x77b5b5d72198 .functor BUFZ 14, c4<zzzzzzzzzzzzzz>; HiZ drive
+v0x137a4f0_0 .net/s "x_in", 13 0, o0x77b5b5d72198;  0 drivers
+v0x137a5d0_0 .net/s "y_pred", 28 0, L_0x137abe0;  1 drivers
+o0x77b5b5d721f8 .functor BUFZ 14, c4<zzzzzzzzzzzzzz>; HiZ drive
+v0x137a6b0_0 .net/s "y_true", 13 0, o0x77b5b5d721f8;  0 drivers
+L_0x137a850 .extend/s 29, v0x137a410_0;
+L_0x137a8f0 .extend/s 29, o0x77b5b5d72198;
+L_0x137a9f0 .arith/mult 29, L_0x137a850, L_0x137a8f0;
+L_0x137ab10 .extend/s 29, v0x137a160_0;
+L_0x137abe0 .arith/sum 29, L_0x137a9f0, L_0x137ab10;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sgd_linear_regression.sv";

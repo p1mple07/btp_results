@@ -1,0 +1,68 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xa85920 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0xa85ab0 .scope module, "perfect_squares_generator" "perfect_squares_generator" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /OUTPUT 32 "sqr_o";
+L_0xa85540 .functor BUFZ 32, v0xaa8fb0_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0xa71b10_0 .var "base", 31 0;
+o0x791b6cc33048 .functor BUFZ 1, c4<z>; HiZ drive
+v0xaa8e50_0 .net "clk", 0 0, o0x791b6cc33048;  0 drivers
+o0x791b6cc33078 .functor BUFZ 1, c4<z>; HiZ drive
+v0xaa8f10_0 .net "reset", 0 0, o0x791b6cc33078;  0 drivers
+v0xaa8fb0_0 .var "sqr", 31 0;
+v0xaa9090_0 .net "sqr_o", 31 0, L_0xa85540;  1 drivers
+E_0xa71e70 .event posedge, v0xaa8f10_0, v0xaa8e50_0;
+S_0xa71960 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0xa85ab0;
+T_0 ;
+    %wait E_0xa71e70;
+    %load/vec4 v0xaa8f10_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 1, 0, 32;
+    %assign/vec4 v0xa71b10_0, 0;
+    %pushi/vec4 1, 0, 32;
+    %assign/vec4 v0xaa8fb0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xaa8fb0_0;
+    %load/vec4 v0xa71b10_0;
+    %add;
+    %assign/vec4 v0xaa8fb0_0, 0;
+    %load/vec4 v0xaa8fb0_0;
+    %cmpi/u 4294967295, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_0.2, 5;
+    %pushi/vec4 4294967295, 0, 32;
+    %assign/vec4 v0xaa8fb0_0, 0;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xa71960;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/perfect_squares_generator.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xa85ab0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/perfect_squares_generator.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

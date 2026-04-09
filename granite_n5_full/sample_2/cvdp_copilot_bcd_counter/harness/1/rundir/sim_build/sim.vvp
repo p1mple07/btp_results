@@ -1,0 +1,115 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1531430 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1519960 .scope module, "bcd_counter" "bcd_counter" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 4 "ms_hr";
+    .port_info 3 /OUTPUT 4 "ls_hr";
+    .port_info 4 /OUTPUT 4 "ms_min";
+    .port_info 5 /OUTPUT 4 "ls_min";
+    .port_info 6 /OUTPUT 4 "ms_sec";
+    .port_info 7 /OUTPUT 4 "ls_sec";
+v0x1519d90_0 .net *"_ivl_13", 1 0, L_0x1559ae0;  1 drivers
+L_0x7ed2ff2d7060 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x1558970_0 .net *"_ivl_17", 1 0, L_0x7ed2ff2d7060;  1 drivers
+v0x1558a50_0 .net *"_ivl_5", 2 0, L_0x15597e0;  1 drivers
+L_0x7ed2ff2d7018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x1558b10_0 .net *"_ivl_9", 0 0, L_0x7ed2ff2d7018;  1 drivers
+o0x7ed2ff3200d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1558bf0_0 .net "clk", 0 0, o0x7ed2ff3200d8;  0 drivers
+v0x1558d00_0 .var "hr_count", 5 0;
+v0x1558de0_0 .net "ls_hr", 3 0, L_0x1559d30;  1 drivers
+v0x1558ec0_0 .net "ls_min", 3 0, L_0x15599f0;  1 drivers
+v0x1558fa0_0 .net "ls_sec", 3 0, L_0x1559740;  1 drivers
+v0x1559080_0 .var "min_count", 6 0;
+v0x1559160_0 .net "ms_hr", 3 0, L_0x1559bf0;  1 drivers
+v0x1559240_0 .net "ms_min", 3 0, L_0x1559880;  1 drivers
+v0x1559320_0 .net "ms_sec", 3 0, L_0x15596a0;  1 drivers
+o0x7ed2ff320288 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1559400_0 .net "rst", 0 0, o0x7ed2ff320288;  0 drivers
+v0x15594c0_0 .var "sec_count", 7 0;
+E_0x153fb60 .event posedge, v0x1558bf0_0;
+L_0x15596a0 .part v0x15594c0_0, 4, 4;
+L_0x1559740 .part v0x15594c0_0, 0, 4;
+L_0x15597e0 .part v0x1559080_0, 4, 3;
+L_0x1559880 .concat [ 3 1 0 0], L_0x15597e0, L_0x7ed2ff2d7018;
+L_0x15599f0 .part v0x1559080_0, 0, 4;
+L_0x1559ae0 .part v0x1558d00_0, 4, 2;
+L_0x1559bf0 .concat [ 2 2 0 0], L_0x1559ae0, L_0x7ed2ff2d7060;
+L_0x1559d30 .part v0x1558d00_0, 0, 4;
+S_0x1519c00 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1519960;
+T_0 ;
+    %wait E_0x153fb60;
+    %load/vec4 v0x1559400_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x15594c0_0, 0;
+    %pushi/vec4 0, 0, 7;
+    %assign/vec4 v0x1559080_0, 0;
+    %pushi/vec4 0, 0, 6;
+    %assign/vec4 v0x1558d00_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x15594c0_0;
+    %cmpi/e 59, 0, 8;
+    %jmp/0xz  T_0.2, 4;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x15594c0_0, 0;
+    %load/vec4 v0x1559080_0;
+    %cmpi/e 59, 0, 7;
+    %jmp/0xz  T_0.4, 4;
+    %pushi/vec4 0, 0, 7;
+    %assign/vec4 v0x1559080_0, 0;
+    %load/vec4 v0x1558d00_0;
+    %cmpi/e 23, 0, 6;
+    %jmp/0xz  T_0.6, 4;
+    %pushi/vec4 0, 0, 6;
+    %assign/vec4 v0x1558d00_0, 0;
+    %jmp T_0.7;
+T_0.6 ;
+    %load/vec4 v0x1558d00_0;
+    %addi 1, 0, 6;
+    %assign/vec4 v0x1558d00_0, 0;
+T_0.7 ;
+    %jmp T_0.5;
+T_0.4 ;
+    %load/vec4 v0x1559080_0;
+    %addi 1, 0, 7;
+    %assign/vec4 v0x1559080_0, 0;
+T_0.5 ;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0x15594c0_0;
+    %addi 1, 0, 8;
+    %assign/vec4 v0x15594c0_0, 0;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1519c00;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/bcd_counter.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1519960 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bcd_counter.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

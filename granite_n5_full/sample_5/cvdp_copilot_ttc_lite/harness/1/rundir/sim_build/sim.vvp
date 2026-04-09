@@ -1,0 +1,51 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x895c90 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x882960 .scope module, "ttc_counter_lite" "ttc_counter_lite" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 4 "axi_addr";
+    .port_info 3 /INPUT 32 "axi_wdata";
+    .port_info 4 /INPUT 1 "axi_write_en";
+    .port_info 5 /INPUT 1 "axi_read_en";
+    .port_info 6 /OUTPUT 32 "axi_rdata";
+    .port_info 7 /OUTPUT 1 "interrupt";
+o0x78ab6a05b018 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x895e60_0 .net "axi_addr", 3 0, o0x78ab6a05b018;  0 drivers
+v0x8b81e0_0 .var "axi_rdata", 31 0;
+o0x78ab6a05b078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8b82c0_0 .net "axi_read_en", 0 0, o0x78ab6a05b078;  0 drivers
+o0x78ab6a05b0a8 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x8b8360_0 .net "axi_wdata", 31 0, o0x78ab6a05b0a8;  0 drivers
+o0x78ab6a05b0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8b8440_0 .net "axi_write_en", 0 0, o0x78ab6a05b0d8;  0 drivers
+o0x78ab6a05b108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8b8500_0 .net "clk", 0 0, o0x78ab6a05b108;  0 drivers
+v0x8b85c0_0 .var "interrupt", 0 0;
+o0x78ab6a05b168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8b8680_0 .net "reset", 0 0, o0x78ab6a05b168;  0 drivers
+S_0x882c00 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x882c00;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/ttc_counter_lite.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x882960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/ttc_counter_lite.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

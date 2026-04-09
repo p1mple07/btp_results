@@ -1,0 +1,1 @@
+The file containing the implementation of the huffman_encoder module.

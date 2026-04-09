@@ -1,0 +1,672 @@
+Running harness with project name: cvdp_copilot_gcd_38_1774440615
+#1 [internal] load local bake definitions
+#1 reading from stdin 694B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 ...
+
+#6 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#6 DONE 0.2s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.2s done
+#5 DONE 0.3s
+
+#7 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#7 CACHED
+
+#8 [3/4] RUN python3 ./get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:fe6b38d8508aa105ccb06248b3a839cce282dd06d61afb081933ce992fb02fbf
+#10 exporting manifest sha256:fe6b38d8508aa105ccb06248b3a839cce282dd06d61afb081933ce992fb02fbf 0.3s done
+#10 exporting config sha256:7e35d17f19e4ecc51e396fb5dc628aa400419dda158563337bd7cbcd7203f4e0
+#10 exporting config sha256:7e35d17f19e4ecc51e396fb5dc628aa400419dda158563337bd7cbcd7203f4e0 0.3s done
+#10 exporting attestation manifest sha256:0d8bf9056d3ef29516e7cca6b3f473453afa340d88ae1ef57e2f585ec877522f
+#10 exporting attestation manifest sha256:0d8bf9056d3ef29516e7cca6b3f473453afa340d88ae1ef57e2f585ec877522f 0.6s done
+#10 exporting manifest list sha256:3394325a5e362c2ccf01bd81502f8c27287eec9239b668271b1fd04a1185a9a0
+#10 exporting manifest list sha256:3394325a5e362c2ccf01bd81502f8c27287eec9239b668271b1fd04a1185a9a0 0.3s done
+#10 naming to docker.io/library/cvdp_copilot_gcd_38_1774440615-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_gcd_38_1774440615-synth:latest 0.0s done
+#10 unpacking to docker.io/library/cvdp_copilot_gcd_38_1774440615-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_gcd_38_1774440615-synth:latest 1.2s done
+#10 DONE 2.9s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/gcd_top.sv
+Parsing SystemVerilog input from `/code/rtl/gcd_top.sv' to AST representation.
+Generating RTLIL representation for module `\gcd_top'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \gcd_top
+
+2.2. Analyzing design hierarchy..
+Top module:  \gcd_top
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+
+5.9. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing FSM pass (extract and optimize FSM).
+
+6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+
+7.9. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing MEMORY pass.
+
+8.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+8.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+8.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+8.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+
+9.9. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing TECHMAP pass (map to technology primitives).
+
+10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+
+11.9. Finished OPT passes. (There is nothing left to do.)
+
+12. Executing SYNTH pass.
+
+12.1. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1.1. Analyzing design hierarchy..
+Top module:  \gcd_top
+
+12.1.2. Analyzing design hierarchy..
+Top module:  \gcd_top
+Removed 0 unused modules.
+
+12.2. Executing PROC pass (convert processes to netlists).
+
+12.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+12.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+12.2.4. Executing PROC_INIT pass (extract init attributes).
+
+12.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+12.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+12.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+12.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+12.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+12.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+12.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.12. Executing OPT_EXPR pass (perform const folding).
+
+12.3. Executing OPT_EXPR pass (perform const folding).
+
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.5. Executing CHECK pass (checking for obvious problems).
+Found and reported 0 problems.
+
+12.6. Executing OPT pass (performing simple optimizations).
+
+12.6.1. Executing OPT_EXPR pass (perform const folding).
+
+12.6.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+12.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+12.6.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.6.8. Executing OPT_EXPR pass (perform const folding).
+
+12.6.9. Finished OPT passes. (There is nothing left to do.)
+
+12.7. Executing FSM pass (extract and optimize FSM).
+
+12.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+12.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+12.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+12.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+12.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+12.8. Executing OPT pass (performing simple optimizations).
+
+12.8.1. Executing OPT_EXPR pass (perform const folding).
+
+12.8.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+12.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+12.8.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.8.8. Executing OPT_EXPR pass (perform const folding).
+
+12.8.9. Finished OPT passes. (There is nothing left to do.)
+
+12.9. Executing WREDUCE pass (reducing word size of cells).
+
+12.10. Executing PEEPOPT pass (run peephole optimizers).
+
+12.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.12. Executing ALUMACC pass (create $alu and $macc cells).
+
+12.13. Executing SHARE pass (SAT-based resource sharing).
+
+12.14. Executing OPT pass (performing simple optimizations).
+
+12.14.1. Executing OPT_EXPR pass (perform const folding).
+
+12.14.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+12.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+12.14.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.14.8. Executing OPT_EXPR pass (perform const folding).
+
+12.14.9. Finished OPT passes. (There is nothing left to do.)
+
+12.15. Executing MEMORY pass.
+
+12.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+12.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+12.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+12.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+12.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+12.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+12.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+12.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+12.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.17. Executing OPT pass (performing simple optimizations).
+
+12.17.1. Executing OPT_EXPR pass (perform const folding).
+
+12.17.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.17.5. Finished fast OPT passes.
+
+12.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+12.19. Executing OPT pass (performing simple optimizations).
+
+12.19.1. Executing OPT_EXPR pass (perform const folding).
+
+12.19.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Removed 0 multiplexer ports.
+
+12.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+Performed a total of 0 changes.
+
+12.19.5. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.19.6. Executing OPT_SHARE pass.
+
+12.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.19.9. Executing OPT_EXPR pass (perform const folding).
+
+12.19.10. Finished OPT passes. (There is nothing left to do.)
+
+12.20. Executing TECHMAP pass (map to technology primitives).
+
+12.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+12.20.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+12.21. Executing OPT pass (performing simple optimizations).
+
+12.21.1. Executing OPT_EXPR pass (perform const folding).
+
+12.21.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.21.5. Finished fast OPT passes.
+
+12.22. Executing ABC pass (technology mapping using ABC).
+
+12.23. Executing OPT pass (performing simple optimizations).
+
+12.23.1. Executing OPT_EXPR pass (perform const folding).
+
+12.23.2. Executing OPT_MERGE pass (detect identical cells).
+Removed a total of 0 cells.
+
+12.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+12.23.5. Finished fast OPT passes.
+
+12.24. Executing HIERARCHY pass (managing design hierarchy).
+
+12.24.1. Analyzing design hierarchy..
+Top module:  \gcd_top
+
+12.24.2. Analyzing design hierarchy..
+Top module:  \gcd_top
+Removed 0 unused modules.
+
+12.25. Printing statistics.
+
+12.26. Executing CHECK pass (checking for obvious problems).
+Found and reported 0 problems.
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
+
+End of script. Logfile hash: 089ae96a14, CPU: user 0.03s system 0.01s, MEM: 13.12 MB peak
+Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+Time spent: 38% 4x read_verilog (0 sec), 20% 22x opt_expr (0 sec), ...
+
+Yosys Synthesis Log Comparison:
+{}
+False
+FAILED
+
+=================================== FAILURES ===================================
+__________________________________ test_yosys __________________________________
+
+    def test_yosys():
+    
+        # Check for logs
+        log_file = "/code/rundir/synth.log"
+        error = 0
+        if os.path.exists(log_file):
+            os.remove(log_file)
+            error = 0 if not os.path.exists(log_file) else 1
+    
+        # Verifica se ocorreu algum erro
+        assert error == 0, "Error to remove previous synth log."
+        # Run synthesis
+        synth()
+    
+        # Compare statistics from two Yosys logs and determine if synthesis improved or failed.
+        stats_after, error_after = parse_yosys_log(log_file)
+    
+        print("\nYosys Synthesis Log Comparison:")
+        print(stats_after)
+        print(error_after)
+    
+        if os.environ.get("ERROR") is not None:
+            print("Improvement detected: Errors found in the before log but none in the after log. RTL is now synthesizable.")
+            return True
+        if error_after:
+            print("No upgrades in synthesis: Errors detected in the after log. Synthesis failed.")
+            return False
+    
+        improvs = os.environ.get("IMPROVEMENTS")
+        improvs = improvs.split(" ")
+    
+        improvement_found = False
+    
+        for key in improvs:
+    
+            up_key = str(key).upper()
+            value_before = int(os.environ.get(up_key))
+>           value_after  = stats_after[f"Number of {key}"]
+E           KeyError: 'Number of wires'
+
+/src/synth.py:69: KeyError
+=========================== short test summary info ============================
+FAILED ../../src/synth.py::test_yosys - KeyError: 'Number of wires'
+============================== 1 failed in 0.05s ===============================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_gcd_38_1774440615-synth:latest
+Deleted: sha256:3394325a5e362c2ccf01bd81502f8c27287eec9239b668271b1fd04a1185a9a0

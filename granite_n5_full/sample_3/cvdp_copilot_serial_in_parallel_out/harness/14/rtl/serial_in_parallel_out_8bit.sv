@@ -1,0 +1,1 @@
+The module will generate the following codeword

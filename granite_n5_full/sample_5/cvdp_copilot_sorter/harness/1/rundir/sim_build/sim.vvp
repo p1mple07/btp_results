@@ -1,0 +1,47 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x232fe60 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x231c960 .scope module, "sorting_engine" "sorting_engine" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 20 "in_data";
+    .port_info 4 /OUTPUT 1 "done";
+    .port_info 5 /OUTPUT 20 "out_data";
+P_0x232f070 .param/l "N" 0 3 1, +C4<00000000000000000000000000000100>;
+P_0x232f0b0 .param/l "WIDTH" 0 3 1, +C4<00000000000000000000000000000101>;
+o0x73fbedd4d018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x232fff0_0 .net "clk", 0 0, o0x73fbedd4d018;  0 drivers
+v0x23523b0_0 .var "done", 0 0;
+o0x73fbedd4d078 .functor BUFZ 20, c4<zzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x2352470_0 .net "in_data", 19 0, o0x73fbedd4d078;  0 drivers
+v0x2352560_0 .var "out_data", 19 0;
+o0x73fbedd4d0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2352640_0 .net "rst", 0 0, o0x73fbedd4d0d8;  0 drivers
+o0x73fbedd4d108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2352750_0 .net "start", 0 0, o0x73fbedd4d108;  0 drivers
+S_0x231cc60 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x231cc60;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/sorting_engine.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x231c960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sorting_engine.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

@@ -1,0 +1,195 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x7a4960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x7a4af0 .scope module, "spi_fsm" "spi_fsm" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "i_clk";
+    .port_info 1 /INPUT 1 "i_rst_b";
+    .port_info 2 /INPUT 16 "i_data_in";
+    .port_info 3 /INPUT 1 "i_enable";
+    .port_info 4 /INPUT 1 "i_fault";
+    .port_info 5 /INPUT 1 "i_clear";
+    .port_info 6 /OUTPUT 1 "o_spi_cs_b";
+    .port_info 7 /OUTPUT 1 "o_spi_clk";
+    .port_info 8 /OUTPUT 1 "o_spi_data";
+    .port_info 9 /OUTPUT 5 "o_bits_left";
+    .port_info 10 /OUTPUT 1 "o_done";
+    .port_info 11 /OUTPUT 2 "o_fsm_state";
+enum0x7b6d50 .enum4 (2)
+   "IDLE" 2'b00,
+   "TRANSMIT" 2'b01,
+   "CLOCK_TOGGLE" 2'b10,
+   "ERROR" 2'b11
+ ;
+L_0x7cbad0 .functor NOT 1, v0x7f88b0_0, C4<0>, C4<0>, C4<0>;
+L_0x7cb500 .functor BUFZ 5, v0x7f8630_0, C4<00000>, C4<00000>, C4<00000>;
+L_0x7f9c90 .functor BUFZ 2, v0x7f8970_0, C4<00>, C4<00>, C4<00>;
+L_0x7bd16575b018 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x7a3b40_0 .net/2u *"_ivl_10", 1 0, L_0x7bd16575b018;  1 drivers
+v0x7a4e10_0 .net *"_ivl_12", 0 0, L_0x7f98f0;  1 drivers
+L_0x7bd16575b060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x7f8360_0 .net/2u *"_ivl_14", 0 0, L_0x7bd16575b060;  1 drivers
+L_0x7bd16575b0a8 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x7f8420_0 .net/2u *"_ivl_16", 0 0, L_0x7bd16575b0a8;  1 drivers
+v0x7f8500_0 .net *"_ivl_5", 7 0, L_0x7f9700;  1 drivers
+v0x7f8630_0 .var "bits_left", 4 0;
+v0x7f8710_0 .var "clear", 0 0;
+v0x7f87d0_0 .var "data_out", 15 0;
+v0x7f88b0_0 .var "enable", 0 0;
+v0x7f8970_0 .var "fsm_state", 1 0;
+o0x7bd1657a41f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7f8a50_0 .net "i_clear", 0 0, o0x7bd1657a41f8;  0 drivers
+o0x7bd1657a4228 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7f8b10_0 .net "i_clk", 0 0, o0x7bd1657a4228;  0 drivers
+o0x7bd1657a4258 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x7f8bd0_0 .net "i_data_in", 15 0, o0x7bd1657a4258;  0 drivers
+o0x7bd1657a4288 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7f8cb0_0 .net "i_enable", 0 0, o0x7bd1657a4288;  0 drivers
+o0x7bd1657a42b8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7f8d70_0 .net "i_fault", 0 0, o0x7bd1657a42b8;  0 drivers
+o0x7bd1657a42e8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7f8e30_0 .net "i_rst_b", 0 0, o0x7bd1657a42e8;  0 drivers
+v0x7f8ef0_0 .net "o_bits_left", 4 0, L_0x7cb500;  1 drivers
+v0x7f90e0_0 .net "o_done", 0 0, L_0x7f9ad0;  1 drivers
+v0x7f91a0_0 .net "o_fsm_state", 1 0, L_0x7f9c90;  1 drivers
+v0x7f9280_0 .net "o_spi_clk", 0 0, L_0x7f9660;  1 drivers
+v0x7f9340_0 .net "o_spi_cs_b", 0 0, L_0x7cbad0;  1 drivers
+v0x7f9400_0 .net "o_spi_data", 0 0, L_0x7f97a0;  1 drivers
+E_0x7cb9d0 .event posedge, v0x7f8e30_0, v0x7f8b10_0;
+L_0x7f9660 .reduce/nor v0x7f87d0_0;
+L_0x7f9700 .part v0x7f87d0_0, 8, 8;
+L_0x7f97a0 .part L_0x7f9700, 0, 1;
+L_0x7f98f0 .cmp/eq 2, v0x7f8970_0, L_0x7bd16575b018;
+L_0x7f9ad0 .functor MUXZ 1, L_0x7bd16575b0a8, L_0x7bd16575b060, L_0x7f98f0, C4<>;
+S_0x7d8ff0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x7a4af0;
+T_0 ;
+    %wait E_0x7cb9d0;
+    %load/vec4 v0x7f8e30_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x7f87d0_0, 0;
+    %pushi/vec4 15, 0, 5;
+    %assign/vec4 v0x7f8630_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x7f8cb0_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_0.4, 9;
+    %load/vec4 v0x7f88b0_0;
+    %nor/r;
+    %and;
+T_0.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x7f88b0_0, 0;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0x7f8cb0_0;
+    %nor/r;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_0.7, 9;
+    %load/vec4 v0x7f88b0_0;
+    %and;
+T_0.7;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.5, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7f88b0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+T_0.5 ;
+T_0.3 ;
+    %load/vec4 v0x7f8970_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.8, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.9, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.10, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.11, 6;
+    %jmp T_0.12;
+T_0.8 ;
+    %load/vec4 v0x7f8710_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.13, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7f88b0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+T_0.13 ;
+    %jmp T_0.12;
+T_0.9 ;
+    %load/vec4 v0x7f8bd0_0;
+    %assign/vec4 v0x7f87d0_0, 0;
+    %pushi/vec4 15, 0, 5;
+    %assign/vec4 v0x7f8630_0, 0;
+    %pushi/vec4 2, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+    %jmp T_0.12;
+T_0.10 ;
+    %load/vec4 v0x7f8630_0;
+    %cmpi/e 0, 0, 5;
+    %jmp/0xz  T_0.15, 4;
+    %pushi/vec4 3, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+    %jmp T_0.16;
+T_0.15 ;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+    %load/vec4 v0x7f8630_0;
+    %subi 1, 0, 5;
+    %assign/vec4 v0x7f8630_0, 0;
+T_0.16 ;
+    %jmp T_0.12;
+T_0.11 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x7f88b0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x7f8970_0, 0;
+    %jmp T_0.12;
+T_0.12 ;
+    %pop/vec4 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x7d8ff0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/spi_fsm.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x7a4af0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/spi_fsm.v";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

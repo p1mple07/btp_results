@@ -1,0 +1,184 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1ca2950 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1ca31d0 .scope module, "neuromorphic_array" "neuromorphic_array" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 8 "ui_in";
+    .port_info 1 /INPUT 8 "uio_in";
+    .port_info 2 /OUTPUT 8 "uo_out";
+    .port_info 3 /INPUT 1 "clk";
+    .port_info 4 /INPUT 1 "rst_n";
+P_0x1ca3360 .param/l "INPUTS" 0 3 3, +C4<00000000000000000000000000001000>;
+P_0x1ca33a0 .param/l "NEURONS" 0 3 2, +C4<00000000000000000000000000001000>;
+P_0x1ca33e0 .param/l "OUTPUTS" 0 3 4, +C4<00000000000000000000000000001000>;
+L_0x1ca2e80 .functor BUFZ 8, v0x1ccb230_0, C4<00000000>, C4<00000000>, C4<00000000>;
+o0x760722c05018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1ccb400_0 .net "clk", 0 0, o0x760722c05018;  0 drivers
+v0x1ccb5d0 .array "neuron_outputs", 7 0;
+v0x1ccb5d0_0 .net v0x1ccb5d0 0, 7 0, v0x1cc6b10_0; 1 drivers
+v0x1ccb5d0_1 .net v0x1ccb5d0 1, 7 0, v0x1cc75b0_0; 1 drivers
+v0x1ccb5d0_2 .net v0x1ccb5d0 2, 7 0, v0x1cc8070_0; 1 drivers
+v0x1ccb5d0_3 .net v0x1ccb5d0 3, 7 0, v0x1cc8a70_0; 1 drivers
+v0x1ccb5d0_4 .net v0x1ccb5d0 4, 7 0, v0x1cc94c0_0; 1 drivers
+v0x1ccb5d0_5 .net v0x1ccb5d0 5, 7 0, v0x1cc9dd0_0; 1 drivers
+v0x1ccb5d0_6 .net v0x1ccb5d0 6, 7 0, v0x1cca800_0; 1 drivers
+v0x1ccb5d0_7 .net v0x1ccb5d0 7, 7 0, v0x1ccb230_0; 1 drivers
+o0x760722c05078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1ccb830_0 .net "rst_n", 0 0, o0x760722c05078;  0 drivers
+o0x760722c05b28 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1ccba10_0 .net "ui_in", 7 0, o0x760722c05b28;  0 drivers
+o0x760722c050a8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1ccbab0_0 .net "uio_in", 7 0, o0x760722c050a8;  0 drivers
+v0x1ccbcb0_0 .net "uo_out", 7 0, L_0x1ca2e80;  1 drivers
+L_0x1ccbd70 .part o0x760722c05b28, 0, 1;
+L_0x1ccbe40 .part o0x760722c05b28, 0, 1;
+L_0x1ccbf60 .part o0x760722c05b28, 0, 1;
+L_0x1ccc000 .part o0x760722c05b28, 0, 1;
+L_0x1ccc100 .part o0x760722c05b28, 0, 1;
+L_0x1ccc1d0 .part o0x760722c05b28, 0, 1;
+L_0x1ccc2e0 .part o0x760722c05b28, 0, 1;
+L_0x1ccc380 .part o0x760722c05b28, 0, 1;
+S_0x1ca9380 .scope generate, "NEURON[0]" "NEURON[0]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1ca9560 .param/l "i" 1 3 18, +C4<00>;
+S_0x1c81960 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1ca9380;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1c81bf0_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cc68a0_0 .net "control", 0 0, L_0x1ccbd70;  1 drivers
+v0x1cc6960_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cc6a30_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cc6b10_0 .var "seq_out", 7 0;
+S_0x1cc6ce0 .scope generate, "NEURON[1]" "NEURON[1]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1cc6f00 .param/l "i" 1 3 18, +C4<01>;
+S_0x1cc6fc0 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cc6ce0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1cc7250_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cc7340_0 .net "control", 0 0, L_0x1ccbe40;  1 drivers
+v0x1cc73e0_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cc74e0_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cc75b0_0 .var "seq_out", 7 0;
+S_0x1cc7740 .scope generate, "NEURON[2]" "NEURON[2]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1cc7940 .param/l "i" 1 3 18, +C4<010>;
+S_0x1cc7a00 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cc7740;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1cc7cc0_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cc7dd0_0 .net "control", 0 0, L_0x1ccbf60;  1 drivers
+v0x1cc7e90_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cc7f80_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cc8070_0 .var "seq_out", 7 0;
+S_0x1cc8240 .scope generate, "NEURON[3]" "NEURON[3]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1cc8440 .param/l "i" 1 3 18, +C4<011>;
+S_0x1cc8520 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cc8240;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1cc87b0_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cc8870_0 .net "control", 0 0, L_0x1ccc000;  1 drivers
+v0x1cc8930_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cc89d0_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cc8a70_0 .var "seq_out", 7 0;
+S_0x1cc8c40 .scope generate, "NEURON[4]" "NEURON[4]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1cc8e90 .param/l "i" 1 3 18, +C4<0100>;
+S_0x1cc8f70 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cc8c40;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1cc9200_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cc92c0_0 .net "control", 0 0, L_0x1ccc100;  1 drivers
+v0x1cc9380_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cc9420_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cc94c0_0 .var "seq_out", 7 0;
+S_0x1cc9640 .scope generate, "NEURON[5]" "NEURON[5]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1cc7d80 .param/l "i" 1 3 18, +C4<0101>;
+S_0x1cc9880 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cc9640;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1cc9b10_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cc9bd0_0 .net "control", 0 0, L_0x1ccc1d0;  1 drivers
+v0x1cc9c90_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cc9d30_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cc9dd0_0 .var "seq_out", 7 0;
+S_0x1cc9fa0 .scope generate, "NEURON[6]" "NEURON[6]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1cca1a0 .param/l "i" 1 3 18, +C4<0110>;
+S_0x1cca280 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cc9fa0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1cca510_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1cca5d0_0 .net "control", 0 0, L_0x1ccc2e0;  1 drivers
+v0x1cca690_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1cca760_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1cca800_0 .var "seq_out", 7 0;
+S_0x1cca9d0 .scope generate, "NEURON[7]" "NEURON[7]" 3 18, 3 18 0, S_0x1ca31d0;
+ .timescale -9 -9;
+P_0x1ccabd0 .param/l "i" 1 3 18, +C4<0111>;
+S_0x1ccacb0 .scope module, "neuron" "single_neuron_dut" 3 19, 3 34 0, S_0x1cca9d0;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "control";
+    .port_info 3 /INPUT 8 "seq_in";
+    .port_info 4 /OUTPUT 8 "seq_out";
+v0x1ccaf40_0 .net "clk", 0 0, o0x760722c05018;  alias, 0 drivers
+v0x1ccb000_0 .net "control", 0 0, L_0x1ccc380;  1 drivers
+v0x1ccb0c0_0 .net "rst_n", 0 0, o0x760722c05078;  alias, 0 drivers
+v0x1ccb190_0 .net "seq_in", 7 0, o0x760722c050a8;  alias, 0 drivers
+v0x1ccb230_0 .var "seq_out", 7 0;
+S_0x1ca91f0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1ca91f0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/neuromorphic_array.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1ca31d0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/neuromorphic_array.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

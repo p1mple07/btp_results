@@ -1,0 +1,101 @@
+module Bitstream(input  logic clk,rst_n,
+                 input  logic enb,
+                 input  logic rempty_in,
+                 input  logic rinc_in,
+                 input  logic [7:0] i_byte,
+                 output logic o_bit,
+                 output logic rempty_out,
+                 output logic rinc_out);
+    
+    // Parameters
+    localparam IDLE  = 3'b000;
+    localparam WAITR = 3'b001;
+    localparam READY = 3'b010;
+
+    // Internal signals
+    logic [1:0] curr_state, next_state;
+    logic [0:7] byte_buf;
+    logic [3:0] bp;
+    logic rde;
+
+    // FSM block
+    always_ff @(posedge clk) begin
+        if (!rst_n) begin
+            curr_state <= IDLE;
+        end else begin
+            curr_state <= next_state;
+        end
+    end
+
+    always_comb begin
+        case (curr_state)
+            IDLE: begin
+                if (enb) begin
+                    next_state = WAITR;
+                    rempty_out = 1'b1;
+                    rinc_out   = 1'b0;
+                end else begin
+                    next_state = IDLE;
+                    rempty_out = 1'b1;
+                    rinc_out   = 1'b0;
+                end
+            end
+            WAITR: begin
+                if (rempty_in) begin
+                    next_state = WAITR;
+                    rempty_out = 1'b1;
+                    rinc_out   = 1'b0;
+                end else begin
+                    next_state = READY;
+                    rempty_out = 1'b1;
+                    rinc_out   = 1'b1;
+                end
+            end
+            READY: begin
+                if (rde) begin
+                    if (rempty_in) begin
+                        next_state = WAITR;
+                        rempty_out = 1'b1;
+                        rinc_out   = 1'b0;
+                    end else begin
+                        next_state = READY;
+                        rempty_out = 1'b1;
+                        rinc_out   = 1'b1;
+                    end
+                end else begin
+                    next_state = READY;
+                    rempty_out = 1'b0;
+                    rinc_out   = 1'b0;
+                end
+            end
+            default: begin
+                next_state = IDLE;
+                rempty_out = 1'b1;
+                rinc_out   = 1'b0;
+            end
+        endcase
+    end
+
+    // Other comb logic
+    always @(posedge clk) begin
+        if (rinc_out) begin
+            byte_buf <= {i_byte[6:0], 1'b0};
+        end
+    end
+
+    always @(posedge clk) begin
+        if (rinc_out) begin
+            bp <= 4'b0;
+        end else begin
+            if (rinc_in &&!rempty_out) begin
+                bp <= bp + 1'b1;
+            end
+        end
+    end
+
+    // Other logic
+
+    assign rde = bp[3];
+    assign o_bit = byte_buf[bp];
+
+endmodule

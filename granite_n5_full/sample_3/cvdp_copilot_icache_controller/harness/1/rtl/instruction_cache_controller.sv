@@ -1,0 +1,64 @@
+The instruction code for the cache.
+
+sv
+// Include the following code to provide a clean documentation of the cache. The following inputs:
+- Provided inputs:
+- Cache Clean.
+- If cache_clean_word.
+
+- Provided inputs:
+- Provided instructions:
+- Provided output:
+- Provided to the cache:
+- Provided inputs:
+- Provided output word:
+- Provided to the cache.
+- Provided instructions:
+- Provided inputs:
+- Provided inputs:
+- Provided to the cache_clean_word.
+- Provided to the cache_clean word:
+- Provided to the cache_clean_word:
+- Provided to the cache_clean word.
+- Provided inputs:
+- Provided to the cache_clean_word.
+- Provided to the cache_clean word.
+- Provided to the following inputs:
+-
+- Provided to the cache_clean_word:
+- Provided to the cache_clean_word.
+- Provided inputs:
+- **Note:**
+- **For example:
+- **Update**:
+- **When the cache_clean_word**:
+- The cache_clean_word indicates the cache_clean word:
+- The output of the cache_clean_word: **The cache_clean_word indicates that the cache_clean word for the cache_clean_word**.
+- Update word**
+- The output of the cache_clean word.
+- **Read word**:
+- In addition to the cache_clean_word word.
+- **Read word** in the RAM, indicating the read_addr_0.
+- **Read Address**:
+- The data_addr_0:
+- The read_addr_0**:
+- **Read_addr_0**: The **Read**:
+- **Read word**:
+- The read_addr_0:
+- The read_addr**: 0-bitwise OR
+-
+- **Read word_addr_0**:
+- The **Read**: 0**.
+- The data_0**:
+- The **Read word**: 0-bit**:
+- **Read_addr_0**: 0-bit_addr_0**: 0-bit word_addr_0, **Write word**: 0-bit_t0**:
+- **Read_addr_0**: The **Read**:
+- Read_addr_0**: 9-bit word_t1_0**:
+- The following: 9-bit_t1_bit_0:  **Write_addr_0**:
+- The following: 9-bit_t1_bit_1**: 9-bit_bit_0**: 9-bit_t1_bit_0**: 9-bit_1_bit_0**: 9-bit_1**:
+- The next byte in: 9-bit_bit_1_bit_1**: 9-bit_bit_0**: 9-bit_bit_1_bit_0**: 0**: 9-bit_1**: 9-bit_bit_1**: The following:
+- The next byte_bit_0_bit_1**:
+- The next_bit_1**: 9-bit_1**: 9-bit_bit_0**: 9-bit_bit_1**: 0-bit_bit_1**: The following logic and write_bit_1**:
+- The write_bit_1**: 9-bit_1**: The write_bit_bit_0_bit_1**: 9-bit_bit_1.
+- The next bit_bit_1_bit_1**: 9-bit_0**: The next byte_bit_1**: 0-bit_1**: The following bit_bit_1_bit_1**: 9-bit_bit_0**: 9-bit_0**: The next byte_bit_1_bit_1**: 9-bit_0_bit_1**: The following: 9-bit_0**: 9-bit_1_bit_0**: 0-bit_bit_0**: 9-bit_bit_0**: 9-bit_0_bit_0**: 9-bit_bit_0_bit_1_bit_1_byte 9-bit_0 bit_1_bit_0_bit_0: The following bit_bit_0_bit_1_bit_1_bit_0_bit_0_bit_1_bit_bit_0**:  The following byte_bit_0_bit_1**: 9-bit_0_bit_0**: 9-bit_1_bit_0**: 9-bit_0.
+- The following bit_1_bit_1_bit_0_bit_0**: 9-bit_0_bit_1_bit_1_bit_0`: The following byte_0_bit_0`: The following bit_0**: 9-bit_1_bit_0_bit_0_bit_1_bit_0_bit_1_bit_1_bit_0_bit_0_bit_1_bit_0_bit_1_bit_0_bit_0**: 0_bit_1_bit_1_bit_0**: 0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_0_bit_1_bit_1_bit_0_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1bit_1_bit_0_bit_1_bit_0_bit_0_bit_0_bit_0_bit_1_bit_1_bit_0_bit_1_bit_0_bit_0_bit_0_bit_1_bit_1_bit_0_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_0_bit_0_bit_1_bit_0_bit_1_bit_0_bit_0_bit_0_bit_1_bit_0_bit_0_bit_1_bit_1_bit_0_bit_0_bit_1_bit_1_bit_0_bit_0_bit_0_bit_0_bit_1_bit_0_bit_1_bit_0_bit_bit_1_bit_0_bit_bit_0_bit_0_bit_1_bit_bit_bit_0_bit_1_bit_0_bit_bit_1_bit_0_bit_0_bit_0_bit_1_bit_0_bit_bit_0_bit_1_bit_1_bit_0_bit_0_bit_bit_0_bit_0: 0_bit_1_bit_bit_0_bit_0_bit_1_bit_1_bit_0_bit_0_bit_0_bit_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_1_bit_0_bit_0_bit_0_bit_1_bit_0_bit_0_bit_1_bit_0_bit_0_bit_1_bit_0_bit_1_bit_0_bit_1_bit_0_bit_0_bit_1_bit_1_bit_1_bit_0_bit_0_bit_1_bit_bit_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_1_bit_1_bit_0_bit_0_bit_1_bit_1_bit_0_bit_1_bit_1_bit_1_bit_0_bit_1_bit_1bit_1_bit_0_bit_1_bit_1bit_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_1_bit_1_bit_0_bit_1_bit_1_bit_0_bit_1_bit_0_bit_1_bit_1_bit_1bit_0_bit_1_bit_1_bit_1_bit_0_bit_1_bit_1_bit_1_bit_1_bit_0_bit_1_bit_1_bit_1_bit_1_bit_1_bit_bit_1bit_1bit_bit_1_bit_1_bit_1_bit_0_bit_1_bit_1bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1_bit_1bit_1_bit_1bit_1bit_1_bit_1bit_1_bit_1_bit_1_1bit_1_bit_1_bit_1bit_1bit_1_bit_1_1_bit_1bit_1bit_1bit_1bit_1bit_1_bit_1bit_1bit_1_bit_1bit_1bit_1_bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1_bit_1_bit_1bit_1_bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1_bit_1bit_1bit_1bit_1bit_1bit_1_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1 bit_1bit_1bit_1 bit_1bit_1bit_1bit_1 bit_1bit_1 bit_1 bit_1 bit_1 bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1bit_1bit_1bit_1bit_1 bit_1bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit_1 bit 1 bit 1 bit 1 bit_1 bit_1 bit_1 bit 1 bit_1 bit 1 bit_1 bit_1 bit_1 bit 1 bit 1 bit 1 bit_1 bit 1 bit 1 bit 1 bit_1 bit_1 bit_1 bit_1 bit_1bit_1 bit_1 bit_1 bit 1 bit 1 bit_1bit_1 bit 1 bit 1 bit 1 bit 1bit 1 bit 1 bit 1 bit_1 bit 1 bit 1 bit_1 bit_1 bit 1 bit_1bit_1 bit 1 bit_1 bit 1 bit 1 bit 1 bit_1 bit 1 bit_1 bit 1 bit 1 bit 1 bit 1 bit_1 bit_1bit_1 bit 1 bit 1 bit_1 bit 1 bit 1bit 1 bit 1 bit 1 bit 1bit 1 bit 1 bit 1 bit 1 bit_1 bit_1 bit_1 bit_1bit 1 bit 1 bit_1 bit 1bit_1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1bit 1 bit_1 bit 1bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit_1 bit 1 bit_1 bit 1 bit 1 bit 1 bit 1 bit 1 bit_1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 1 bit 1 bit 1 bit 1 1 bit 1 1 bit 1 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 1 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 bit 1 1 bit 1 bit 1 1 1 1 bit 1 bit 1 1 bit 1 1 bit 1 bit 1 1 bit 1 1 bit 1 1 1 1 bit 1 bit 1 bit 1 1 bit 1 1 1 bit 1 1 1 bit 1 bit 1 1 1 1 1 1 bit 1 1 1 1 1 bit 1 1 1 1 1 bit 1 1 1 1 1 bit 1 1 1 1 bit 1 bit 1 1 1 bit 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1

@@ -1,0 +1,26 @@
+Running harness with project name: cvdp_copilot_manchester_enc_13_1774423536
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/lint.py::test_lint FAILED
+
+=================================== FAILURES ===================================
+__________________________________ test_lint ___________________________________
+
+    def test_lint():
+        cmd = "verilator --lint-only -Wall -Wno-EOFNEWLINE /src/lint_config.vlt $VERILOG_SOURCES > lint_results.log 2>&1"
+>       assert subprocess.run(cmd, shell=True).returncode == 0, "Linting return errors."
+E       AssertionError: Linting return errors.
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args='verilator --lint-only -Wall -Wno-EOFNEWLINE /src/lint_config.vlt $VERILOG_SOURCES > lint_results.log 2>&1', returncode=1).returncode
+E        +    where CompletedProcess(args='verilator --lint-only -Wall -Wno-EOFNEWLINE /src/lint_config.vlt $VERILOG_SOURCES > lint_results.log 2>&1', returncode=1) = <function run at 0x7d67603ae790>('verilator --lint-only -Wall -Wno-EOFNEWLINE /src/lint_config.vlt $VERILOG_SOURCES > lint_results.log 2>&1', shell=True)
+E        +      where <function run at 0x7d67603ae790> = subprocess.run
+
+/src/lint.py:9: AssertionError
+=========================== short test summary info ============================
+FAILED ../../src/lint.py::test_lint - AssertionError: Linting return errors.
+============================== 1 failed in 0.06s ===============================
+Cleaning up Docker resources...

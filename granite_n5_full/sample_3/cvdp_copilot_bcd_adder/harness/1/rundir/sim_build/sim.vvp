@@ -1,0 +1,74 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1aaa200 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1aaa390 .scope module, "bcd_adder" "bcd_adder" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "a";
+    .port_info 1 /INPUT 4 "b";
+    .port_info 2 /OUTPUT 4 "sum";
+    .port_info 3 /OUTPUT 1 "cout";
+o0x741bb6358018 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x1abbe70_0 .net "a", 3 0, o0x741bb6358018;  0 drivers
+o0x741bb6358048 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x1abbf50_0 .net "b", 3 0, o0x741bb6358048;  0 drivers
+o0x741bb63580a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1abc020_0 .net "binary_cout", 0 0, o0x741bb63580a8;  0 drivers
+o0x741bb63580d8 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x1abc120_0 .net "binary_sum", 3 0, o0x741bb63580d8;  0 drivers
+o0x741bb6358258 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1abc210_0 .net "carry", 0 0, o0x741bb6358258;  0 drivers
+o0x741bb63583a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1abc300_0 .net "cout", 0 0, o0x741bb63583a8;  0 drivers
+o0x741bb6358288 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x1abc3a0_0 .net "sum", 3 0, o0x741bb6358288;  0 drivers
+S_0x1aa6e10 .scope module, "adder1" "four_bit_adder" 3 14, 3 38 0, S_0x1aaa390;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "a";
+    .port_info 1 /INPUT 4 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 4 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+v0x1a957e0_0 .net "a", 3 0, o0x741bb6358018;  alias, 0 drivers
+v0x1a95490_0 .net "b", 3 0, o0x741bb6358048;  alias, 0 drivers
+L_0x741bb630f018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x1abb3e0_0 .net "cin", 0 0, L_0x741bb630f018;  1 drivers
+v0x1abb480_0 .net "cout", 0 0, o0x741bb63580a8;  alias, 0 drivers
+v0x1abb540_0 .net "sum", 3 0, o0x741bb63580d8;  alias, 0 drivers
+S_0x1abb710 .scope module, "adder2" "four_bit_adder" 3 27, 3 38 0, S_0x1aaa390;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "a";
+    .port_info 1 /INPUT 4 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 4 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+v0x1abb9c0_0 .net "a", 3 0, o0x741bb63580d8;  alias, 0 drivers
+L_0x741bb630f0a8 .functor BUFT 1, C4<0zz0>, C4<0>, C4<0>, C4<0>;
+v0x1abba80_0 .net "b", 3 0, L_0x741bb630f0a8;  1 drivers
+L_0x741bb630f060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x1abbb40_0 .net "cin", 0 0, L_0x741bb630f060;  1 drivers
+v0x1abbbe0_0 .net "cout", 0 0, o0x741bb6358258;  alias, 0 drivers
+v0x1abbca0_0 .net "sum", 3 0, o0x741bb6358288;  alias, 0 drivers
+S_0x1aa6c80 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1aa6c80;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/bcd_adder.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1aaa390 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bcd_adder.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

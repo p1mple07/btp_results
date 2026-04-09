@@ -1,0 +1,96 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xd0c960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xd0caf0 .scope module, "lfsr_8bit" "lfsr_8bit" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clock";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 8 "lfsr_seed";
+    .port_info 3 /OUTPUT 8 "lfsr_out";
+L_0xd47850 .functor XOR 1, L_0xd47710, L_0xd477b0, C4<0>, C4<0>;
+L_0xd47b60 .functor XOR 1, L_0xd47960, L_0xd47a00, C4<0>, C4<0>;
+L_0xd47da0 .functor XOR 1, L_0xd47c20, L_0xd47cc0, C4<0>, C4<0>;
+v0xd23ac0_0 .net *"_ivl_1", 0 0, L_0xd47710;  1 drivers
+v0xd46bf0_0 .net *"_ivl_13", 0 0, L_0xd47c20;  1 drivers
+v0xd46cd0_0 .net *"_ivl_15", 0 0, L_0xd47cc0;  1 drivers
+v0xd46d90_0 .net *"_ivl_3", 0 0, L_0xd477b0;  1 drivers
+v0xd46e70_0 .net *"_ivl_7", 0 0, L_0xd47960;  1 drivers
+v0xd46fa0_0 .net *"_ivl_9", 0 0, L_0xd47a00;  1 drivers
+o0x7eff5555e138 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd47080_0 .net "clock", 0 0, o0x7eff5555e138;  0 drivers
+v0xd47140_0 .var "lfsr_out", 7 0;
+o0x7eff5555e198 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0xd47220_0 .net "lfsr_seed", 7 0, o0x7eff5555e198;  0 drivers
+v0xd47390_0 .net "q1", 0 0, L_0xd47850;  1 drivers
+v0xd47450_0 .net "q2", 0 0, L_0xd47b60;  1 drivers
+v0xd47510_0 .net "q3", 0 0, L_0xd47da0;  1 drivers
+o0x7eff5555e258 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd475d0_0 .net "reset", 0 0, o0x7eff5555e258;  0 drivers
+E_0xd32310/0 .event negedge, v0xd475d0_0;
+E_0xd32310/1 .event posedge, v0xd47080_0;
+E_0xd32310 .event/or E_0xd32310/0, E_0xd32310/1;
+L_0xd47710 .part v0xd47140_0, 6, 1;
+L_0xd477b0 .part v0xd47140_0, 0, 1;
+L_0xd47960 .part v0xd47140_0, 5, 1;
+L_0xd47a00 .part v0xd47140_0, 0, 1;
+L_0xd47c20 .part v0xd47140_0, 1, 1;
+L_0xd47cc0 .part v0xd47140_0, 0, 1;
+S_0xd0cc80 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0xd0caf0;
+T_0 ;
+    %wait E_0xd32310;
+    %load/vec4 v0xd475d0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %load/vec4 v0xd47220_0;
+    %assign/vec4 v0xd47140_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xd47140_0;
+    %parti/s 1, 0, 2;
+    %load/vec4 v0xd47140_0;
+    %parti/s 1, 7, 4;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0xd47390_0;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0xd47450_0;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0xd47140_0;
+    %parti/s 1, 4, 4;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0xd47140_0;
+    %parti/s 1, 3, 3;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0xd47140_0;
+    %parti/s 1, 2, 3;
+    %concat/vec4; draw_concat_vec4
+    %load/vec4 v0xd47510_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0xd47140_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xd0cc80;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/lfsr_8bit.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xd0caf0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/lfsr_8bit.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

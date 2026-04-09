@@ -1,0 +1,165 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x105efc0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x105f150 .scope module, "gmii_rx_to_axi_stream" "gmii_rx_to_axi_stream" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "gmii_rx_clk";
+    .port_info 1 /INPUT 8 "gmii_rxd";
+    .port_info 2 /INPUT 1 "gmii_rx_dv";
+    .port_info 3 /OUTPUT 8 "m_axis_tdata";
+    .port_info 4 /OUTPUT 1 "m_axis_tvalid";
+    .port_info 5 /INPUT 1 "m_axis_tready";
+    .port_info 6 /OUTPUT 1 "m_axis_tlast";
+P_0x105f2e0 .param/l "FINISHED" 1 3 17, C4<10>;
+P_0x105f320 .param/l "IDLE" 1 3 15, C4<00>;
+P_0x105f360 .param/l "RECEIVING" 1 3 16, C4<01>;
+L_0x708f2cc76018 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x105f5b0_0 .net/2u *"_ivl_0", 1 0, L_0x708f2cc76018;  1 drivers
+v0x1086730_0 .net *"_ivl_10", 7 0, L_0x1088190;  1 drivers
+L_0x708f2cc760f0 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x1086810_0 .net/2u *"_ivl_14", 1 0, L_0x708f2cc760f0;  1 drivers
+v0x10868d0_0 .net *"_ivl_16", 0 0, L_0x1088470;  1 drivers
+L_0x708f2cc76138 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x1086990_0 .net/2u *"_ivl_18", 0 0, L_0x708f2cc76138;  1 drivers
+v0x1086ac0_0 .net *"_ivl_2", 0 0, L_0x1087ef0;  1 drivers
+L_0x708f2cc76180 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x1086b80_0 .net/2u *"_ivl_20", 0 0, L_0x708f2cc76180;  1 drivers
+L_0x708f2cc76210 .functor BUFT 1, C4<10>, C4<0>, C4<0>, C4<0>;
+v0x1086c60_0 .net/2u *"_ivl_26", 1 0, L_0x708f2cc76210;  1 drivers
+v0x1086d40_0 .net *"_ivl_28", 0 0, L_0x1088780;  1 drivers
+L_0x708f2cc76258 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x1086e00_0 .net/2u *"_ivl_30", 0 0, L_0x708f2cc76258;  1 drivers
+L_0x708f2cc762a0 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x1086ee0_0 .net/2u *"_ivl_32", 0 0, L_0x708f2cc762a0;  1 drivers
+L_0x708f2cc76060 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x1086fc0_0 .net/2u *"_ivl_4", 7 0, L_0x708f2cc76060;  1 drivers
+L_0x708f2cc760a8 .functor BUFT 1, C4<01>, C4<0>, C4<0>, C4<0>;
+v0x10870a0_0 .net/2u *"_ivl_6", 1 0, L_0x708f2cc760a8;  1 drivers
+v0x1087180_0 .net *"_ivl_8", 0 0, L_0x1088020;  1 drivers
+v0x1087240_0 .var "byte_count", 7 0;
+v0x1087320_0 .var "byte_index", 1 0;
+v0x1087400_0 .var "data_reg", 7 0;
+o0x708f2ccbf348 .functor BUFZ 1, c4<z>; HiZ drive
+v0x10875f0_0 .net "gmii_rx_clk", 0 0, o0x708f2ccbf348;  0 drivers
+o0x708f2ccbf378 .functor BUFZ 1, c4<z>; HiZ drive
+v0x10876b0_0 .net "gmii_rx_dv", 0 0, o0x708f2ccbf378;  0 drivers
+o0x708f2ccbf3a8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1087770_0 .net "gmii_rxd", 7 0, o0x708f2ccbf3a8;  0 drivers
+v0x1087850_0 .net "m_axis_tdata", 7 0, L_0x1088280;  1 drivers
+v0x1087930_0 .net "m_axis_tlast", 0 0, L_0x1088820;  1 drivers
+L_0x708f2cc761c8 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+v0x10879f0_0 .net "m_axis_tready", 0 0, L_0x708f2cc761c8;  1 drivers
+v0x1087ab0_0 .net "m_axis_tvalid", 0 0, L_0x10885b0;  1 drivers
+v0x1087b70_0 .var "next_byte_count", 7 0;
+v0x1087c50_0 .var "next_byte_reg", 7 0;
+v0x1087d30_0 .var "state", 1 0;
+E_0x106a580 .event posedge, v0x10875f0_0;
+L_0x1087ef0 .cmp/eq 2, v0x1087d30_0, L_0x708f2cc76018;
+L_0x1088020 .cmp/eq 2, v0x1087d30_0, L_0x708f2cc760a8;
+L_0x1088190 .functor MUXZ 8, v0x1087c50_0, v0x1087400_0, L_0x1088020, C4<>;
+L_0x1088280 .functor MUXZ 8, L_0x1088190, L_0x708f2cc76060, L_0x1087ef0, C4<>;
+L_0x1088470 .cmp/eq 2, v0x1087d30_0, L_0x708f2cc760f0;
+L_0x10885b0 .functor MUXZ 1, L_0x708f2cc76180, L_0x708f2cc76138, L_0x1088470, C4<>;
+L_0x1088780 .cmp/eq 2, v0x1087d30_0, L_0x708f2cc76210;
+L_0x1088820 .functor MUXZ 1, L_0x708f2cc762a0, L_0x708f2cc76258, L_0x1088780, C4<>;
+    .scope S_0x105f150;
+T_0 ;
+    %wait E_0x106a580;
+    %load/vec4 v0x1087d30_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.2, 6;
+    %jmp T_0.3;
+T_0.0 ;
+    %load/vec4 v0x10876b0_0;
+    %cmpi/e 1, 0, 1;
+    %jmp/0xz  T_0.4, 4;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x1087d30_0, 0;
+    %load/vec4 v0x1087770_0;
+    %parti/s 1, 6, 4;
+    %pad/u 8;
+    %assign/vec4 v0x1087240_0, 0;
+    %load/vec4 v0x1087770_0;
+    %parti/s 1, 5, 4;
+    %load/vec4 v0x1087770_0;
+    %parti/s 1, 4, 4;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 8;
+    %assign/vec4 v0x1087400_0, 0;
+    %load/vec4 v0x1087770_0;
+    %parti/s 4, 0, 2;
+    %pad/u 8;
+    %assign/vec4 v0x1087b70_0, 0;
+    %load/vec4 v0x1087770_0;
+    %parti/s 6, 2, 3;
+    %pad/u 8;
+    %assign/vec4 v0x1087c50_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x1087320_0, 0;
+T_0.4 ;
+    %jmp T_0.3;
+T_0.1 ;
+    %load/vec4 v0x1087400_0;
+    %parti/s 6, 0, 2;
+    %load/vec4 v0x1087770_0;
+    %parti/s 6, 0, 2;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 8;
+    %assign/vec4 v0x1087400_0, 0;
+    %load/vec4 v0x1087320_0;
+    %addi 1, 0, 2;
+    %assign/vec4 v0x1087320_0, 0;
+    %load/vec4 v0x1087320_0;
+    %pad/u 8;
+    %load/vec4 v0x1087240_0;
+    %cmp/e;
+    %jmp/0xz  T_0.6, 4;
+    %load/vec4 v0x1087b70_0;
+    %pad/u 32;
+    %cmpi/ne 0, 0, 32;
+    %jmp/0xz  T_0.8, 4;
+    %load/vec4 v0x1087c50_0;
+    %load/vec4 v0x1087770_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 8;
+    %assign/vec4 v0x1087c50_0, 0;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x1087d30_0, 0;
+    %jmp T_0.9;
+T_0.8 ;
+    %pushi/vec4 2, 0, 2;
+    %assign/vec4 v0x1087d30_0, 0;
+T_0.9 ;
+T_0.6 ;
+    %jmp T_0.3;
+T_0.2 ;
+    %jmp T_0.3;
+T_0.3 ;
+    %pop/vec4 1;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/gmii_rx_to_axi_stream.sv";

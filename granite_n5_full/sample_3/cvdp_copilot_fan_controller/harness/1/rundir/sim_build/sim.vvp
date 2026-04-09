@@ -1,0 +1,82 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x7629a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x762b30 .scope module, "fan_controller" "fan_controller" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /OUTPUT 1 "fan_pwm_out";
+    .port_info 3 /INPUT 1 "psel";
+    .port_info 4 /INPUT 1 "penable";
+    .port_info 5 /INPUT 1 "pwrite";
+    .port_info 6 /INPUT 8 "paddr";
+    .port_info 7 /INPUT 8 "pwdata";
+    .port_info 8 /OUTPUT 8 "prdata";
+    .port_info 9 /OUTPUT 1 "pready";
+    .port_info 10 /OUTPUT 1 "pslverr";
+P_0x762cc0 .param/l "TEMP_HIGH" 1 3 19, +C4<00000000000000000000000000101000>;
+P_0x762d00 .param/l "TEMP_LOW" 1 3 17, +C4<00000000000000000000000000010100>;
+P_0x762d40 .param/l "TEMP_MED" 1 3 18, +C4<00000000000000000000000000011110>;
+o0x7c77a7919018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x776810_0 .net "clk", 0 0, o0x7c77a7919018;  0 drivers
+v0x776a40_0 .var "fan_pwm_out", 0 0;
+o0x7c77a7919078 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x79ac30_0 .net "paddr", 7 0, o0x7c77a7919078;  0 drivers
+o0x7c77a79190a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x79ad20_0 .net "penable", 0 0, o0x7c77a79190a8;  0 drivers
+v0x79ade0_0 .var "prdata", 7 0;
+v0x79aec0_0 .var "pready", 0 0;
+o0x7c77a7919138 .functor BUFZ 1, c4<z>; HiZ drive
+v0x79af80_0 .net "psel", 0 0, o0x7c77a7919138;  0 drivers
+v0x79b040_0 .var "pslverr", 0 0;
+o0x7c77a7919198 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x79b100_0 .net "pwdata", 7 0, o0x7c77a7919198;  0 drivers
+v0x79b1e0_0 .var "pwm_duty_cycle", 7 0;
+o0x7c77a79191f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x79b2c0_0 .net "pwrite", 0 0, o0x7c77a79191f8;  0 drivers
+o0x7c77a7919228 .functor BUFZ 1, c4<z>; HiZ drive
+v0x79b380_0 .net "reset", 0 0, o0x7c77a7919228;  0 drivers
+v0x79b440_0 .var "temp_adc_in", 7 0;
+E_0x787f20 .event posedge, v0x776810_0;
+    .scope S_0x762b30;
+T_0 ;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x79b440_0, 0, 8;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x79b1e0_0, 0, 8;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x762b30;
+T_1 ;
+    %wait E_0x787f20;
+    %load/vec4 v0x79b380_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x762b30;
+T_2 ;
+    %wait E_0x787f20;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x762b30;
+T_3 ;
+    %wait E_0x787f20;
+    %jmp T_3;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/fan_controller.sv";

@@ -1,0 +1,184 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1c5b470 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1c5e700 .scope module, "pipeline_mac" "pipeline_mac" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rstn";
+    .port_info 2 /INPUT 24 "multiplicand";
+    .port_info 3 /INPUT 24 "multiplier";
+    .port_info 4 /INPUT 1 "valid_i";
+    .port_info 5 /OUTPUT 95 "result";
+    .port_info 6 /OUTPUT 1 "valid_out";
+P_0x1c73020 .param/l "DWIDTH" 0 3 2, +C4<00000000000000000000000000011000>;
+P_0x1c73060 .param/l "DWIDTH_ACCUMULATOR" 1 3 18, +C4<00000000000000000000000000000000000000000000000000000000001011111>;
+P_0x1c730a0 .param/l "N" 0 3 3, +C4<00000000000000000000000000001011>;
+L_0x1c5be80 .functor NOT 1, v0x1c88df0_0, C4<0>, C4<0>, C4<0>;
+L_0x1c5c960 .functor AND 1, v0x1c88d30_0, L_0x1c5be80, C4<1>, C4<1>;
+L_0x1c5d3f0 .functor BUFZ 95, v0x1c5c030_0, C4<00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>, C4<00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>, C4<00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>;
+v0x1c5bf90_0 .net *"_ivl_0", 0 0, L_0x1c5be80;  1 drivers
+v0x1c5c030_0 .var "accumulation_reg", 94 0;
+o0x703847be2078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1c5cab0_0 .net "clk", 0 0, o0x703847be2078;  0 drivers
+v0x1c5cb80_0 .var "count_rst", 0 0;
+v0x1c5d500_0 .var "counter", 4 0;
+v0x1c5d5d0_0 .var "counter_reg", 3 0;
+v0x1c885f0_0 .var "mult_result_reg", 94 0;
+o0x703847be2168 .functor BUFZ 24, c4<zzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1c886d0_0 .net "multiplicand", 23 0, o0x703847be2168;  0 drivers
+o0x703847be2198 .functor BUFZ 24, c4<zzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1c887b0_0 .net "multiplier", 23 0, o0x703847be2198;  0 drivers
+v0x1c88890_0 .net "result", 94 0, L_0x1c5d3f0;  1 drivers
+o0x703847be21f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1c88970_0 .net "rstn", 0 0, o0x703847be21f8;  0 drivers
+o0x703847be2228 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1c88a30_0 .net "valid_i", 0 0, o0x703847be2228;  0 drivers
+v0x1c88af0_0 .var "valid_i_s1", 0 0;
+v0x1c88bb0_0 .net "valid_out", 0 0, L_0x1c5c960;  1 drivers
+v0x1c88c70_0 .var "valid_out_s0", 0 0;
+v0x1c88d30_0 .var "valid_out_s1", 0 0;
+v0x1c88df0_0 .var "valid_out_s2", 0 0;
+E_0x1c6d0a0/0 .event negedge, v0x1c88970_0;
+E_0x1c6d0a0/1 .event posedge, v0x1c5cab0_0;
+E_0x1c6d0a0 .event/or E_0x1c6d0a0/0, E_0x1c6d0a0/1;
+S_0x1c73320 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1c5e700;
+T_0 ;
+    %wait E_0x1c6d0a0;
+    %load/vec4 v0x1c88970_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 4294967295, 4294967295, 32;
+    %concati/vec4 4294967295, 4294967295, 32;
+    %concati/vec4 2147483647, 2147483647, 31;
+    %assign/vec4 v0x1c885f0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x1c88af0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x1c885f0_0;
+    %parti/s 23, 0, 2;
+    %load/vec4 v0x1c887b0_0;
+    %parti/s 1, 23, 6;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 95;
+    %assign/vec4 v0x1c885f0_0, 0;
+    %load/vec4 v0x1c88a30_0;
+    %assign/vec4 v0x1c88af0_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1c5e700;
+T_1 ;
+    %wait E_0x1c6d0a0;
+    %load/vec4 v0x1c88970_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 4294967295, 4294967295, 32;
+    %concati/vec4 4294967295, 4294967295, 32;
+    %concati/vec4 2147483647, 2147483647, 31;
+    %assign/vec4 v0x1c5c030_0, 0;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x1c5d5d0_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x1c5c030_0;
+    %load/vec4 v0x1c885f0_0;
+    %add;
+    %assign/vec4 v0x1c5c030_0, 0;
+    %load/vec4 v0x1c5d5d0_0;
+    %addi 1, 0, 4;
+    %assign/vec4 v0x1c5d5d0_0, 0;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x1c5e700;
+T_2 ;
+    %wait E_0x1c6d0a0;
+    %load/vec4 v0x1c88970_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 1, 0, 5;
+    %assign/vec4 v0x1c5d500_0, 0;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/vec4 v0x1c5cb80_0;
+    %flag_set/vec4 8;
+    %jmp/0 T_2.2, 8;
+    %pushi/vec4 1, 0, 5;
+    %jmp/1 T_2.3, 8;
+T_2.2 ; End of true expr.
+    %load/vec4 v0x1c88a30_0;
+    %load/vec4 v0x1c88970_0;
+    %and;
+    %flag_set/vec4 9;
+    %jmp/0 T_2.4, 9;
+    %load/vec4 v0x1c5d5d0_0;
+    %pad/u 5;
+    %addi 1, 0, 5;
+    %jmp/1 T_2.5, 9;
+T_2.4 ; End of true expr.
+    %load/vec4 v0x1c5d5d0_0;
+    %pad/u 5;
+    %jmp/0 T_2.5, 9;
+ ; End of false expr.
+    %blend;
+T_2.5;
+    %jmp/0 T_2.3, 8;
+ ; End of false expr.
+    %blend;
+T_2.3;
+    %assign/vec4 v0x1c5d500_0, 0;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x1c5e700;
+T_3 ;
+    %wait E_0x1c6d0a0;
+    %load/vec4 v0x1c88970_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x1c88c70_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x1c5cb80_0, 0;
+    %jmp T_3.1;
+T_3.0 ;
+    %load/vec4 v0x1c5d5d0_0;
+    %pad/u 32;
+    %pushi/vec4 10, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %assign/vec4 v0x1c88c70_0, 0;
+    %load/vec4 v0x1c88d30_0;
+    %assign/vec4 v0x1c5cb80_0, 0;
+T_3.1 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x1c73320;
+T_4 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/pipeline_mac.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1c5e700 {0 0 0};
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/pipeline_mac.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

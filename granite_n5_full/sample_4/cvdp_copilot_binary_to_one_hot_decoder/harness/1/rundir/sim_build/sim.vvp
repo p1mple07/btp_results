@@ -1,0 +1,41 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1b08220 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x1b07c80 .scope module, "binary_to_one_hot_decoder" "binary_to_one_hot_decoder" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 5 "binary_in";
+    .port_info 1 /OUTPUT 32 "one_hot_out";
+P_0x1b08070 .param/l "BINARY_WIDTH" 0 3 2, +C4<00000000000000000000000000000101>;
+P_0x1b080b0 .param/l "OUTPUT_WIDTH" 0 3 3, +C4<00000000000000000000000000100000>;
+o0x76136737f048 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x1b2bf60_0 .net "binary_in", 4 0, o0x76136737f048;  0 drivers
+v0x1b2c060_0 .net "one_hot_out", 31 0, L_0x1b3c210;  1 drivers
+S_0x1b09cc0 .scope generate, "genblk1" "genblk1" 3 10, 3 10 0, S_0x1b07c80;
+ .timescale -9 -12;
+L_0x761367336018 .functor BUFT 1, C4<000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x1b085a0_0 .net/2u *"_ivl_0", 26 0, L_0x761367336018;  1 drivers
+L_0x1b3c210 .concat [ 5 27 0 0], o0x76136737f048, L_0x761367336018;
+S_0x1b09b30 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x1b09b30;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/binary_to_one_hot_decoder.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1b07c80 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/binary_to_one_hot_decoder.v";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

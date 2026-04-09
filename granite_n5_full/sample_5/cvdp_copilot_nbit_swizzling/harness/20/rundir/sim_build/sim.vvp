@@ -1,0 +1,214 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xe858a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xe6c960 .scope module, "nbit_swizzling" "nbit_swizzling" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 64 "data_in";
+    .port_info 1 /INPUT 2 "sel";
+    .port_info 2 /OUTPUT 65 "data_out";
+    .port_info 3 /OUTPUT 70 "ecc_out";
+P_0xe808f0 .param/l "DATA_WIDTH" 0 3 1, +C4<00000000000000000000000001000000>;
+P_0xe80930 .param/l "PARITY_BITS" 1 3 8, +C4<000000000000000000000000000000110>;
+o0x75be733310d8 .functor BUFZ 64, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xeae820_0 .net "data_in", 63 0, o0x75be733310d8;  0 drivers
+v0xeae920_0 .var "data_out", 64 0;
+v0xeaea00_0 .var "ecc_out", 69 0;
+v0xeaeac0_0 .var "parity_bits", 5 0;
+o0x75be73331198 .functor BUFZ 2, c4<zz>; HiZ drive
+v0xeaeba0_0 .net "sel", 1 0, o0x75be73331198;  0 drivers
+E_0xe92870 .event anyedge, v0xeaeac0_0, v0xeae820_0;
+S_0xe86040 .scope begin, "$ivl_for_loop0" "$ivl_for_loop0" 3 14, 3 14 0, S_0xe6c960;
+ .timescale -9 -9;
+v0xe86220_0 .var/2s "i", 31 0;
+S_0xeadfa0 .scope begin, "$ivl_for_loop1" "$ivl_for_loop1" 3 17, 3 17 0, S_0xe6c960;
+ .timescale -9 -9;
+v0xeae1a0_0 .var/2s "i", 31 0;
+S_0xeae280 .scope begin, "$ivl_for_loop2" "$ivl_for_loop2" 3 24, 3 24 0, S_0xe6c960;
+ .timescale -9 -9;
+v0xeae460_0 .var/2s "i", 31 0;
+S_0xeae540 .scope begin, "$ivl_for_loop3" "$ivl_for_loop3" 3 27, 3 27 0, S_0xe6c960;
+ .timescale -9 -9;
+v0xeae720_0 .var/2s "i", 31 0;
+S_0xe6cc20 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0xe6c960;
+T_0 ;
+    %wait E_0xe92870;
+    %pushi/vec4 0, 0, 1;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0xeaeac0_0, 4, 1;
+    %fork t_1, S_0xe86040;
+    %jmp t_0;
+    .scope S_0xe86040;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xe86220_0, 0, 32;
+T_0.0 ; Top of for-loop
+    %load/vec4 v0xe86220_0;
+    %cmpi/s 64, 0, 32;
+	  %jmp/0xz T_0.1, 5;
+    %load/vec4 v0xeaeac0_0;
+    %parti/s 1, 0, 2;
+    %load/vec4 v0xeae820_0;
+    %load/vec4 v0xe86220_0;
+    %part/s 1;
+    %xor;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0xeaeac0_0, 4, 1;
+T_0.2 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xe86220_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xe86220_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ; for-loop exit label
+    %end;
+    .scope S_0xe6c960;
+t_0 %join;
+    %fork t_3, S_0xeadfa0;
+    %jmp t_2;
+    .scope S_0xeadfa0;
+t_3 ;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0xeae1a0_0, 0, 32;
+T_0.3 ; Top of for-loop
+    %load/vec4 v0xeae1a0_0;
+    %pad/s 33;
+    %cmpi/s 6, 0, 33;
+	  %jmp/0xz T_0.4, 5;
+    %load/vec4 v0xeaeac0_0;
+    %load/vec4 v0xeae1a0_0;
+    %subi 1, 0, 32;
+    %pushi/vec4 2, 0, 32;
+    %div/s;
+    %part/s 1;
+    %load/vec4 v0xeae1a0_0;
+    %subi 1, 0, 32;
+    %pushi/vec4 2, 0, 32;
+    %mod/s;
+    %ix/vec4 4;
+    %shiftr 4;
+    %load/vec4 v0xeaeac0_0;
+    %load/vec4 v0xeae1a0_0;
+    %subi 1, 0, 32;
+    %pushi/vec4 2, 0, 32;
+    %div/s;
+    %addi 1, 0, 32;
+    %part/s 1;
+    %load/vec4 v0xeae1a0_0;
+    %subi 1, 0, 32;
+    %pushi/vec4 2, 0, 32;
+    %mod/s;
+    %addi 1, 0, 32;
+    %ix/vec4 4;
+    %shiftr 4;
+    %xor;
+    %ix/getv/s 4, v0xeae1a0_0;
+    %store/vec4 v0xeaeac0_0, 4, 1;
+T_0.5 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xeae1a0_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xeae1a0_0, 0, 32;
+    %jmp T_0.3;
+T_0.4 ; for-loop exit label
+    %end;
+    .scope S_0xe6c960;
+t_2 %join;
+    %vpi_func 3 20 "$countones" 32, v0xeaeac0_0 {0 0 0};
+    %cmpi/s 1, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_0.6, 5;
+    %load/vec4 v0xeaeac0_0;
+    %inv;
+    %store/vec4 v0xeaeac0_0, 0, 6;
+T_0.6 ;
+    %fork t_5, S_0xeae280;
+    %jmp t_4;
+    .scope S_0xeae280;
+t_5 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xeae460_0, 0, 32;
+T_0.8 ; Top of for-loop
+    %load/vec4 v0xeae460_0;
+    %cmpi/s 64, 0, 32;
+	  %jmp/0xz T_0.9, 5;
+    %load/vec4 v0xeae820_0;
+    %load/vec4 v0xeae460_0;
+    %part/s 1;
+    %ix/getv/s 4, v0xeae460_0;
+    %store/vec4 v0xeae920_0, 4, 1;
+T_0.10 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xeae460_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xeae460_0, 0, 32;
+    %jmp T_0.8;
+T_0.9 ; for-loop exit label
+    %end;
+    .scope S_0xe6c960;
+t_4 %join;
+    %fork t_7, S_0xeae540;
+    %jmp t_6;
+    .scope S_0xeae540;
+t_7 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xeae720_0, 0, 32;
+T_0.11 ; Top of for-loop
+    %load/vec4 v0xeae720_0;
+    %pad/s 33;
+    %cmpi/s 6, 0, 33;
+	  %jmp/0xz T_0.12, 5;
+    %load/vec4 v0xeaeac0_0;
+    %load/vec4 v0xeae720_0;
+    %part/s 1;
+    %pushi/vec4 64, 0, 32;
+    %load/vec4 v0xeae720_0;
+    %add;
+    %ix/vec4/s 4;
+    %store/vec4 v0xeae920_0, 4, 1;
+T_0.13 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xeae720_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xeae720_0, 0, 32;
+    %jmp T_0.11;
+T_0.12 ; for-loop exit label
+    %end;
+    .scope S_0xe6c960;
+t_6 %join;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0xe6cc20;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/nbit_swizzling.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xe6c960 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/nbit_swizzling.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

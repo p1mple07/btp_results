@@ -1,0 +1,39 @@
+%Warning-MULTITOP: /code/rtl/intra_block.sv:1:8: Multiple top level modules
+                                               : ... Suggest see manual; fix the duplicates, or use --top-module to select top.
+                   ... For warning description see https://verilator.org/warn/MULTITOP?v=5.027
+                   ... Use "/* verilator lint_off MULTITOP */" and lint_on around source to disable this message.
+                                               : ... Top module 'inter_block'
+    1 | module inter_block #(
+      |        ^~~~~~~~~~~
+                                               : ... Top module 'intra_block'
+    1 | module intra_block #(
+      |        ^~~~~~~~~~~
+%Warning-WIDTHTRUNC: /code/rtl/inter_block.sv:18:24: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's MODDIVS generates 32 bits.
+                                                   : ... note: In instance 'inter_block'
+   18 |             r_prime[i] = (i - 2 * (i / 16)) % 16;
+      |                        ^
+%Warning-WIDTHTRUNC: /code/rtl/inter_block.sv:19:24: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's MODDIVS generates 32 bits.
+                                                   : ... note: In instance 'inter_block'
+   19 |             c_prime[i] = (i -     (i / 16)) % 16;
+      |                        ^
+%Warning-WIDTHTRUNC: /code/rtl/inter_block.sv:22:24: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's MODDIVS generates 32 bits.
+                                                   : ... note: In instance 'inter_block'
+   22 |             r_prime[i] = (i - 2 * (i / 16) - 1) % 16;
+      |                        ^
+%Warning-WIDTHTRUNC: /code/rtl/inter_block.sv:23:24: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's MODDIVS generates 32 bits.
+                                                   : ... note: In instance 'inter_block'
+   23 |             c_prime[i] = (i - (i / 16) - 1) % 16;
+      |                        ^
+%Warning-WIDTHEXPAND: /code/rtl/inter_block.sv:31:46: Operator ADD expects 32 or 8 bits on the RHS, but RHS's ARRAYSEL generates 4 bits.
+                                                    : ... note: In instance 'inter_block'
+   31 |            output_index[j] = r_prime[j] * 16 + c_prime[j];
+      |                                              ^
+%Warning-UNUSEDSIGNAL: /code/rtl/inter_block.sv:13:31: Signal is not driven, nor used: 'prev_out_data'
+                                                     : ... note: In instance 'inter_block'
+   13 |     logic [ROW_COL_WIDTH-1:0] prev_out_data [ROW_COL_WIDTH-1:0];
+      |                               ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/inter_block.sv:27:12: Signal is not driven, nor used: 'k'
+                                                     : ... note: In instance 'inter_block'
+   27 |     int j, k;
+      |            ^
+%Error: Exiting due to 8 warning(s)

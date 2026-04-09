@@ -1,0 +1,90 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1fa8b30 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1f94960 .scope module, "moving_average" "moving_average" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 12 "data_in";
+    .port_info 3 /OUTPUT 12 "data_out";
+o0x7b0e524c4018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1f94cc0_0 .net "clk", 0 0, o0x7b0e524c4018;  0 drivers
+v0x1fcc550_0 .var "count", 3 0;
+o0x7b0e524c4078 .functor BUFZ 12, c4<zzzzzzzzzzzz>; HiZ drive
+v0x1fcc630_0 .net "data_in", 11 0, o0x7b0e524c4078;  0 drivers
+v0x1fcc6f0_0 .var "data_out", 11 0;
+o0x7b0e524c40d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1fcc7d0_0 .net "reset", 0 0, o0x7b0e524c40d8;  0 drivers
+v0x1fcc8e0_0 .var "sum", 11 0;
+E_0x1fb9de0 .event posedge, v0x1fcc7d0_0, v0x1f94cc0_0;
+S_0x1f94af0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1f94960;
+T_0 ;
+    %wait E_0x1fb9de0;
+    %load/vec4 v0x1fcc7d0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 12;
+    %assign/vec4 v0x1fcc8e0_0, 0;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0x1fcc550_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x1fcc8e0_0;
+    %parti/s 10, 0, 2;
+    %load/vec4 v0x1fcc630_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 12;
+    %assign/vec4 v0x1fcc8e0_0, 0;
+    %load/vec4 v0x1fcc550_0;
+    %pad/u 32;
+    %cmpi/e 7, 0, 32;
+    %flag_mov 8, 4;
+    %jmp/0 T_0.2, 8;
+    %pushi/vec4 0, 0, 4;
+    %jmp/1 T_0.3, 8;
+T_0.2 ; End of true expr.
+    %load/vec4 v0x1fcc550_0;
+    %addi 1, 0, 4;
+    %jmp/0 T_0.3, 8;
+ ; End of false expr.
+    %blend;
+T_0.3;
+    %assign/vec4 v0x1fcc550_0, 0;
+    %load/vec4 v0x1fcc550_0;
+    %pad/u 32;
+    %cmpi/e 8, 0, 32;
+    %jmp/0xz  T_0.4, 4;
+    %load/vec4 v0x1fcc8e0_0;
+    %pad/u 32;
+    %pushi/vec4 8, 0, 32;
+    %div;
+    %pad/u 12;
+    %assign/vec4 v0x1fcc6f0_0, 0;
+T_0.4 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1f94af0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/moving_average.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1f94960 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/moving_average.v";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

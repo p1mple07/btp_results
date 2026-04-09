@@ -1,0 +1,224 @@
+Running harness with project name: cvdp_copilot_64b66b_encoder_5_1774402449
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774402451
+     0.00ns INFO     cocotb.regression                  running test_encoder_64b66b.reset_test (1/10)
+                                                            Test the reset behavior of the encoder 
+    60.00ns INFO     cocotb.encoder_64b66b              Reset Test:
+                                                          encoder_data_out: 0x10000000000000000
+                                                          Expected: 0
+    60.00ns INFO     cocotb.regression                  test_encoder_64b66b.reset_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 51, in reset_test
+                                                            assert dut.encoder_data_out.value.to_unsigned() == 0, "Reset test failed: encoder_data_out should be zero after reset"
+                                                        AssertionError: Reset test failed: encoder_data_out should be zero after reset
+                                                        assert 18446744073709551616 == 0
+                                                         +  where 18446744073709551616 = to_unsigned()
+                                                         +    where to_unsigned = LogicArray('010000000000000000000000000000000000000000000000000000000000000000', Range(65, 'downto', 0)).to_unsigned
+                                                         +      where LogicArray('010000000000000000000000000000000000000000000000000000000000000000', Range(65, 'downto', 0)) = LogicObject(encoder_64b66b.encoder_data_out).value
+                                                         +        where LogicObject(encoder_64b66b.encoder_data_out) = HierarchyObject(encoder_64b66b).encoder_data_out
+    60.00ns INFO     cocotb.regression                  running test_encoder_64b66b.data_encoding_test (2/10)
+                                                            Test encoding when all data octets are pure data 
+   111.00ns INFO     cocotb.encoder_64b66b              Data Encoding Test:
+                                                          encoder_data_in: 0xa5a5a5a5a5a5a5a5
+                                                          encoder_control_in: 0b0
+   121.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0xa5a5a5a5a5a5a5a5
+                                                          Expected encoder_data_out: 0x1a5a5a5a5a5a5a5a5
+                                                        
+   121.00ns INFO     cocotb.regression                  test_encoder_64b66b.data_encoding_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 75, in data_encoding_test
+                                                            await check_output(dut, expected_sync=0b01, expected_data=0xA5A5A5A5A5A5A5A5)
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0xa5a5a5a5a5a5a5a5 (expected 0x1a5a5a5a5a5a5a5a5)
+                                                        assert 11936128518282651045 == 30382872591992202661
+   121.00ns INFO     cocotb.regression                  running test_encoder_64b66b.control_encoding_test (3/10)
+                                                            Test encoding when control characters are in the last four octets 
+   172.00ns INFO     cocotb.encoder_64b66b              Control Encoding Test:
+                                                          encoder_data_in: 0xffffffffffffffff
+                                                          encoder_control_in: 0b1111
+   182.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0xffffffffffffffff
+                                                          Expected encoder_data_out: 0x20000000000000000
+                                                        
+   182.00ns INFO     cocotb.regression                  test_encoder_64b66b.control_encoding_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 100, in control_encoding_test
+                                                            await check_output(dut, expected_sync=0b10, expected_data=0x0000000000000000)  # Expected data output is zero
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0xffffffffffffffff (expected 0x20000000000000000)
+                                                        assert 18446744073709551615 == 36893488147419103232
+   182.00ns INFO     cocotb.regression                  running test_encoder_64b66b.mixed_data_control_test (4/10)
+                                                            Test encoding when control characters are mixed in the data 
+   233.00ns INFO     cocotb.encoder_64b66b              Mixed Data and Control Test:
+                                                          encoder_data_in: 0x123456789abcdef0
+                                                          encoder_control_in: 0b10000001
+   253.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0x123456789abcdef0
+                                                          Expected encoder_data_out: 0x20000000000000000
+                                                        
+   253.00ns INFO     cocotb.regression                  test_encoder_64b66b.mixed_data_control_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 128, in mixed_data_control_test
+                                                            await check_output(dut, expected_sync=0b10, expected_data=0x0000000000000000)  # Expected data output is zero
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0x123456789abcdef0 (expected 0x20000000000000000)
+                                                        assert 1311768467463790320 == 36893488147419103232
+   253.00ns INFO     cocotb.regression                  running test_encoder_64b66b.all_control_symbols_test (5/10)
+                                                            Test encoding when all characters are control 
+   304.00ns INFO     cocotb.encoder_64b66b              All Control Symbols Test:
+                                                          encoder_data_in: 0xa5a5a5a5a5a5a5a5
+                                                          encoder_control_in: 0b11111111
+   314.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0xa5a5a5a5a5a5a5a5
+                                                          Expected encoder_data_out: 0x20000000000000000
+                                                        
+   314.00ns INFO     cocotb.regression                  test_encoder_64b66b.all_control_symbols_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 155, in all_control_symbols_test
+                                                            await check_output(dut, expected_sync=0b10, expected_data=0x0000000000000000)  # Expected data output is zero
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0xa5a5a5a5a5a5a5a5 (expected 0x20000000000000000)
+                                                        assert 11936128518282651045 == 36893488147419103232
+   314.00ns INFO     cocotb.regression                  running test_encoder_64b66b.random_data_control_test (6/10)
+                                                            Test encoding with random data and control inputs 
+   365.00ns INFO     cocotb.encoder_64b66b              Random Test 1:
+                                                          encoder_data_in: 0xbf269754f947d094
+                                                          encoder_control_in: 0b111000
+   375.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0xbf269754f947d094
+                                                          Expected encoder_data_out: 0x20000000000000000
+                                                        
+   375.00ns INFO     cocotb.regression                  test_encoder_64b66b.random_data_control_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 189, in random_data_control_test
+                                                            await check_output(dut, expected_sync=expected_sync, expected_data=expected_data)
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0xbf269754f947d094 (expected 0x20000000000000000)
+                                                        assert 13773862901574520980 == 36893488147419103232
+   375.00ns INFO     cocotb.regression                  running test_encoder_64b66b.random_data_only_test (7/10)
+                                                            Test encoding with random data and control inputs 
+   426.00ns INFO     cocotb.encoder_64b66b              Random Test 1:
+                                                          encoder_data_in: 0xcfcbfc8e44489d22
+                                                          encoder_control_in: 0b0
+   436.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0xcfcbfc8e44489d22
+                                                          Expected encoder_data_out: 0x1cfcbfc8e44489d22
+                                                        
+   436.00ns INFO     cocotb.regression                  test_encoder_64b66b.random_data_only_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 225, in random_data_only_test
+                                                            await check_output(dut, expected_sync=expected_sync, expected_data=expected_data)
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0xcfcbfc8e44489d22 (expected 0x1cfcbfc8e44489d22)
+                                                        assert 14973339074084511010 == 33420083147794062626
+   436.00ns INFO     cocotb.regression                  running test_encoder_64b66b.tc1_data_encoding_bug_test (8/10)
+                                                            Test encoding when all data octets are pure data 
+   487.00ns INFO     cocotb.encoder_64b66b              Data Encoding Test:
+                                                          encoder_data_in: 0xfedcba9876543210
+                                                          encoder_control_in: 0b0
+   497.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0xfedcba9876543210
+                                                          Expected encoder_data_out: 0x1fedcba9876543210
+                                                        
+   497.00ns INFO     cocotb.regression                  test_encoder_64b66b.tc1_data_encoding_bug_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 253, in tc1_data_encoding_bug_test
+                                                            await check_output(dut, expected_sync=0b01, expected_data=0xFEDCBA9876543210)
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0xfedcba9876543210 (expected 0x1fedcba9876543210)
+                                                        assert 18364758544493064720 == 36811502618202616336
+   497.00ns INFO     cocotb.regression                  running test_encoder_64b66b.tc2_reset_bug_test (9/10)
+                                                            Test encoding when all data octets are pure data 
+   548.00ns INFO     cocotb.encoder_64b66b              Data Encoding Test:
+                                                          encoder_data_in: 0xa5a5a5a5a5a5a5a5
+                                                          encoder_control_in: 0b0
+   558.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0x1a5a5a5a5a5a5a5a5
+                                                          Expected encoder_data_out: 0x0
+                                                        
+   558.00ns INFO     cocotb.regression                  test_encoder_64b66b.tc2_reset_bug_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 290, in tc2_reset_bug_test
+                                                            await check_output(dut, expected_sync=0b00, expected_data=0x0000000000000000)
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0x1a5a5a5a5a5a5a5a5 (expected 0x0)
+                                                        assert 30382872591992202661 == 0
+   558.00ns INFO     cocotb.regression                  running test_encoder_64b66b.tc3_stuck_at_zero_bug_test (10/10)
+                                                            Test encoding when all data octets are pure data 
+   609.00ns INFO     cocotb.encoder_64b66b              Data Encoding Test:
+                                                          encoder_data_in: 0x123456789abcdef0
+                                                          encoder_control_in: 0b0
+   619.00ns INFO     cocotb.encoder_64b66b              Checking output:
+                                                          Actual encoder_data_out: 0x123456789abcdef0
+                                                          Expected encoder_data_out: 0x1123456789abcdef0
+                                                        
+   619.00ns INFO     cocotb.regression                  test_encoder_64b66b.tc3_stuck_at_zero_bug_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_encoder_64b66b.py", line 329, in tc3_stuck_at_zero_bug_test
+                                                            await check_output(dut, expected_sync=0b01, expected_data=0x123456789ABCDEF0)
+                                                          File "/src/test_encoder_64b66b.py", line 25, in check_output
+                                                            assert actual_output == expected_output, \
+                                                        AssertionError: Test failed: encoder_data_out=0x123456789abcdef0 (expected 0x1123456789abcdef0)
+                                                        assert 1311768467463790320 == 19758512541173341936
+   619.00ns INFO     cocotb.regression                  ********************************************************************************************************
+                                                        ** TEST                                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************************
+                                                        ** test_encoder_64b66b.reset_test                   FAIL          60.00           0.00      39568.91  **
+                                                        ** test_encoder_64b66b.data_encoding_test           FAIL          61.00           0.00      55656.42  **
+                                                        ** test_encoder_64b66b.control_encoding_test        FAIL          61.00           0.00      55777.75  **
+                                                        ** test_encoder_64b66b.mixed_data_control_test      FAIL          71.00           0.00      60319.14  **
+                                                        ** test_encoder_64b66b.all_control_symbols_test     FAIL          61.00           0.00      57990.15  **
+                                                        ** test_encoder_64b66b.random_data_control_test     FAIL          61.00           0.00      58722.18  **
+                                                        ** test_encoder_64b66b.random_data_only_test        FAIL          61.00           0.00      59211.42  **
+                                                        ** test_encoder_64b66b.tc1_data_encoding_bug_test   FAIL          61.00           0.00      60485.23  **
+                                                        ** test_encoder_64b66b.tc2_reset_bug_test           FAIL          61.00           0.00      62632.20  **
+                                                        ** test_encoder_64b66b.tc3_stuck_at_zero_bug_test   FAIL          61.00           0.00      62479.25  **
+                                                        ********************************************************************************************************
+                                                        ** TESTS=10 PASS=0 FAIL=10 SKIP=0                                619.00           0.02      27775.06  **
+                                                        ********************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/encoder_64b66b.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+        runner = get_runner(sim)
+    
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log"
+        )
+>       runner.test(hdl_toplevel=toplevel, test_module=module,waves=True)
+E       SystemExit: ERROR: Failed 10 of 10 tests.
+
+/src/test_runner.py:27: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 10 o...
+============================== 1 failed in 0.19s ===============================
+Cleaning up Docker resources...

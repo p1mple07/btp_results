@@ -1,0 +1,111 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x15ad4f0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x15ad680 .scope module, "gmii_rx_to_axi_stream" "gmii_rx_to_axi_stream" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "gmii_rx_clk";
+    .port_info 1 /INPUT 8 "gmii_rxd";
+    .port_info 2 /INPUT 1 "gmii_rx_dv";
+    .port_info 3 /OUTPUT 8 "m_axis_tdata";
+    .port_info 4 /OUTPUT 1 "m_axis_tvalid";
+    .port_info 5 /INPUT 1 "m_axis_tready";
+    .port_info 6 /OUTPUT 1 "m_axis_tlast";
+P_0x15ad810 .param/l "FINISHED" 1 3 17, C4<10>;
+P_0x15ad850 .param/l "IDLE" 1 3 15, C4<00>;
+P_0x15ad890 .param/l "RECEIVING" 1 3 16, C4<01>;
+L_0x15d27d0 .functor BUFZ 8, v0x15d2530_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x73bc7a26e018 .functor BUFT 1, C4<01>, C4<0>, C4<0>, C4<0>;
+v0x15adae0_0 .net/2u *"_ivl_2", 1 0, L_0x73bc7a26e018;  1 drivers
+L_0x73bc7a26e060 .functor BUFT 1, C4<10>, C4<0>, C4<0>, C4<0>;
+v0x15d1ea0_0 .net/2u *"_ivl_6", 1 0, L_0x73bc7a26e060;  1 drivers
+o0x73bc7a2b7078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x15d1f80_0 .net "gmii_rx_clk", 0 0, o0x73bc7a2b7078;  0 drivers
+o0x73bc7a2b70a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x15d2020_0 .net "gmii_rx_dv", 0 0, o0x73bc7a2b70a8;  0 drivers
+o0x73bc7a2b70d8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x15d20e0_0 .net "gmii_rxd", 7 0, o0x73bc7a2b70d8;  0 drivers
+v0x15d2210_0 .net "m_axis_tdata", 7 0, L_0x15d27d0;  1 drivers
+v0x15d22f0_0 .net "m_axis_tlast", 0 0, L_0x15d29c0;  1 drivers
+o0x73bc7a2b7168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x15d23b0_0 .net "m_axis_tready", 0 0, o0x73bc7a2b7168;  0 drivers
+v0x15d2470_0 .net "m_axis_tvalid", 0 0, L_0x15d28c0;  1 drivers
+v0x15d2530_0 .var "rx_buffer", 7 0;
+v0x15d2610_0 .var "state", 1 0;
+E_0x15be210 .event posedge, v0x15d1f80_0;
+L_0x15d28c0 .cmp/eq 2, v0x15d2610_0, L_0x73bc7a26e018;
+L_0x15d29c0 .cmp/eq 2, v0x15d2610_0, L_0x73bc7a26e060;
+    .scope S_0x15ad680;
+T_0 ;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x15d2530_0, 0, 8;
+    %pushi/vec4 0, 0, 2;
+    %store/vec4 v0x15d2610_0, 0, 2;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x15ad680;
+T_1 ;
+    %wait E_0x15be210;
+    %load/vec4 v0x15d2610_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_1.2, 6;
+    %jmp T_1.3;
+T_1.0 ;
+    %load/vec4 v0x15d2020_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.4, 8;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x15d2610_0, 0;
+    %jmp T_1.5;
+T_1.4 ;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x15d2610_0, 0;
+T_1.5 ;
+    %jmp T_1.3;
+T_1.1 ;
+    %load/vec4 v0x15d2530_0;
+    %parti/s 7, 0, 2;
+    %load/vec4 v0x15d20e0_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 8;
+    %assign/vec4 v0x15d2530_0, 0;
+    %load/vec4 v0x15d2020_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.6, 8;
+    %pushi/vec4 2, 0, 2;
+    %assign/vec4 v0x15d2610_0, 0;
+T_1.6 ;
+    %jmp T_1.3;
+T_1.2 ;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x15d2610_0, 0;
+    %jmp T_1.3;
+T_1.3 ;
+    %pop/vec4 1;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/gmii_rx_to_axi_stream.sv";

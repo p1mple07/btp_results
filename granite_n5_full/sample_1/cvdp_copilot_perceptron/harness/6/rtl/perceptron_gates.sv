@@ -1,0 +1,307 @@
+;
+                       input_value: 0;
+                   input_value: 0;
+                           ;
+
+                   "value: 0;
+                   input_value: 0;
+                       input_value: 0;
+                            input_value: 0;
+                   else: 1;
+                           input_value: 0;
+                   else 
+                    else 0;
+                          else 1;
+                   else 0;
+                   
+                    if input_val: 1;
+                   + 0;
+                    input_input_value: 0;
+                    + "0;
+                   else 1;
+                    else 1;
+
+                   else 0;
+                       else 0;
+                   else 0;
+                   else 1;
+                   else 1;
+                   else 1;
+                   
+
+                       input_value: 0;
+                     if  input_value: 0;
+                        0;
+
+                   else 0;
+                     + 0; 
+                    else 1;
+                           else 1;
+                    else 0;
+                     else  input_value: 0;
+                     if 1;
+                     else 0;
+                     input_value: 0;
+                     else 1;
+                     else 0;
+                     input_value: 1;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else  else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     // Update:
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 1;
+                     else 0;
+                     // Update: 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else 1;
+                     if 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0; 
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 1;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     else 0;
+                     // Use of the update 0;
+                     // This is not 0;
+                     else 0;
+                     // Use 0;
+                     if 1;
+                     Use 0;
+                     else 0;
+                     Use 0;
+                     Use 0;
+                     Use 0;
+                     Use 0;
+                     Use 0;
+                     Use 0;
+                     Use 0;
+                     Use 0;
+                     Use  Use  Use 0;
+                     Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  use  Use  Use  use  Use  Use  Use  Use  Use  Use  Use  Use  Use  use  Use  use  Use  use  Use  use  Use  Use  Use  Use  Use  use  use  Use  use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  use  Use  Use  use  use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  Use  use  Use  use  Use  Use  use  Use  use  Use  Use  Use  use  Use  Use  Use  Use  use  Use  use  Use  use  use  Use  use  use  use  use  use  use  Use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  Use  use  use  use  use  use  use  Use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  Use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use_0  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use_  use  use  use  use  use  use  use  use  use  use  use  use;  use  use  use  use  use  use  use  use  use  use  use  use_0_ +  use  use  use_0 bit=  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use  use_  use  use  use  use  use  use  use  use  use  use  use =  use  use  use  use  use;
+end;
+	//  use  use:  use  use  use_2;
+                    |  use  use;
+                else  use  use  use  use; 
+
+    else  use  use  use  use  use_ bit_0;
+                     using bit  use  use  use  use  use  use  use  use  use  use_  use  use  use;
+end of the function  use bit =  use  use  use  use  use  use  use_  use_0;
+
+_  use_  use_  use  use_  use  use_0  use  use  use  use_ (3;
+                    0;
+                    0_0  use  use  use_0  use  use_2  use c2  use  use  use bit  use_  use  use  use_0  use  use_bit  use  use  use  use_ bit =  use  use;
+    
+    end;
+                     select_  use  use;
+                    5];
+-10  use_2;
+
+;
+    else  use_0;
+    else;
+
+;
+                    0;
+                    if (5;
+                    1;
+                         if 0;
+                    0;
+1;
+                     if (3;
+                   0;
+                    2;
+                    0;
+                    use_0;
+                    0;
+                    0;
+                    0;
+    ];
+
+    function;
+//0;
+
+;
+                     ;
+    ];
+    ];
+    ];
+    else 2;
+                    ;
+   0;
+                 do_1;
+                    2;
+
+;
+                    2;
+                     // and  use_0;
+                    1;
+                    0;
+;
+    //  else the_0;
+                    5;
+                    0;
+                     ;
+    ];
+
+                        0;
+
+
+
+                   = 0;
+                    10 0;
+        1;
+
+                        0;
+                    0;
+    ];
+     ];
+    );
+    ];
+                    1;
+                     ;
+                    0;
+                        0;
+                     ];
+
+;
+                         );
+
+;
+    	;
+                    0;
+                    0;
+                    1;
+                    0;
+                    1;
+                0;
+                    ];
+
+;
+                    1;
+                    0;
+                    12;
+                    1;
+                    0;
+                    0;
+                    0;
+                    1;
+                    0;
+                    0;
+                    2;
+                    1;
+                   
+
+                         ;
+
+;
+                    1;
+                    0;
+                    0;
+    0;
+                    10;
+                    0;
+    1;
+                    0;
+                    1;
+    1;
+                    0;
+                    1;
+                    0;
+                    1;
+                        0;
+                    1;
+                                 -1;
+                    0;
+                    0;
+                    1;
+                    0;
+                    0;
+
+                      0;
+                    0;
+    };
+   1;
+                    1;
+                    0;
+                    0;
+                    0;
+                    0;
+
+end_1;
+                    0;
+                    1;
+    0;
+                    0;

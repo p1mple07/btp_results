@@ -1,0 +1,9 @@
+Here's the complete code for the `fir_filter` module in SystemVerilog, designed to perform finite impulse response (FIR) filtering. The module handles signal processing using an asynchronous, active-high reset and includes functionalities such as data propagation, accumulation logic, and output assignment with a specified latency.
+
+The module takes inputs including the system clock signal (`clk`), asynchronous reset signal (`reset`), the current input sample (`input_sample`), and the coefficients for the delay elements (`coeff0`, `coeff1`, `coeff2`, and `coeff3`). It also outputs the filtered output sample (`output_sample`) with a latency of exactly 4 clock cycles after the input sample is first registered.
+
+The module declares internal storage for the delay elements (`sample_delay1`, `sample_delay2`, and `sample_delay3`) and an accumulator (`accumulator`) with a 32-bit depth.
+
+The sequential block inside the module handles the operations on the clock or reset signal. When the reset signal is high (`reset`), it resets all registers and sets the output sample to zero. Otherwise, when the clock signal is positive edge triggered (`posedge clk`), it shifts the input samples into the delay registers and computes the filtered output by multiplying the samples with their corresponding coefficients and accumulating the results in the accumulator. Finally, it assigns the accumulated result to the output sample.
+
+Note that the provided solution does not include any specific error handling, such as checking the validity of input signals or handling overflow conditions during accumulation. These aspects need to be added based on the application requirements and constraints.

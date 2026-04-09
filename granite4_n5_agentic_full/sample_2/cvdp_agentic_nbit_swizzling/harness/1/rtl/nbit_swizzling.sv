@@ -1,0 +1,1 @@
+module nbit_swizzling#(parameterized in terms of the number of levels of reversal.

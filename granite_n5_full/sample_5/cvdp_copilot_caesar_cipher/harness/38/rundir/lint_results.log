@@ -1,0 +1,20 @@
+%Warning-WIDTHEXPAND: /code/rtl/caesar_cipher.sv:8:41: Operator ADD expects 32 or 8 bits on the RHS, but RHS's VARREF 'key' generates 4 bits.
+                                                     : ... note: In instance 'caesar_cipher'
+    8 | assign output_char = ((input_char - "A" + key) % 26) + "A";
+      |                                         ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /code/rtl/caesar_cipher.sv:11:41: Operator ADD expects 32 or 8 bits on the RHS, but RHS's VARREF 'key' generates 4 bits.
+                                                      : ... note: In instance 'caesar_cipher'
+   11 | assign output_char = ((input_char - "A" + key) % 26) + "A";
+      |                                         ^
+%Warning-MULTIDRIVEN: /code/rtl/caesar_cipher.sv:4:22: Bits [7:0] of signal 'output_char' have multiple combinational drivers
+                                                     : ... note: In instance 'caesar_cipher'
+                      /code/rtl/caesar_cipher.sv:8:20: ... Location of first driver
+    8 | assign output_char = ((input_char - "A" + key) % 26) + "A";
+      |                    ^
+                      /code/rtl/caesar_cipher.sv:11:20: ... Location of other driver
+   11 | assign output_char = ((input_char - "A" + key) % 26) + "A";
+      |                    ^
+                      /code/rtl/caesar_cipher.sv:4:22: ... Only the first driver will be respected
+%Error: Exiting due to 3 warning(s)

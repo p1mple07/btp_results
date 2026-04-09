@@ -1,0 +1,120 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x15be380 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x15d2ca0 .scope module, "adc_data_rotate" "adc_data_rotate" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "i_clk";
+    .port_info 1 /INPUT 1 "i_rst_n";
+    .port_info 2 /INPUT 8 "i_adc_data_in";
+    .port_info 3 /INPUT 4 "i_shift_count";
+    .port_info 4 /INPUT 1 "i_shift_direction";
+    .port_info 5 /OUTPUT 8 "o_processed_data";
+    .port_info 6 /OUTPUT 1 "o_operation_status";
+P_0x15d2e30 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000001000>;
+L_0x15e4d00 .functor BUFZ 8, v0x15e48e0_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x15e4dc0 .functor BUFZ 1, v0x15e49c0_0, C4<0>, C4<0>, C4<0>;
+o0x7cccdb49d018 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x15be510_0 .net "i_adc_data_in", 7 0, o0x7cccdb49d018;  0 drivers
+o0x7cccdb49d048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x15e4590_0 .net "i_clk", 0 0, o0x7cccdb49d048;  0 drivers
+o0x7cccdb49d078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x15e4650_0 .net "i_rst_n", 0 0, o0x7cccdb49d078;  0 drivers
+o0x7cccdb49d0a8 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x15e46f0_0 .net "i_shift_count", 3 0, o0x7cccdb49d0a8;  0 drivers
+o0x7cccdb49d0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x15e47d0_0 .net "i_shift_direction", 0 0, o0x7cccdb49d0d8;  0 drivers
+v0x15e48e0_0 .var "l_rotated_data", 7 0;
+v0x15e49c0_0 .var "l_rotation_active", 0 0;
+v0x15e4a80_0 .net "o_operation_status", 0 0, L_0x15e4dc0;  1 drivers
+v0x15e4b40_0 .net "o_processed_data", 7 0, L_0x15e4d00;  1 drivers
+E_0x15ce940/0 .event negedge, v0x15e4650_0;
+E_0x15ce940/1 .event posedge, v0x15e4590_0;
+E_0x15ce940 .event/or E_0x15ce940/0, E_0x15ce940/1;
+S_0x15d2fc0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x15d2ca0;
+T_0 ;
+    %wait E_0x15ce940;
+    %load/vec4 v0x15e4650_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x15e48e0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x15e49c0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x15e49c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0x15e47d0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 1;
+    %cmp/u;
+    %jmp/1 T_0.4, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 1;
+    %cmp/u;
+    %jmp/1 T_0.5, 6;
+    %jmp T_0.6;
+T_0.4 ;
+    %load/vec4 v0x15e48e0_0;
+    %parti/s 7, 1, 2;
+    %ix/load 4, 0, 0;
+    %ix/load 5, 0, 0;
+    %flag_set/imm 4, 0;
+    %assign/vec4/off/d v0x15e48e0_0, 4, 5;
+    %load/vec4 v0x15be510_0;
+    %parti/s 1, 0, 2;
+    %ix/load 4, 7, 0;
+    %ix/load 5, 0, 0;
+    %flag_set/imm 4, 0;
+    %assign/vec4/off/d v0x15e48e0_0, 4, 5;
+    %jmp T_0.6;
+T_0.5 ;
+    %load/vec4 v0x15e48e0_0;
+    %parti/s 7, 0, 2;
+    %ix/load 4, 1, 0;
+    %ix/load 5, 0, 0;
+    %flag_set/imm 4, 0;
+    %assign/vec4/off/d v0x15e48e0_0, 4, 5;
+    %load/vec4 v0x15be510_0;
+    %parti/s 1, 7, 4;
+    %ix/load 4, 0, 0;
+    %ix/load 5, 0, 0;
+    %flag_set/imm 4, 0;
+    %assign/vec4/off/d v0x15e48e0_0, 4, 5;
+    %jmp T_0.6;
+T_0.6 ;
+    %pop/vec4 1;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0x15be510_0;
+    %assign/vec4 v0x15e48e0_0, 0;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x15d2fc0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/adc_data_rotate.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x15d2ca0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/adc_data_rotate.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

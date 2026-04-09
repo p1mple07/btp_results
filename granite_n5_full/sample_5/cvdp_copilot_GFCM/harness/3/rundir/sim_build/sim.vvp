@@ -1,0 +1,95 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1cdd960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1cddaf0 .scope module, "glitch_free_mux" "glitch_free_mux" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk1";
+    .port_info 1 /INPUT 1 "clk2";
+    .port_info 2 /INPUT 1 "rst_n";
+    .port_info 3 /INPUT 1 "sel";
+    .port_info 4 /OUTPUT 1 "clkout";
+o0x7825c5747078 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x1d17390 .functor AND 1, o0x7825c5747078, v0x1d16e70_0, C4<1>, C4<1>;
+o0x7825c57470d8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x1d17480 .functor AND 1, o0x7825c57470d8, v0x1d16ff0_0, C4<1>, C4<1>;
+L_0x1d17580 .functor OR 1, L_0x1d17390, L_0x1d17480, C4<0>, C4<0>;
+v0x1cf2bf0_0 .net *"_ivl_0", 0 0, L_0x1d17390;  1 drivers
+v0x1d16cf0_0 .net *"_ivl_2", 0 0, L_0x1d17480;  1 drivers
+v0x1d16dd0_0 .net "clk1", 0 0, o0x7825c5747078;  0 drivers
+v0x1d16e70_0 .var "clk1_enable", 0 0;
+v0x1d16f30_0 .net "clk2", 0 0, o0x7825c57470d8;  0 drivers
+v0x1d16ff0_0 .var "clk2_enable", 0 0;
+v0x1d170b0_0 .net "clkout", 0 0, L_0x1d17580;  1 drivers
+o0x7825c5747168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1d17170_0 .net "rst_n", 0 0, o0x7825c5747168;  0 drivers
+o0x7825c5747198 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1d17230_0 .net "sel", 0 0, o0x7825c5747198;  0 drivers
+E_0x1d02cd0/0 .event negedge, v0x1d17170_0;
+E_0x1d02cd0/1 .event posedge, v0x1d16f30_0;
+E_0x1d02cd0 .event/or E_0x1d02cd0/0, E_0x1d02cd0/1;
+E_0x1d02f00/0 .event negedge, v0x1d17170_0;
+E_0x1d02f00/1 .event posedge, v0x1d16dd0_0;
+E_0x1d02f00 .event/or E_0x1d02f00/0, E_0x1d02f00/1;
+S_0x1cddc80 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1cddaf0;
+T_0 ;
+    %wait E_0x1d02f00;
+    %load/vec4 v0x1d17170_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x1d16e70_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x1d16ff0_0;
+    %inv;
+    %load/vec4 v0x1d17230_0;
+    %inv;
+    %and;
+    %assign/vec4 v0x1d16e70_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1cddaf0;
+T_1 ;
+    %wait E_0x1d02cd0;
+    %load/vec4 v0x1d17170_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x1d16ff0_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x1d16e70_0;
+    %inv;
+    %load/vec4 v0x1d17230_0;
+    %and;
+    %assign/vec4 v0x1d16ff0_0, 0;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x1cddc80;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/glitch_free_mux.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1cddaf0 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/glitch_free_mux.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

@@ -1,0 +1,92 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1eb35a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1eb3730 .scope module, "convolutional_encoder" "convolutional_encoder" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 1 "data_in";
+    .port_info 3 /OUTPUT 1 "encoded_bit1";
+    .port_info 4 /OUTPUT 1 "encoded_bit2";
+L_0x1eb31e0 .functor AND 1, L_0x1ed8150, L_0x1ed81f0, C4<1>, C4<1>;
+L_0x705487fb2018 .functor BUFT 1, C4<x>, C4<0>, C4<0>, C4<0>;
+L_0x1eb3250 .functor AND 1, L_0x1ed8360, L_0x705487fb2018, C4<1>, C4<1>;
+L_0x1ed84d0 .functor OR 1, L_0x1eb31e0, L_0x1eb3250, C4<0>, C4<0>;
+L_0x1ed85e0 .functor NOT 1, L_0x1ed84d0, C4<0>, C4<0>, C4<0>;
+L_0x1ed8840 .functor AND 1, L_0x1ed86d0, L_0x1ed87a0, C4<1>, C4<1>;
+L_0x705487fb2060 .functor BUFT 1, C4<x>, C4<0>, C4<0>, C4<0>;
+L_0x1ed89e0 .functor AND 1, L_0x1ed8900, L_0x705487fb2060, C4<1>, C4<1>;
+L_0x1ed8b30 .functor OR 1, L_0x1ed8840, L_0x1ed89e0, C4<0>, C4<0>;
+L_0x1ed8c40 .functor NOT 1, L_0x1ed8b30, C4<0>, C4<0>, C4<0>;
+v0x1e9bbc0_0 .net *"_ivl_1", 0 0, L_0x1ed8150;  1 drivers
+v0x1ed6fc0_0 .net *"_ivl_10", 0 0, L_0x1eb3250;  1 drivers
+v0x1ed70a0_0 .net *"_ivl_12", 0 0, L_0x1ed84d0;  1 drivers
+v0x1ed7160_0 .net *"_ivl_17", 0 0, L_0x1ed86d0;  1 drivers
+v0x1ed7240_0 .net *"_ivl_19", 0 0, L_0x1ed87a0;  1 drivers
+v0x1ed7320_0 .net *"_ivl_20", 0 0, L_0x1ed8840;  1 drivers
+v0x1ed7400_0 .net *"_ivl_23", 0 0, L_0x1ed8900;  1 drivers
+v0x1ed74e0_0 .net *"_ivl_24", 0 0, L_0x705487fb2060;  1 drivers
+v0x1ed75c0_0 .net *"_ivl_26", 0 0, L_0x1ed89e0;  1 drivers
+v0x1ed76a0_0 .net *"_ivl_28", 0 0, L_0x1ed8b30;  1 drivers
+v0x1ed7780_0 .net *"_ivl_3", 0 0, L_0x1ed81f0;  1 drivers
+v0x1ed7860_0 .net *"_ivl_4", 0 0, L_0x1eb31e0;  1 drivers
+v0x1ed7940_0 .net *"_ivl_7", 0 0, L_0x1ed8360;  1 drivers
+v0x1ed7a20_0 .net *"_ivl_8", 0 0, L_0x705487fb2018;  1 drivers
+o0x705487ffb2b8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1ed7b00_0 .net "clk", 0 0, o0x705487ffb2b8;  0 drivers
+o0x705487ffb2e8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1ed7bc0_0 .net "data_in", 0 0, o0x705487ffb2e8;  0 drivers
+v0x1ed7c80_0 .net "encoded_bit1", 0 0, L_0x1ed85e0;  1 drivers
+v0x1ed7e50_0 .net "encoded_bit2", 0 0, L_0x1ed8c40;  1 drivers
+o0x705487ffb378 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1ed7f10_0 .net "rst", 0 0, o0x705487ffb378;  0 drivers
+v0x1ed7fd0_0 .var "shift_register", 1 0;
+E_0x1ec0d40 .event posedge, v0x1ed7f10_0, v0x1ed7b00_0;
+L_0x1ed8150 .part v0x1ed7fd0_0, 1, 1;
+L_0x1ed81f0 .part v0x1ed7fd0_0, 0, 1;
+L_0x1ed8360 .part v0x1ed7fd0_0, 0, 1;
+L_0x1ed86d0 .part v0x1ed7fd0_0, 1, 1;
+L_0x1ed87a0 .part v0x1ed7fd0_0, 0, 1;
+L_0x1ed8900 .part v0x1ed7fd0_0, 1, 1;
+S_0x1e9ba10 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1eb3730;
+T_0 ;
+    %wait E_0x1ec0d40;
+    %load/vec4 v0x1ed7f10_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x1ed7fd0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x1ed7bc0_0;
+    %load/vec4 v0x1ed7fd0_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 2;
+    %assign/vec4 v0x1ed7fd0_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1e9ba10;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/convolutional_encoder.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1eb3730 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/convolutional_encoder.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

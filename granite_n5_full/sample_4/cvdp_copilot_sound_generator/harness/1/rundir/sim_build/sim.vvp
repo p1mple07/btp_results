@@ -1,0 +1,48 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x805c40 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x805dd0 .scope module, "soundgenerator" "soundgenerator" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "nrst";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 1 "finish";
+    .port_info 4 /INPUT 16 "sond_dur_ms_i";
+    .port_info 5 /INPUT 16 "half_period_us_i";
+    .port_info 6 /OUTPUT 1 "soundwave_o";
+    .port_info 7 /OUTPUT 1 "busy";
+    .port_info 8 /OUTPUT 1 "done";
+P_0x805050 .param/l "CLOCK_HZ" 0 3 2, +C4<00000000100110001001011010000000>;
+o0x7fc149da3018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x7f2c40_0 .net "busy", 0 0, o0x7fc149da3018;  0 drivers
+o0x7fc149da3048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8149b0_0 .net "clk", 0 0, o0x7fc149da3048;  0 drivers
+o0x7fc149da3078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x814a70_0 .net "done", 0 0, o0x7fc149da3078;  0 drivers
+o0x7fc149da30a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x814b40_0 .net "finish", 0 0, o0x7fc149da30a8;  0 drivers
+o0x7fc149da30d8 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x814c00_0 .net "half_period_us_i", 15 0, o0x7fc149da30d8;  0 drivers
+o0x7fc149da3108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x814d30_0 .net "nrst", 0 0, o0x7fc149da3108;  0 drivers
+o0x7fc149da3138 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x814df0_0 .net "sond_dur_ms_i", 15 0, o0x7fc149da3138;  0 drivers
+o0x7fc149da3168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x814ed0_0 .net "soundwave_o", 0 0, o0x7fc149da3168;  0 drivers
+o0x7fc149da3198 .functor BUFZ 1, c4<z>; HiZ drive
+v0x814f90_0 .net "start", 0 0, o0x7fc149da3198;  0 drivers
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/soundgenerator.sv";

@@ -1,0 +1,2 @@
+- 6-bit-bit-bit, "plain" encoding.
+- 1-bit code, `0`

@@ -1,0 +1,3 @@
+- 10.
+- 11. Provided to the documented code for the DDR Memory (M)
+- 12. Answer 13.

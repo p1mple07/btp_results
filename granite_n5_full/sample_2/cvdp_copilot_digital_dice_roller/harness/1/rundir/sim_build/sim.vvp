@@ -1,0 +1,130 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1140180 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x1140310 .scope module, "digital_dice_roller" "digital_dice_roller" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset_n";
+    .port_info 2 /INPUT 1 "button";
+    .port_info 3 /OUTPUT 3 "dice_value";
+P_0x113aac0 .param/l "RESET_VALUE" 0 3 1, +C4<00000000000000000000000000000000>;
+enum0x1127b20 .enum4 (3)
+   "IDLE" 3'b000,
+   "ROLLING" 3'b001
+ ;
+o0x76969da16018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1115b10_0 .net "button", 0 0, o0x76969da16018;  0 drivers
+o0x76969da16048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1160360_0 .net "clk", 0 0, o0x76969da16048;  0 drivers
+v0x1160420_0 .var "counter", 2 0;
+v0x11604e0_0 .var "dice_value", 2 0;
+v0x11605c0_0 .var "next_state", 2 0;
+o0x76969da16108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x11606f0_0 .net "reset_n", 0 0, o0x76969da16108;  0 drivers
+v0x11607b0_0 .var "state", 2 0;
+E_0x1127ae0 .event anyedge, v0x11607b0_0, v0x1115b10_0;
+E_0x113b150/0 .event negedge, v0x11606f0_0;
+E_0x113b150/1 .event posedge, v0x1160360_0;
+E_0x113b150 .event/or E_0x113b150/0, E_0x113b150/1;
+S_0x1115960 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x1140310;
+T_0 ;
+    %wait E_0x113b150;
+    %load/vec4 v0x11606f0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x11607b0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x11605c0_0;
+    %assign/vec4 v0x11607b0_0, 0;
+T_0.1 ;
+    %load/vec4 v0x11607b0_0;
+    %cmpi/e 0, 0, 3;
+    %jmp/0xz  T_0.2, 4;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x11604e0_0, 0;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0x11607b0_0;
+    %cmpi/e 1, 0, 3;
+    %jmp/0xz  T_0.4, 4;
+    %load/vec4 v0x1160420_0;
+    %assign/vec4 v0x11604e0_0, 0;
+T_0.4 ;
+T_0.3 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1140310;
+T_1 ;
+Ewait_0 .event/or E_0x1127ae0, E_0x0;
+    %wait Ewait_0;
+    %load/vec4 v0x11607b0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 3;
+    %cmp/u;
+    %jmp/1 T_1.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 3;
+    %cmp/u;
+    %jmp/1 T_1.1, 6;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x11605c0_0, 0, 3;
+    %jmp T_1.3;
+T_1.0 ;
+    %pushi/vec4 1, 0, 3;
+    %store/vec4 v0x11605c0_0, 0, 3;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x1160420_0, 0, 3;
+    %jmp T_1.3;
+T_1.1 ;
+    %load/vec4 v0x1115b10_0;
+    %cmpi/e 1, 0, 1;
+    %jmp/0xz  T_1.4, 4;
+    %pushi/vec4 1, 0, 3;
+    %store/vec4 v0x11605c0_0, 0, 3;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x1160420_0;
+    %pushi/vec4 1, 0, 3;
+    %add;
+    %store/vec4 v0x1160420_0, 0, 3;
+    %jmp T_1.5;
+T_1.4 ;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x11605c0_0, 0, 3;
+    ; show_stmt_assign_vector: Get l-value for compressed -= operand
+    %load/vec4 v0x1160420_0;
+    %pushi/vec4 1, 0, 3;
+    %sub;
+    %store/vec4 v0x1160420_0, 0, 3;
+T_1.5 ;
+    %jmp T_1.3;
+T_1.3 ;
+    %pop/vec4 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0x1115960;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/digital_dice_roller.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1140310 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/digital_dice_roller.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

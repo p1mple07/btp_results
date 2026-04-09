@@ -1,0 +1,19 @@
+%Warning-WIDTHEXPAND: /code/rtl/binary_to_bcd.sv:13:15: Operator ASSIGN expects 24 bits on the Assign RHS, but Assign RHS's REPLICATE generates 20 bits.
+                                                      : ... note: In instance 'binary_to_bcd'
+   13 |     shift_reg = {12'd0, binary_in};
+      |               ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /code/rtl/binary_to_bcd.sv:16:10: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's VARREF 'shift_reg' generates 24 bits.
+                                                     : ... note: In instance 'binary_to_bcd'
+   16 |     temp = shift_reg;
+      |          ^
+%Warning-UNUSEDSIGNAL: /code/rtl/binary_to_bcd.sv:6:16: Signal is not driven, nor used: 'shift_reg_temp'
+                                                      : ... note: In instance 'binary_to_bcd'
+    6 |   logic [19:0] shift_reg_temp;
+      |                ^~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/binary_to_bcd.sv:10:16: Signal is not used: 'temp'
+                                                       : ... note: In instance 'binary_to_bcd'
+   10 |   logic [11:0] temp;  
+      |                ^~~~
+%Error: Exiting due to 4 warning(s)

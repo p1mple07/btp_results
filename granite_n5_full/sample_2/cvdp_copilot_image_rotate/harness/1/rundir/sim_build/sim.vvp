@@ -1,0 +1,60 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1e7b300 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1e65960 .scope module, "image_rotate" "image_rotate" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 2 "rotation_angle";
+    .port_info 1 /INPUT 16 "image_in";
+    .port_info 2 /OUTPUT 32 "image_out";
+P_0x1e65af0 .param/l "DATA_WIDTH" 0 3 6, +C4<00000000000000000000000000001000>;
+P_0x1e65b30 .param/l "IN_COL" 0 3 3, +C4<00000000000000000000000000000010>;
+P_0x1e65b70 .param/l "IN_ROW" 0 3 2, +C4<00000000000000000000000000000001>;
+P_0x1e65bb0 .param/l "OUT_COL" 0 3 5, +C4<00000000000000000000000000000010>;
+P_0x1e65bf0 .param/l "OUT_ROW" 0 3 4, +C4<00000000000000000000000000000010>;
+o0x7fd0d1680018 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x1e8aca0_0 .net "image_in", 15 0, o0x7fd0d1680018;  0 drivers
+v0x1ea0c00_0 .var "image_out", 31 0;
+o0x7fd0d1680078 .functor BUFZ 2, c4<zz>; HiZ drive
+v0x1ea0ce0_0 .net "rotation_angle", 1 0, o0x7fd0d1680078;  0 drivers
+S_0x1e7bc30 .scope generate, "trans_row_block[0]" "trans_row_block[0]" 3 22, 3 22 0, S_0x1e65960;
+ .timescale -9 -9;
+P_0x1e7be10 .param/l "trans_row" 1 3 22, +C4<00>;
+S_0x1e7beb0 .scope generate, "trans_col_block[0]" "trans_col_block[0]" 3 23, 3 23 0, S_0x1e7bc30;
+ .timescale -9 -9;
+P_0x1e7c090 .param/l "trans_col" 1 3 23, +C4<00>;
+S_0x1e7c150 .scope generate, "trans_col_block[1]" "trans_col_block[1]" 3 23, 3 23 0, S_0x1e7bc30;
+ .timescale -9 -9;
+P_0x1e7c350 .param/l "trans_col" 1 3 23, +C4<01>;
+S_0x1e7c410 .scope generate, "trans_row_block[1]" "trans_row_block[1]" 3 22, 3 22 0, S_0x1e65960;
+ .timescale -9 -9;
+P_0x1e7c610 .param/l "trans_row" 1 3 22, +C4<01>;
+S_0x1e7c6d0 .scope generate, "trans_col_block[0]" "trans_col_block[0]" 3 23, 3 23 0, S_0x1e7c410;
+ .timescale -9 -9;
+P_0x1e7c8d0 .param/l "trans_col" 1 3 23, +C4<00>;
+S_0x1e7c9b0 .scope generate, "trans_col_block[1]" "trans_col_block[1]" 3 23, 3 23 0, S_0x1e7c410;
+ .timescale -9 -9;
+P_0x1e7cbb0 .param/l "trans_col" 1 3 23, +C4<01>;
+S_0x1e7baa0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1e7baa0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/image_rotate.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1e65960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/image_rotate.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

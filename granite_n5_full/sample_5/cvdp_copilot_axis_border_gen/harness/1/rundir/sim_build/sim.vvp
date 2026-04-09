@@ -1,0 +1,114 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x233e1e0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x233e370 .scope module, "axis_image_border_gen" "axis_image_border_gen" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "resetn";
+    .port_info 2 /INPUT 16 "s_axis_tdata";
+    .port_info 3 /INPUT 1 "s_axis_tvalid";
+    .port_info 4 /OUTPUT 1 "s_axis_tready";
+    .port_info 5 /INPUT 1 "s_axis_tlast";
+    .port_info 6 /INPUT 1 "s_axis_tuser";
+    .port_info 7 /OUTPUT 16 "m_axis_tdata";
+    .port_info 8 /OUTPUT 1 "m_axis_tvalid";
+    .port_info 9 /INPUT 1 "m_axis_tready";
+    .port_info 10 /OUTPUT 1 "m_axis_tlast";
+    .port_info 11 /OUTPUT 1 "m_axis_tuser";
+P_0x2339470 .param/l "BORDER_COLOR" 0 3 4, C4<1111111111111111>;
+P_0x23394b0 .param/l "DATA_MASK" 0 3 5, C4<0000000000000000>;
+P_0x23394f0 .param/l "IMG_HEIGHT" 0 3 3, +C4<00000000000000000000000000000010>;
+P_0x2339530 .param/l "IMG_WIDTH" 0 3 2, +C4<00000000000000000000000000000101>;
+L_0x234b9c0 .functor OR 1, L_0x23756f0, L_0x2375930, C4<0>, C4<0>;
+L_0x233de90 .functor OR 1, L_0x234b9c0, L_0x2375aa0, C4<0>, C4<0>;
+L_0x2376040 .functor OR 1, L_0x233de90, L_0x2375d80, C4<0>, C4<0>;
+L_0x71b782378018 .functor BUFT 1, C4<0000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2324ee0_0 .net/2u *"_ivl_0", 15 0, L_0x71b782378018;  1 drivers
+L_0x71b7823780f0 .functor BUFT 1, C4<0000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2363da0_0 .net/2u *"_ivl_12", 15 0, L_0x71b7823780f0;  1 drivers
+v0x2363e80_0 .net *"_ivl_16", 31 0, L_0x2375bf0;  1 drivers
+L_0x71b782378138 .functor BUFT 1, C4<0000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2363f40_0 .net *"_ivl_19", 15 0, L_0x71b782378138;  1 drivers
+L_0x71b782378180 .functor BUFT 1, C4<00000000000000000000000000000110>, C4<0>, C4<0>, C4<0>;
+v0x2364020_0 .net/2u *"_ivl_20", 31 0, L_0x71b782378180;  1 drivers
+v0x2364150_0 .net *"_ivl_25", 0 0, L_0x234b9c0;  1 drivers
+v0x2364210_0 .net *"_ivl_27", 0 0, L_0x233de90;  1 drivers
+v0x23642d0_0 .net *"_ivl_4", 31 0, L_0x2375790;  1 drivers
+L_0x71b782378060 .functor BUFT 1, C4<0000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x23643b0_0 .net *"_ivl_7", 15 0, L_0x71b782378060;  1 drivers
+L_0x71b7823780a8 .functor BUFT 1, C4<00000000000000000000000000000011>, C4<0>, C4<0>, C4<0>;
+v0x2364490_0 .net/2u *"_ivl_8", 31 0, L_0x71b7823780a8;  1 drivers
+o0x71b7823c11f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2364570_0 .net "clk", 0 0, o0x71b7823c11f8;  0 drivers
+v0x2364630_0 .net "is_border_pixel", 0 0, L_0x2376040;  1 drivers
+v0x23646f0_0 .net "is_bottom_row", 0 0, L_0x2375930;  1 drivers
+v0x23647b0_0 .net "is_left_border", 0 0, L_0x2375aa0;  1 drivers
+v0x2364870_0 .net "is_right_border", 0 0, L_0x2375d80;  1 drivers
+v0x2364930_0 .net "is_top_row", 0 0, L_0x23756f0;  1 drivers
+o0x71b7823c1318 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x23649f0_0 .net "m_axis_tdata", 15 0, o0x71b7823c1318;  0 drivers
+o0x71b7823c1348 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2364be0_0 .net "m_axis_tlast", 0 0, o0x71b7823c1348;  0 drivers
+o0x71b7823c1378 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2364ca0_0 .net "m_axis_tready", 0 0, o0x71b7823c1378;  0 drivers
+o0x71b7823c13a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2364d60_0 .net "m_axis_tuser", 0 0, o0x71b7823c13a8;  0 drivers
+o0x71b7823c13d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2364e20_0 .net "m_axis_tvalid", 0 0, o0x71b7823c13d8;  0 drivers
+o0x71b7823c1408 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2364ee0_0 .net "resetn", 0 0, o0x71b7823c1408;  0 drivers
+o0x71b7823c1438 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x2364fa0_0 .net "s_axis_tdata", 15 0, o0x71b7823c1438;  0 drivers
+o0x71b7823c1468 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2365080_0 .net "s_axis_tlast", 0 0, o0x71b7823c1468;  0 drivers
+o0x71b7823c1498 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2365140_0 .net "s_axis_tready", 0 0, o0x71b7823c1498;  0 drivers
+o0x71b7823c14c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2365200_0 .net "s_axis_tuser", 0 0, o0x71b7823c14c8;  0 drivers
+o0x71b7823c14f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x23652c0_0 .net "s_axis_tvalid", 0 0, o0x71b7823c14f8;  0 drivers
+v0x2365380_0 .var "x_count", 15 0;
+v0x2365460_0 .var "y_count", 15 0;
+E_0x234bdf0/0 .event negedge, v0x2364ee0_0;
+E_0x234bdf0/1 .event posedge, v0x2364570_0;
+E_0x234bdf0 .event/or E_0x234bdf0/0, E_0x234bdf0/1;
+L_0x23756f0 .cmp/eq 16, v0x2365460_0, L_0x71b782378018;
+L_0x2375790 .concat [ 16 16 0 0], v0x2365460_0, L_0x71b782378060;
+L_0x2375930 .cmp/eq 32, L_0x2375790, L_0x71b7823780a8;
+L_0x2375aa0 .cmp/eq 16, v0x2365380_0, L_0x71b7823780f0;
+L_0x2375bf0 .concat [ 16 16 0 0], v0x2365380_0, L_0x71b782378138;
+L_0x2375d80 .cmp/eq 32, L_0x2375bf0, L_0x71b782378180;
+S_0x234ef70 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x233e370;
+T_0 ;
+    %wait E_0x234bdf0;
+    %load/vec4 v0x2364ee0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x234ef70;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/axis_image_border_gen.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x233e370 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/axis_image_border_gen.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

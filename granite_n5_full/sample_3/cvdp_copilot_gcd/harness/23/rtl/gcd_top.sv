@@ -1,0 +1,13 @@
+module gcd_top(input [1:0],
+   input rst
+   input rst
+   input [1:0], output logic [3:0]
+   output logic [3:0]
+   // Implementation of verification.
+   //...
+   //...
+   // Implementation of verification.
+   //...
+   //...
+)
+endmodule

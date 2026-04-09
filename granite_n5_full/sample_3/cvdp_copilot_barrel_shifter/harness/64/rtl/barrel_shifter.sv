@@ -1,0 +1,3 @@
+module barrel_shifter #(parameter integer DATA_WIDTH=8, parameter integer SHIFTS_PER_CYCLE=2, parameter integer PARITY_BITS=1
+    //...
+endmodule

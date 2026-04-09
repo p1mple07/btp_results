@@ -1,0 +1,45 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x246b830 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x2458960 .scope module, "sigma_delta_audio" "sigma_delta_audio" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk_sig";
+    .port_info 1 /INPUT 1 "clk_en_sig";
+    .port_info 2 /INPUT 15 "load_data_sum";
+    .port_info 3 /INPUT 15 "read_data_sum";
+    .port_info 4 /OUTPUT 1 "left_sig";
+    .port_info 5 /OUTPUT 1 "right_sig";
+o0x75e78bda7018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2458d70_0 .net "clk_en_sig", 0 0, o0x75e78bda7018;  0 drivers
+o0x75e78bda7048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x248d590_0 .net "clk_sig", 0 0, o0x75e78bda7048;  0 drivers
+v0x248d650_0 .var "left_sig", 0 0;
+o0x75e78bda70a8 .functor BUFZ 15, c4<zzzzzzzzzzzzzzz>; HiZ drive
+v0x248d6f0_0 .net "load_data_sum", 14 0, o0x75e78bda70a8;  0 drivers
+o0x75e78bda70d8 .functor BUFZ 15, c4<zzzzzzzzzzzzzzz>; HiZ drive
+v0x248d7d0_0 .net "read_data_sum", 14 0, o0x75e78bda70d8;  0 drivers
+v0x248d900_0 .var "right_sig", 0 0;
+S_0x2458bc0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x2458bc0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/sigma_delta_audio.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x2458960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sigma_delta_audio.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

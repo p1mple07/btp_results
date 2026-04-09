@@ -1,0 +1,25 @@
+module barrel_shifter (
+    input  [7:0] data_in,
+    input  [2:0] shift_bits,
+    input        left_right,
+    input        shift_mode,
+    output reg [7:0] data_out
+);
+
+    always @(*) begin
+        if (shift_mode == 0) begin
+            if (left_right) begin
+                data_out = {data_in, {shift_bits{1'b0}}};
+            end else begin
+                data_out = {{shift_bits{1'b0}}, data_in[7:shift_bits]};
+            end
+        end else begin
+            if (left_right) begin
+                data_out = {data_in[7], data_in[{6:0}]};
+            end else begin
+                data_out = {data_in[6:0], data_in[0]};
+            }
+        end
+    end
+
+endmodule

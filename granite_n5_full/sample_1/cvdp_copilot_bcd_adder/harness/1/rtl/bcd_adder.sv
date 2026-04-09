@@ -1,0 +1,66 @@
+module bcd_adder(                
+                 input  [3:0] a,             // 4-bit BCD input
+                 input  [3:0] b,             // 4-bit BCD input
+                 output [3:0] sum,           // The corrected 4-bit BCD result of the addition
+                 output       cout           // Carry-out to indicate overflow beyond BCD range (i.e., when the result exceeds 9)
+                );
+    
+  // Instantiate the first four-bit adder for Binary Addition
+  four_bit_adder adder1(         
+                     .a(a),            
+                     .b(b),            
+                     .cin(1'b0),       
+                     .sum(binary_sum), 
+                     .cout(binary_cout) 
+                     );
+                       
+  // Insert code to determine BCD correction condition logic
+   
+   
+  // Instantiate the second four-bit adder for BCD correction
+  four_bit_adder adder2(         
+                     .a(binary_sum),     
+                     .b({1'b0, cout, cout, 1'b0}), 
+                     .cin(1'b0),         
+                     .sum(sum),          
+                     .cout(carry)        
+                     );
+endmodule     
+
+
+// Module of four_bit_adder
+module four_bit_adder(        
+                      input [3:0] a,           // 4-bit input a
+                      input [3:0] b,           // 4-bit input b
+                      input cin,               // Carry input
+                      output [3:0] sum,        // 4-bit sum output
+                      output cout              // Carry output
+                     );
+
+    wire [2:0] carry;         // Intermediate carry wires
+
+    genvar i;                 // Declare a variable for the generate loop
+
+    generate
+        
+   
+        // Insert code for four-bit binary adder using full adder 
+
+ 
+    endgenerate
+
+endmodule     
+
+
+// Module of full_adder
+module full_adder(       
+                  input a,     	// First Addend input
+                  input b,     	// Second Addend input
+                  input cin,   	// Carry input
+                  output sum,  	// Sum output
+                  output cout  	// Carry output
+                );
+                  
+    assign sum = a ^ b ^ cin;                      // Calculate sum using XOR
+    assign cout = (a & b) | (b & cin) | (a & cin); // Calculate carry-out
+endmodule

@@ -1,0 +1,638 @@
+Running harness with project name: cvdp_copilot_apb_gpio_1_1774422352
+#1 [internal] load local bake definitions
+#1 reading from stdin 704B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 212B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.2s done
+#5 DONE 0.2s
+
+#6 [2/2] RUN pip3 install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:b743df48a623277b81063348aaf5e64e08837217e0024f06ecf47c8fba4cb14a
+#7 exporting manifest sha256:b743df48a623277b81063348aaf5e64e08837217e0024f06ecf47c8fba4cb14a 0.3s done
+#7 exporting config sha256:3e1a729454c41fd22259ca1f956b246dc9ed8e1367d13f194b902ab9c2e4a6fb
+#7 exporting config sha256:3e1a729454c41fd22259ca1f956b246dc9ed8e1367d13f194b902ab9c2e4a6fb 0.2s done
+#7 exporting attestation manifest sha256:c46271e0d4f45d6d53604ebae73e309efe3644a7b4f11caa6a106b5b79f83afa
+#7 exporting attestation manifest sha256:c46271e0d4f45d6d53604ebae73e309efe3644a7b4f11caa6a106b5b79f83afa 0.6s done
+#7 exporting manifest list sha256:9b2dbc793bd98ac8865e98aec677c9f6f613ec89a3403285c18e95590027ec10
+#7 exporting manifest list sha256:9b2dbc793bd98ac8865e98aec677c9f6f613ec89a3403285c18e95590027ec10 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_apb_gpio_1_1774422352-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_apb_gpio_1_1774422352-direct:latest 0.1s done
+#7 unpacking to docker.io/library/cvdp_copilot_apb_gpio_1_1774422352-direct:latest 0.1s done
+#7 DONE 1.8s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 3 items
+
+../../src/test_runner.py::test_cvdp_copilot_apb_gpio[8] FAILED           [ 33%]
+../../src/test_runner.py::test_cvdp_copilot_apb_gpio[11] FAILED          [ 66%]
+../../src/test_runner.py::test_cvdp_copilot_apb_gpio[30] FAILED          [100%]
+
+=================================== FAILURES ===================================
+________________________ test_cvdp_copilot_apb_gpio[8] _________________________
+
+gpio_width = 8
+
+    @pytest.mark.parametrize("gpio_width", [8, 11, 30])  # Add desired GPIO_WIDTH values here
+    def test_cvdp_copilot_apb_gpio(gpio_width):
+        """
+        Pytest function to run cocotb simulations with different GPIO_WIDTH parameters.
+    
+        Args:
+            gpio_width (int): The GPIO_WIDTH value to test.
+        """
+        try:
+>           runner(gpio_width)
+
+/src/test_runner.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gpio_width = 8
+
+    def runner(gpio_width):
+        """
+        Runs the cocotb simulation with the specified GPIO_WIDTH parameter.
+    
+        Args:
+            gpio_width (int): The GPIO_WIDTH value to test.
+        """
+        logger.info(f"Starting simulation with GPIO_WIDTH = {gpio_width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build the simulation with the specified GPIO_WIDTH parameter
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={"GPIO_WIDTH": gpio_width},  # Pass GPIO_WIDTH parameter
+            # Simulator Arguments
+            always=True,
+            clean=True,
+            waves=False,        # Disable waveform generation for faster runs
+            verbose=False,      # Set to True for detailed simulator logs
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_{gpio_width}.log"
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=False
+        )
+E       SystemExit: ERROR: Failed 10 of 10 tests.
+
+/src/test_runner.py:46: SystemExit
+----------------------------- Captured stdout call -----------------------------
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s cvdp_copilot_apb_gpio -g2012 -Pcvdp_copilot_apb_gpio.GPIO_WIDTH=8 -f /code/rundir/sim_build/cmds.f /code/rtl/cvdp_copilot_apb_gpio.sv in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774422359
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test1_write_read_data_output
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test2_write_read_output_enable
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test3_gpio_input_synchronization
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test4_configure_level_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test5_clear_level_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test6_configure_edge_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test7_mask_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test8_invalid_address_access
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test9_multiple_simultaneous_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test10_reset_conditions
+     0.00ns INFO     cocotb.regression                  running test1_write_read_data_output (1/10)
+                                                          Test 1: Write and Read Data Output Register (reg_dout)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 1: Write and Read Data Output Register
+     0.00ns INFO     cocotb.regression                  test1_write_read_data_output failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 81, in test1_write_read_data_output
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test2_write_read_output_enable (2/10)
+                                                          Test 2: Write and Read Output Enable Register (reg_dout_en)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 2: Write and Read Output Enable Register
+     0.00ns INFO     cocotb.regression                  test2_write_read_output_enable failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 122, in test2_write_read_output_enable
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test3_gpio_input_synchronization (3/10)
+                                                          Test 3: Test GPIO Input Synchronization
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 3: GPIO Input Synchronization
+     0.00ns INFO     cocotb.regression                  test3_gpio_input_synchronization failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 197, in test3_gpio_input_synchronization
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test4_configure_level_triggered_interrupts (4/10)
+                                                          Test 4: Configure Level-Triggered Interrupts (Positive Polarity)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 4: Configure Level-Triggered Interrupts (Positive Polarity)
+     0.00ns INFO     cocotb.regression                  test4_configure_level_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 254, in test4_configure_level_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test5_clear_level_triggered_interrupts (5/10)
+                                                          Test 5: Clear Level-Triggered Interrupts by Changing Input
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 5: Clear Level-Triggered Interrupts by Changing Input
+     0.01ns INFO     cocotb.regression                  test5_clear_level_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 324, in test5_clear_level_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test6_configure_edge_triggered_interrupts (6/10)
+                                                          Test 6: Configure Edge-Triggered Interrupts (Negative Polarity)
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 6: Configure Edge-Triggered Interrupts (Negative Polarity)
+     0.01ns INFO     cocotb.regression                  test6_configure_edge_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 401, in test6_configure_edge_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test7_mask_interrupts (7/10)
+                                                          Test 7: Mask Interrupts Using Interrupt Enable Register
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 7: Mask Interrupts Using Interrupt Enable Register
+     0.01ns INFO     cocotb.regression                  test7_mask_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 488, in test7_mask_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test8_invalid_address_access (8/10)
+                                                          Test 8: Attempt to Access Invalid Address
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 8: Attempt to Access Invalid Address
+     0.01ns INFO     cocotb.regression                  test8_invalid_address_access failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 590, in test8_invalid_address_access
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test9_multiple_simultaneous_interrupts (9/10)
+                                                          Test 9: Multiple Interrupts Occurring Simultaneously
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 9: Multiple Interrupts Occurring Simultaneously
+     0.01ns INFO     cocotb.regression                  test9_multiple_simultaneous_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 637, in test9_multiple_simultaneous_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test10_reset_conditions (10/10)
+                                                          Test 10: Reset Conditions
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 10: Reset Conditions
+     0.01ns INFO     cocotb.regression                  test10_reset_conditions failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 707, in test10_reset_conditions
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  **********************************************************************************************************************
+                                                        ** TEST                                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************************
+                                                        ** test_gpio_harness.test1_write_read_data_output                 FAIL           0.00           0.00          6.10  **
+                                                        ** test_gpio_harness.test2_write_read_output_enable               FAIL           0.00           0.00         11.59  **
+                                                        ** test_gpio_harness.test3_gpio_input_synchronization             FAIL           0.00           0.00         12.37  **
+                                                        ** test_gpio_harness.test4_configure_level_triggered_interrupts   FAIL           0.00           0.00         12.45  **
+                                                        ** test_gpio_harness.test5_clear_level_triggered_interrupts       FAIL           0.00           0.00         12.37  **
+                                                        ** test_gpio_harness.test6_configure_edge_triggered_interrupts    FAIL           0.00           0.00         12.37  **
+                                                        ** test_gpio_harness.test7_mask_interrupts                        FAIL           0.00           0.00         12.48  **
+                                                        ** test_gpio_harness.test8_invalid_address_access                 FAIL           0.00           0.00         12.34  **
+                                                        ** test_gpio_harness.test9_multiple_simultaneous_interrupts       FAIL           0.00           0.00         12.48  **
+                                                        ** test_gpio_harness.test10_reset_conditions                      FAIL           0.00           0.00         12.56  **
+                                                        **********************************************************************************************************************
+                                                        ** TESTS=10 PASS=0 FAIL=10 SKIP=0                                                0.01           0.05          0.21  **
+                                                        **********************************************************************************************************************
+                                                        
+________________________ test_cvdp_copilot_apb_gpio[11] ________________________
+
+gpio_width = 11
+
+    @pytest.mark.parametrize("gpio_width", [8, 11, 30])  # Add desired GPIO_WIDTH values here
+    def test_cvdp_copilot_apb_gpio(gpio_width):
+        """
+        Pytest function to run cocotb simulations with different GPIO_WIDTH parameters.
+    
+        Args:
+            gpio_width (int): The GPIO_WIDTH value to test.
+        """
+        try:
+>           runner(gpio_width)
+
+/src/test_runner.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gpio_width = 11
+
+    def runner(gpio_width):
+        """
+        Runs the cocotb simulation with the specified GPIO_WIDTH parameter.
+    
+        Args:
+            gpio_width (int): The GPIO_WIDTH value to test.
+        """
+        logger.info(f"Starting simulation with GPIO_WIDTH = {gpio_width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build the simulation with the specified GPIO_WIDTH parameter
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={"GPIO_WIDTH": gpio_width},  # Pass GPIO_WIDTH parameter
+            # Simulator Arguments
+            always=True,
+            clean=True,
+            waves=False,        # Disable waveform generation for faster runs
+            verbose=False,      # Set to True for detailed simulator logs
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_{gpio_width}.log"
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=False
+        )
+E       SystemExit: ERROR: Failed 10 of 10 tests.
+
+/src/test_runner.py:46: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s cvdp_copilot_apb_gpio -g2012 -Pcvdp_copilot_apb_gpio.GPIO_WIDTH=11 -f /code/rundir/sim_build/cmds.f /code/rtl/cvdp_copilot_apb_gpio.sv in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774422360
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test1_write_read_data_output
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test2_write_read_output_enable
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test3_gpio_input_synchronization
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test4_configure_level_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test5_clear_level_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test6_configure_edge_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test7_mask_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test8_invalid_address_access
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test9_multiple_simultaneous_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test10_reset_conditions
+     0.00ns INFO     cocotb.regression                  running test1_write_read_data_output (1/10)
+                                                          Test 1: Write and Read Data Output Register (reg_dout)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 1: Write and Read Data Output Register
+     0.00ns INFO     cocotb.regression                  test1_write_read_data_output failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 81, in test1_write_read_data_output
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test2_write_read_output_enable (2/10)
+                                                          Test 2: Write and Read Output Enable Register (reg_dout_en)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 2: Write and Read Output Enable Register
+     0.00ns INFO     cocotb.regression                  test2_write_read_output_enable failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 122, in test2_write_read_output_enable
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test3_gpio_input_synchronization (3/10)
+                                                          Test 3: Test GPIO Input Synchronization
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 3: GPIO Input Synchronization
+     0.00ns INFO     cocotb.regression                  test3_gpio_input_synchronization failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 197, in test3_gpio_input_synchronization
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test4_configure_level_triggered_interrupts (4/10)
+                                                          Test 4: Configure Level-Triggered Interrupts (Positive Polarity)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 4: Configure Level-Triggered Interrupts (Positive Polarity)
+     0.00ns INFO     cocotb.regression                  test4_configure_level_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 254, in test4_configure_level_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test5_clear_level_triggered_interrupts (5/10)
+                                                          Test 5: Clear Level-Triggered Interrupts by Changing Input
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 5: Clear Level-Triggered Interrupts by Changing Input
+     0.01ns INFO     cocotb.regression                  test5_clear_level_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 324, in test5_clear_level_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test6_configure_edge_triggered_interrupts (6/10)
+                                                          Test 6: Configure Edge-Triggered Interrupts (Negative Polarity)
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 6: Configure Edge-Triggered Interrupts (Negative Polarity)
+     0.01ns INFO     cocotb.regression                  test6_configure_edge_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 401, in test6_configure_edge_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test7_mask_interrupts (7/10)
+                                                          Test 7: Mask Interrupts Using Interrupt Enable Register
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 7: Mask Interrupts Using Interrupt Enable Register
+     0.01ns INFO     cocotb.regression                  test7_mask_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 488, in test7_mask_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test8_invalid_address_access (8/10)
+                                                          Test 8: Attempt to Access Invalid Address
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 8: Attempt to Access Invalid Address
+     0.01ns INFO     cocotb.regression                  test8_invalid_address_access failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 590, in test8_invalid_address_access
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test9_multiple_simultaneous_interrupts (9/10)
+                                                          Test 9: Multiple Interrupts Occurring Simultaneously
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 9: Multiple Interrupts Occurring Simultaneously
+     0.01ns INFO     cocotb.regression                  test9_multiple_simultaneous_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 637, in test9_multiple_simultaneous_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test10_reset_conditions (10/10)
+                                                          Test 10: Reset Conditions
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 10: Reset Conditions
+     0.01ns INFO     cocotb.regression                  test10_reset_conditions failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 707, in test10_reset_conditions
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  **********************************************************************************************************************
+                                                        ** TEST                                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************************
+                                                        ** test_gpio_harness.test1_write_read_data_output                 FAIL           0.00           0.00          6.27  **
+                                                        ** test_gpio_harness.test2_write_read_output_enable               FAIL           0.00           0.00         11.04  **
+                                                        ** test_gpio_harness.test3_gpio_input_synchronization             FAIL           0.00           0.00         12.12  **
+                                                        ** test_gpio_harness.test4_configure_level_triggered_interrupts   FAIL           0.00           0.00         12.19  **
+                                                        ** test_gpio_harness.test5_clear_level_triggered_interrupts       FAIL           0.00           0.00         12.37  **
+                                                        ** test_gpio_harness.test6_configure_edge_triggered_interrupts    FAIL           0.00           0.00         12.16  **
+                                                        ** test_gpio_harness.test7_mask_interrupts                        FAIL           0.00           0.00         12.41  **
+                                                        ** test_gpio_harness.test8_invalid_address_access                 FAIL           0.00           0.00         12.34  **
+                                                        ** test_gpio_harness.test9_multiple_simultaneous_interrupts       FAIL           0.00           0.00         12.41  **
+                                                        ** test_gpio_harness.test10_reset_conditions                      FAIL           0.00           0.00         12.23  **
+                                                        **********************************************************************************************************************
+                                                        ** TESTS=10 PASS=0 FAIL=10 SKIP=0                                                0.01           0.05          0.21  **
+                                                        **********************************************************************************************************************
+                                                        
+________________________ test_cvdp_copilot_apb_gpio[30] ________________________
+
+gpio_width = 30
+
+    @pytest.mark.parametrize("gpio_width", [8, 11, 30])  # Add desired GPIO_WIDTH values here
+    def test_cvdp_copilot_apb_gpio(gpio_width):
+        """
+        Pytest function to run cocotb simulations with different GPIO_WIDTH parameters.
+    
+        Args:
+            gpio_width (int): The GPIO_WIDTH value to test.
+        """
+        try:
+>           runner(gpio_width)
+
+/src/test_runner.py:63: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+gpio_width = 30
+
+    def runner(gpio_width):
+        """
+        Runs the cocotb simulation with the specified GPIO_WIDTH parameter.
+    
+        Args:
+            gpio_width (int): The GPIO_WIDTH value to test.
+        """
+        logger.info(f"Starting simulation with GPIO_WIDTH = {gpio_width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build the simulation with the specified GPIO_WIDTH parameter
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={"GPIO_WIDTH": gpio_width},  # Pass GPIO_WIDTH parameter
+            # Simulator Arguments
+            always=True,
+            clean=True,
+            waves=False,        # Disable waveform generation for faster runs
+            verbose=False,      # Set to True for detailed simulator logs
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_{gpio_width}.log"
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=False
+        )
+E       SystemExit: ERROR: Failed 10 of 10 tests.
+
+/src/test_runner.py:46: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s cvdp_copilot_apb_gpio -g2012 -Pcvdp_copilot_apb_gpio.GPIO_WIDTH=30 -f /code/rundir/sim_build/cmds.f /code/rtl/cvdp_copilot_apb_gpio.sv in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774422360
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test1_write_read_data_output
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test2_write_read_output_enable
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test3_gpio_input_synchronization
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test4_configure_level_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test5_clear_level_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test6_configure_edge_triggered_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test7_mask_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test8_invalid_address_access
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test9_multiple_simultaneous_interrupts
+     0.00ns INFO     cocotb.regression                  Found test test_gpio_harness.test10_reset_conditions
+     0.00ns INFO     cocotb.regression                  running test1_write_read_data_output (1/10)
+                                                          Test 1: Write and Read Data Output Register (reg_dout)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 1: Write and Read Data Output Register
+     0.00ns INFO     cocotb.regression                  test1_write_read_data_output failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 81, in test1_write_read_data_output
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test2_write_read_output_enable (2/10)
+                                                          Test 2: Write and Read Output Enable Register (reg_dout_en)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 2: Write and Read Output Enable Register
+     0.00ns INFO     cocotb.regression                  test2_write_read_output_enable failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 122, in test2_write_read_output_enable
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test3_gpio_input_synchronization (3/10)
+                                                          Test 3: Test GPIO Input Synchronization
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 3: GPIO Input Synchronization
+     0.00ns INFO     cocotb.regression                  test3_gpio_input_synchronization failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 197, in test3_gpio_input_synchronization
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test4_configure_level_triggered_interrupts (4/10)
+                                                          Test 4: Configure Level-Triggered Interrupts (Positive Polarity)
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 4: Configure Level-Triggered Interrupts (Positive Polarity)
+     0.00ns INFO     cocotb.regression                  test4_configure_level_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 254, in test4_configure_level_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.00ns INFO     cocotb.regression                  running test5_clear_level_triggered_interrupts (5/10)
+                                                          Test 5: Clear Level-Triggered Interrupts by Changing Input
+     0.00ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 5: Clear Level-Triggered Interrupts by Changing Input
+     0.01ns INFO     cocotb.regression                  test5_clear_level_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 324, in test5_clear_level_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test6_configure_edge_triggered_interrupts (6/10)
+                                                          Test 6: Configure Edge-Triggered Interrupts (Negative Polarity)
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 6: Configure Edge-Triggered Interrupts (Negative Polarity)
+     0.01ns INFO     cocotb.regression                  test6_configure_edge_triggered_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 401, in test6_configure_edge_triggered_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test7_mask_interrupts (7/10)
+                                                          Test 7: Mask Interrupts Using Interrupt Enable Register
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 7: Mask Interrupts Using Interrupt Enable Register
+     0.01ns INFO     cocotb.regression                  test7_mask_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 488, in test7_mask_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test8_invalid_address_access (8/10)
+                                                          Test 8: Attempt to Access Invalid Address
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 8: Attempt to Access Invalid Address
+     0.01ns INFO     cocotb.regression                  test8_invalid_address_access failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 590, in test8_invalid_address_access
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test9_multiple_simultaneous_interrupts (9/10)
+                                                          Test 9: Multiple Interrupts Occurring Simultaneously
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 9: Multiple Interrupts Occurring Simultaneously
+     0.01ns INFO     cocotb.regression                  test9_multiple_simultaneous_interrupts failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 637, in test9_multiple_simultaneous_interrupts
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  running test10_reset_conditions (10/10)
+                                                          Test 10: Reset Conditions
+     0.01ns INFO     cocotb.cvdp_copilot_apb_gpio       Test 10: Reset Conditions
+     0.01ns INFO     cocotb.regression                  test10_reset_conditions failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_gpio_harness.py", line 707, in test10_reset_conditions
+                                                            cocotb.start_soon(Clock(dut.pclk, 20, units="ns").start())
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 370, in __getattr__
+                                                            raise AttributeError(f"{self._name} contains no object named {name}")
+                                                        AttributeError: cvdp_copilot_apb_gpio contains no object named pclk
+     0.01ns INFO     cocotb.regression                  **********************************************************************************************************************
+                                                        ** TEST                                                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************************************
+                                                        ** test_gpio_harness.test1_write_read_data_output                 FAIL           0.00           0.00          6.02  **
+                                                        ** test_gpio_harness.test2_write_read_output_enable               FAIL           0.00           0.00         11.34  **
+                                                        ** test_gpio_harness.test3_gpio_input_synchronization             FAIL           0.00           0.00         12.23  **
+                                                        ** test_gpio_harness.test4_configure_level_triggered_interrupts   FAIL           0.00           0.00         12.41  **
+                                                        ** test_gpio_harness.test5_clear_level_triggered_interrupts       FAIL           0.00           0.00         12.45  **
+                                                        ** test_gpio_harness.test6_configure_edge_triggered_interrupts    FAIL           0.00           0.00         12.09  **
+                                                        ** test_gpio_harness.test7_mask_interrupts                        FAIL           0.00           0.00         12.41  **
+                                                        ** test_gpio_harness.test8_invalid_address_access                 FAIL           0.00           0.00         12.48  **
+                                                        ** test_gpio_harness.test9_multiple_simultaneous_interrupts       FAIL           0.00           0.00         12.41  **
+                                                        ** test_gpio_harness.test10_reset_conditions                      FAIL           0.00           0.00         12.30  **
+                                                        **********************************************************************************************************************
+                                                        ** TESTS=10 PASS=0 FAIL=10 SKIP=0                                                0.01           0.05          0.21  **
+                                                        **********************************************************************************************************************
+                                                        
+=============================== warnings summary ===============================
+../../src/test_runner.py:4
+  /src/test_runner.py:4: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_cvdp_copilot_apb_gpio[8] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_cvdp_copilot_apb_gpio[11] - SystemExit:...
+FAILED ../../src/test_runner.py::test_cvdp_copilot_apb_gpio[30] - SystemExit:...
+========================= 3 failed, 1 warning in 0.57s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_apb_gpio_1_1774422352-direct:latest
+Deleted: sha256:9b2dbc793bd98ac8865e98aec677c9f6f613ec89a3403285c18e95590027ec10

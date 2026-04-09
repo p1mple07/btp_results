@@ -1,0 +1,59 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xecd7e0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xed1f80 .scope module, "sprite_controller_fsm" "sprite_controller_fsm" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 2 "i_wait";
+    .port_info 3 /OUTPUT 1 "rw";
+    .port_info 4 /OUTPUT 8 "write_addr";
+    .port_info 5 /OUTPUT 24 "write_data";
+    .port_info 6 /OUTPUT 4 "x_pos";
+    .port_info 7 /OUTPUT 64 "y_pos";
+    .port_info 8 /INPUT 24 "pixel_out";
+    .port_info 9 /OUTPUT 1 "done";
+P_0xed2110 .param/l "MEM_ADDR_WIDTH" 0 3 2, +C4<00000000000000000000000000001000>;
+P_0xed2150 .param/l "N_ROM" 0 3 7, +C4<00000000000000000000000100000000>;
+P_0xed2190 .param/l "PIXEL_WIDTH" 0 3 3, +C4<00000000000000000000000000011000>;
+P_0xed21d0 .param/l "SPRITE_HEIGHT" 0 3 5, +C4<00000000000000000000000001000000>;
+P_0xed2210 .param/l "SPRITE_WIDTH" 0 3 4, +C4<00000000000000000000000000000100>;
+P_0xed2250 .param/l "WAIT_WIDTH" 0 3 6, +C4<00000000000000000000000000000010>;
+enum0xebabd0 .enum4 (3)
+   "IDLE" 3'b000,
+   "INIT_WRITE" 3'b001,
+   "WRITE" 3'b010,
+   "INIT_READ" 3'b011,
+   "READ" 3'b100,
+   "WAIT" 3'b101,
+   "DONE" 3'b110
+ ;
+o0x74aeadddf018 .functor BUFZ 1, c4<z>; HiZ drive
+v0xece000_0 .net "clk", 0 0, o0x74aeadddf018;  0 drivers
+v0xece220_0 .var "done", 0 0;
+o0x74aeadddf078 .functor BUFZ 2, c4<zz>; HiZ drive
+v0xef17e0_0 .net "i_wait", 1 0, o0x74aeadddf078;  0 drivers
+o0x74aeadddf0a8 .functor BUFZ 24, c4<zzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xef18a0_0 .net "pixel_out", 23 0, o0x74aeadddf0a8;  0 drivers
+o0x74aeadddf0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xef1980_0 .net "rst_n", 0 0, o0x74aeadddf0d8;  0 drivers
+v0xef1a90_0 .var "rw", 0 0;
+v0xef1b50_0 .var "write_addr", 7 0;
+v0xef1c30_0 .var "write_data", 23 0;
+v0xef1d10_0 .var "x_pos", 3 0;
+v0xef1df0_0 .var "y_pos", 63 0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sprite_fsm.sv";

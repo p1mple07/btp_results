@@ -1,0 +1,57 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1d55d80 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1d55f10 .scope module, "hamming_code_receiver" "hamming_code_receiver" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 8 "data_in";
+    .port_info 1 /OUTPUT 4 "data_out";
+L_0x1d559c0 .functor XOR 3, L_0x1d79c40, L_0x1d79950, C4<000>, C4<000>;
+v0x1d3faf0_0 .net *"_ivl_1", 0 0, L_0x1d79770;  1 drivers
+v0x1d78c80_0 .net *"_ivl_10", 2 0, L_0x1d79c40;  1 drivers
+L_0x73f057a00018 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x1d78d60_0 .net *"_ivl_13", 1 0, L_0x73f057a00018;  1 drivers
+v0x1d78e20_0 .net *"_ivl_21", 3 0, L_0x1d79ff0;  1 drivers
+v0x1d78f00_0 .net *"_ivl_3", 0 0, L_0x1d79810;  1 drivers
+v0x1d79030_0 .net *"_ivl_5", 0 0, L_0x1d798b0;  1 drivers
+v0x1d79110_0 .net *"_ivl_9", 0 0, L_0x1d79b10;  1 drivers
+v0x1d791f0_0 .net "corrected_data_bits", 3 0, L_0x1d79f00;  1 drivers
+o0x73f057a49198 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1d792d0_0 .net "data_in", 7 0, o0x73f057a49198;  0 drivers
+v0x1d793b0_0 .net "data_out", 3 0, L_0x1d7a090;  1 drivers
+v0x1d79490_0 .net "error_bits", 2 0, L_0x1d559c0;  1 drivers
+v0x1d79570_0 .net "error_present", 0 0, L_0x1d79e10;  1 drivers
+v0x1d79630_0 .net "parity_bits", 2 0, L_0x1d79950;  1 drivers
+L_0x1d79770 .part o0x73f057a49198, 1, 1;
+L_0x1d79810 .part o0x73f057a49198, 3, 1;
+L_0x1d798b0 .part o0x73f057a49198, 5, 1;
+L_0x1d79950 .concat [ 1 1 1 0], L_0x1d798b0, L_0x1d79810, L_0x1d79770;
+L_0x1d79b10 .part o0x73f057a49198, 7, 1;
+L_0x1d79c40 .concat [ 1 2 0 0], L_0x1d79b10, L_0x73f057a00018;
+L_0x1d79e10 .reduce/or L_0x1d559c0;
+L_0x1d79f00 .part o0x73f057a49198, 4, 4;
+L_0x1d79ff0 .part o0x73f057a49198, 0, 4;
+L_0x1d7a090 .functor MUXZ 4, L_0x1d79ff0, L_0x1d79f00, L_0x1d79e10, C4<>;
+S_0x1d3f960 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1d3f960;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/hamming_code_receiver.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1d55f10 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/hamming_code_receiver.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

@@ -1,0 +1,67 @@
+module dot_product (
+    input               clk_in,                     // Clock signal
+    input               reset_in,                   // Asynchronous Reset signal, Active HIGH
+    input               start_in,                   // Start computation signal
+    input       [6:0]   dot_length_in,              // Length of the dot product vectors
+    input       [7:0]   vector_a_in,                // Input vector A (8-bit)
+    input               vector_a_valid_in,          // Valid signal for vector A
+    input       [15:0]  vector_b_in,                // Input vector B (16-bit)
+    input               vector_b_valid_in,          // Valid signal for vector B
+    output reg  [31:0]  dot_product_out,            // Output dot product result (32-bit)
+    output reg          dot_product_valid_out       // Valid signal for dot product output
+);
+
+    typedef enum logic [1:0] {
+        IDLE    = 2'b00,
+        COMPUTE = 2'b01,
+        OUTPUT  = 2'b10
+    } state_t;
+
+    state_t state;
+    reg [31:0] dot_product_reg;
+    reg dot_product_valid_reg;
+    reg [31:0] vector_a_reg;
+    reg [31:0] vector_b_reg;
+    reg [6:0] dot_length_reg;
+
+    always @(posedge clk_in or posedge reset_in) begin
+        if (reset_in == 1'b1) begin
+            state <= IDLE;
+            dot_product_reg <= 32'b0;
+            dot_product_valid_reg <= 1'b0;
+            vector_a_reg <= 32'b0;
+            vector_b_reg <= 32'b0;
+            dot_length_reg <= 6'b0;
+        end else begin
+            case (state)
+                IDLE: begin
+                    if (start_in == 1'b1 && vector_a_valid_in == 1'b1 && vector_b_valid_in == 1'b1) begin
+                        state <= COMPUTE;
+                        dot_product_reg <= 32'b0;
+                        dot_product_valid_reg <= 1'b0;
+                        vector_a_reg <= vector_a_in;
+                        vector_b_reg <= vector_b_in;
+                        dot_length_reg <= dot_length_in;
+                    end
+                end
+                COMPUTE: begin
+                    if (dot_length_reg > 0) begin
+                        dot_product_reg <= dot_product_reg + (vector_a_reg * vector_b_reg);
+                        dot_length_reg <= dot_length_reg - 1;
+                        vector_a_reg <= vector_a_reg >> 8;
+                        vector_b_reg <= vector_b_reg >> 16;
+                    end else begin
+                        state <= OUTPUT;
+                    end
+                end
+                OUTPUT: begin
+                    dot_product_valid_reg <= 1'b1;
+                    state <= IDLE;
+                end
+            endcase
+        end
+    end
+
+    assign dot_product_out = dot_product_reg;
+    assign dot_product_valid_out = dot_product_valid_reg;
+endmodule

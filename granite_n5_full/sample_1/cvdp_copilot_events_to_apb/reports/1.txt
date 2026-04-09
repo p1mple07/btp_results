@@ -1,0 +1,108 @@
+Running harness with project name: cvdp_copilot_events_to_apb_1_1774387129
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_apb      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774387132
+     0.00ns INFO     cocotb.regression                  running test_apb_controller.test_apb_controller_with_delay (1/4)
+     7.00ns INFO     cocotb.regression                  test_apb_controller.test_apb_controller_with_delay failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_apb_controller.py", line 14, in test_apb_controller_with_delay
+                                                            await hrs_lb.async_reset_dut(dut)
+                                                          File "/src/harness_library.py", line 11, in async_reset_dut
+                                                            assert dut.apb_psel_o.value == 0, "APB select should be 0 at a reset"
+                                                        AssertionError: APB select should be 0 at a reset
+                                                        assert LogicArray('X', Range(0, 'downto', 0)) == 0
+                                                         +  where LogicArray('X', Range(0, 'downto', 0)) = LogicObject(apb_controller.apb_psel_o).value
+                                                         +    where LogicObject(apb_controller.apb_psel_o) = HierarchyObject(apb_controller).apb_psel_o
+     7.00ns INFO     cocotb.regression                  running test_apb_controller.test_apb_controller_without_delay (2/4)
+    15.00ns INFO     cocotb.regression                  test_apb_controller.test_apb_controller_without_delay failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_apb_controller.py", line 55, in test_apb_controller_without_delay
+                                                            await hrs_lb.async_reset_dut(dut)
+                                                          File "/src/harness_library.py", line 11, in async_reset_dut
+                                                            assert dut.apb_psel_o.value == 0, "APB select should be 0 at a reset"
+                                                        AssertionError: APB select should be 0 at a reset
+                                                        assert LogicArray('X', Range(0, 'downto', 0)) == 0
+                                                         +  where LogicArray('X', Range(0, 'downto', 0)) = LogicObject(apb_controller.apb_psel_o).value
+                                                         +    where LogicObject(apb_controller.apb_psel_o) = HierarchyObject(apb_controller).apb_psel_o
+    15.00ns INFO     cocotb.regression                  running test_apb_controller.test_apb_controller_with_timeout (3/4)
+    23.00ns INFO     cocotb.regression                  test_apb_controller.test_apb_controller_with_timeout failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_apb_controller.py", line 95, in test_apb_controller_with_timeout
+                                                            await hrs_lb.async_reset_dut(dut)
+                                                          File "/src/harness_library.py", line 11, in async_reset_dut
+                                                            assert dut.apb_psel_o.value == 0, "APB select should be 0 at a reset"
+                                                        AssertionError: APB select should be 0 at a reset
+                                                        assert LogicArray('X', Range(0, 'downto', 0)) == 0
+                                                         +  where LogicArray('X', Range(0, 'downto', 0)) = LogicObject(apb_controller.apb_psel_o).value
+                                                         +    where LogicObject(apb_controller.apb_psel_o) = HierarchyObject(apb_controller).apb_psel_o
+    23.00ns INFO     cocotb.regression                  running test_apb_controller.test_apb_controller_priority_all_events (4/4)
+                                                            Test the priority handling of the APB controller for simultaneous events A, B, and C.
+    31.00ns INFO     cocotb.regression                  test_apb_controller.test_apb_controller_priority_all_events failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_apb_controller.py", line 140, in test_apb_controller_priority_all_events
+                                                            await hrs_lb.async_reset_dut(dut)
+                                                          File "/src/harness_library.py", line 11, in async_reset_dut
+                                                            assert dut.apb_psel_o.value == 0, "APB select should be 0 at a reset"
+                                                        AssertionError: APB select should be 0 at a reset
+                                                        assert LogicArray('X', Range(0, 'downto', 0)) == 0
+                                                         +  where LogicArray('X', Range(0, 'downto', 0)) = LogicObject(apb_controller.apb_psel_o).value
+                                                         +    where LogicObject(apb_controller.apb_psel_o) = HierarchyObject(apb_controller).apb_psel_o
+    31.00ns INFO     cocotb.regression                  *********************************************************************************************************************
+                                                        ** TEST                                                         STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *********************************************************************************************************************
+                                                        ** test_apb_controller.test_apb_controller_with_delay            FAIL           7.00           0.00       7675.85  **
+                                                        ** test_apb_controller.test_apb_controller_without_delay         FAIL           8.00           0.00      23933.26  **
+                                                        ** test_apb_controller.test_apb_controller_with_timeout          FAIL           8.00           0.00      23916.20  **
+                                                        ** test_apb_controller.test_apb_controller_priority_all_events   FAIL           8.00           0.00      24492.29  **
+                                                        *********************************************************************************************************************
+                                                        ** TESTS=4 PASS=0 FAIL=4 SKIP=0                                                31.00           0.01       3287.24  **
+                                                        *********************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/apb_controller.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+___________________________________ test_apb ___________________________________
+
+    def test_apb():
+        # Run the simulation
+>       runner()
+
+/src/test_runner.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def runner():
+    
+        num_iterations = os.getenv("NUM_ITERATIONS", 5)
+        os.environ["NUM_ITERATIONS"] = str(num_iterations)
+    
+        # Configure runner
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log"
+        )
+    
+        for i in range(num_iterations):
+>           runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E           SystemExit: ERROR: Failed 4 of 4 tests.
+
+/src/test_runner.py:34: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_apb - SystemExit: ERROR: Failed 4 of 4 ...
+============================== 1 failed in 0.22s ===============================
+Cleaning up Docker resources...

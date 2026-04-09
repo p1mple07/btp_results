@@ -1,0 +1,44 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1a58c60 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1a58df0 .scope module, "matrix_multiplier" "matrix_multiplier" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 72 "matrix_a";
+    .port_info 1 /INPUT 72 "matrix_b";
+    .port_info 2 /OUTPUT 108 "matrix_c";
+P_0x1a44d60 .param/l "COL_A" 0 3 3, +C4<00000000000000000000000000000011>;
+P_0x1a44da0 .param/l "COL_B" 0 3 5, +C4<00000000000000000000000000000011>;
+P_0x1a44de0 .param/l "INPUT_DATA_WIDTH" 0 3 6, +C4<00000000000000000000000000001000>;
+P_0x1a44e20 .param/l "OUTPUT_DATA_WIDTH" 0 3 7, +C4<000000000000000000000000000001100>;
+P_0x1a44e60 .param/l "ROW_A" 0 3 2, +C4<00000000000000000000000000000011>;
+P_0x1a44ea0 .param/l "ROW_B" 0 3 4, +C4<00000000000000000000000000000011>;
+o0x774ca0fbf018 .functor BUFZ 72, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1a69da0_0 .net "matrix_a", 71 0, o0x774ca0fbf018;  0 drivers
+o0x774ca0fbf048 .functor BUFZ 72, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1a69f10_0 .net "matrix_b", 71 0, o0x774ca0fbf048;  0 drivers
+o0x774ca0fbf078 .functor BUFZ 108, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1a7c000_0 .net "matrix_c", 107 0, o0x774ca0fbf078;  0 drivers
+S_0x1a59540 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1a59540;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/matrix_multiplier.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1a58df0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/matrix_multiplier.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

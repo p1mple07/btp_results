@@ -1,0 +1,101 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1100960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1100b10 .scope module, "fir_filter" "fir_filter" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 16 "data_in";
+    .port_info 3 /OUTPUT 16 "data_out";
+    .port_info 4 /INPUT 2 "window_type";
+o0x7da977787018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1116f40_0 .net "clk", 0 0, o0x7da977787018;  0 drivers
+v0x113c9b0_0 .var "coeff0", 15 0;
+v0x113ca90_0 .var "coeff1", 15 0;
+v0x113cb50_0 .var "coeff2", 15 0;
+v0x113cc30_0 .var "coeff3", 15 0;
+v0x113cd60_0 .var "coeff4", 15 0;
+v0x113ce40_0 .var "coeff5", 15 0;
+v0x113cf20_0 .var "coeff6", 15 0;
+v0x113d000_0 .var "coeff7", 15 0;
+o0x7da9777871c8 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x113d0e0_0 .net "data_in", 15 0, o0x7da9777871c8;  0 drivers
+v0x113d1c0_0 .var "data_out", 15 0;
+o0x7da977787228 .functor BUFZ 1, c4<z>; HiZ drive
+v0x113d2a0_0 .net "reset", 0 0, o0x7da977787228;  0 drivers
+v0x113d360_0 .var "shift_reg0", 15 0;
+v0x113d440_0 .var "shift_reg1", 15 0;
+v0x113d520_0 .var "shift_reg2", 15 0;
+v0x113d600_0 .var "shift_reg3", 15 0;
+v0x113d6e0_0 .var "shift_reg4", 15 0;
+v0x113d8d0_0 .var "shift_reg5", 15 0;
+v0x113d9b0_0 .var "shift_reg6", 15 0;
+v0x113da90_0 .var "shift_reg7", 15 0;
+o0x7da9777873d8 .functor BUFZ 2, c4<zz>; HiZ drive
+v0x113db70_0 .net "window_type", 1 0, o0x7da9777873d8;  0 drivers
+E_0x1128050 .event posedge, v0x113d2a0_0, v0x1116f40_0;
+S_0x1100ca0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1100b10;
+T_0 ;
+    %wait E_0x1128050;
+    %load/vec4 v0x113d2a0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d360_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d440_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d520_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d600_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d6e0_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d8d0_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d9b0_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113da90_0, 0;
+    %pushi/vec4 12, 0, 16;
+    %assign/vec4 v0x113c9b0_0, 0;
+    %pushi/vec4 25, 0, 16;
+    %assign/vec4 v0x113ca90_0, 0;
+    %pushi/vec4 38, 0, 16;
+    %assign/vec4 v0x113cb50_0, 0;
+    %pushi/vec4 38, 0, 16;
+    %assign/vec4 v0x113cc30_0, 0;
+    %pushi/vec4 25, 0, 16;
+    %assign/vec4 v0x113cd60_0, 0;
+    %pushi/vec4 12, 0, 16;
+    %assign/vec4 v0x113ce40_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113cf20_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x113d000_0, 0;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1100ca0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/fir_filter.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1100b10 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/fir_filter.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

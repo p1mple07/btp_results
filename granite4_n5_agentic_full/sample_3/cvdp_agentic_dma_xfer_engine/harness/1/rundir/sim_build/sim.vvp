@@ -1,0 +1,73 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x222a430 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x2215960 .scope module, "dma_xfer_engine" "dma_xfer_engine" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rstn";
+    .port_info 2 /INPUT 10 "addr";
+    .port_info 3 /INPUT 1 "we";
+    .port_info 4 /INPUT 32 "wd";
+    .port_info 5 /OUTPUT 32 "rd";
+    .port_info 6 /INPUT 1 "dma_req";
+    .port_info 7 /INPUT 2 "cnt";
+    .port_info 8 /INPUT 1 "inc_src";
+    .port_info 9 /INPUT 1 "inc_dst";
+    .port_info 10 /OUTPUT 1 "bus_grant";
+    .port_info 11 /OUTPUT 10 "bus_addr";
+    .port_info 12 /OUTPUT 32 "bus_data";
+    .port_info 13 /OUTPUT 2 "bus_size";
+    .port_info 14 /OUTPUT 32 "bus_req";
+P_0x2215af0 .param/l "CONTROL_REGISTER_WIDTH" 0 3 5, +C4<00000000000000000000000000001010>;
+P_0x2215b30 .param/l "DATA_BUS_WIDTH" 0 3 6, +C4<00000000000000000000000000100000>;
+P_0x2215b70 .param/l "DESTINATION_ADDRESS_WIDTH" 0 3 4, +C4<00000000000000000000000000100000>;
+P_0x2215bb0 .param/l "SOURCE_ADDRESS_WIDTH" 0 3 3, +C4<00000000000000000000000000100000>;
+P_0x2215bf0 .param/l "TRANSFER_COUNT" 0 3 2, +C4<00000000000000000000000000010000>;
+o0x73e22f12b018 .functor BUFZ 10, c4<zzzzzzzzzz>; HiZ drive
+v0x222af00_0 .net "addr", 9 0, o0x73e22f12b018;  0 drivers
+v0x224e760_0 .var "bus_addr", 9 0;
+v0x224e840_0 .var "bus_data", 31 0;
+v0x224e930_0 .var "bus_grant", 0 0;
+v0x224e9f0_0 .var "bus_req", 31 0;
+v0x224ead0_0 .var "bus_size", 1 0;
+o0x73e22f12b138 .functor BUFZ 1, c4<z>; HiZ drive
+v0x224ebb0_0 .net "clk", 0 0, o0x73e22f12b138;  0 drivers
+o0x73e22f12b168 .functor BUFZ 2, c4<zz>; HiZ drive
+v0x224ec70_0 .net "cnt", 1 0, o0x73e22f12b168;  0 drivers
+o0x73e22f12b198 .functor BUFZ 1, c4<z>; HiZ drive
+v0x224ed50_0 .net "dma_req", 0 0, o0x73e22f12b198;  0 drivers
+o0x73e22f12b1c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x224ee10_0 .net "inc_dst", 0 0, o0x73e22f12b1c8;  0 drivers
+o0x73e22f12b1f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x224eed0_0 .net "inc_src", 0 0, o0x73e22f12b1f8;  0 drivers
+v0x224ef90_0 .var "rd", 31 0;
+o0x73e22f12b258 .functor BUFZ 1, c4<z>; HiZ drive
+v0x224f070_0 .net "rstn", 0 0, o0x73e22f12b258;  0 drivers
+o0x73e22f12b288 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x224f130_0 .net "wd", 31 0, o0x73e22f12b288;  0 drivers
+o0x73e22f12b2b8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x224f210_0 .net "we", 0 0, o0x73e22f12b2b8;  0 drivers
+S_0x222ad70 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x222ad70;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/dma_xfer_engine.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x2215960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/dma_xfer_engine.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

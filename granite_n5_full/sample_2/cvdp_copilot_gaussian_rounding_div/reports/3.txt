@@ -1,0 +1,807 @@
+Running harness with project name: cvdp_copilot_gaussian_rounding_div_3_1774403885
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 8 items
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403887
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 87, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=max_val_dividend, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      35268.48  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      67045.84  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      78003.58  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18609.02  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=5
+[DEBUG] Parameters: {'WIDTH': 5}
+FAILED
+../../src/test_runner.py::test_gcd[2]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403888
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 87, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=max_val_dividend, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      33520.91  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      65619.33  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      78024.31  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18304.98  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=2
+[DEBUG] Parameters: {'WIDTH': 2}
+FAILED
+../../src/test_runner.py::test_gcd[3]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403888
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 87, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=max_val_dividend, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      34499.72  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      66810.89  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      79096.30  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18555.51  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=3
+[DEBUG] Parameters: {'WIDTH': 3}
+FAILED
+../../src/test_runner.py::test_gcd[4]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403888
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 87, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=max_val_dividend, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      35313.02  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      70779.41  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      81308.63  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18806.66  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4
+[DEBUG] Parameters: {'WIDTH': 4}
+FAILED
+../../src/test_runner.py::test_gcd[5]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403888
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 87, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=max_val_dividend, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      33886.52  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      68918.63  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      78672.42  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18207.14  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=5
+[DEBUG] Parameters: {'WIDTH': 5}
+FAILED
+../../src/test_runner.py::test_gcd[8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403888
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 81, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=0, divisor=100)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      34079.25  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      67455.58  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      81898.32  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18465.65  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=8
+[DEBUG] Parameters: {'WIDTH': 8}
+FAILED
+../../src/test_runner.py::test_gcd[12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403888
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 81, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=0, divisor=100)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      34959.82  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      70116.82  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      80749.58  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18896.69  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=12
+[DEBUG] Parameters: {'WIDTH': 12}
+FAILED
+../../src/test_runner.py::test_gcd[16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774403889
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    40.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 81, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=0, divisor=100)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   160.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 159, in run_division_test
+                                                            quotient_hw = dut.quotient.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   160.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          40.00           0.00      34670.83  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL          50.00           0.00      70163.73  **
+                                                        ** test_divider.test_divider_randomized     FAIL          70.00           0.00      77817.51  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          160.00           0.01      18734.21  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=16
+[DEBUG] Parameters: {'WIDTH': 16}
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+WIDTH = 5
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[2] __________________________________
+
+WIDTH = 2
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 2
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[3] __________________________________
+
+WIDTH = 3
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 3
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[4] __________________________________
+
+WIDTH = 4
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 4
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[5] __________________________________
+
+WIDTH = 5
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 5
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[8] __________________________________
+
+WIDTH = 8
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 8
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[12] _________________________________
+
+WIDTH = 12
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 12
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+_________________________________ test_gcd[16] _________________________________
+
+WIDTH = 16
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 16
+
+    def test_runner(WIDTH: int=5):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:36: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[2] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[3] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[4] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[5] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[8] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[12] - SystemExit: ERROR: Failed 3 o...
+FAILED ../../src/test_runner.py::test_gcd[16] - SystemExit: ERROR: Failed 3 o...
+======================== 8 failed, 3 warnings in 1.32s =========================
+Cleaning up Docker resources...

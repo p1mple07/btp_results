@@ -1,0 +1,1 @@
+rtl/galois_encryption.sv

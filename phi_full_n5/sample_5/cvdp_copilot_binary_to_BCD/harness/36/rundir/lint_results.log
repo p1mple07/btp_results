@@ -1,0 +1,31 @@
+%Warning-WIDTHTRUNC: /code/rtl/binary_to_bcd.sv:11:17: Operator ASSIGN expects 12 bits on the Assign RHS, but Assign RHS's REPLICATE generates 20 bits.
+                                                     : ... note: In instance 'binary_to_bcd'
+   11 |       shift_reg = {12'd0, binary_in};
+      |                 ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.027
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /code/rtl/binary_to_bcd.sv:13:21: Operator ASSIGN expects 1 bits on the Assign RHS, but Assign RHS's ADD generates 32 or 2 bits.
+                                                     : ... note: In instance 'binary_to_bcd'
+   13 |       shift_reg[11] = shift_reg[11] + 3;  
+      |                     ^
+%Warning-WIDTHEXPAND: /code/rtl/binary_to_bcd.sv:14:70: Operator GTE expects 32 or 3 bits on the LHS, but LHS's SEL generates 1 bits.
+                                                      : ... note: In instance 'binary_to_bcd'
+   14 |       shift_reg[10] = shift_reg[10] + shift_reg[11] + (shift_reg[10] >= 5);  
+      |                                                                      ^~
+%Warning-WIDTHEXPAND: /code/rtl/binary_to_bcd.sv:15:67: Operator GTE expects 32 or 3 bits on the LHS, but LHS's SEL generates 1 bits.
+                                                      : ... note: In instance 'binary_to_bcd'
+   15 |       shift_reg[9] = shift_reg[9] + shift_reg[10] + (shift_reg[9] >= 5);  
+      |                                                                   ^~
+%Warning-WIDTHEXPAND: /code/rtl/binary_to_bcd.sv:16:66: Operator GTE expects 32 or 3 bits on the LHS, but LHS's SEL generates 1 bits.
+                                                      : ... note: In instance 'binary_to_bcd'
+   16 |       shift_reg[8] = shift_reg[8] + shift_reg[9] + (shift_reg[8] >= 5);  
+      |                                                                  ^~
+%Warning-LATCH: /code/rtl/binary_to_bcd.sv:9:3: Latch inferred for signal 'binary_to_bcd.shift_reg' (not all control paths of combinational always assign a value)
+                                              : ... Suggest use of always_latch for intentional latches
+    9 |   always @* begin
+      |   ^~~~~~
+%Warning-LATCH: /code/rtl/binary_to_bcd.sv:9:3: Latch inferred for signal 'bcd_out' (not all control paths of combinational always assign a value)
+                                              : ... Suggest use of always_latch for intentional latches
+    9 |   always @* begin
+      |   ^~~~~~
+%Error: Exiting due to 7 warning(s)

@@ -1,0 +1,176 @@
+Running harness with project name: cvdp_copilot_attenuator_1_1774765575
+#1 [internal] load local bake definitions
+#1 reading from stdin 706B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 96B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.2s done
+#5 DONE 0.2s
+
+#6 [2/2] RUN pip install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:ebcf97e7c8e36caa7526e3b72654c1f9e4f8d7f38e7a07b9839bd7f5e71e1e73
+#7 exporting manifest sha256:ebcf97e7c8e36caa7526e3b72654c1f9e4f8d7f38e7a07b9839bd7f5e71e1e73 0.3s done
+#7 exporting config sha256:c84fcc9b57d58eafc4afd84d8f046ba159d186c5b2af34f44d9142632e8cb40b
+#7 exporting config sha256:c84fcc9b57d58eafc4afd84d8f046ba159d186c5b2af34f44d9142632e8cb40b 0.2s done
+#7 exporting attestation manifest sha256:5f5f35669a39456433d048826ae8f37b86326da319e68ee359e2344262cddd6e
+#7 exporting attestation manifest sha256:5f5f35669a39456433d048826ae8f37b86326da319e68ee359e2344262cddd6e 0.5s done
+#7 exporting manifest list sha256:10d99591122360e622650a7479d5cc90e2bb109200a3e162baa87e5fcfe6b835
+#7 exporting manifest list sha256:10d99591122360e622650a7479d5cc90e2bb109200a3e162baa87e5fcfe6b835 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_attenuator_1_1774765575-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_attenuator_1_1774765575-direct:latest 0.1s done
+#7 unpacking to docker.io/library/cvdp_copilot_attenuator_1_1774765575-direct:latest 0.1s done
+#7 DONE 1.9s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774765583
+     0.00ns INFO     cocotb.regression                  Found test test_attenuator.test_reset_behavior
+     0.00ns INFO     cocotb.regression                  Found test test_attenuator.test_scenario_detailed
+     0.00ns INFO     cocotb.regression                  Found test test_attenuator.test_random_data
+     0.00ns INFO     cocotb.regression                  running test_reset_behavior (1/3)
+                                                          Testcase #1:
+                                                            - Assert/deassert reset,
+                                                            - Check outputs are zero,
+                                                            - No SHIFT if data doesn't change.
+     0.00ns INFO     cocotb                             [test_reset_behavior] Reset asserted at time 0.
+   200.00ns INFO     cocotb                             [test_reset_behavior] Reset deasserted at 200.0 ns.
+   300.00ns INFO     cocotb                             [test_reset_behavior] Done.
+   301.00ns INFO     cocotb.regression                  test_reset_behavior passed
+   301.00ns INFO     cocotb.regression                  running test_scenario_detailed (2/3)
+                                                          Testcase #2:
+                                                            - Known scenario changes: data=10101,11111,01010
+                                                            - SHIFT + LATCH each time
+                                                            - We wait a short cycle after each drive to sync the FSM
+   301.00ns INFO     cocotb                             [test_scenario_detailed] Reset asserted.
+   501.00ns INFO     cocotb                             [test_scenario_detailed] Reset deasserted.
+   801.00ns INFO     cocotb                             [drive_data] SCENARIO B: 10101 => setting data=10101
+  1141.00ns INFO     cocotb                              SHIFT cycle=1, data_ok=1 (expected=1)
+  1701.00ns INFO     cocotb                              SHIFT cycle=2, data_ok=0 (expected=0)
+  1861.00ns ERROR    cocotb                              SHIFT cycle=3, EXPECTED=1, GOT=0
+  2021.00ns INFO     cocotb                              SHIFT cycle=4, data_ok=0 (expected=0)
+  2181.00ns ERROR    cocotb                              SHIFT cycle=5, EXPECTED=1, GOT=0
+  2821.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+  3121.00ns INFO     cocotb                             [drive_data] SCENARIO C: 11111 => setting data=11111
+  3461.00ns INFO     cocotb                              SHIFT cycle=1, data_ok=1 (expected=1)
+  4021.00ns ERROR    cocotb                              SHIFT cycle=2, EXPECTED=1, GOT=0
+  4181.00ns ERROR    cocotb                              SHIFT cycle=3, EXPECTED=1, GOT=0
+  4341.00ns ERROR    cocotb                              SHIFT cycle=4, EXPECTED=1, GOT=0
+  4501.00ns ERROR    cocotb                              SHIFT cycle=5, EXPECTED=1, GOT=0
+  5141.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+  5441.00ns INFO     cocotb                             [drive_data] SCENARIO D: 01010 => setting data=01010
+  5781.00ns INFO     cocotb                              SHIFT cycle=1, data_ok=0 (expected=0)
+  6341.00ns ERROR    cocotb                              SHIFT cycle=2, EXPECTED=1, GOT=0
+  6501.00ns INFO     cocotb                              SHIFT cycle=3, data_ok=0 (expected=0)
+  6661.00ns ERROR    cocotb                              SHIFT cycle=4, EXPECTED=1, GOT=0
+  6821.00ns INFO     cocotb                              SHIFT cycle=5, data_ok=0 (expected=0)
+  7461.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+  7761.00ns INFO     cocotb                             [test_scenario_detailed] All scenario checks done.
+  7762.00ns INFO     cocotb.regression                  test_scenario_detailed passed
+  7762.00ns INFO     cocotb.regression                  running test_random_data (3/3)
+  7762.00ns INFO     cocotb                             [test_random_data] Reset asserted.
+  7962.00ns INFO     cocotb                             [test_random_data] Reset deasserted.
+  8262.00ns INFO     cocotb                             [test_random_data] Iteration=1, data=01010
+  8262.00ns INFO     cocotb                             [drive_data] Random1 => setting data=01010
+  8602.00ns INFO     cocotb                              SHIFT cycle=1, data_ok=0 (expected=0)
+  9162.00ns ERROR    cocotb                              SHIFT cycle=2, EXPECTED=1, GOT=0
+  9322.00ns INFO     cocotb                              SHIFT cycle=3, data_ok=0 (expected=0)
+  9482.00ns ERROR    cocotb                              SHIFT cycle=4, EXPECTED=1, GOT=0
+  9642.00ns INFO     cocotb                              SHIFT cycle=5, data_ok=0 (expected=0)
+ 10282.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+ 10494.00ns INFO     cocotb                             [test_random_data] Iteration=2, data=00101
+ 10494.00ns INFO     cocotb                             [drive_data] Random2 => setting data=00101
+ 10842.00ns ERROR    cocotb                              SHIFT cycle=1, EXPECTED=0, GOT=1
+ 11402.00ns INFO     cocotb                              SHIFT cycle=2, data_ok=0 (expected=0)
+ 11562.00ns ERROR    cocotb                              SHIFT cycle=3, EXPECTED=1, GOT=0
+ 11722.00ns INFO     cocotb                              SHIFT cycle=4, data_ok=0 (expected=0)
+ 11882.00ns ERROR    cocotb                              SHIFT cycle=5, EXPECTED=1, GOT=0
+ 12522.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+ 13261.00ns INFO     cocotb                             [test_random_data] Iteration=3, data=00010
+ 13261.00ns INFO     cocotb                             [drive_data] Random3 => setting data=00010
+ 13642.00ns INFO     cocotb                              SHIFT cycle=1, data_ok=0 (expected=0)
+ 14202.00ns INFO     cocotb                              SHIFT cycle=2, data_ok=0 (expected=0)
+ 14362.00ns INFO     cocotb                              SHIFT cycle=3, data_ok=0 (expected=0)
+ 14522.00ns ERROR    cocotb                              SHIFT cycle=4, EXPECTED=1, GOT=0
+ 14682.00ns INFO     cocotb                              SHIFT cycle=5, data_ok=0 (expected=0)
+ 15322.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+ 15661.00ns INFO     cocotb                             [test_random_data] Iteration=4, data=00001
+ 15661.00ns INFO     cocotb                             [drive_data] Random4 => setting data=00001
+ 16042.00ns ERROR    cocotb                              SHIFT cycle=1, EXPECTED=0, GOT=1
+ 16602.00ns INFO     cocotb                              SHIFT cycle=2, data_ok=0 (expected=0)
+ 16762.00ns INFO     cocotb                              SHIFT cycle=3, data_ok=0 (expected=0)
+ 16922.00ns INFO     cocotb                              SHIFT cycle=4, data_ok=0 (expected=0)
+ 17082.00ns ERROR    cocotb                              SHIFT cycle=5, EXPECTED=1, GOT=0
+ 17722.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+ 17973.00ns INFO     cocotb                             [test_random_data] Iteration=5, data=10100
+ 17973.00ns INFO     cocotb                             [drive_data] Random5 => setting data=10100
+ 18362.00ns ERROR    cocotb                              SHIFT cycle=1, EXPECTED=1, GOT=0
+ 18922.00ns INFO     cocotb                              SHIFT cycle=2, data_ok=0 (expected=0)
+ 19082.00ns ERROR    cocotb                              SHIFT cycle=3, EXPECTED=1, GOT=0
+ 19242.00ns INFO     cocotb                              SHIFT cycle=4, data_ok=0 (expected=0)
+ 19402.00ns INFO     cocotb                              SHIFT cycle=5, data_ok=0 (expected=0)
+ 20042.00ns INFO     cocotb                              LATCH pulse observed! Data latched.
+ 20936.00ns INFO     cocotb                             [test_random_data] Done with random test!
+ 20937.00ns INFO     cocotb.regression                  test_random_data passed
+ 20937.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_attenuator.test_reset_behavior      PASS         301.00           0.00     185659.63  **
+                                                        ** test_attenuator.test_scenario_detailed   PASS        7461.00           0.02     424782.17  **
+                                                        ** test_attenuator.test_random_data         PASS       13175.00           0.03     448149.38  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=3 FAIL=0 SKIP=0                        20937.00           0.08     274320.00  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/Attenuator.fst opened for output.
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s Attenuator -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/Attenuator.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+INFO: Results file: /code/rundir/sim_build/test_runner.None
+PASSED
+
+=============================== warnings summary ===============================
+../../src/test_runner.py:3
+  /src/test_runner.py:3: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 1 passed, 3 warnings in 0.22s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_attenuator_1_1774765575-direct:latest
+Deleted: sha256:10d99591122360e622650a7479d5cc90e2bb109200a3e162baa87e5fcfe6b835

@@ -1,0 +1,315 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xec42d0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xea9960 .scope module, "lfu_counter_policy" "lfu_counter_policy" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clock";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 5 "index";
+    .port_info 3 /INPUT 2 "way_select";
+    .port_info 4 /INPUT 1 "access";
+    .port_info 5 /INPUT 1 "hit";
+    .port_info 6 /OUTPUT 2 "way_replace";
+P_0xea9af0 .param/l "COUNTERW" 0 3 4, +C4<00000000000000000000000000000010>;
+P_0xea9b30 .param/l "MAX_FREQUENCY" 1 3 16, C4<00000000000000000000000000000011>;
+P_0xea9b70 .param/l "NINDEXES" 0 3 3, +C4<00000000000000000000000000100000>;
+P_0xea9bb0 .param/l "NWAYS" 0 3 2, +C4<00000000000000000000000000000100>;
+o0x7fbbef465078 .functor BUFZ 1, c4<z>; HiZ drive
+v0xef19d0_0 .net "access", 0 0, o0x7fbbef465078;  0 drivers
+o0x7fbbef4650a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xef1ab0_0 .net "clock", 0 0, o0x7fbbef4650a8;  0 drivers
+v0xef1b70 .array "frequency", 0 31, 7 0;
+o0x7fbbef4650d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xef1c40_0 .net "hit", 0 0, o0x7fbbef4650d8;  0 drivers
+v0xef1d00_0 .var/i "i", 31 0;
+o0x7fbbef465138 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0xef1e30_0 .net "index", 4 0, o0x7fbbef465138;  0 drivers
+v0xef1f10_0 .var/i "n", 31 0;
+o0x7fbbef465198 .functor BUFZ 1, c4<z>; HiZ drive
+v0xef1ff0_0 .net "reset", 0 0, o0x7fbbef465198;  0 drivers
+v0xef20b0_0 .var "way_replace", 1 0;
+o0x7fbbef4651f8 .functor BUFZ 2, c4<zz>; HiZ drive
+v0xef2190_0 .net "way_select", 1 0, o0x7fbbef4651f8;  0 drivers
+E_0xecf970 .event posedge, v0xef1ff0_0, v0xef1ab0_0;
+S_0xec4d60 .scope begin, "$unm_blk_10" "$unm_blk_10" 3 57, 3 57 0, S_0xea9960;
+ .timescale -9 -9;
+v0xec4f40_0 .var/i "min_count", 31 0;
+v0xef18f0_0 .var/i "min_way", 31 0;
+S_0xec4bb0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0xea9960;
+T_0 ;
+    %wait E_0xecf970;
+    %load/vec4 v0xef1ff0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xef1d00_0, 0, 32;
+T_0.2 ; Top of for-loop
+    %load/vec4 v0xef1d00_0;
+    %cmpi/s 32, 0, 32;
+	  %jmp/0xz T_0.3, 5;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xef1f10_0, 0, 32;
+T_0.5 ; Top of for-loop
+    %load/vec4 v0xef1f10_0;
+    %cmpi/s 4, 0, 32;
+	  %jmp/0xz T_0.6, 5;
+    %pushi/vec4 0, 0, 2;
+    %ix/getv/s 4, v0xef1d00_0;
+    %flag_mov 8, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %ix/vec4/s 5;
+    %flag_or 8, 4;
+    %ix/load 6, 0, 0; Constant delay
+    %ix/mov 3, 4;
+    %flag_mov 4, 8;
+    %assign/vec4/a/d v0xef1b70, 5, 6;
+T_0.7 ; for-loop step statement
+    %load/vec4 v0xef1f10_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0xef1f10_0, 0, 32;
+    %jmp T_0.5;
+T_0.6 ; for-loop exit label
+T_0.4 ; for-loop step statement
+    %load/vec4 v0xef1d00_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0xef1d00_0, 0, 32;
+    %jmp T_0.2;
+T_0.3 ; for-loop exit label
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xef19d0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.8, 8;
+    %load/vec4 v0xef1c40_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.10, 8;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef2190_0;
+    %pad/u 32;
+    %muli 2, 0, 32;
+    %part/u 2;
+    %pad/u 32;
+    %cmpi/u 3, 0, 32;
+    %jmp/0xz  T_0.12, 5;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef2190_0;
+    %pad/u 32;
+    %muli 2, 0, 32;
+    %part/u 2;
+    %addi 1, 0, 2;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %flag_mov 8, 4;
+    %load/vec4 v0xef2190_0;
+    %pad/u 32;
+    %muli 2, 0, 32;
+    %ix/vec4 5;
+    %flag_or 8, 4;
+    %ix/load 6, 0, 0; Constant delay
+    %ix/mov 3, 4;
+    %flag_mov 4, 8;
+    %assign/vec4/a/d v0xef1b70, 5, 6;
+T_0.12 ;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef2190_0;
+    %pad/u 32;
+    %muli 2, 0, 32;
+    %part/u 2;
+    %pad/u 32;
+    %cmpi/e 3, 0, 32;
+    %jmp/0xz  T_0.14, 4;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xef1f10_0, 0, 32;
+T_0.16 ; Top of for-loop
+    %load/vec4 v0xef1f10_0;
+    %cmpi/s 4, 0, 32;
+	  %jmp/0xz T_0.17, 5;
+    %load/vec4 v0xef1f10_0;
+    %load/vec4 v0xef2190_0;
+    %pad/u 32;
+    %cmp/ne;
+    %flag_get/vec4 4;
+    %jmp/0 T_0.21, 4;
+    %pushi/vec4 2, 0, 32;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %part/s 2;
+    %pad/u 32;
+    %cmp/u;
+    %flag_get/vec4 5;
+    %and;
+T_0.21;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.19, 8;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %part/s 2;
+    %subi 1, 0, 2;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %flag_mov 8, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %ix/vec4/s 5;
+    %flag_or 8, 4;
+    %ix/load 6, 0, 0; Constant delay
+    %ix/mov 3, 4;
+    %flag_mov 4, 8;
+    %assign/vec4/a/d v0xef1b70, 5, 6;
+T_0.19 ;
+T_0.18 ; for-loop step statement
+    %load/vec4 v0xef1f10_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0xef1f10_0, 0, 32;
+    %jmp T_0.16;
+T_0.17 ; for-loop exit label
+T_0.14 ;
+    %load/vec4 v0xef2190_0;
+    %assign/vec4 v0xef20b0_0, 0;
+    %jmp T_0.11;
+T_0.10 ;
+    %fork t_1, S_0xec4d60;
+    %jmp t_0;
+    .scope S_0xec4d60;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xef18f0_0, 0, 32;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %parti/s 2, 0, 2;
+    %pad/u 32;
+    %store/vec4 v0xec4f40_0, 0, 32;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0xef1f10_0, 0, 32;
+T_0.22 ; Top of for-loop
+    %load/vec4 v0xef1f10_0;
+    %cmpi/s 4, 0, 32;
+	  %jmp/0xz T_0.23, 5;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %part/s 2;
+    %pad/u 32;
+    %load/vec4 v0xec4f40_0;
+    %cmp/u;
+    %jmp/0xz  T_0.25, 5;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %part/s 2;
+    %pad/u 32;
+    %store/vec4 v0xec4f40_0, 0, 32;
+    %load/vec4 v0xef1f10_0;
+    %store/vec4 v0xef18f0_0, 0, 32;
+    %jmp T_0.26;
+T_0.25 ;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0xef1b70, 4;
+    %load/vec4 v0xef1f10_0;
+    %muli 2, 0, 32;
+    %part/s 2;
+    %pad/u 32;
+    %load/vec4 v0xec4f40_0;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %jmp/0 T_0.29, 4;
+    %load/vec4 v0xef1f10_0;
+    %load/vec4 v0xef18f0_0;
+    %cmp/s;
+    %flag_get/vec4 5;
+    %and;
+T_0.29;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.27, 8;
+    %load/vec4 v0xef1f10_0;
+    %store/vec4 v0xef18f0_0, 0, 32;
+T_0.27 ;
+T_0.26 ;
+T_0.24 ; for-loop step statement
+    %load/vec4 v0xef1f10_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0xef1f10_0, 0, 32;
+    %jmp T_0.22;
+T_0.23 ; for-loop exit label
+    %pushi/vec4 1, 0, 2;
+    %load/vec4 v0xef1e30_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %flag_mov 8, 4;
+    %load/vec4 v0xef18f0_0;
+    %muli 2, 0, 32;
+    %ix/vec4/s 5;
+    %flag_or 8, 4;
+    %ix/load 6, 0, 0; Constant delay
+    %ix/mov 3, 4;
+    %flag_mov 4, 8;
+    %assign/vec4/a/d v0xef1b70, 5, 6;
+    %load/vec4 v0xef18f0_0;
+    %pad/s 2;
+    %assign/vec4 v0xef20b0_0, 0;
+    %end;
+    .scope S_0xea9960;
+t_0 %join;
+T_0.11 ;
+    %jmp T_0.9;
+T_0.8 ;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0xef20b0_0, 0;
+T_0.9 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xec4bb0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/lfu_counter_policy.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xea9960 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/lfu_counter_policy.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

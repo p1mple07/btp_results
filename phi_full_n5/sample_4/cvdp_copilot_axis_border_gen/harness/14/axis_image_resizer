@@ -1,0 +1,18 @@
+module axis_image_resizer #(parameter IMG_WIDTH_IN  = 640,          // Input image width
+                           parameter IMG_HEIGHT_IN = 480,          // Input image height
+                           parameter IMG_WIDTH_OUT = 320,          // Resized image width
+                           parameter IMG_HEIGHT_OUT = 240,         // Resized image height
+                           parameter DATA_WIDTH    = 16            // Pixel data width)
+                (input  wire                clk,          // Clock signal
+                input  wire                resetn,       // Active-low reset
+                input  wire [DATA_WIDTH-1:0] s_axis_tdata, // Input pixel data
+                input  wire                s_axis_tvalid, // Input valid signal
+                output wire                s_axis_tready, // Input ready signal
+                input  wire                s_axis_tlast,  // Input end-of-row signal
+                input  wire                s_axis_tuser,  // Input start-of-frame signal
+                output reg [DATA_WIDTH-1:0] m_axis_tdata, // Output pixel data
+                output reg                m_axis_tvalid, // Output valid signal
+                input  wire                m_axis_tready, // Output ready signal
+                input  wire                m_axis_tlast,  // Output end-of-row signal
+                input  wire                m_axis_tuser   // Output start-of-frame signal
+            );

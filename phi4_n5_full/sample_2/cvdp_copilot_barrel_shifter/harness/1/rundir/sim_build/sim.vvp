@@ -1,0 +1,45 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x24f1340 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x25036d0 .scope module, "barrel_shifter_8bit" "barrel_shifter_8bit" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 8 "data_in";
+    .port_info 1 /INPUT 3 "shift_bits";
+    .port_info 2 /INPUT 1 "left_right";
+    .port_info 3 /OUTPUT 8 "data_out";
+v0x25039f0_0 .net *"_ivl_0", 7 0, L_0x25136c0;  1 drivers
+v0x25131d0_0 .net *"_ivl_2", 7 0, L_0x25137c0;  1 drivers
+o0x78056d357078 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x25132b0_0 .net "data_in", 7 0, o0x78056d357078;  0 drivers
+v0x2513370_0 .net "data_out", 7 0, L_0x2513930;  1 drivers
+o0x78056d3570d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2513450_0 .net "left_right", 0 0, o0x78056d3570d8;  0 drivers
+o0x78056d357108 .functor BUFZ 3, c4<zzz>; HiZ drive
+v0x2513560_0 .net "shift_bits", 2 0, o0x78056d357108;  0 drivers
+L_0x25136c0 .shift/l 8, o0x78056d357078, o0x78056d357108;
+L_0x25137c0 .shift/r 8, o0x78056d357078, o0x78056d357108;
+L_0x2513930 .functor MUXZ 8, L_0x25137c0, L_0x25136c0, o0x78056d3570d8, C4<>;
+S_0x2503860 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x2503860;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/barrel_shifter_8bit.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x25036d0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/barrel_shifter_8bit.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

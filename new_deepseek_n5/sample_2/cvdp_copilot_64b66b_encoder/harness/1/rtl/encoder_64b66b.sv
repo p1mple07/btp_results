@@ -1,0 +1,1 @@
+encoder_data_out = (encoder_control_in == 8'b00000000) ? {2'b01, encoder_data_in} : {2'b10, 64'b0};

@@ -1,0 +1,228 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x18064c0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1804390 .scope module, "ddm_cache" "ddm_cache" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 32 "cpu_addr";
+    .port_info 3 /INPUT 32 "cpu_dout";
+    .port_info 4 /INPUT 1 "cpu_strobe";
+    .port_info 5 /INPUT 1 "cpu_rw";
+    .port_info 6 /INPUT 1 "uncached";
+    .port_info 7 /INPUT 32 "mem_dout";
+    .port_info 8 /INPUT 1 "mem_ready";
+    .port_info 9 /OUTPUT 32 "cpu_din";
+    .port_info 10 /OUTPUT 32 "mem_din";
+    .port_info 11 /OUTPUT 1 "cpu_ready";
+    .port_info 12 /OUTPUT 1 "mem_strobe";
+    .port_info 13 /OUTPUT 1 "mem_rw";
+    .port_info 14 /OUTPUT 32 "mem_addr";
+    .port_info 15 /OUTPUT 1 "cache_hit";
+    .port_info 16 /OUTPUT 1 "cache_miss";
+    .port_info 17 /OUTPUT 32 "d_data_dout";
+o0x737656bf1888 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x18370d0 .functor NOT 1, o0x737656bf1888, C4<0>, C4<0>, C4<0>;
+o0x737656bf1798 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x1837140 .functor AND 1, L_0x1838560, o0x737656bf1798, C4<1>, C4<1>;
+o0x737656bf15e8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x1837210 .functor OR 1, o0x737656bf15e8, L_0x1837140, C4<0>, C4<0>;
+L_0x1837330 .functor AND 1, L_0x18370d0, L_0x1837210, C4<1>, C4<1>;
+L_0x1837820 .functor BUFZ 1, L_0x1837560, C4<0>, C4<0>, C4<0>;
+L_0x1837b00 .functor BUFZ 24, L_0x18378e0, C4<000000000000000000000000>, C4<000000000000000000000000>, C4<000000000000000000000000>;
+L_0x1837de0 .functor BUFZ 32, L_0x1837c00, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+o0x737656bf1618 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x1837ea0 .functor AND 1, o0x737656bf1618, L_0x1837820, C4<1>, C4<1>;
+L_0x1838180 .functor AND 1, L_0x1837ea0, L_0x1837fe0, C4<1>, C4<1>;
+L_0x18383f0 .functor OR 1, L_0x1838240, L_0x18382e0, C4<0>, C4<0>;
+L_0x1838560 .functor AND 1, o0x737656bf1618, L_0x18383f0, C4<1>, C4<1>;
+o0x737656bf1588 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+L_0x1838670 .functor BUFZ 32, o0x737656bf1588, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+o0x737656bf1528 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+L_0x18387a0 .functor BUFZ 32, o0x737656bf1528, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0x1838810 .functor BUFZ 1, o0x737656bf15e8, C4<0>, C4<0>, C4<0>;
+L_0x1838730 .functor OR 1, o0x737656bf1618, L_0x1838560, C4<0>, C4<0>;
+L_0x1838900 .functor NOT 1, o0x737656bf15e8, C4<0>, C4<0>, C4<0>;
+L_0x1838a90 .functor AND 1, L_0x1838900, L_0x1838180, C4<1>, C4<1>;
+L_0x1838b50 .functor OR 1, L_0x1838560, o0x737656bf15e8, C4<0>, C4<0>;
+L_0x1838cf0 .functor AND 1, L_0x1838b50, o0x737656bf1798, C4<1>, C4<1>;
+L_0x1838db0 .functor OR 1, L_0x1838a90, L_0x1838cf0, C4<0>, C4<0>;
+L_0x1839010 .functor BUFZ 32, L_0x1837de0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x17e7d40_0 .net *"_ivl_14", 0 0, L_0x1837560;  1 drivers
+v0x18341f0_0 .net *"_ivl_16", 7 0, L_0x1837690;  1 drivers
+L_0x737656ba8018 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x18342d0_0 .net *"_ivl_19", 1 0, L_0x737656ba8018;  1 drivers
+v0x1834390_0 .net *"_ivl_22", 23 0, L_0x18378e0;  1 drivers
+v0x1834470_0 .net *"_ivl_24", 7 0, L_0x18379c0;  1 drivers
+L_0x737656ba8060 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x1834550_0 .net *"_ivl_27", 1 0, L_0x737656ba8060;  1 drivers
+v0x1834630_0 .net *"_ivl_30", 31 0, L_0x1837c00;  1 drivers
+v0x1834710_0 .net *"_ivl_32", 7 0, L_0x1837cf0;  1 drivers
+L_0x737656ba80a8 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x18347f0_0 .net *"_ivl_35", 1 0, L_0x737656ba80a8;  1 drivers
+v0x18348d0_0 .net *"_ivl_38", 0 0, L_0x1837ea0;  1 drivers
+v0x18349b0_0 .net *"_ivl_4", 0 0, L_0x18370d0;  1 drivers
+v0x1834a90_0 .net *"_ivl_40", 0 0, L_0x1837fe0;  1 drivers
+v0x1834b50_0 .net *"_ivl_45", 0 0, L_0x1838240;  1 drivers
+v0x1834c10_0 .net *"_ivl_46", 0 0, L_0x18382e0;  1 drivers
+v0x1834cd0_0 .net *"_ivl_48", 0 0, L_0x18383f0;  1 drivers
+v0x1834db0_0 .net *"_ivl_6", 0 0, L_0x1837140;  1 drivers
+v0x1834e90_0 .net *"_ivl_60", 0 0, L_0x1838900;  1 drivers
+v0x1835080_0 .net *"_ivl_62", 0 0, L_0x1838a90;  1 drivers
+v0x1835160_0 .net *"_ivl_64", 0 0, L_0x1838b50;  1 drivers
+v0x1835240_0 .net *"_ivl_66", 0 0, L_0x1838cf0;  1 drivers
+v0x1835320_0 .net *"_ivl_8", 0 0, L_0x1837210;  1 drivers
+v0x1835400_0 .net "cache_din", 31 0, L_0x1837470;  1 drivers
+v0x18354e0_0 .net "cache_dout", 31 0, L_0x1837de0;  1 drivers
+v0x18355c0_0 .net "cache_hit", 0 0, L_0x1838180;  1 drivers
+v0x1835680_0 .net "cache_miss", 0 0, L_0x1838560;  1 drivers
+v0x1835740_0 .net "cache_write", 0 0, L_0x1837330;  1 drivers
+o0x737656bf14f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1835800_0 .net "clk", 0 0, o0x737656bf14f8;  0 drivers
+v0x18358c0_0 .net "cpu_addr", 31 0, o0x737656bf1528;  0 drivers
+v0x18359a0_0 .net "cpu_din", 31 0, L_0x1838c50;  1 drivers
+v0x1835a80_0 .net "cpu_dout", 31 0, o0x737656bf1588;  0 drivers
+v0x1835b60_0 .net "cpu_ready", 0 0, L_0x1838db0;  1 drivers
+v0x1835c20_0 .net "cpu_rw", 0 0, o0x737656bf15e8;  0 drivers
+v0x1835ce0_0 .net "cpu_strobe", 0 0, o0x737656bf1618;  0 drivers
+v0x1835fb0 .array "d_data", 63 0, 31 0;
+v0x1836070_0 .net "d_data_dout", 31 0, L_0x1839010;  1 drivers
+v0x1836150_0 .net "d_tag_out", 23 0, L_0x1837b00;  1 drivers
+v0x1836230 .array "d_tags", 63 0, 23 0;
+v0x18362f0 .array "d_valid", 63 0, 0 0;
+v0x1836390_0 .var/i "i", 31 0;
+v0x1836470_0 .net "index", 5 0, L_0x1837030;  1 drivers
+v0x1836550_0 .net "mem_addr", 31 0, L_0x18387a0;  1 drivers
+v0x1836630_0 .net "mem_din", 31 0, L_0x1838670;  1 drivers
+o0x737656bf1768 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x1836710_0 .net "mem_dout", 31 0, o0x737656bf1768;  0 drivers
+v0x18367f0_0 .net "mem_ready", 0 0, o0x737656bf1798;  0 drivers
+v0x18368b0_0 .net "mem_rw", 0 0, L_0x1838810;  1 drivers
+v0x1836970_0 .net "mem_strobe", 0 0, L_0x1838730;  1 drivers
+o0x737656bf1828 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1836a30_0 .net "rst_n", 0 0, o0x737656bf1828;  0 drivers
+v0x1836af0_0 .net "tag", 23 0, L_0x180ff90;  1 drivers
+v0x1836bd0_0 .net "uncached", 0 0, o0x737656bf1888;  0 drivers
+v0x1836c90_0 .net "valid", 0 0, L_0x1837820;  1 drivers
+E_0x1811020 .event posedge, v0x1835800_0;
+E_0x180d790/0 .event negedge, v0x1836a30_0;
+E_0x180d790/1 .event posedge, v0x1835800_0;
+E_0x180d790 .event/or E_0x180d790/0, E_0x180d790/1;
+L_0x180ff90 .part o0x737656bf1528, 8, 24;
+L_0x1837030 .part o0x737656bf1528, 2, 6;
+L_0x1837470 .functor MUXZ 32, o0x737656bf1768, o0x737656bf1588, o0x737656bf15e8, C4<>;
+L_0x1837560 .array/port v0x18362f0, L_0x1837690;
+L_0x1837690 .concat [ 6 2 0 0], L_0x1837030, L_0x737656ba8018;
+L_0x18378e0 .array/port v0x1836230, L_0x18379c0;
+L_0x18379c0 .concat [ 6 2 0 0], L_0x1837030, L_0x737656ba8060;
+L_0x1837c00 .array/port v0x1835fb0, L_0x1837cf0;
+L_0x1837cf0 .concat [ 6 2 0 0], L_0x1837030, L_0x737656ba80a8;
+L_0x1837fe0 .cmp/eq 24, L_0x1837b00, L_0x180ff90;
+L_0x1838240 .reduce/nor L_0x1837820;
+L_0x18382e0 .cmp/ne 24, L_0x1837b00, L_0x180ff90;
+L_0x1838c50 .functor MUXZ 32, o0x737656bf1768, L_0x1837de0, L_0x1838180, C4<>;
+S_0x17e7bb0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1804390;
+T_0 ;
+    %wait E_0x180d790;
+    %load/vec4 v0x1836a30_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x1836390_0, 0, 32;
+T_0.2 ; Top of for-loop
+    %load/vec4 v0x1836390_0;
+    %cmpi/s 64, 0, 32;
+	  %jmp/0xz T_0.3, 5;
+    %pushi/vec4 0, 0, 1;
+    %ix/getv/s 3, v0x1836390_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x18362f0, 0, 4;
+T_0.4 ; for-loop step statement
+    %load/vec4 v0x1836390_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x1836390_0, 0, 32;
+    %jmp T_0.2;
+T_0.3 ; for-loop exit label
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x1835740_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.5, 8;
+    %pushi/vec4 1, 0, 1;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x18362f0, 0, 4;
+T_0.5 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x1804390;
+T_1 ;
+    %wait E_0x1811020;
+    %load/vec4 v0x1835740_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v0x1836af0_0;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x1836230, 0, 4;
+    %load/vec4 v0x1835400_0;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x1835fb0, 0, 4;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 4;
+    %load/vec4a v0x1836230, 4;
+    %addi 0, 0, 24;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x1836230, 0, 4;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 4;
+    %load/vec4a v0x1835fb0, 4;
+    %addi 0, 0, 32;
+    %load/vec4 v0x1836470_0;
+    %pad/u 8;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x1835fb0, 0, 4;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x17e7bb0;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/ddm_cache.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1804390 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/ddm_cache.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

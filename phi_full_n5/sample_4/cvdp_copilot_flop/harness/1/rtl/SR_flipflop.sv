@@ -1,0 +1,35 @@
+module SR_flipflop(
+    input i_S,        // Set input
+    input i_R,        // Reset input
+    input i_clk,      // Clock input
+    input i_rst_b,    // Asynchronous active-low reset input
+    output reg o_Q,   // Output Q
+    output reg o_Q_b  // Inverted output Q
+);
+
+    // Always block triggered on the positive edge of the clock
+    always @(posedge i_clk or negedge i_rst_b)
+    begin
+        if (!i_rst_b) // Asynchronous reset active-low
+        begin
+            o_Q <= 1'b0;  // Set output Q to 0
+            o_Q_b <= 1'b1; // Set inverted output Q to 1
+        end
+        else
+        begin
+            // Set Q when i_S is high and i_R is low
+            if (i_S && !i_R)
+                o_Q <= 1'b1;
+            // Reset Q when i_R is high and i_S is low
+            else if (i_R && !i_S)
+                o_Q <= 1'b0;
+            // Hold Q when both i_S and i_R are low
+            else if (!i_S && !i_R)
+                o_Q <= o_Q; // Maintain previous state
+            // Invalid state when both i_S and i_R are high
+            else
+                o_Q <= 1'b0; // Set Q to 0 (invalid state)
+        end
+    end
+
+endmodule

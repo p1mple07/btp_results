@@ -1,0 +1,471 @@
+Running harness with project name: cvdp_copilot_filo_33_1774103506
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 5 items
+
+../../src/test_runner.py::test_runner [DEBUG] Running simulation with DATA_WIDTH=8, FILO_DEPTH=16
+[DEBUG] Parameters: {'DATA_WIDTH': 8, 'FILO_DEPTH': 16}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=8 -PFILO_RTL.FILO_DEPTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774103508
+     0.00ns INFO     cocotb.regression                  running test_filo.test_filo_dynamic (1/1)
+                                                            Test FILO_RTL behavior with parameters dynamically retrieved from DUT 
+     0.00ns INFO     cocotb.FILO_RTL                    Starting Initial Reset...
+    35.00ns INFO     cocotb.FILO_RTL                    After initial reset: full = 0, empty = 1
+    35.00ns INFO     cocotb.FILO_RTL                    Starting Push Test with random data width 8 and FILO depth 16...
+    45.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x85
+    65.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x25
+    85.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x6d
+   105.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x93
+   125.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x23
+   145.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x9e
+   165.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xd4
+   185.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x1f
+   205.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb
+   225.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x68
+   245.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x84
+   265.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x7d
+   285.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xc3
+   305.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xa8
+   325.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x3a
+   345.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb9
+   365.00ns INFO     cocotb.FILO_RTL                    After pushing: full = 0, empty = 1
+   365.00ns INFO     cocotb.regression                  test_filo.test_filo_dynamic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_filo.py", line 94, in test_filo_dynamic
+                                                            assert dut.full.value == 1, "FILO should be full after pushing FILO_DEPTH elements"
+                                                        AssertionError: FILO should be full after pushing FILO_DEPTH elements
+                                                        assert LogicArray('0', Range(0, 'downto', 0)) == 1
+                                                         +  where LogicArray('0', Range(0, 'downto', 0)) = LogicObject(FILO_RTL.full).value
+                                                         +    where LogicObject(FILO_RTL.full) = HierarchyObject(FILO_RTL).full
+   365.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_filo.test_filo_dynamic    FAIL         365.00           0.01      51283.70  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                365.00           0.01      31475.17  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/FILO_RTL.fst opened for output.
+FAILED
+../../src/test_runner.py::test_filo[8-8] [DEBUG] Running simulation with DATA_WIDTH=8, FILO_DEPTH=8
+[DEBUG] Parameters: {'DATA_WIDTH': 8, 'FILO_DEPTH': 8}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=8 -PFILO_RTL.FILO_DEPTH=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774103509
+     0.00ns INFO     cocotb.regression                  running test_filo.test_filo_dynamic (1/1)
+                                                            Test FILO_RTL behavior with parameters dynamically retrieved from DUT 
+     0.00ns INFO     cocotb.FILO_RTL                    Starting Initial Reset...
+    35.00ns INFO     cocotb.FILO_RTL                    After initial reset: full = 0, empty = 1
+    35.00ns INFO     cocotb.FILO_RTL                    Starting Push Test with random data width 8 and FILO depth 8...
+    45.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x33
+    65.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x50
+    85.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x57
+   105.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb
+   125.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xef
+   145.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb4
+   165.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x67
+   185.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x21
+   205.00ns INFO     cocotb.FILO_RTL                    After pushing: full = 0, empty = 1
+   205.00ns INFO     cocotb.regression                  test_filo.test_filo_dynamic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_filo.py", line 94, in test_filo_dynamic
+                                                            assert dut.full.value == 1, "FILO should be full after pushing FILO_DEPTH elements"
+                                                        AssertionError: FILO should be full after pushing FILO_DEPTH elements
+                                                        assert LogicArray('0', Range(0, 'downto', 0)) == 1
+                                                         +  where LogicArray('0', Range(0, 'downto', 0)) = LogicObject(FILO_RTL.full).value
+                                                         +    where LogicObject(FILO_RTL.full) = HierarchyObject(FILO_RTL).full
+   205.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_filo.test_filo_dynamic    FAIL         205.00           0.00      48798.66  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                205.00           0.01      23724.75  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/FILO_RTL.fst opened for output.
+FAILED
+../../src/test_runner.py::test_filo[8-12] [DEBUG] Running simulation with DATA_WIDTH=12, FILO_DEPTH=8
+[DEBUG] Parameters: {'DATA_WIDTH': 12, 'FILO_DEPTH': 8}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=12 -PFILO_RTL.FILO_DEPTH=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774103509
+     0.00ns INFO     cocotb.regression                  running test_filo.test_filo_dynamic (1/1)
+                                                            Test FILO_RTL behavior with parameters dynamically retrieved from DUT 
+     0.00ns INFO     cocotb.FILO_RTL                    Starting Initial Reset...
+    35.00ns INFO     cocotb.FILO_RTL                    After initial reset: full = 0, empty = 1
+    35.00ns INFO     cocotb.FILO_RTL                    Starting Push Test with random data width 12 and FILO depth 8...
+    45.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x33c
+    65.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x501
+    85.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x57b
+   105.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb9
+   125.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xefb
+   145.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb4e
+   165.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x677
+   185.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x21d
+   205.00ns INFO     cocotb.FILO_RTL                    After pushing: full = 0, empty = 1
+   205.00ns INFO     cocotb.regression                  test_filo.test_filo_dynamic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_filo.py", line 94, in test_filo_dynamic
+                                                            assert dut.full.value == 1, "FILO should be full after pushing FILO_DEPTH elements"
+                                                        AssertionError: FILO should be full after pushing FILO_DEPTH elements
+                                                        assert LogicArray('0', Range(0, 'downto', 0)) == 1
+                                                         +  where LogicArray('0', Range(0, 'downto', 0)) = LogicObject(FILO_RTL.full).value
+                                                         +    where LogicObject(FILO_RTL.full) = HierarchyObject(FILO_RTL).full
+   205.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_filo.test_filo_dynamic    FAIL         205.00           0.00      47470.45  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                205.00           0.01      23438.25  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/FILO_RTL.fst opened for output.
+FAILED
+../../src/test_runner.py::test_filo[16-8] [DEBUG] Running simulation with DATA_WIDTH=8, FILO_DEPTH=16
+[DEBUG] Parameters: {'DATA_WIDTH': 8, 'FILO_DEPTH': 16}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=8 -PFILO_RTL.FILO_DEPTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774103509
+     0.00ns INFO     cocotb.regression                  running test_filo.test_filo_dynamic (1/1)
+                                                            Test FILO_RTL behavior with parameters dynamically retrieved from DUT 
+     0.00ns INFO     cocotb.FILO_RTL                    Starting Initial Reset...
+    35.00ns INFO     cocotb.FILO_RTL                    After initial reset: full = 0, empty = 1
+    35.00ns INFO     cocotb.FILO_RTL                    Starting Push Test with random data width 8 and FILO depth 16...
+    45.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x33
+    65.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x50
+    85.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x57
+   105.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb
+   125.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xef
+   145.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb4
+   165.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x67
+   185.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x21
+   205.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x25
+   225.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x6e
+   245.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x57
+   265.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb9
+   285.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x26
+   305.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x7
+   325.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x1e
+   345.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x38
+   365.00ns INFO     cocotb.FILO_RTL                    After pushing: full = 0, empty = 1
+   365.00ns INFO     cocotb.regression                  test_filo.test_filo_dynamic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_filo.py", line 94, in test_filo_dynamic
+                                                            assert dut.full.value == 1, "FILO should be full after pushing FILO_DEPTH elements"
+                                                        AssertionError: FILO should be full after pushing FILO_DEPTH elements
+                                                        assert LogicArray('0', Range(0, 'downto', 0)) == 1
+                                                         +  where LogicArray('0', Range(0, 'downto', 0)) = LogicObject(FILO_RTL.full).value
+                                                         +    where LogicObject(FILO_RTL.full) = HierarchyObject(FILO_RTL).full
+   365.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_filo.test_filo_dynamic    FAIL         365.00           0.01      48933.10  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                365.00           0.01      30095.95  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/FILO_RTL.fst opened for output.
+FAILED
+../../src/test_runner.py::test_filo[16-12] [DEBUG] Running simulation with DATA_WIDTH=12, FILO_DEPTH=16
+[DEBUG] Parameters: {'DATA_WIDTH': 12, 'FILO_DEPTH': 16}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=12 -PFILO_RTL.FILO_DEPTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774103509
+     0.00ns INFO     cocotb.regression                  running test_filo.test_filo_dynamic (1/1)
+                                                            Test FILO_RTL behavior with parameters dynamically retrieved from DUT 
+     0.00ns INFO     cocotb.FILO_RTL                    Starting Initial Reset...
+    35.00ns INFO     cocotb.FILO_RTL                    After initial reset: full = 0, empty = 1
+    35.00ns INFO     cocotb.FILO_RTL                    Starting Push Test with random data width 12 and FILO depth 16...
+    45.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x33c
+    65.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x501
+    85.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x57b
+   105.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb9
+   125.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xefb
+   145.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb4e
+   165.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x677
+   185.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x21d
+   205.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x257
+   225.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x6ea
+   245.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x57e
+   265.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0xb91
+   285.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x262
+   305.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x7b
+   325.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x1e7
+   345.00ns INFO     cocotb.FILO_RTL                    Pushed random value: 0x383
+   365.00ns INFO     cocotb.FILO_RTL                    After pushing: full = 0, empty = 1
+   365.00ns INFO     cocotb.regression                  test_filo.test_filo_dynamic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_filo.py", line 94, in test_filo_dynamic
+                                                            assert dut.full.value == 1, "FILO should be full after pushing FILO_DEPTH elements"
+                                                        AssertionError: FILO should be full after pushing FILO_DEPTH elements
+                                                        assert LogicArray('0', Range(0, 'downto', 0)) == 1
+                                                         +  where LogicArray('0', Range(0, 'downto', 0)) = LogicObject(FILO_RTL.full).value
+                                                         +    where LogicObject(FILO_RTL.full) = HierarchyObject(FILO_RTL).full
+   365.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_filo.test_filo_dynamic    FAIL         365.00           0.01      53756.13  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                365.00           0.01      32390.85  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/FILO_RTL.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+DATA_WIDTH = 8, FILO_DEPTH = 16
+
+    def test_runner(DATA_WIDTH: int=8, FILO_DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "FILO_DEPTH":FILO_DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, FILO_DEPTH={FILO_DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:34: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=8 -PFILO_RTL.FILO_DEPTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+________________________________ test_filo[8-8] ________________________________
+
+DATA_WIDTH = 8, FILO_DEPTH = 8
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("FILO_DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, FILO_DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, FILO_DEPTH=FILO_DEPTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 8, FILO_DEPTH = 8
+
+    def test_runner(DATA_WIDTH: int=8, FILO_DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "FILO_DEPTH":FILO_DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, FILO_DEPTH={FILO_DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:34: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=8 -PFILO_RTL.FILO_DEPTH=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+_______________________________ test_filo[8-12] ________________________________
+
+DATA_WIDTH = 12, FILO_DEPTH = 8
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("FILO_DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, FILO_DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, FILO_DEPTH=FILO_DEPTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 12, FILO_DEPTH = 8
+
+    def test_runner(DATA_WIDTH: int=8, FILO_DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "FILO_DEPTH":FILO_DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, FILO_DEPTH={FILO_DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:34: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=12 -PFILO_RTL.FILO_DEPTH=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+_______________________________ test_filo[16-8] ________________________________
+
+DATA_WIDTH = 8, FILO_DEPTH = 16
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("FILO_DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, FILO_DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, FILO_DEPTH=FILO_DEPTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 8, FILO_DEPTH = 16
+
+    def test_runner(DATA_WIDTH: int=8, FILO_DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "FILO_DEPTH":FILO_DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, FILO_DEPTH={FILO_DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:34: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=8 -PFILO_RTL.FILO_DEPTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+_______________________________ test_filo[16-12] _______________________________
+
+DATA_WIDTH = 12, FILO_DEPTH = 16
+
+    @pytest.mark.parametrize("DATA_WIDTH", [8,12])
+    @pytest.mark.parametrize("FILO_DEPTH", [8,16])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_filo(DATA_WIDTH, FILO_DEPTH):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, FILO_DEPTH=FILO_DEPTH)
+
+/src/test_runner.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 12, FILO_DEPTH = 16
+
+    def test_runner(DATA_WIDTH: int=8, FILO_DEPTH: int=16 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "FILO_DEPTH":FILO_DEPTH}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, FILO_DEPTH={FILO_DEPTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:34: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s FILO_RTL -g2012 -PFILO_RTL.DATA_WIDTH=12 -PFILO_RTL.FILO_DEPTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/FILO_RTL.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+FAILED ../../src/test_runner.py::test_filo[8-8] - SystemExit: ERROR: Failed 1...
+FAILED ../../src/test_runner.py::test_filo[8-12] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_filo[16-8] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_filo[16-12] - SystemExit: ERROR: Failed...
+============================== 5 failed in 0.82s ===============================
+Cleaning up Docker resources...

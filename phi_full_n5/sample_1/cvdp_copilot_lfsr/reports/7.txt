@@ -1,0 +1,159 @@
+Running harness with project name: cvdp_copilot_lfsr_7_1774014686
+#1 [internal] load local bake definitions
+#1 reading from stdin 680B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 96B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.1s done
+#5 DONE 0.1s
+
+#6 [2/2] RUN pip install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:296e4d2f426dfc4f562da4c30c9a4182c5ae39c4ea279945aaaa82c90a74177a
+#7 exporting manifest sha256:296e4d2f426dfc4f562da4c30c9a4182c5ae39c4ea279945aaaa82c90a74177a 0.3s done
+#7 exporting config sha256:4b40edc6e8ec5d4d5dafddc14191543186f867b9c8ac2edf15fa493ee1bb687c
+#7 exporting config sha256:4b40edc6e8ec5d4d5dafddc14191543186f867b9c8ac2edf15fa493ee1bb687c 0.2s done
+#7 exporting attestation manifest sha256:d58775eeffd739575f0f8117920491d8f0d33b7c1f3f2b971afafeb36c3a2fd4
+#7 exporting attestation manifest sha256:d58775eeffd739575f0f8117920491d8f0d33b7c1f3f2b971afafeb36c3a2fd4 0.4s done
+#7 exporting manifest list sha256:05b7a60ccd6a8339c8f0deac7bd95b00e477c4cfba5cf3d3c0963e2e3abfab09
+#7 exporting manifest list sha256:05b7a60ccd6a8339c8f0deac7bd95b00e477c4cfba5cf3d3c0963e2e3abfab09 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_lfsr_7_1774014686-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_lfsr_7_1774014686-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_lfsr_7_1774014686-direct:latest 0.0s done
+#7 DONE 1.4s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774014693
+     0.00ns INFO     cocotb.regression                  Found test test_lfsr.test_non_zero_1
+     0.00ns INFO     cocotb.regression                  Found test test_lfsr.test_non_zero_2
+     0.00ns INFO     cocotb.regression                  Found test test_lfsr.test_non_zero_3
+     0.00ns INFO     cocotb.regression                  running test_non_zero_1 (1/3)
+seed_1  152
+10011000
+lfsr_out  76
+second_value  204
+10111101
+Max.length sequence
+  2581.00ns INFO     cocotb.regression                  test_non_zero_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_lfsr.py", line 57, in test_non_zero_1
+                                                            await assert_seed(dut, seed)
+                                                          File "/src/test_lfsr.py", line 44, in assert_seed
+                                                            assert second_value == lfsr_out, f"The computed and DUT 8-bit LFSR sequences of Fibonacci configuration are not matching"
+                                                        AssertionError: The computed and DUT 8-bit LFSR sequences of Fibonacci configuration are not matching
+                                                        assert 204 == 76
+  2581.00ns INFO     cocotb.regression                  running test_non_zero_2 (2/3)
+seed_2  251
+11111011
+lfsr_out  125
+second_value  189
+11000000
+Max.length sequence
+  5162.00ns INFO     cocotb.regression                  test_non_zero_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_lfsr.py", line 68, in test_non_zero_2
+                                                            await assert_seed(dut, seed)
+                                                          File "/src/test_lfsr.py", line 44, in assert_seed
+                                                            assert second_value == lfsr_out, f"The computed and DUT 8-bit LFSR sequences of Fibonacci configuration are not matching"
+                                                        AssertionError: The computed and DUT 8-bit LFSR sequences of Fibonacci configuration are not matching
+                                                        assert 189 == 125
+  5162.00ns INFO     cocotb.regression                  running test_non_zero_3 (3/3)
+seed_3  155
+10011011
+lfsr_out  77
+second_value  141
+10100110
+Max.length sequence
+  7743.00ns INFO     cocotb.regression                  test_non_zero_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_lfsr.py", line 79, in test_non_zero_3
+                                                            await assert_seed(dut, seed)
+                                                          File "/src/test_lfsr.py", line 44, in assert_seed
+                                                            assert second_value == lfsr_out, f"The computed and DUT 8-bit LFSR sequences of Fibonacci configuration are not matching"
+                                                        AssertionError: The computed and DUT 8-bit LFSR sequences of Fibonacci configuration are not matching
+                                                        assert 141 == 77
+  7743.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_lfsr.test_non_zero_1      FAIL        2581.00           0.03      97939.95  **
+                                                        ** test_lfsr.test_non_zero_2      FAIL        2581.00           0.02     105685.77  **
+                                                        ** test_lfsr.test_non_zero_3      FAIL        2581.00           0.02     104123.37  **
+                                                        **************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0               7743.00           0.10      75447.78  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/lfsr_8bit.fst opened for output.
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s lfsr_8bit -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/lfsr_8bit.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:28: SystemExit
+=============================== warnings summary ===============================
+../../src/test_runner.py:3
+  /src/test_runner.py:3: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 3 of...
+======================== 1 failed, 4 warnings in 0.30s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_lfsr_7_1774014686-direct:latest
+Deleted: sha256:05b7a60ccd6a8339c8f0deac7bd95b00e477c4cfba5cf3d3c0963e2e3abfab09

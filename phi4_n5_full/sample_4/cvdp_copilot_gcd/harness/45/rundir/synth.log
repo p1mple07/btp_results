@@ -1,0 +1,115 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/gcd_top.sv
+Parsing SystemVerilog input from `/code/rtl/gcd_top.sv' to AST representation.
+Generating RTLIL representation for module `\gcd_top'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \gcd_top
+
+2.2. Analyzing design hierarchy..
+Top module:  \gcd_top
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module gcd_top...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/code/rtl/gcd_top.sv:116$38 in module gcd_top.
+Marked 11 switch rules as full_case in process $proc$/code/rtl/gcd_top.sv:0$1 in module gcd_top.
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 5 redundant assignments.
+Promoted 8 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~12 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\gcd_top.$proc$/code/rtl/gcd_top.sv:116$38'.
+     1/5: $0\curr_state[1:0]
+     2/5: $0\OUT_ff[3:0]
+     3/5: $0\k_ff[3:0]
+     4/5: $0\B_ff[3:0]
+     5/5: $0\A_ff[3:0]
+Creating decoders for process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+     1/31: $2\next_state[1:0]
+     2/31: $8\next_B_ff[3:0]
+     3/31: $8\next_A_ff[3:0]
+     4/31: $7\next_B_ff[3:0]
+     5/31: $7\next_A_ff[3:0]
+     6/31: $6\next_B_ff[3:0]
+     7/31: $6\next_A_ff[3:0]
+     8/31: $6\diff[3:0]
+     9/31: $5\next_B_ff[3:0]
+    10/31: $5\diff[3:0]
+    11/31: $5\next_A_ff[3:0]
+    12/31: $4\next_A_ff[3:0]
+    13/31: $4\diff[3:0]
+    14/31: $4\next_B_ff[3:0]
+    15/31: $3\next_k_ff[3:0]
+    16/31: $3\next_B_ff[3:0]
+    17/31: $3\next_A_ff[3:0]
+    18/31: $3\diff[3:0]
+    19/31: $2\diff[3:0]
+    20/31: $2\next_k_ff[3:0]
+    21/31: $2\next_B_ff[3:0]
+    22/31: $2\next_A_ff[3:0]
+    23/31: $3\gcd_val[3:0]
+    24/31: $2\gcd_val[3:0]
+    25/31: $1\next_OUT[3:0]
+    26/31: $1\next_k_ff[3:0]
+    27/31: $1\next_B_ff[3:0]
+    28/31: $1\next_A_ff[3:0]
+    29/31: $1\next_state[1:0]
+    30/31: $1\gcd_val[3:0]
+    31/31: $1\diff[3:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\gcd_top.\next_state' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+No latch inferred for signal `\gcd_top.\next_A_ff' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+No latch inferred for signal `\gcd_top.\next_B_ff' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+No latch inferred for signal `\gcd_top.\next_OUT' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+No latch inferred for signal `\gcd_top.\next_k_ff' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+No latch inferred for signal `\gcd_top.\equal' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+No latch inferred for signal `\gcd_top.\diff' from process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+ERROR: Latch inferred for signal `\gcd_top.\gcd_val' from always_comb process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.

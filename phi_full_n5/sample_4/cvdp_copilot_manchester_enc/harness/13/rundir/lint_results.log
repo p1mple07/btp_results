@@ -1,0 +1,37 @@
+%Warning-MULTITOP: /code/rtl/top_manchester.sv:30:8: Multiple top level modules
+                                                   : ... Suggest see manual; fix the duplicates, or use --top-module to select top.
+                   ... For warning description see https://verilator.org/warn/MULTITOP?v=5.027
+                   ... Use "/* verilator lint_off MULTITOP */" and lint_on around source to disable this message.
+                                                   : ... Top module 'manchester_encoder'
+    1 | module manchester_encoder #(
+      |        ^~~~~~~~~~~~~~~~~~
+                                                   : ... Top module 'manchester_decoder'
+   30 | module manchester_decoder #(
+      |        ^~~~~~~~~~~~~~~~~~
+%Warning-BLKSEQ: /code/rtl/top_manchester.sv:19:35: Blocking assignment '=' in sequential logic process
+                                                  : ... Suggest using delayed assignment '<='
+   19 |                 enc_data_out[2*i] = enc_data_in[i] ^ enc_data_in[i+1];
+      |                                   ^
+%Warning-BLKSEQ: /code/rtl/top_manchester.sv:50:33: Blocking assignment '=' in sequential logic process
+                                                  : ... Suggest using delayed assignment '<='
+   50 |                 dec_data_out[i] = dec_data_in[2*i] ^ dec_data_in[2*i+1];
+      |                                 ^
+%Error-BLKANDNBLK: /code/rtl/top_manchester.sv:9:28: Unsupported: Blocked and non-blocking assignments to same variable: 'enc_data_out'
+    9 |     output logic [2*N-1:0] enc_data_out  
+      |                            ^~~~~~~~~~~~
+                   /code/rtl/top_manchester.sv:19:35: ... Location of blocking assignment
+   19 |                 enc_data_out[2*i] = enc_data_in[i] ^ enc_data_in[i+1];
+      |                                   ^
+                   /code/rtl/top_manchester.sv:16:13: ... Location of nonblocking assignment
+   16 |             enc_data_out <= '0; 
+      |             ^~~~~~~~~~~~
+%Error-BLKANDNBLK: /code/rtl/top_manchester.sv:38:26: Unsupported: Blocked and non-blocking assignments to same variable: 'dec_data_out'
+   38 |     output logic [N-1:0] dec_data_out   
+      |                          ^~~~~~~~~~~~
+                   /code/rtl/top_manchester.sv:50:33: ... Location of blocking assignment
+   50 |                 dec_data_out[i] = dec_data_in[2*i] ^ dec_data_in[2*i+1];
+      |                                 ^
+                   /code/rtl/top_manchester.sv:45:13: ... Location of nonblocking assignment
+   45 |             dec_data_out <= '0; 
+      |             ^~~~~~~~~~~~
+%Error: Exiting due to 2 error(s), 3 warning(s)

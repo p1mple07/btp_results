@@ -1,0 +1,305 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xa59050 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xa591e0 .scope module, "advanced_decimator_with_adaptive_peak_detection" "advanced_decimator_with_adaptive_peak_detection" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "valid_in";
+    .port_info 3 /INPUT 420 "data_in";
+    .port_info 4 /OUTPUT 1 "valid_out";
+    .port_info 5 /OUTPUT 28 "data_out";
+    .port_info 6 /OUTPUT 14 "peak_value";
+P_0xa572c0 .param/l "DATA_WIDTH" 0 3 3, +C4<00000000000000000000000000001110>;
+P_0xa57300 .param/l "DEC_FACTOR" 0 3 4, +C4<00000000000000000000000000001111>;
+P_0xa57340 .param/l "N" 0 3 2, +C4<00000000000000000000000000011110>;
+P_0xa57380 .param/l "NUM_DEC" 1 3 16, +C4<00000000000000000000000000000010>;
+o0x77ea072ca108 .functor BUFZ 1, c4<z>; HiZ drive
+v0xa859a0_0 .net "clk", 0 0, o0x77ea072ca108;  0 drivers
+o0x77ea072ca138 .functor BUFZ 420, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xa85a80_0 .net "data_in", 419 0, o0x77ea072ca138;  0 drivers
+v0xa85b60_0 .var "data_out", 27 0;
+v0xa85c20 .array/s "decimated", 1 0, 13 0;
+v0xa85d40_0 .var "decimated_packed", 27 0;
+v0xa85e70_0 .var/s "peak", 13 0;
+v0xa85f50_0 .var/s "peak_value", 13 0;
+o0x77ea072ca288 .functor BUFZ 1, c4<z>; HiZ drive
+v0xa86030_0 .net "reset", 0 0, o0x77ea072ca288;  0 drivers
+v0xa860f0 .array/s "sample_reg", 29 0, 13 0;
+o0x77ea072ca858 .functor BUFZ 1, c4<z>; HiZ drive
+v0xa86570_0 .net "valid_in", 0 0, o0x77ea072ca858;  0 drivers
+v0xa86630_0 .var "valid_out", 0 0;
+v0xa866f0_0 .var "valid_reg", 0 0;
+E_0xa65320 .event posedge, v0xa86030_0, v0xa859a0_0;
+v0xa860f0_0 .array/port v0xa860f0, 0;
+v0xa860f0_1 .array/port v0xa860f0, 1;
+v0xa860f0_2 .array/port v0xa860f0, 2;
+v0xa860f0_3 .array/port v0xa860f0, 3;
+E_0xa647e0/0 .event anyedge, v0xa860f0_0, v0xa860f0_1, v0xa860f0_2, v0xa860f0_3;
+v0xa860f0_4 .array/port v0xa860f0, 4;
+v0xa860f0_5 .array/port v0xa860f0, 5;
+v0xa860f0_6 .array/port v0xa860f0, 6;
+v0xa860f0_7 .array/port v0xa860f0, 7;
+E_0xa647e0/1 .event anyedge, v0xa860f0_4, v0xa860f0_5, v0xa860f0_6, v0xa860f0_7;
+v0xa860f0_8 .array/port v0xa860f0, 8;
+v0xa860f0_9 .array/port v0xa860f0, 9;
+v0xa860f0_10 .array/port v0xa860f0, 10;
+v0xa860f0_11 .array/port v0xa860f0, 11;
+E_0xa647e0/2 .event anyedge, v0xa860f0_8, v0xa860f0_9, v0xa860f0_10, v0xa860f0_11;
+v0xa860f0_12 .array/port v0xa860f0, 12;
+v0xa860f0_13 .array/port v0xa860f0, 13;
+v0xa860f0_14 .array/port v0xa860f0, 14;
+v0xa860f0_15 .array/port v0xa860f0, 15;
+E_0xa647e0/3 .event anyedge, v0xa860f0_12, v0xa860f0_13, v0xa860f0_14, v0xa860f0_15;
+v0xa860f0_16 .array/port v0xa860f0, 16;
+v0xa860f0_17 .array/port v0xa860f0, 17;
+v0xa860f0_18 .array/port v0xa860f0, 18;
+v0xa860f0_19 .array/port v0xa860f0, 19;
+E_0xa647e0/4 .event anyedge, v0xa860f0_16, v0xa860f0_17, v0xa860f0_18, v0xa860f0_19;
+v0xa860f0_20 .array/port v0xa860f0, 20;
+v0xa860f0_21 .array/port v0xa860f0, 21;
+v0xa860f0_22 .array/port v0xa860f0, 22;
+v0xa860f0_23 .array/port v0xa860f0, 23;
+E_0xa647e0/5 .event anyedge, v0xa860f0_20, v0xa860f0_21, v0xa860f0_22, v0xa860f0_23;
+v0xa860f0_24 .array/port v0xa860f0, 24;
+v0xa860f0_25 .array/port v0xa860f0, 25;
+v0xa860f0_26 .array/port v0xa860f0, 26;
+v0xa860f0_27 .array/port v0xa860f0, 27;
+E_0xa647e0/6 .event anyedge, v0xa860f0_24, v0xa860f0_25, v0xa860f0_26, v0xa860f0_27;
+v0xa860f0_28 .array/port v0xa860f0, 28;
+v0xa860f0_29 .array/port v0xa860f0, 29;
+v0xa85c20_0 .array/port v0xa85c20, 0;
+v0xa85c20_1 .array/port v0xa85c20, 1;
+E_0xa647e0/7 .event anyedge, v0xa860f0_28, v0xa860f0_29, v0xa85c20_0, v0xa85c20_1;
+E_0xa647e0 .event/or E_0xa647e0/0, E_0xa647e0/1, E_0xa647e0/2, E_0xa647e0/3, E_0xa647e0/4, E_0xa647e0/5, E_0xa647e0/6, E_0xa647e0/7;
+S_0xa596b0 .scope begin, "$ivl_for_loop0" "$ivl_for_loop0" 3 37, 3 37 0, S_0xa591e0;
+ .timescale -9 -9;
+v0xa54890_0 .var/2s "i", 31 0;
+S_0xa84e90 .scope begin, "$ivl_for_loop1" "$ivl_for_loop1" 3 43, 3 43 0, S_0xa591e0;
+ .timescale -9 -9;
+v0xa54930_0 .var/2s "i", 31 0;
+S_0xa850d0 .scope begin, "$ivl_for_loop2" "$ivl_for_loop2" 3 56, 3 56 0, S_0xa591e0;
+ .timescale -9 -9;
+v0xa852b0_0 .var/2s "j", 31 0;
+S_0xa85390 .scope begin, "$ivl_for_loop3" "$ivl_for_loop3" 3 62, 3 62 0, S_0xa591e0;
+ .timescale -9 -9;
+v0xa85570_0 .var/2s "j", 31 0;
+S_0xa85670 .scope begin, "$ivl_for_loop4" "$ivl_for_loop4" 3 70, 3 70 0, S_0xa591e0;
+ .timescale -9 -9;
+v0xa858a0_0 .var/2s "j", 31 0;
+    .scope S_0xa591e0;
+T_0 ;
+    %wait E_0xa65320;
+    %load/vec4 v0xa86030_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %fork t_1, S_0xa596b0;
+    %jmp t_0;
+    .scope S_0xa596b0;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xa54890_0, 0, 32;
+T_0.2 ; Top of for-loop
+    %load/vec4 v0xa54890_0;
+    %cmpi/s 30, 0, 32;
+	  %jmp/0xz T_0.3, 5;
+    %pushi/vec4 0, 0, 14;
+    %ix/getv/s 3, v0xa54890_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0xa860f0, 0, 4;
+T_0.4 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xa54890_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xa54890_0, 0, 32;
+    %jmp T_0.2;
+T_0.3 ; for-loop exit label
+    %end;
+    .scope S_0xa591e0;
+t_0 %join;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xa866f0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xa86570_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.5, 8;
+    %fork t_3, S_0xa84e90;
+    %jmp t_2;
+    .scope S_0xa84e90;
+t_3 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xa54930_0, 0, 32;
+T_0.7 ; Top of for-loop
+    %load/vec4 v0xa54930_0;
+    %cmpi/s 30, 0, 32;
+	  %jmp/0xz T_0.8, 5;
+    %load/vec4 v0xa85a80_0;
+    %load/vec4 v0xa54930_0;
+    %addi 1, 0, 32;
+    %muli 14, 0, 32;
+    %subi 1, 0, 32;
+    %pad/s 34;
+    %subi 13, 0, 34;
+    %part/s 14;
+    %ix/getv/s 3, v0xa54930_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0xa860f0, 0, 4;
+T_0.9 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xa54930_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xa54930_0, 0, 32;
+    %jmp T_0.7;
+T_0.8 ; for-loop exit label
+    %end;
+    .scope S_0xa591e0;
+t_2 %join;
+    %load/vec4 v0xa86570_0;
+    %assign/vec4 v0xa866f0_0, 0;
+T_0.5 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xa591e0;
+T_1 ;
+Ewait_0 .event/or E_0xa647e0, E_0x0;
+    %wait Ewait_0;
+    %fork t_5, S_0xa850d0;
+    %jmp t_4;
+    .scope S_0xa850d0;
+t_5 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0xa852b0_0, 0, 32;
+T_1.0 ; Top of for-loop
+    %load/vec4 v0xa852b0_0;
+    %cmpi/s 2, 0, 32;
+	  %jmp/0xz T_1.1, 5;
+    %load/vec4 v0xa852b0_0;
+    %muli 15, 0, 32;
+    %ix/vec4/s 4;
+    %load/vec4a v0xa860f0, 4;
+    %ix/getv/s 4, v0xa852b0_0;
+    %store/vec4a v0xa85c20, 4, 0;
+T_1.2 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xa852b0_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xa852b0_0, 0, 32;
+    %jmp T_1.0;
+T_1.1 ; for-loop exit label
+    %end;
+    .scope S_0xa591e0;
+t_4 %join;
+    %ix/load 4, 0, 0;
+    %flag_set/imm 4, 0;
+    %load/vec4a v0xa85c20, 4;
+    %store/vec4 v0xa85e70_0, 0, 14;
+    %fork t_7, S_0xa85390;
+    %jmp t_6;
+    .scope S_0xa85390;
+t_7 ;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0xa85570_0, 0, 32;
+T_1.3 ; Top of for-loop
+    %load/vec4 v0xa85570_0;
+    %cmpi/s 2, 0, 32;
+	  %jmp/0xz T_1.4, 5;
+    %load/vec4 v0xa85e70_0;
+    %ix/getv/s 4, v0xa85570_0;
+    %load/vec4a v0xa85c20, 4;
+    %cmp/s;
+    %jmp/0xz  T_1.6, 5;
+    %ix/getv/s 4, v0xa85570_0;
+    %load/vec4a v0xa85c20, 4;
+    %store/vec4 v0xa85e70_0, 0, 14;
+T_1.6 ;
+T_1.5 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0xa85570_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0xa85570_0, 0, 32;
+    %jmp T_1.3;
+T_1.4 ; for-loop exit label
+    %end;
+    .scope S_0xa591e0;
+t_6 %join;
+    %pushi/vec4 0, 0, 28;
+    %store/vec4 v0xa85d40_0, 0, 28;
+    %fork t_9, S_0xa85670;
+    %jmp t_8;
+    .scope S_0xa85670;
+t_9 ;
+    %pushi/vec4 1, 0, 32;
+    %store/vec4 v0xa858a0_0, 0, 32;
+T_1.8 ; Top of for-loop
+    %load/vec4 v0xa858a0_0;
+    %cmpi/s 0, 0, 32;
+    %flag_inv 5; GE is !LT
+	  %jmp/0xz T_1.9, 5;
+    %ix/getv/s 4, v0xa858a0_0;
+    %load/vec4a v0xa85c20, 4;
+    %load/vec4 v0xa85d40_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 28;
+    %store/vec4 v0xa85d40_0, 0, 28;
+T_1.10 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed -= operand
+    %load/vec4 v0xa858a0_0;
+    %pushi/vec4 1, 0, 32;
+    %sub;
+    %cast2;
+    %store/vec4 v0xa858a0_0, 0, 32;
+    %jmp T_1.8;
+T_1.9 ; for-loop exit label
+    %end;
+    .scope S_0xa591e0;
+t_8 %join;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0xa591e0;
+T_2 ;
+    %wait E_0xa65320;
+    %load/vec4 v0xa86030_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xa86630_0, 0;
+    %pushi/vec4 0, 0, 28;
+    %assign/vec4 v0xa85b60_0, 0;
+    %pushi/vec4 0, 0, 14;
+    %assign/vec4 v0xa85f50_0, 0;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/vec4 v0xa866f0_0;
+    %assign/vec4 v0xa86630_0, 0;
+    %load/vec4 v0xa85d40_0;
+    %assign/vec4 v0xa85b60_0, 0;
+    %load/vec4 v0xa85e70_0;
+    %assign/vec4 v0xa85f50_0, 0;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/decimator_and_peak_detector.sv";

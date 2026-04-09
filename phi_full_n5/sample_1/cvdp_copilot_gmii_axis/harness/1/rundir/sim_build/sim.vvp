@@ -1,0 +1,110 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1eb9d40 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1eb9ed0 .scope module, "gmii_rx_to_axi_stream" "gmii_rx_to_axi_stream" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "gmii_rx_clk";
+    .port_info 1 /INPUT 8 "gmii_rxd";
+    .port_info 2 /INPUT 1 "gmii_rx_dv";
+    .port_info 3 /OUTPUT 8 "m_axis_tdata";
+    .port_info 4 /OUTPUT 1 "m_axis_tvalid";
+    .port_info 5 /INPUT 1 "m_axis_tready";
+    .port_info 6 /OUTPUT 1 "m_axis_tlast";
+P_0x1eba060 .param/l "FINISHED" 1 3 14, C4<10>;
+P_0x1eba0a0 .param/l "IDLE" 1 3 12, C4<00>;
+P_0x1eba0e0 .param/l "RECEIVING" 1 3 13, C4<01>;
+o0x7f2a5f9a3168 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x1ede620 .functor AND 1, L_0x1ede4b0, o0x7f2a5f9a3168, C4<1>, C4<1>;
+L_0x7f2a5f95a018 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x1eba330_0 .net/2u *"_ivl_0", 2 0, L_0x7f2a5f95a018;  1 drivers
+v0x1edd5f0_0 .net *"_ivl_10", 0 0, L_0x1ede4b0;  1 drivers
+L_0x7f2a5f95a0f0 .functor BUFT 1, C4<010>, C4<0>, C4<0>, C4<0>;
+v0x1edd6b0_0 .net/2u *"_ivl_14", 2 0, L_0x7f2a5f95a0f0;  1 drivers
+v0x1edd770_0 .net *"_ivl_2", 0 0, L_0x1ede210;  1 drivers
+L_0x7f2a5f95a060 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x1edd830_0 .net/2u *"_ivl_4", 7 0, L_0x7f2a5f95a060;  1 drivers
+L_0x7f2a5f95a0a8 .functor BUFT 1, C4<001>, C4<0>, C4<0>, C4<0>;
+v0x1edd960_0 .net/2u *"_ivl_8", 2 0, L_0x7f2a5f95a0a8;  1 drivers
+o0x7f2a5f9a3138 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1edda40_0 .net "gmii_rx_clk", 0 0, o0x7f2a5f9a3138;  0 drivers
+v0x1eddb00_0 .net "gmii_rx_dv", 0 0, o0x7f2a5f9a3168;  0 drivers
+o0x7f2a5f9a3198 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1eddbc0_0 .net "gmii_rxd", 7 0, o0x7f2a5f9a3198;  0 drivers
+v0x1eddd30_0 .net "m_axis_tdata", 7 0, L_0x1ede310;  1 drivers
+v0x1edde10_0 .net "m_axis_tlast", 0 0, L_0x1ede6e0;  1 drivers
+o0x7f2a5f9a3228 .functor BUFZ 1, c4<z>; HiZ drive
+v0x1edded0_0 .net "m_axis_tready", 0 0, o0x7f2a5f9a3228;  0 drivers
+v0x1eddf90_0 .net "m_axis_tvalid", 0 0, L_0x1ede620;  1 drivers
+v0x1ede050_0 .var "state_reg", 2 0;
+E_0x1ec9d60/0 .event anyedge, v0x1eddb00_0;
+E_0x1ec9d60/1 .event posedge, v0x1edda40_0;
+E_0x1ec9d60 .event/or E_0x1ec9d60/0, E_0x1ec9d60/1;
+L_0x1ede210 .cmp/eq 3, v0x1ede050_0, L_0x7f2a5f95a018;
+L_0x1ede310 .functor MUXZ 8, L_0x7f2a5f95a060, o0x7f2a5f9a3198, L_0x1ede210, C4<>;
+L_0x1ede4b0 .cmp/eq 3, v0x1ede050_0, L_0x7f2a5f95a0a8;
+L_0x1ede6e0 .cmp/eq 3, v0x1ede050_0, L_0x7f2a5f95a0f0;
+    .scope S_0x1eb9ed0;
+T_0 ;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x1ede050_0, 0, 3;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x1eb9ed0;
+T_1 ;
+    %wait E_0x1ec9d60;
+    %load/vec4 v0x1ede050_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 3;
+    %cmp/u;
+    %jmp/1 T_1.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 3;
+    %cmp/u;
+    %jmp/1 T_1.1, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 3;
+    %cmp/u;
+    %jmp/1 T_1.2, 6;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x1ede050_0, 0;
+    %jmp T_1.4;
+T_1.0 ;
+    %load/vec4 v0x1eddb00_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.5, 8;
+    %pushi/vec4 1, 0, 3;
+    %assign/vec4 v0x1ede050_0, 0;
+T_1.5 ;
+    %jmp T_1.4;
+T_1.1 ;
+    %load/vec4 v0x1eddb00_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.7, 8;
+    %pushi/vec4 2, 0, 3;
+    %assign/vec4 v0x1ede050_0, 0;
+T_1.7 ;
+    %jmp T_1.4;
+T_1.2 ;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x1ede050_0, 0;
+    %jmp T_1.4;
+T_1.4 ;
+    %pop/vec4 1;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/gmii_rx_to_axi_stream.sv";

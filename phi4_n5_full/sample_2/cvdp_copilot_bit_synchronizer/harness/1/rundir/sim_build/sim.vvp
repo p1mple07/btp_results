@@ -1,0 +1,61 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xccba50 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xccbbe0 .scope module, "bit_sync" "bit_sync" 3 2;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "aclk";
+    .port_info 1 /INPUT 1 "bclk";
+    .port_info 2 /INPUT 1 "rst_n";
+    .port_info 3 /INPUT 1 "adata";
+    .port_info 4 /OUTPUT 1 "aq2_data";
+    .port_info 5 /OUTPUT 1 "bq2_data";
+P_0xccbd70 .param/l "STAGES" 0 3 3, +C4<00000000000000000000000000000101>;
+o0x7d2bd07ef018 .functor BUFZ 1, c4<z>; HiZ drive
+v0xccbf00_0 .net "aclk", 0 0, o0x7d2bd07ef018;  0 drivers
+o0x7d2bd07ef048 .functor BUFZ 1, c4<z>; HiZ drive
+v0xcedcf0_0 .net "adata", 0 0, o0x7d2bd07ef048;  0 drivers
+v0xceddb0_0 .var "aq2_data", 0 0;
+v0xcede80_0 .var "b_sync_chain", 4 0;
+o0x7d2bd07ef0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xcedf60_0 .net "bclk", 0 0, o0x7d2bd07ef0d8;  0 drivers
+v0xcee070_0 .net "bq2_data", 0 0, L_0xcee2b0;  1 drivers
+o0x7d2bd07ef138 .functor BUFZ 1, c4<z>; HiZ drive
+v0xcee130_0 .net "rst_n", 0 0, o0x7d2bd07ef138;  0 drivers
+E_0xcdcc00/0 .event negedge, v0xcee130_0;
+E_0xcdcc00/1 .event posedge, v0xcedf60_0;
+E_0xcdcc00 .event/or E_0xcdcc00/0, E_0xcdcc00/1;
+L_0xcee2b0 .part v0xcede80_0, 4, 1;
+    .scope S_0xccbbe0;
+T_0 ;
+    %wait E_0xcdcc00;
+    %load/vec4 v0xcee130_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0xcede80_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xcede80_0;
+    %parti/s 4, 0, 2;
+    %load/vec4 v0xcedcf0_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0xcede80_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bit_sync.sv";

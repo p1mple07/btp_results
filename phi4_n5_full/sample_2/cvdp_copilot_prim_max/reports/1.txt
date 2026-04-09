@@ -1,0 +1,1091 @@
+Running harness with project name: cvdp_copilot_prim_max_1_1774683662
+#1 [internal] load local bake definitions
+#1 reading from stdin 698B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 212B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.4s done
+#5 DONE 0.4s
+
+#6 [2/2] RUN pip3 install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:0b6f33cd4b83d9f5b0ca207ca6bd342331eec1f5f00dbebef4e3ea248ca59d2a
+#7 exporting manifest sha256:0b6f33cd4b83d9f5b0ca207ca6bd342331eec1f5f00dbebef4e3ea248ca59d2a 0.3s done
+#7 exporting config sha256:5b3caa527b16eeda3e4dbfbed6f7a45db94812e7e98a60f10e75ff363f71cf74
+#7 exporting config sha256:5b3caa527b16eeda3e4dbfbed6f7a45db94812e7e98a60f10e75ff363f71cf74 0.3s done
+#7 exporting attestation manifest sha256:4ff9250e48688a0e62df94ae73e0c8389529e1ecb43d4d7e5cc20f0a11f168c9
+#7 exporting attestation manifest sha256:4ff9250e48688a0e62df94ae73e0c8389529e1ecb43d4d7e5cc20f0a11f168c9 0.6s done
+#7 exporting manifest list sha256:91b886cc65e033fd176f5319cb227c8529ae2510e6c1a0ff260d91bdc8f917e7
+#7 exporting manifest list sha256:91b886cc65e033fd176f5319cb227c8529ae2510e6c1a0ff260d91bdc8f917e7 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_prim_max_1_1774683662-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_prim_max_1_1774683662-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_prim_max_1_1774683662-direct:latest 0.1s done
+#7 DONE 2.0s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 12 items
+
+../../src/test_runner.py::test_prim_max_find[4-8] FAILED                 [  8%]
+../../src/test_runner.py::test_prim_max_find[4-16] FAILED                [ 16%]
+../../src/test_runner.py::test_prim_max_find[4-24] FAILED                [ 25%]
+../../src/test_runner.py::test_prim_max_find[4-32] FAILED                [ 33%]
+../../src/test_runner.py::test_prim_max_find[8-8] FAILED                 [ 41%]
+../../src/test_runner.py::test_prim_max_find[8-16] FAILED                [ 50%]
+../../src/test_runner.py::test_prim_max_find[8-24] FAILED                [ 58%]
+../../src/test_runner.py::test_prim_max_find[8-32] FAILED                [ 66%]
+../../src/test_runner.py::test_prim_max_find[16-8] FAILED                [ 75%]
+../../src/test_runner.py::test_prim_max_find[16-16] FAILED               [ 83%]
+../../src/test_runner.py::test_prim_max_find[16-24] FAILED               [ 91%]
+../../src/test_runner.py::test_prim_max_find[16-32] FAILED               [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_prim_max_find[4-8] ____________________________
+
+NumSrc = 4, Width = 8
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 4, Width = 8
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=4 -Pprim_max_find.Width=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683670
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=4, Width=8
+    65.00ns INFO     cocotb.prim_max_find               Test passed.
+   105.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns ERROR    cocotb.prim_max_find               Test failed:
+   145.00ns ERROR    cocotb.prim_max_find                 Input values: 00101000000111100001010000001010
+   145.00ns ERROR    cocotb.prim_max_find                 Input valids: 1111
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max value: 40, Got: 20
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max index: 3, Got: 1
+   145.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   145.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 200, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   145.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         145.00           0.00      47918.24  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         145.00           0.03       4377.71  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[4-16] ___________________________
+
+NumSrc = 4, Width = 16
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 4, Width = 16
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=4 -Pprim_max_find.Width=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683670
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=4, Width=16
+    65.00ns INFO     cocotb.prim_max_find               Test passed.
+   105.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns ERROR    cocotb.prim_max_find               Test failed:
+   145.00ns ERROR    cocotb.prim_max_find                 Input values: 0000000000101000000000000001111000000000000101000000000000001010
+   145.00ns ERROR    cocotb.prim_max_find                 Input valids: 1111
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max value: 40, Got: 20
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max index: 3, Got: 1
+   145.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   145.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 200, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   145.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         145.00           0.00      47229.81  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         145.00           0.03       4367.43  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[4-24] ___________________________
+
+NumSrc = 4, Width = 24
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 4, Width = 24
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=4 -Pprim_max_find.Width=24 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683670
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=4, Width=24
+    65.00ns INFO     cocotb.prim_max_find               Test passed.
+   105.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns ERROR    cocotb.prim_max_find               Test failed:
+   145.00ns ERROR    cocotb.prim_max_find                 Input values: 000000000000000000101000000000000000000000011110000000000000000000010100000000000000000000001010
+   145.00ns ERROR    cocotb.prim_max_find                 Input valids: 1111
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max value: 40, Got: 20
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max index: 3, Got: 1
+   145.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   145.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 200, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   145.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         145.00           0.00      46891.15  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         145.00           0.03       4367.43  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[4-32] ___________________________
+
+NumSrc = 4, Width = 32
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 4, Width = 32
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=4 -Pprim_max_find.Width=32 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683671
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=4, Width=32
+    65.00ns INFO     cocotb.prim_max_find               Test passed.
+   105.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns ERROR    cocotb.prim_max_find               Test failed:
+   145.00ns ERROR    cocotb.prim_max_find                 Input values: 00000000000000000000000000101000000000000000000000000000000111100000000000000000000000000001010000000000000000000000000000001010
+   145.00ns ERROR    cocotb.prim_max_find                 Input valids: 1111
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max value: 40, Got: 20
+   145.00ns ERROR    cocotb.prim_max_find                 Expected max index: 3, Got: 1
+   145.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   145.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 200, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   145.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         145.00           0.00      46905.62  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         145.00           0.03       4379.89  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[8-8] ____________________________
+
+NumSrc = 8, Width = 8
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 8, Width = 8
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=8 -Pprim_max_find.Width=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683671
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=8, Width=8
+    75.00ns INFO     cocotb.prim_max_find               Test passed.
+   125.00ns INFO     cocotb.prim_max_find               Test passed.
+   175.00ns INFO     cocotb.prim_max_find               Test passed.
+   225.00ns INFO     cocotb.prim_max_find               Test passed.
+   275.00ns ERROR    cocotb.prim_max_find               Test failed:
+   275.00ns ERROR    cocotb.prim_max_find                 Input values: 0000000000000101000000000110010000000000000010100000000000110010
+   275.00ns ERROR    cocotb.prim_max_find                 Input valids: 01010101
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max value: 100, Got: 50
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max index: 4, Got: 0
+   275.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   275.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 247, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   275.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         275.00           0.00      55724.32  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         275.00           0.04       7839.96  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[8-16] ___________________________
+
+NumSrc = 8, Width = 16
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 8, Width = 16
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=8 -Pprim_max_find.Width=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683671
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=8, Width=16
+    75.00ns INFO     cocotb.prim_max_find               Test passed.
+   125.00ns INFO     cocotb.prim_max_find               Test passed.
+   175.00ns INFO     cocotb.prim_max_find               Test passed.
+   225.00ns INFO     cocotb.prim_max_find               Test passed.
+   275.00ns ERROR    cocotb.prim_max_find               Test failed:
+   275.00ns ERROR    cocotb.prim_max_find                 Input values: 00000000000000000000000000000101000000000000000000000000011001000000000000000000000000000000101000000000000000000000000000110010
+   275.00ns ERROR    cocotb.prim_max_find                 Input valids: 01010101
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max value: 100, Got: 50
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max index: 4, Got: 0
+   275.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   275.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 247, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   275.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         275.00           0.00      56744.12  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         275.00           0.03       7939.63  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[8-24] ___________________________
+
+NumSrc = 8, Width = 24
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 8, Width = 24
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=8 -Pprim_max_find.Width=24 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683671
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=8, Width=24
+    75.00ns INFO     cocotb.prim_max_find               Test passed.
+   125.00ns INFO     cocotb.prim_max_find               Test passed.
+   175.00ns INFO     cocotb.prim_max_find               Test passed.
+   225.00ns INFO     cocotb.prim_max_find               Test passed.
+   275.00ns ERROR    cocotb.prim_max_find               Test failed:
+   275.00ns ERROR    cocotb.prim_max_find                 Input values: 000000000000000000000000000000000000000000000101000000000000000000000000000000000000000001100100000000000000000000000000000000000000000000001010000000000000000000000000000000000000000000110010
+   275.00ns ERROR    cocotb.prim_max_find                 Input valids: 01010101
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max value: 100, Got: 50
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max index: 4, Got: 0
+   275.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   275.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 247, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   275.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         275.00           0.00      55151.47  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         275.00           0.04       7755.77  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[8-32] ___________________________
+
+NumSrc = 8, Width = 32
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 8, Width = 32
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=8 -Pprim_max_find.Width=32 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683671
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=8, Width=32
+    75.00ns INFO     cocotb.prim_max_find               Test passed.
+   125.00ns INFO     cocotb.prim_max_find               Test passed.
+   175.00ns INFO     cocotb.prim_max_find               Test passed.
+   225.00ns INFO     cocotb.prim_max_find               Test passed.
+   275.00ns ERROR    cocotb.prim_max_find               Test failed:
+   275.00ns ERROR    cocotb.prim_max_find                 Input values: 0000000000000000000000000000000000000000000000000000000000000101000000000000000000000000000000000000000000000000000000000110010000000000000000000000000000000000000000000000000000000000000010100000000000000000000000000000000000000000000000000000000000110010
+   275.00ns ERROR    cocotb.prim_max_find                 Input valids: 01010101
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max value: 100, Got: 50
+   275.00ns ERROR    cocotb.prim_max_find                 Expected max index: 4, Got: 0
+   275.00ns ERROR    cocotb.prim_max_find                 Expected valid: 1, Got: 1
+   275.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 247, in test_prim_max_find
+                                                            await apply_test(
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   275.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         275.00           0.01      54631.64  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         275.00           0.04       7799.30  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+___________________________ test_prim_max_find[16-8] ___________________________
+
+NumSrc = 16, Width = 8
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 16, Width = 8
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=16 -Pprim_max_find.Width=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683671
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=16, Width=8
+    85.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns INFO     cocotb.prim_max_find               Test passed.
+   205.00ns INFO     cocotb.prim_max_find               Test passed.
+   265.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Starting randomized tests...
+   385.00ns INFO     cocotb.prim_max_find               Test passed.
+   385.00ns INFO     cocotb.prim_max_find               Random Test 1/10 passed.
+   445.00ns INFO     cocotb.prim_max_find               Test passed.
+   445.00ns INFO     cocotb.prim_max_find               Random Test 2/10 passed.
+   505.00ns INFO     cocotb.prim_max_find               Test passed.
+   505.00ns INFO     cocotb.prim_max_find               Random Test 3/10 passed.
+   565.00ns INFO     cocotb.prim_max_find               Test passed.
+   565.00ns INFO     cocotb.prim_max_find               Random Test 4/10 passed.
+   625.00ns ERROR    cocotb.prim_max_find               Test failed:
+   625.00ns ERROR    cocotb.prim_max_find                 Input values: 01110001011001111011001001011100101100111101110110011101011101001000000110111111101011110001010111011100100000110100110101001011
+   625.00ns ERROR    cocotb.prim_max_find                 Input valids: 1101010110011100
+   625.00ns ERROR    cocotb.prim_max_find                 Expected max value: 221, Got: 220
+   625.00ns ERROR    cocotb.prim_max_find                 Expected max index: 10, Got: 3
+   625.00ns ERROR    cocotb.prim_max_find                 Expected valid: True, Got: 1
+   625.00ns ERROR    cocotb.prim_max_find               Random Test 5/10 failed.
+   625.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 259, in test_prim_max_find
+                                                            await random_test(num_iterations=10)
+                                                          File "/src/test_prim_max_find.py", line 160, in random_test
+                                                            await apply_test(rand_values, rand_valids, expected_max, expected_idx, any_valid)
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   625.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         625.00           0.01      59911.88  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         625.00           0.04      15339.32  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+__________________________ test_prim_max_find[16-16] ___________________________
+
+NumSrc = 16, Width = 16
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 16, Width = 16
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=16 -Pprim_max_find.Width=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683672
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=16, Width=16
+    85.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns INFO     cocotb.prim_max_find               Test passed.
+   205.00ns INFO     cocotb.prim_max_find               Test passed.
+   265.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Starting randomized tests...
+   385.00ns INFO     cocotb.prim_max_find               Test passed.
+   385.00ns INFO     cocotb.prim_max_find               Random Test 1/10 passed.
+   445.00ns ERROR    cocotb.prim_max_find               Test failed:
+   445.00ns ERROR    cocotb.prim_max_find                 Input values: 0111011111010001011000101001001000011101010111010001001011000000100101111001010001001011101001001100101101100010111101010001111101001011010111101111110001111100110101110000001111011010010110100011100001011001011011101100100000011110000000101001010000110110
+   445.00ns ERROR    cocotb.prim_max_find                 Input valids: 1010000110100111
+   445.00ns ERROR    cocotb.prim_max_find                 Expected max value: 62751, Got: 55043
+   445.00ns ERROR    cocotb.prim_max_find                 Expected max index: 8, Got: 5
+   445.00ns ERROR    cocotb.prim_max_find                 Expected valid: True, Got: 1
+   445.00ns ERROR    cocotb.prim_max_find               Random Test 2/10 failed.
+   445.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 259, in test_prim_max_find
+                                                            await random_test(num_iterations=10)
+                                                          File "/src/test_prim_max_find.py", line 160, in random_test
+                                                            await apply_test(rand_values, rand_valids, expected_max, expected_idx, any_valid)
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   445.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         445.00           0.01      56511.73  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         445.00           0.04      11345.15  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+__________________________ test_prim_max_find[16-24] ___________________________
+
+NumSrc = 16, Width = 24
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 16, Width = 24
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=16 -Pprim_max_find.Width=24 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683672
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=16, Width=24
+    85.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns INFO     cocotb.prim_max_find               Test passed.
+   205.00ns INFO     cocotb.prim_max_find               Test passed.
+   265.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Starting randomized tests...
+   385.00ns INFO     cocotb.prim_max_find               Test passed.
+   385.00ns INFO     cocotb.prim_max_find               Random Test 1/10 passed.
+   445.00ns ERROR    cocotb.prim_max_find               Test failed:
+   445.00ns ERROR    cocotb.prim_max_find                 Input values: 011101111101000110000001011000101001001000001101000111010101110111001001000100101100000010111110100101111001010000110011010010111010010011001000110010110110001001001101111101010001111110000111010010110101111011011100111111000111110000000111110101110000001110101010110110100101101000011110001110000101100101000001011011101100100000011011000111100000001000110101100101000011011010110110
+   445.00ns ERROR    cocotb.prim_max_find                 Input valids: 1010000110100111
+   445.00ns ERROR    cocotb.prim_max_find                 Expected max value: 16064391, Got: 14091178
+   445.00ns ERROR    cocotb.prim_max_find                 Expected max index: 8, Got: 5
+   445.00ns ERROR    cocotb.prim_max_find                 Expected valid: True, Got: 1
+   445.00ns ERROR    cocotb.prim_max_find               Random Test 2/10 failed.
+   445.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 259, in test_prim_max_find
+                                                            await random_test(num_iterations=10)
+                                                          File "/src/test_prim_max_find.py", line 160, in random_test
+                                                            await apply_test(rand_values, rand_valids, expected_max, expected_idx, any_valid)
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   445.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         445.00           0.01      59298.18  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         445.00           0.04      11887.20  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+__________________________ test_prim_max_find[16-32] ___________________________
+
+NumSrc = 16, Width = 32
+
+    @pytest.mark.parametrize("NumSrc, Width", parameter_combinations)
+    def test_prim_max_find(NumSrc, Width):
+        """
+        Parameterized test_runner to verify the prim_max_find module for multiple NumSrc and Width values.
+        """
+        print(f"Running simulation with NumSrc = {NumSrc}, Width = {Width}")
+    
+        # Initialize the simulator runner
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'NumSrc': NumSrc,
+                'Width': Width
+            },
+            always=True,      # Rebuild every simulation run
+            clean=True,       # Clean up previous simulation data
+            waves=True,       # Generate waveform files
+            verbose=True,     # Enable verbose logging
+            timescale=("1ns", "1ps"),  # Set timescale
+            log_file=f"sim_NumSrc_{NumSrc}_Width_{Width}.log"  # Unique log file per parameter set
+        )
+    
+        # Run the simulation
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:62: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with NumSrc = 16, Width = 32
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s prim_max_find -g2012 -Pprim_max_find.NumSrc=16 -Pprim_max_find.Width=32 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/prim_max_find.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774683672
+     0.00ns INFO     cocotb.regression                  Found test test_prim_max_find.test_prim_max_find
+     0.00ns INFO     cocotb.regression                  running test_prim_max_find (1/1)
+                                                          Generic Testbench for the prim_max_find module using cocotb.
+                                                          It dynamically adapts to different NumSrc and Width configurations
+                                                          based on environment variables.
+     0.00ns INFO     cocotb.prim_max_find               Running test with NumSrc=16, Width=32
+    85.00ns INFO     cocotb.prim_max_find               Test passed.
+   145.00ns INFO     cocotb.prim_max_find               Test passed.
+   205.00ns INFO     cocotb.prim_max_find               Test passed.
+   265.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Test passed.
+   325.00ns INFO     cocotb.prim_max_find               Starting randomized tests...
+   385.00ns ERROR    cocotb.prim_max_find               Test failed:
+   385.00ns ERROR    cocotb.prim_max_find                 Input values: 10011100100000010110110001100110001001011010111101101110010001011111110101100011111011110011111100111100101001100100011001010100000111000010110010100000111101110111010000011001011011001010011001110011101010100110100010101001111111000011111001111011101110110101010101101010101110010101101110100011101111000001110010100001101001110001001100101101110000000001000111011011011001011001110001011111011000001111001000100110011100001110001110111000011011011110101110000010100000111011010100010101101101001101110011010000
+   385.00ns ERROR    cocotb.prim_max_find                 Input valids: 1101111111010010
+   385.00ns ERROR    cocotb.prim_max_find                 Expected max value: 4231953339, Got: 3951199157
+   385.00ns ERROR    cocotb.prim_max_find                 Expected max index: 8, Got: 1
+   385.00ns ERROR    cocotb.prim_max_find                 Expected valid: True, Got: 1
+   385.00ns ERROR    cocotb.prim_max_find               Random Test 1/10 failed.
+   385.00ns INFO     cocotb.regression                  test_prim_max_find failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_prim_max_find.py", line 259, in test_prim_max_find
+                                                            await random_test(num_iterations=10)
+                                                          File "/src/test_prim_max_find.py", line 160, in random_test
+                                                            await apply_test(rand_values, rand_valids, expected_max, expected_idx, any_valid)
+                                                          File "/src/test_prim_max_find.py", line 110, in apply_test
+                                                            assert False, "Test case failed."
+                                                        AssertionError: Test case failed.
+                                                        assert False
+   385.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_prim_max_find.test_prim_max_find   FAIL         385.00           0.01      57485.00  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         385.00           0.04      10537.17  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/prim_max_find.fst opened for output.
+=============================== warnings summary ===============================
+../../src/test_runner.py:7
+  /src/test_runner.py:7: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_prim_max_find[4-8] - SystemExit: ERROR:...
+FAILED ../../src/test_runner.py::test_prim_max_find[4-16] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[4-24] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[4-32] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[8-8] - SystemExit: ERROR:...
+FAILED ../../src/test_runner.py::test_prim_max_find[8-16] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[8-24] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[8-32] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[16-8] - SystemExit: ERROR...
+FAILED ../../src/test_runner.py::test_prim_max_find[16-16] - SystemExit: ERRO...
+FAILED ../../src/test_runner.py::test_prim_max_find[16-24] - SystemExit: ERRO...
+FAILED ../../src/test_runner.py::test_prim_max_find[16-32] - SystemExit: ERRO...
+======================== 12 failed, 1 warning in 2.05s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_prim_max_1_1774683662-direct:latest
+Deleted: sha256:91b886cc65e033fd176f5319cb227c8529ae2510e6c1a0ff260d91bdc8f917e7

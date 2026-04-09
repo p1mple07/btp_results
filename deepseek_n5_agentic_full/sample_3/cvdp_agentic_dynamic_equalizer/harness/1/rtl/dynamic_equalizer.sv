@@ -1,0 +1,1 @@
+/* Dynamic Equalizer Main Module */

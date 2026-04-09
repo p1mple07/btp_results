@@ -1,0 +1,483 @@
+Running harness with project name: cvdp_copilot_dot_product_12_1774103375
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774103378
+     0.00ns INFO     cocotb.regression                  running test_dot_product.test_case_reset_assert (1/7)
+                                                            Test Case: Reset behavior during computation.
+    20.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+    40.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 4
+    60.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 1, Valid = 0
+    80.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 2, Valid = 1
+   100.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 3, Valid = 1
+   120.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 4, Valid = 1
+   180.00ns INFO     cocotb.dot_product                 Inputs after reset: vector_a_in = 00000001, vector_b_in = 0000000000000100
+   180.00ns INFO     cocotb.dot_product                 Outputs after reset: dot_product_out = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, dot_product_valid_out = 0
+   180.00ns INFO     cocotb.regression                  test_dot_product.test_case_reset_assert failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_dot_product.py", line 91, in test_case_reset_assert
+                                                            assert dut.dot_product_out.value == 0, f"dot_product_out expected to be 0, got {int(dut.dot_product_out.value)}"
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 478, in __int__
+                                                            return self.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   180.00ns INFO     cocotb.regression                  running test_dot_product.test_case_length_4 (2/7)
+                                                            Test Case : Length 4.
+   221.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+   241.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 4
+   261.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 1, Valid = 0
+   281.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 2, Valid = 1
+   301.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 3, Valid = 1
+   321.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 4, Valid = 1
+   381.00ns INFO     cocotb.dot_product                 DUT Output: result = 10, valid = 1
+   381.00ns INFO     cocotb.dot_product                 Result matches expected value: 10
+   381.00ns INFO     cocotb.regression                  test_dot_product.test_case_length_4 passed
+   381.00ns INFO     cocotb.regression                  running test_dot_product.test_case_length_8 (3/7)
+                                                            Test Case : Length 8.
+   422.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+   442.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 8
+   462.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 1, Valid = 0
+   482.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 2, Valid = 1
+   502.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 3, Valid = 1
+   522.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 4, Valid = 1
+   542.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 5, Valid = 1
+   562.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 6, Valid = 1
+   582.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 7, Valid = 1
+   602.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 2, vector_b_in = 8, Valid = 1
+   662.00ns INFO     cocotb.dot_product                 DUT Output: result = 72, valid = 1
+   662.00ns INFO     cocotb.dot_product                 Result matches expected value: 72
+   662.00ns INFO     cocotb.regression                  test_dot_product.test_case_length_8 passed
+   662.00ns INFO     cocotb.regression                  running test_dot_product.test_case_random_length_6 (4/7)
+                                                            Test Case : Random Length 6.
+   703.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+   723.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 6
+   743.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 208, vector_b_in = 56270, Valid = 0
+   763.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 172, vector_b_in = 42031, Valid = 1
+   783.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 243, vector_b_in = 8610, Valid = 1
+   803.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 186, vector_b_in = 9424, Valid = 1
+   823.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 179, vector_b_in = 15490, Valid = 1
+   843.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 162, vector_b_in = 3896, Valid = 1
+   903.00ns INFO     cocotb.dot_product                 DUT Output: result = 26182448, valid = 1
+   903.00ns INFO     cocotb.dot_product                 Result matches expected value: 26182448
+   903.00ns INFO     cocotb.regression                  test_dot_product.test_case_random_length_6 passed
+   903.00ns INFO     cocotb.regression                  running test_dot_product.test_case_random_length_127 (5/7)
+                                                            Test Case : Random Length 127.
+   944.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+   964.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 127
+   984.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 91, vector_b_in = 42587, Valid = 0
+  1004.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 217, vector_b_in = 42831, Valid = 1
+  1024.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 70, vector_b_in = 16299, Valid = 1
+  1044.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 238, vector_b_in = 26951, Valid = 1
+  1064.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 161, vector_b_in = 1586, Valid = 1
+  1084.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 127, vector_b_in = 16596, Valid = 1
+  1104.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 164, vector_b_in = 51230, Valid = 1
+  1124.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 200, vector_b_in = 38747, Valid = 1
+  1144.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 82, vector_b_in = 42443, Valid = 1
+  1164.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 10, vector_b_in = 47425, Valid = 1
+  1184.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 211, vector_b_in = 10641, Valid = 1
+  1204.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 230, vector_b_in = 45569, Valid = 1
+  1224.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 24, vector_b_in = 42500, Valid = 1
+  1244.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 101, vector_b_in = 63237, Valid = 1
+  1264.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 138, vector_b_in = 40255, Valid = 1
+  1284.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 119, vector_b_in = 41041, Valid = 1
+  1304.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 193, vector_b_in = 30477, Valid = 1
+  1324.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 86, vector_b_in = 35794, Valid = 1
+  1344.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 129, vector_b_in = 32632, Valid = 1
+  1364.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 175, vector_b_in = 30721, Valid = 1
+  1384.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 152, vector_b_in = 59153, Valid = 1
+  1404.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 36, vector_b_in = 7772, Valid = 1
+  1424.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 252, vector_b_in = 10134, Valid = 1
+  1444.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 209, vector_b_in = 64482, Valid = 1
+  1464.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 3, vector_b_in = 54191, Valid = 1
+  1484.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 41, vector_b_in = 4431, Valid = 1
+  1504.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 220, vector_b_in = 31868, Valid = 1
+  1524.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 14, vector_b_in = 27018, Valid = 1
+  1544.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 71, vector_b_in = 36074, Valid = 1
+  1564.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 144, vector_b_in = 7764, Valid = 1
+  1584.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 146, vector_b_in = 17496, Valid = 1
+  1604.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 204, vector_b_in = 2968, Valid = 1
+  1624.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 19, vector_b_in = 42425, Valid = 1
+  1644.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 25, vector_b_in = 4359, Valid = 1
+  1664.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 72, vector_b_in = 54121, Valid = 1
+  1684.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 212, vector_b_in = 6198, Valid = 1
+  1704.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 90, vector_b_in = 19606, Valid = 1
+  1724.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 121, vector_b_in = 34245, Valid = 1
+  1744.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 182, vector_b_in = 34826, Valid = 1
+  1764.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 126, vector_b_in = 15356, Valid = 1
+  1784.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 35, vector_b_in = 52406, Valid = 1
+  1804.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 122, vector_b_in = 61917, Valid = 1
+  1824.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 196, vector_b_in = 14267, Valid = 1
+  1844.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 232, vector_b_in = 51511, Valid = 1
+  1864.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 201, vector_b_in = 7826, Valid = 1
+  1884.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 143, vector_b_in = 54681, Valid = 1
+  1904.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 40, vector_b_in = 33473, Valid = 1
+  1924.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 42, vector_b_in = 27763, Valid = 1
+  1944.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 29, vector_b_in = 27307, Valid = 1
+  1964.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 139, vector_b_in = 6331, Valid = 1
+  1984.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 191, vector_b_in = 32141, Valid = 1
+  2004.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 245, vector_b_in = 50038, Valid = 1
+  2024.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 119, vector_b_in = 65316, Valid = 1
+  2044.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 94, vector_b_in = 29499, Valid = 1
+  2064.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 21, vector_b_in = 18124, Valid = 1
+  2084.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 30, vector_b_in = 31226, Valid = 1
+  2104.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 159, vector_b_in = 32186, Valid = 1
+  2124.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 159, vector_b_in = 18222, Valid = 1
+  2144.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 204, vector_b_in = 6819, Valid = 1
+  2164.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 79, vector_b_in = 54662, Valid = 1
+  2184.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 174, vector_b_in = 25718, Valid = 1
+  2204.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 154, vector_b_in = 57909, Valid = 1
+  2224.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 245, vector_b_in = 58998, Valid = 1
+  2244.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 35, vector_b_in = 34594, Valid = 1
+  2264.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 21, vector_b_in = 3785, Valid = 1
+  2284.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 6, vector_b_in = 54503, Valid = 1
+  2304.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 120, vector_b_in = 22390, Valid = 1
+  2324.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 1, vector_b_in = 33419, Valid = 1
+  2344.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 70, vector_b_in = 44347, Valid = 1
+  2364.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 207, vector_b_in = 27442, Valid = 1
+  2384.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 171, vector_b_in = 5066, Valid = 1
+  2404.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 4, vector_b_in = 56117, Valid = 1
+  2424.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 92, vector_b_in = 26090, Valid = 1
+  2444.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 254, vector_b_in = 3291, Valid = 1
+  2464.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 143, vector_b_in = 788, Valid = 1
+  2484.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 53, vector_b_in = 64920, Valid = 1
+  2504.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 9, vector_b_in = 31069, Valid = 1
+  2524.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 224, vector_b_in = 489, Valid = 1
+  2544.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 172, vector_b_in = 49139, Valid = 1
+  2564.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 62, vector_b_in = 63500, Valid = 1
+  2584.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 77, vector_b_in = 41252, Valid = 1
+  2604.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 39, vector_b_in = 63684, Valid = 1
+  2624.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 34, vector_b_in = 23994, Valid = 1
+  2644.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 43, vector_b_in = 22883, Valid = 1
+  2664.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 182, vector_b_in = 50897, Valid = 1
+  2684.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 170, vector_b_in = 5586, Valid = 1
+  2704.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 82, vector_b_in = 45193, Valid = 1
+  2724.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 36, vector_b_in = 37061, Valid = 1
+  2744.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 222, vector_b_in = 2026, Valid = 1
+  2764.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 76, vector_b_in = 28518, Valid = 1
+  2784.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 238, vector_b_in = 8246, Valid = 1
+  2804.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 224, vector_b_in = 36168, Valid = 1
+  2824.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 177, vector_b_in = 23743, Valid = 1
+  2844.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 42, vector_b_in = 49880, Valid = 1
+  2864.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 248, vector_b_in = 6917, Valid = 1
+  2884.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 197, vector_b_in = 3263, Valid = 1
+  2904.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 98, vector_b_in = 16387, Valid = 1
+  2924.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 161, vector_b_in = 855, Valid = 1
+  2944.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 130, vector_b_in = 384, Valid = 1
+  2964.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 68, vector_b_in = 35671, Valid = 1
+  2984.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 143, vector_b_in = 63567, Valid = 1
+  3004.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 36, vector_b_in = 36935, Valid = 1
+  3024.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 182, vector_b_in = 31977, Valid = 1
+  3044.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 243, vector_b_in = 1045, Valid = 1
+  3064.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 45, vector_b_in = 22164, Valid = 1
+  3084.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 111, vector_b_in = 1189, Valid = 1
+  3104.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 174, vector_b_in = 2931, Valid = 1
+  3124.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 29, vector_b_in = 33773, Valid = 1
+  3144.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 49, vector_b_in = 23796, Valid = 1
+  3164.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 227, vector_b_in = 33067, Valid = 1
+  3184.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 248, vector_b_in = 49370, Valid = 1
+  3204.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 219, vector_b_in = 43111, Valid = 1
+  3224.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 7, vector_b_in = 61891, Valid = 1
+  3244.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 237, vector_b_in = 61776, Valid = 1
+  3264.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 145, vector_b_in = 42936, Valid = 1
+  3284.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 77, vector_b_in = 10412, Valid = 1
+  3304.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 133, vector_b_in = 9700, Valid = 1
+  3324.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 187, vector_b_in = 55925, Valid = 1
+  3344.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 250, vector_b_in = 483, Valid = 1
+  3364.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 3, vector_b_in = 51550, Valid = 1
+  3384.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 36, vector_b_in = 17018, Valid = 1
+  3404.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 164, vector_b_in = 62394, Valid = 1
+  3424.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 71, vector_b_in = 54547, Valid = 1
+  3444.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 97, vector_b_in = 22852, Valid = 1
+  3464.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 28, vector_b_in = 60310, Valid = 1
+  3484.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 105, vector_b_in = 9453, Valid = 1
+  3504.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 177, vector_b_in = 13912, Valid = 1
+  3564.00ns INFO     cocotb.dot_product                 DUT Output: result = 449752929, valid = 1
+  3564.00ns INFO     cocotb.dot_product                 Result matches expected value: 449752929
+  3564.00ns INFO     cocotb.regression                  test_dot_product.test_case_random_length_127 passed
+  3564.00ns INFO     cocotb.regression                  running test_dot_product.test_case_random_length_99 (6/7)
+                                                            Test Case : Random Length 99.
+  3605.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+  3625.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 99
+  3645.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 91, vector_b_in = 56347, Valid = 0
+  3665.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 56, vector_b_in = 62716, Valid = 1
+  3685.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 41, vector_b_in = 29781, Valid = 1
+  3705.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 160, vector_b_in = 5096, Valid = 1
+  3725.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 85, vector_b_in = 28617, Valid = 1
+  3745.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 238, vector_b_in = 64440, Valid = 1
+  3765.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 213, vector_b_in = 61803, Valid = 1
+  3785.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 136, vector_b_in = 35642, Valid = 1
+  3805.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 251, vector_b_in = 50131, Valid = 1
+  3825.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 216, vector_b_in = 7923, Valid = 1
+  3845.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 184, vector_b_in = 17568, Valid = 1
+  3865.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 144, vector_b_in = 62664, Valid = 1
+  3885.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 213, vector_b_in = 43328, Valid = 1
+  3905.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 134, vector_b_in = 29157, Valid = 1
+  3925.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 193, vector_b_in = 59644, Valid = 1
+  3945.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 183, vector_b_in = 48459, Valid = 1
+  3965.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 202, vector_b_in = 26126, Valid = 1
+  3985.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 151, vector_b_in = 31716, Valid = 1
+  4005.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 213, vector_b_in = 27913, Valid = 1
+  4025.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 150, vector_b_in = 16344, Valid = 1
+  4045.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 37, vector_b_in = 5410, Valid = 1
+  4065.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 86, vector_b_in = 47724, Valid = 1
+  4085.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 175, vector_b_in = 42717, Valid = 1
+  4105.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 243, vector_b_in = 5898, Valid = 1
+  4125.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 55, vector_b_in = 45433, Valid = 1
+  4145.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 44, vector_b_in = 39206, Valid = 1
+  4165.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 19, vector_b_in = 51775, Valid = 1
+  4185.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 129, vector_b_in = 53666, Valid = 1
+  4205.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 244, vector_b_in = 27317, Valid = 1
+  4225.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 33, vector_b_in = 47969, Valid = 1
+  4245.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 152, vector_b_in = 36493, Valid = 1
+  4265.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 118, vector_b_in = 52051, Valid = 1
+  4285.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 186, vector_b_in = 60911, Valid = 1
+  4305.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 216, vector_b_in = 50675, Valid = 1
+  4325.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 77, vector_b_in = 16820, Valid = 1
+  4345.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 92, vector_b_in = 1557, Valid = 1
+  4365.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 178, vector_b_in = 30643, Valid = 1
+  4385.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 68, vector_b_in = 43248, Valid = 1
+  4405.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 134, vector_b_in = 27650, Valid = 1
+  4425.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 120, vector_b_in = 44352, Valid = 1
+  4445.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 100, vector_b_in = 60919, Valid = 1
+  4465.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 246, vector_b_in = 51102, Valid = 1
+  4485.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 176, vector_b_in = 63390, Valid = 1
+  4505.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 183, vector_b_in = 43718, Valid = 1
+  4525.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 29, vector_b_in = 24350, Valid = 1
+  4545.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 105, vector_b_in = 55411, Valid = 1
+  4565.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 57, vector_b_in = 28492, Valid = 1
+  4585.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 199, vector_b_in = 44386, Valid = 1
+  4605.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 218, vector_b_in = 40654, Valid = 1
+  4625.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 211, vector_b_in = 30592, Valid = 1
+  4645.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 186, vector_b_in = 16793, Valid = 1
+  4665.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 63, vector_b_in = 167, Valid = 1
+  4685.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 242, vector_b_in = 32721, Valid = 1
+  4705.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 68, vector_b_in = 56179, Valid = 1
+  4725.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 198, vector_b_in = 61232, Valid = 1
+  4745.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 195, vector_b_in = 58747, Valid = 1
+  4765.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 84, vector_b_in = 55487, Valid = 1
+  4785.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 29, vector_b_in = 40244, Valid = 1
+  4805.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 125, vector_b_in = 6791, Valid = 1
+  4825.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 251, vector_b_in = 14420, Valid = 1
+  4845.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 72, vector_b_in = 54590, Valid = 1
+  4865.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 33, vector_b_in = 55650, Valid = 1
+  4885.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 215, vector_b_in = 33937, Valid = 1
+  4905.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 157, vector_b_in = 50346, Valid = 1
+  4925.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 20, vector_b_in = 60345, Valid = 1
+  4945.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 72, vector_b_in = 36202, Valid = 1
+  4965.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 163, vector_b_in = 7063, Valid = 1
+  4985.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 168, vector_b_in = 59723, Valid = 1
+  5005.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 183, vector_b_in = 30405, Valid = 1
+  5025.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 77, vector_b_in = 32121, Valid = 1
+  5045.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 29, vector_b_in = 1706, Valid = 1
+  5065.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 112, vector_b_in = 35938, Valid = 1
+  5085.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 113, vector_b_in = 38087, Valid = 1
+  5105.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 252, vector_b_in = 40494, Valid = 1
+  5125.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 75, vector_b_in = 50399, Valid = 1
+  5145.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 173, vector_b_in = 8100, Valid = 1
+  5165.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 233, vector_b_in = 50585, Valid = 1
+  5185.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 111, vector_b_in = 40954, Valid = 1
+  5205.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 92, vector_b_in = 49330, Valid = 1
+  5225.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 115, vector_b_in = 53993, Valid = 1
+  5245.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 122, vector_b_in = 57231, Valid = 1
+  5265.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 203, vector_b_in = 23544, Valid = 1
+  5285.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 40, vector_b_in = 50360, Valid = 1
+  5305.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 36, vector_b_in = 28776, Valid = 1
+  5325.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 14, vector_b_in = 9662, Valid = 1
+  5345.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 204, vector_b_in = 60035, Valid = 1
+  5365.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 255, vector_b_in = 6670, Valid = 1
+  5385.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 223, vector_b_in = 35613, Valid = 1
+  5405.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 234, vector_b_in = 24892, Valid = 1
+  5425.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 151, vector_b_in = 13363, Valid = 1
+  5445.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 110, vector_b_in = 10673, Valid = 1
+  5465.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 192, vector_b_in = 40471, Valid = 1
+  5485.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 20, vector_b_in = 24832, Valid = 1
+  5505.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 229, vector_b_in = 39151, Valid = 1
+  5525.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 174, vector_b_in = 52318, Valid = 1
+  5545.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 53, vector_b_in = 49404, Valid = 1
+  5565.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 183, vector_b_in = 51724, Valid = 1
+  5585.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 176, vector_b_in = 2968, Valid = 1
+  5605.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 46, vector_b_in = 5809, Valid = 1
+  5665.00ns INFO     cocotb.dot_product                 DUT Output: result = 510180300, valid = 1
+  5665.00ns INFO     cocotb.dot_product                 Result matches expected value: 510180300
+  5665.00ns INFO     cocotb.regression                  test_dot_product.test_case_random_length_99 passed
+  5665.00ns INFO     cocotb.regression                  running test_dot_product.test_case_random_vectors_and_length (7/7)
+                                                            Test Case : Random Length.
+  5706.00ns INFO     cocotb.dot_product                 DUT Initialized: Reset Deasserted.
+  5706.00ns INFO     cocotb.dot_product                 Random Length: 108
+  5726.00ns INFO     cocotb.dot_product                 Sending Vectors: Length = 108
+  5746.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 241, vector_b_in = 61332, Valid = 0
+  5766.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 163, vector_b_in = 50874, Valid = 1
+  5786.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 220, vector_b_in = 63787, Valid = 1
+  5806.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 26, vector_b_in = 25796, Valid = 1
+  5826.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 183, vector_b_in = 58965, Valid = 1
+  5846.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 73, vector_b_in = 60583, Valid = 1
+  5866.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 114, vector_b_in = 62376, Valid = 1
+  5886.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 94, vector_b_in = 59748, Valid = 1
+  5906.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 46, vector_b_in = 29388, Valid = 1
+  5926.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 158, vector_b_in = 13506, Valid = 1
+  5946.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 246, vector_b_in = 37637, Valid = 1
+  5966.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 177, vector_b_in = 14576, Valid = 1
+  5986.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 63, vector_b_in = 1204, Valid = 1
+  6006.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 3, vector_b_in = 8018, Valid = 1
+  6026.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 58, vector_b_in = 16392, Valid = 1
+  6046.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 25, vector_b_in = 19379, Valid = 1
+  6066.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 237, vector_b_in = 15144, Valid = 1
+  6086.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 86, vector_b_in = 56972, Valid = 1
+  6106.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 175, vector_b_in = 21250, Valid = 1
+  6126.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 0, vector_b_in = 3149, Valid = 1
+  6146.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 105, vector_b_in = 52766, Valid = 1
+  6166.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 94, vector_b_in = 50141, Valid = 1
+  6186.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 113, vector_b_in = 4314, Valid = 1
+  6206.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 85, vector_b_in = 45194, Valid = 1
+  6226.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 58, vector_b_in = 49891, Valid = 1
+  6246.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 97, vector_b_in = 6889, Valid = 1
+  6266.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 165, vector_b_in = 54180, Valid = 1
+  6286.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 144, vector_b_in = 8832, Valid = 1
+  6306.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 254, vector_b_in = 852, Valid = 1
+  6326.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 116, vector_b_in = 45076, Valid = 1
+  6346.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 118, vector_b_in = 16658, Valid = 1
+  6366.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 44, vector_b_in = 15303, Valid = 1
+  6386.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 100, vector_b_in = 41733, Valid = 1
+  6406.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 223, vector_b_in = 52076, Valid = 1
+  6426.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 169, vector_b_in = 16034, Valid = 1
+  6446.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 16, vector_b_in = 18485, Valid = 1
+  6466.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 56, vector_b_in = 45616, Valid = 1
+  6486.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 109, vector_b_in = 20598, Valid = 1
+  6506.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 202, vector_b_in = 48475, Valid = 1
+  6526.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 170, vector_b_in = 20888, Valid = 1
+  6546.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 91, vector_b_in = 40159, Valid = 1
+  6566.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 211, vector_b_in = 29948, Valid = 1
+  6586.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 65, vector_b_in = 37704, Valid = 1
+  6606.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 228, vector_b_in = 23791, Valid = 1
+  6626.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 0, vector_b_in = 46799, Valid = 1
+  6646.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 80, vector_b_in = 30004, Valid = 1
+  6666.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 124, vector_b_in = 11515, Valid = 1
+  6686.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 152, vector_b_in = 46403, Valid = 1
+  6706.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 13, vector_b_in = 29917, Valid = 1
+  6726.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 92, vector_b_in = 30374, Valid = 1
+  6746.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 243, vector_b_in = 61012, Valid = 1
+  6766.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 184, vector_b_in = 9395, Valid = 1
+  6786.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 254, vector_b_in = 19394, Valid = 1
+  6806.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 54, vector_b_in = 10722, Valid = 1
+  6826.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 117, vector_b_in = 58522, Valid = 1
+  6846.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 62, vector_b_in = 30718, Valid = 1
+  6866.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 206, vector_b_in = 30679, Valid = 1
+  6886.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 224, vector_b_in = 59934, Valid = 1
+  6906.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 73, vector_b_in = 7164, Valid = 1
+  6926.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 52, vector_b_in = 25182, Valid = 1
+  6946.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 43, vector_b_in = 57502, Valid = 1
+  6966.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 229, vector_b_in = 46891, Valid = 1
+  6986.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 37, vector_b_in = 43115, Valid = 1
+  7006.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 45, vector_b_in = 13982, Valid = 1
+  7026.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 17, vector_b_in = 59851, Valid = 1
+  7046.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 79, vector_b_in = 63992, Valid = 1
+  7066.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 122, vector_b_in = 31251, Valid = 1
+  7086.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 247, vector_b_in = 27973, Valid = 1
+  7106.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 178, vector_b_in = 54762, Valid = 1
+  7126.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 54, vector_b_in = 43437, Valid = 1
+  7146.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 219, vector_b_in = 34893, Valid = 1
+  7166.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 158, vector_b_in = 49935, Valid = 1
+  7186.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 89, vector_b_in = 31955, Valid = 1
+  7206.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 172, vector_b_in = 15014, Valid = 1
+  7226.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 16, vector_b_in = 1629, Valid = 1
+  7246.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 47, vector_b_in = 48074, Valid = 1
+  7266.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 208, vector_b_in = 23695, Valid = 1
+  7286.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 103, vector_b_in = 54256, Valid = 1
+  7306.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 178, vector_b_in = 30582, Valid = 1
+  7326.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 191, vector_b_in = 8604, Valid = 1
+  7346.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 96, vector_b_in = 54732, Valid = 1
+  7366.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 135, vector_b_in = 45210, Valid = 1
+  7386.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 44, vector_b_in = 55010, Valid = 1
+  7406.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 73, vector_b_in = 24581, Valid = 1
+  7426.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 162, vector_b_in = 21407, Valid = 1
+  7446.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 42, vector_b_in = 11868, Valid = 1
+  7466.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 30, vector_b_in = 59975, Valid = 1
+  7486.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 91, vector_b_in = 16337, Valid = 1
+  7506.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 97, vector_b_in = 42725, Valid = 1
+  7526.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 199, vector_b_in = 40375, Valid = 1
+  7546.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 140, vector_b_in = 30425, Valid = 1
+  7566.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 185, vector_b_in = 39001, Valid = 1
+  7586.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 174, vector_b_in = 1483, Valid = 1
+  7606.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 100, vector_b_in = 40657, Valid = 1
+  7626.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 249, vector_b_in = 61845, Valid = 1
+  7646.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 177, vector_b_in = 4919, Valid = 1
+  7666.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 110, vector_b_in = 21067, Valid = 1
+  7686.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 63, vector_b_in = 5326, Valid = 1
+  7706.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 203, vector_b_in = 21431, Valid = 1
+  7726.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 209, vector_b_in = 11580, Valid = 1
+  7746.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 40, vector_b_in = 59523, Valid = 1
+  7766.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 86, vector_b_in = 33225, Valid = 1
+  7786.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 83, vector_b_in = 42966, Valid = 1
+  7806.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 219, vector_b_in = 36118, Valid = 1
+  7826.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 86, vector_b_in = 16130, Valid = 1
+  7846.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 27, vector_b_in = 52974, Valid = 1
+  7866.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 12, vector_b_in = 16538, Valid = 1
+  7886.00ns INFO     cocotb.dot_product                 Input Vectors: vector_a_in = 130, vector_b_in = 42071, Valid = 1
+  7946.00ns INFO     cocotb.dot_product                 DUT Output: result = 439326964, valid = 1
+  7946.00ns INFO     cocotb.dot_product                 Result matches expected value: 439326964
+  7946.00ns INFO     cocotb.regression                  test_dot_product.test_case_random_vectors_and_length passed
+  7946.00ns INFO     cocotb.regression                  **************************************************************************************************************
+                                                        ** TEST                                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************************
+                                                        ** test_dot_product.test_case_reset_assert                FAIL         180.00           0.00      64754.67  **
+                                                        ** test_dot_product.test_case_length_4                    PASS         201.00           0.00     104532.56  **
+                                                        ** test_dot_product.test_case_length_8                    PASS         281.00           0.00     107096.72  **
+                                                        ** test_dot_product.test_case_random_length_6             PASS         241.00           0.00     117061.64  **
+                                                        ** test_dot_product.test_case_random_length_127           PASS        2661.00           0.02     110413.55  **
+                                                        ** test_dot_product.test_case_random_length_99            PASS        2101.00           0.02     111767.96  **
+                                                        ** test_dot_product.test_case_random_vectors_and_length   PASS        2281.00           0.02     111914.18  **
+                                                        **************************************************************************************************************
+                                                        ** TESTS=7 PASS=6 FAIL=1 SKIP=0                                       7946.00           0.08      99889.52  **
+                                                        **************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/dot_product.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+        runner = get_runner(sim)
+    
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log"
+        )
+>       runner.test(hdl_toplevel=toplevel, test_module=module,waves=True)
+E       SystemExit: ERROR: Failed 1 of 7 tests.
+
+/src/test_runner.py:27: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+======================== 1 failed, 3 warnings in 0.24s =========================
+Cleaning up Docker resources...

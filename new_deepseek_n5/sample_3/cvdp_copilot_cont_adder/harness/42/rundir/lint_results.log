@@ -1,0 +1,83 @@
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:79:66: Operator DIV expects 32 bits on the RHS, but RHS's VARREF 'window_size' generates 16 bits.
+                                                   : ... note: In instance 'cont_adder'
+   79 |                     avg_out      <= (sum_accum + weighted_input) / window_size;
+      |                                                                  ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-MULTIDRIVEN: /code/rtl/cont_adder.sv:68:13: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'threshold_1'
+                                                   : ... note: In instance 'cont_adder'
+                      /code/rtl/cont_adder.sv:68:13: 
+   68 |             threshold_1   <= 0;
+      |             ^~~~~~~~~~~
+                      /code/rtl/cont_adder.sv:56:13: ... Location of always_comb write
+   56 |             threshold_1 = threshold_1_comb;
+      |             ^~~~~~~~~~~
+%Warning-MULTIDRIVEN: /code/rtl/cont_adder.sv:69:13: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'threshold_2'
+                                                   : ... note: In instance 'cont_adder'
+                      /code/rtl/cont_adder.sv:69:13: 
+   69 |             threshold_2   <= 0;
+      |             ^~~~~~~~~~~
+                      /code/rtl/cont_adder.sv:57:13: ... Location of always_comb write
+   57 |             threshold_2 = threshold_2_comb;
+      |             ^~~~~~~~~~~
+%Warning-MULTIDRIVEN: /code/rtl/cont_adder.sv:71:13: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'threshold_1'
+                                                   : ... note: In instance 'cont_adder'
+                      /code/rtl/cont_adder.sv:71:13: 
+   71 |             threshold_1 <= threshold_1_comb;
+      |             ^~~~~~~~~~~
+                      /code/rtl/cont_adder.sv:68:13: ... Location of always_comb write
+   68 |             threshold_1   <= 0;
+      |             ^~~~~~~~~~~
+%Warning-MULTIDRIVEN: /code/rtl/cont_adder.sv:72:13: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'threshold_2'
+                                                   : ... note: In instance 'cont_adder'
+                      /code/rtl/cont_adder.sv:72:13: 
+   72 |             threshold_2 <= threshold_2_comb;
+      |             ^~~~~~~~~~~
+                      /code/rtl/cont_adder.sv:69:13: ... Location of always_comb write
+   69 |             threshold_2   <= 0;
+      |             ^~~~~~~~~~~
+%Warning-LATCH: /code/rtl/cont_adder.sv:32:5: Latch inferred for signal 'threshold_1' (not all control paths of combinational always assign a value)
+                                            : ... Suggest use of always_latch for intentional latches
+   32 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Warning-LATCH: /code/rtl/cont_adder.sv:32:5: Latch inferred for signal 'threshold_2' (not all control paths of combinational always assign a value)
+                                            : ... Suggest use of always_latch for intentional latches
+   32 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Error-BLKANDNBLK: /code/rtl/cont_adder.sv:15:42: Unsupported: Blocked and non-blocking assignments to same variable: 'threshold_1'
+   15 |     output logic                         threshold_1,
+      |                                          ^~~~~~~~~~~
+                   /code/rtl/cont_adder.sv:56:25: ... Location of blocking assignment
+   56 |             threshold_1 = threshold_1_comb;
+      |                         ^
+                   /code/rtl/cont_adder.sv:68:27: ... Location of nonblocking assignment
+   68 |             threshold_1   <= 0;
+      |                           ^~
+%Error-BLKANDNBLK: /code/rtl/cont_adder.sv:15:42: Unsupported: Blocked and non-blocking assignments to same variable: 'threshold_1'
+   15 |     output logic                         threshold_1,
+      |                                          ^~~~~~~~~~~
+                   /code/rtl/cont_adder.sv:56:25: ... Location of blocking assignment
+   56 |             threshold_1 = threshold_1_comb;
+      |                         ^
+                   /code/rtl/cont_adder.sv:71:25: ... Location of nonblocking assignment
+   71 |             threshold_1 <= threshold_1_comb;
+      |                         ^~
+%Error-BLKANDNBLK: /code/rtl/cont_adder.sv:16:42: Unsupported: Blocked and non-blocking assignments to same variable: 'threshold_2'
+   16 |     output logic                         threshold_2,
+      |                                          ^~~~~~~~~~~
+                   /code/rtl/cont_adder.sv:57:25: ... Location of blocking assignment
+   57 |             threshold_2 = threshold_2_comb;
+      |                         ^
+                   /code/rtl/cont_adder.sv:69:27: ... Location of nonblocking assignment
+   69 |             threshold_2   <= 0;
+      |                           ^~
+%Error-BLKANDNBLK: /code/rtl/cont_adder.sv:16:42: Unsupported: Blocked and non-blocking assignments to same variable: 'threshold_2'
+   16 |     output logic                         threshold_2,
+      |                                          ^~~~~~~~~~~
+                   /code/rtl/cont_adder.sv:57:25: ... Location of blocking assignment
+   57 |             threshold_2 = threshold_2_comb;
+      |                         ^
+                   /code/rtl/cont_adder.sv:72:25: ... Location of nonblocking assignment
+   72 |             threshold_2 <= threshold_2_comb;
+      |                         ^~
+%Error: Exiting due to 4 error(s), 7 warning(s)

@@ -1,0 +1,91 @@
+Running harness with project name: cvdp_copilot_flop_2_1774766673
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner FAILED                             [100%]
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        # List from Files
+        verilog_sources = os.getenv("VERILOG_SOURCES").split()
+    
+        # Language of Top Level File
+        toplevel_lang   = os.getenv("TOPLEVEL_LANG")
+    
+        sim             = os.getenv("SIM", "icarus")
+        toplevel        = os.getenv("TOPLEVEL")
+        module          = os.getenv("MODULE")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log",
+    
+        )
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:37: SystemExit
+----------------------------- Captured stdout call -----------------------------
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774766675
+     0.00ns INFO     cocotb.regression                  running test_JK_flipflop.test_JK_flipflop (1/1)
+                                                            Comprehensive test for JK Flip-Flop without using vectors
+    75.00ns INFO     cocotb.regression                  test_JK_flipflop.test_JK_flipflop failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_JK_flipflop.py", line 60, in test_JK_flipflop
+                                                            assert dut.o_Q_b.value == ~expected_Q & 0x1, f"Toggle state failed: o_Q_b={dut.o_Q_b.value} expected {~expected_Q & 0x1}"
+                                                        AssertionError: Toggle state failed: o_Q_b=0 expected 1
+                                                        assert LogicArray('0', Range(0, 'downto', 0)) == (~False & 1)
+                                                         +  where LogicArray('0', Range(0, 'downto', 0)) = LogicObject(JK_flipflop.o_Q_b).value
+                                                         +    where LogicObject(JK_flipflop.o_Q_b) = HierarchyObject(JK_flipflop).o_Q_b
+    75.00ns INFO     cocotb.regression                  *******************************************************************************************
+                                                        ** TEST                               STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *******************************************************************************************
+                                                        ** test_JK_flipflop.test_JK_flipflop   FAIL          75.00           0.00      42613.49  **
+                                                        *******************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                      75.00           0.01      11700.68  **
+                                                        *******************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/JK_flipflop.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_JK_flipflop.py:30: DeprecationWarning: `.integer` property is deprecated. Use `value.to_unsigned()` instead.
+  expected_Q = dut.o_Q.value.integer  # Should retain the previous state
+/src/test_JK_flipflop.py:56: DeprecationWarning: `.integer` property is deprecated. Use `value.to_unsigned()` instead.
+  expected_Q = not dut.o_Q.value.integer
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+======================== 1 failed, 3 warnings in 0.18s =========================
+Cleaning up Docker resources...

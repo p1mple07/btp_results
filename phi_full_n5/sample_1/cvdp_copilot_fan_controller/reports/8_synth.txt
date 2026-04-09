@@ -1,0 +1,158 @@
+Running harness with project name: cvdp_copilot_fan_controller_8_1774014129
+#1 [internal] load local bake definitions
+#1 reading from stdin 726B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.1s done
+#5 DONE 0.2s
+
+#6 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#6 DONE 0.3s
+
+#7 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#7 CACHED
+
+#8 [3/4] RUN python3 ./get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:13276e7a2269ea02953ea0f3269048797ff06c9dce626018bc717d8f1421a509
+#10 exporting manifest sha256:13276e7a2269ea02953ea0f3269048797ff06c9dce626018bc717d8f1421a509 0.2s done
+#10 exporting config sha256:2beae658abb8bd7c29a7b53071111f6182440e81d4859fdbf3538a1d177e1a2d
+#10 exporting config sha256:2beae658abb8bd7c29a7b53071111f6182440e81d4859fdbf3538a1d177e1a2d 0.3s done
+#10 exporting attestation manifest sha256:ad2bf5960be987dfff587b03d36dad4231826645e25195474800860da2fe6823
+#10 exporting attestation manifest sha256:ad2bf5960be987dfff587b03d36dad4231826645e25195474800860da2fe6823 0.5s done
+#10 exporting manifest list sha256:a42d1d9b821e7ab7251b14e573c24334bbe4adf2a45ac5638fc632829143a773
+#10 exporting manifest list sha256:a42d1d9b821e7ab7251b14e573c24334bbe4adf2a45ac5638fc632829143a773 0.2s done
+#10 naming to docker.io/library/cvdp_copilot_fan_controller_8_1774014129-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_fan_controller_8_1774014129-synth:latest 0.0s done
+#10 unpacking to docker.io/library/cvdp_copilot_fan_controller_8_1774014129-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_fan_controller_8_1774014129-synth:latest 0.9s done
+#10 DONE 2.4s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/fan_controller.sv
+Parsing SystemVerilog input from `/code/rtl/fan_controller.sv' to AST representation.
+Generating RTLIL representation for module `\fan_controller'.
+/code/rtl/fan_controller.sv:26: Warning: Identifier `\speed_control' is implicitly declared.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \fan_controller
+
+2.2. Analyzing design hierarchy..
+Top module:  \fan_controller
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module fan_controller...
+Warning: Wire fan_controller.\prdata [7] is used but has no driver.
+Warning: Wire fan_controller.\prdata [6] is used but has no driver.
+Warning: Wire fan_controller.\prdata [5] is used but has no driver.
+Warning: Wire fan_controller.\prdata [4] is used but has no driver.
+Warning: Wire fan_controller.\prdata [3] is used but has no driver.
+Warning: Wire fan_controller.\prdata [2] is used but has no driver.
+Warning: Wire fan_controller.\prdata [1] is used but has no driver.
+Warning: Wire fan_controller.\prdata [0] is used but has no driver.
+Warning: Wire fan_controller.\pready is used but has no driver.
+Warning: Wire fan_controller.\pslverr is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [7] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [6] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [5] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [4] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [3] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [2] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [1] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_LOW [0] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [7] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [6] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [5] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [4] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [3] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [2] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [1] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_MED [0] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [7] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [6] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [5] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [4] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [3] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [2] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [1] is used but has no driver.
+Warning: Wire fan_controller.\temp_adc_in [0] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [7] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [6] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [5] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [4] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [3] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [2] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [1] is used but has no driver.
+Warning: Wire fan_controller.\TEMP_HIGH [0] is used but has no driver.
+
+Yosys Synthesis Log Comparison:
+{}
+True
+No upgrades in synthesis: Errors detected in the after log. Synthesis failed.
+PASSED
+
+=============================== warnings summary ===============================
+synth.py::test_yosys
+  /usr/local/lib/python3.9/dist-packages/_pytest/python.py:163: PytestReturnNotNoneWarning: Expected None, but synth.py::test_yosys returned False, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 1 passed, 1 warning in 0.01s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_fan_controller_8_1774014129-synth:latest
+Deleted: sha256:a42d1d9b821e7ab7251b14e573c24334bbe4adf2a45ac5638fc632829143a773

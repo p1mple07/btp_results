@@ -1,0 +1,41 @@
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:55:42: Operator AND expects 4 bits on the LHS, but LHS's VARREF 'push' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   55 |       w_count_bin <= w_count_bin + (push & ~w_full);
+      |                                          ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:55:44: Operator NOT expects 4 bits on the LHS, but LHS's VARREF 'w_full' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   55 |       w_count_bin <= w_count_bin + (push & ~w_full);
+      |                                            ^
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:64:41: Operator AND expects 4 bits on the LHS, but LHS's VARREF 'pop' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   64 |       w_count_bin <= r_count_bin + (pop & ~r_empty);
+      |                                         ^
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:64:43: Operator NOT expects 4 bits on the LHS, but LHS's VARREF 'r_empty' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   64 |       w_count_bin <= r_count_bin + (pop & ~r_empty);
+      |                                           ^
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:75:40: Operator NEQ expects 4 bits on the LHS, but LHS's SEL generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   75 |     w_full <= (w_count_bin[ADDR_WIDTH] != r_ptr);
+      |                                        ^~
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:80:22: Operator EQ expects 4 bits on the RHS, but RHS's SEL generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   80 |     if (pop && r_ptr == w_count_bin[ADDR_WIDTH]) begin
+      |                      ^~
+%Warning-MULTIDRIVEN: /code/rtl/async_filo.sv:40:24: Signal has multiple driving blocks with different clocking: 'async_filo.w_count_bin'
+                      /code/rtl/async_filo.sv:61:7: ... Location of first driving block
+   61 |       w_count_bin <= 0;
+      |       ^~~~~~~~~~~
+                      /code/rtl/async_filo.sv:51:7: ... Location of other driving block
+   51 |       w_count_bin <= 0;
+      |       ^~~~~~~~~~~
+%Warning-MULTIDRIVEN: /code/rtl/async_filo.sv:24:24: Signal has multiple driving blocks with different clocking: 'async_filo.r_ptr'
+                      /code/rtl/async_filo.sv:62:7: ... Location of first driving block
+   62 |       r_ptr <= 0;
+      |       ^~~~~
+                      /code/rtl/async_filo.sv:50:7: ... Location of other driving block
+   50 |       r_ptr <= 0;
+      |       ^~~~~
+%Error: Exiting due to 8 warning(s)

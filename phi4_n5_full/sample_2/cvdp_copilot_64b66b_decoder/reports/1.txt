@@ -1,0 +1,165 @@
+Running harness with project name: cvdp_copilot_64b66b_decoder_1_1774681256
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774681258
+     0.00ns INFO     cocotb.regression                  running test_decoder_64b66b.reset_test (1/6)
+                                                            Test the reset behavior of the decoder 
+    80.00ns INFO     cocotb.decoder_64b66b              Reset Test:
+                                                          decoder_data_out: 0x0
+                                                          Expected: 0
+    80.00ns INFO     cocotb.regression                  test_decoder_64b66b.reset_test passed
+    80.00ns INFO     cocotb.regression                  running test_decoder_64b66b.valid_data_test (2/6)
+                                                            Test decoding when the sync header indicates valid data 
+   141.00ns INFO     cocotb.decoder_64b66b              Valid Data Test:
+                                                          decoder_data_in: 0x1a5a5a5a5a5a5a5a5
+   151.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0xa5a5a5a5a5a5a5a5
+                                                          Expected decoder_data_out: 0xa5a5a5a5a5a5a5a5
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   151.00ns INFO     cocotb.regression                  test_decoder_64b66b.valid_data_test passed
+   151.00ns INFO     cocotb.regression                  running test_decoder_64b66b.unsupported_control_test (3/6)
+                                                            Test decoding when the sync header indicates unsupported control 
+   212.00ns INFO     cocotb.decoder_64b66b              Unsupported Control Test:
+                                                          decoder_data_in: 0x2ffffffffffffffff
+   222.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   222.00ns INFO     cocotb.regression                  test_decoder_64b66b.unsupported_control_test passed
+   222.00ns INFO     cocotb.regression                  running test_decoder_64b66b.invalid_sync_test (4/6)
+                                                            Test decoding when the sync header is invalid 
+   283.00ns INFO     cocotb.decoder_64b66b              Invalid Sync Test:
+                                                          decoder_data_in: 0x123456789abcdef0
+   293.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   303.00ns INFO     cocotb.decoder_64b66b              Invalid Sync Test:
+                                                          decoder_data_in: 0x3123456789abcdef0
+   313.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   313.00ns INFO     cocotb.regression                  test_decoder_64b66b.invalid_sync_test passed
+   313.00ns INFO     cocotb.regression                  running test_decoder_64b66b.random_Any_sync_header_data_test (5/6)
+                                                            Test decoding with random sync headers and data 
+   374.00ns INFO     cocotb.decoder_64b66b              Random Test 1:
+                                                          decoder_data_in: 0x321d29de64e3ed801
+   384.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   394.00ns INFO     cocotb.decoder_64b66b              Random Test 2:
+                                                          decoder_data_in: 0x28378fb96adf2b8a1
+   404.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   414.00ns INFO     cocotb.decoder_64b66b              Random Test 3:
+                                                          decoder_data_in: 0x23fc19c9b4e27eb20
+   424.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   434.00ns INFO     cocotb.decoder_64b66b              Random Test 4:
+                                                          decoder_data_in: 0x186fe9e1b2b7e2a8d
+   444.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x86fe9e1b2b7e2a8d
+                                                          Expected decoder_data_out: 0x86fe9e1b2b7e2a8d
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   454.00ns INFO     cocotb.decoder_64b66b              Random Test 5:
+                                                          decoder_data_in: 0x221b3ade9ff8e147e
+   464.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x0
+                                                          Expected decoder_data_out: 0x0
+                                                          Actual sync_error: 1
+                                                          Expected sync_error: 1
+                                                        
+   464.00ns INFO     cocotb.decoder_64b66b              Randomized tests completed successfully
+   464.00ns INFO     cocotb.regression                  test_decoder_64b66b.random_Any_sync_header_data_test passed
+   464.00ns INFO     cocotb.regression                  running test_decoder_64b66b.random_valid_data_test (6/6)
+                                                            Test decoding with random sync headers and data 
+   525.00ns INFO     cocotb.decoder_64b66b              Random Test 1:
+                                                          decoder_data_in: 0x1c5202911dbe679d5
+   535.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0xc5202911dbe679d5
+                                                          Expected decoder_data_out: 0xc5202911dbe679d5
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   545.00ns INFO     cocotb.decoder_64b66b              Random Test 2:
+                                                          decoder_data_in: 0x1979ce0c295e9965a
+   555.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x979ce0c295e9965a
+                                                          Expected decoder_data_out: 0x979ce0c295e9965a
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   565.00ns INFO     cocotb.decoder_64b66b              Random Test 3:
+                                                          decoder_data_in: 0x1c27cdbb00c9a0220
+   575.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0xc27cdbb00c9a0220
+                                                          Expected decoder_data_out: 0xc27cdbb00c9a0220
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   585.00ns INFO     cocotb.decoder_64b66b              Random Test 4:
+                                                          decoder_data_in: 0x19a664ce6fecc044a
+   595.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x9a664ce6fecc044a
+                                                          Expected decoder_data_out: 0x9a664ce6fecc044a
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   605.00ns INFO     cocotb.decoder_64b66b              Random Test 5:
+                                                          decoder_data_in: 0x13d4507cefb4faf13
+   615.00ns INFO     cocotb.decoder_64b66b              Checking output:
+                                                          Actual decoder_data_out: 0x3d4507cefb4faf13
+                                                          Expected decoder_data_out: 0x3d4507cefb4faf13
+                                                          Actual sync_error: 0
+                                                          Expected sync_error: 0
+                                                        
+   615.00ns INFO     cocotb.decoder_64b66b              Randomized tests completed successfully
+   615.00ns INFO     cocotb.regression                  test_decoder_64b66b.random_valid_data_test passed
+   615.00ns INFO     cocotb.regression                  **************************************************************************************************************
+                                                        ** TEST                                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************************
+                                                        ** test_decoder_64b66b.reset_test                         PASS          80.00           0.00      48210.39  **
+                                                        ** test_decoder_64b66b.valid_data_test                    PASS          71.00           0.00      52763.21  **
+                                                        ** test_decoder_64b66b.unsupported_control_test           PASS          71.00           0.00      61515.30  **
+                                                        ** test_decoder_64b66b.invalid_sync_test                  PASS          91.00           0.00      52500.92  **
+                                                        ** test_decoder_64b66b.random_Any_sync_header_data_test   PASS         151.00           0.00      46713.37  **
+                                                        ** test_decoder_64b66b.random_valid_data_test             PASS         151.00           0.00      51608.53  **
+                                                        **************************************************************************************************************
+                                                        ** TESTS=6 PASS=6 FAIL=0 SKIP=0                                        615.00           0.02      31895.65  **
+                                                        **************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/decoder_64b66b.fst opened for output.
+PASSED
+
+============================== 1 passed in 0.18s ===============================
+Cleaning up Docker resources...

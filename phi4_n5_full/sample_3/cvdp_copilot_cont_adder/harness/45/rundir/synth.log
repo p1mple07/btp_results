@@ -1,0 +1,89 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/cont_adder.sv
+Parsing SystemVerilog input from `/code/rtl/cont_adder.sv' to AST representation.
+Generating RTLIL representation for module `\cont_adder'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \cont_adder
+
+2.2. Analyzing design hierarchy..
+Top module:  \cont_adder
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module cont_adder...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 5 switch rules as full_case in process $proc$/code/rtl/cont_adder.sv:58$8 in module cont_adder.
+Marked 1 switch rules as full_case in process $proc$/code/rtl/cont_adder.sv:40$1 in module cont_adder.
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 0 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset in `\cont_adder.$proc$/code/rtl/cont_adder.sv:40$1'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\cont_adder.$proc$/code/rtl/cont_adder.sv:58$8'.
+     1/10: $0\busy[0:0]
+     2/10: $0\sample_count[15:0]
+     3/10: $0\sum_accum[31:0]
+     4/10: $0\state[1:0]
+     5/10: $0\sum_ready[0:0]
+     6/10: $0\threshold_3[0:0]
+     7/10: $0\threshold_2[0:0]
+     8/10: $0\threshold_1[0:0]
+     9/10: $0\avg_out[31:0]
+    10/10: $0\sum_out[31:0]
+Creating decoders for process `\cont_adder.$proc$/code/rtl/cont_adder.sv:40$1'.
+     1/3: $0\sat_sum[31:0]
+     2/3: $0\new_sum[31:0]
+     3/3: $0\weighted_in_reg[31:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\cont_adder.\sum_out' using process `\cont_adder.$proc$/code/rtl/cont_adder.sv:58$8'.
+ERROR: Multiple edge sensitive events found for this signal!

@@ -1,0 +1,651 @@
+Running harness with project name: cvdp_copilot_rounding_1_1774851767
+#1 [internal] load local bake definitions
+#1 reading from stdin 698B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 212B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.2s done
+#5 DONE 0.3s
+
+#6 [2/2] RUN pip3 install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:d65b231ee8cb1a2e623b5cfac2c3bd666c66d48e6a16c4e257e01f4a51d9bc26
+#7 exporting manifest sha256:d65b231ee8cb1a2e623b5cfac2c3bd666c66d48e6a16c4e257e01f4a51d9bc26 0.3s done
+#7 exporting config sha256:63db184cda044b89029977dbf12e9ba7ee6714f7783d466cebac7bcda32eba1a
+#7 exporting config sha256:63db184cda044b89029977dbf12e9ba7ee6714f7783d466cebac7bcda32eba1a 0.2s done
+#7 exporting attestation manifest sha256:2ca5375825e1cf39e71582097bdf77a2f6b848af0dc0365f2242503b3e47d2ca
+#7 exporting attestation manifest sha256:2ca5375825e1cf39e71582097bdf77a2f6b848af0dc0365f2242503b3e47d2ca 0.6s done
+#7 exporting manifest list sha256:ceb91350411ce03ff269c73502acff384d678e6527a3fd6f97d7a325ebb57d19
+#7 exporting manifest list sha256:ceb91350411ce03ff269c73502acff384d678e6527a3fd6f97d7a325ebb57d19 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_rounding_1_1774851767-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_rounding_1_1774851767-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_rounding_1_1774851767-direct:latest 0.0s done
+#7 DONE 1.8s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 4 items
+
+../../src/test_runner.py::test_rounding[8] FAILED                        [ 25%]
+../../src/test_runner.py::test_rounding[16] FAILED                       [ 50%]
+../../src/test_runner.py::test_rounding[24] FAILED                       [ 75%]
+../../src/test_runner.py::test_rounding[32] FAILED                       [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_rounding[8] _______________________________
+
+WIDTH = 8
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+>       runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <cocotb.runner.Icarus object at 0x7463bfe98040>, hdl_library = 'top'
+verilog_sources = [], vhdl_sources = [], sources = ['/code/rtl/rounding.sv']
+includes = [], defines = {}, parameters = {'WIDTH': 8}, build_args = []
+hdl_toplevel = 'rounding', always = True, build_dir = 'sim_build', clean = True
+verbose = True, timescale = ('1ns', '1ps'), waves = True
+log_file = 'sim_WIDTH_8.log'
+
+    def build(
+        self,
+        hdl_library: str = "top",
+        verilog_sources: Sequence[PathLike] = [],
+        vhdl_sources: Sequence[PathLike] = [],
+        sources: Sequence[Union[PathLike, VHDL, Verilog]] = [],
+        includes: Sequence[PathLike] = [],
+        defines: Mapping[str, object] = {},
+        parameters: Mapping[str, object] = {},
+        build_args: Sequence[Union[str, VHDL, Verilog]] = [],
+        hdl_toplevel: Optional[str] = None,
+        always: bool = False,
+        build_dir: PathLike = "sim_build",
+        clean: bool = False,
+        verbose: bool = False,
+        timescale: Optional[Timescale] = None,
+        waves: Optional[bool] = None,
+        log_file: Optional[PathLike] = None,
+    ) -> None:
+        """Build the HDL sources.
+    
+        With mixed language simulators, *sources* will be built,
+        followed by *vhdl_sources*, then *verilog_sources*.
+        With simulators that only support either VHDL or Verilog, *sources* will be built,
+        followed by *vhdl_sources* and *verilog_sources*, respectively.
+    
+        If your source files use an atypical file extension,
+        use :class:`VHDL` and :class:`Verilog` to tag the path as a VHDL or Verilog source file, respectively.
+        If the filepaths aren't tagged, the extension is used to determine if they are VHDL or Verilog files.
+    
+        +----------+------------------------------------+
+        | Language | File Extensions                    |
+        +==========+====================================+
+        | VHDL     | ``.vhd``, ``.vhdl``                |
+        +----------+------------------------------------+
+        | Verilog  | ``.v``, ``.sv``, ``.vh``, ``.svh`` |
+        +----------+------------------------------------+
+    
+    
+        .. code-block:: python3
+    
+            runner.build(
+                sources=[
+                    VHDL("/my/file.is_actually_vhdl"),
+                    Verilog("/other/file.verilog"),
+                ],
+            )
+    
+        The same tagging works for *build_args*.
+        Tagged *build_args* only supply that option to the compiler when building the source file for the tagged language.
+        Non-tagged *build_args* are supplied when compiling any language.
+    
+        Args:
+            hdl_library: The library name to compile into.
+            verilog_sources: Verilog source files to build.
+            vhdl_sources: VHDL source files to build.
+            sources: Language-agnostic list of source files to build.
+            includes: Verilog include directories.
+            defines: Defines to set.
+            parameters: Verilog parameters or VHDL generics.
+            build_args: Extra build arguments for the simulator.
+            hdl_toplevel: The name of the HDL toplevel module.
+            always: Always run the build step.
+            build_dir: Directory to run the build step in.
+            clean: Delete build_dir before building
+            verbose: Enable verbose messages.
+            timescale: Tuple containing time unit and time precision for simulation.
+            waves: Record signal traces.
+            log_file: File to write the build log to.
+        """
+    
+        self.clean: bool = clean
+        self.build_dir = get_abs_path(build_dir)
+        if self.clean:
+            self.rm_build_folder(self.build_dir)
+        os.makedirs(self.build_dir, exist_ok=True)
+    
+        # note: to avoid mutating argument defaults, we ensure that no value
+        # is written without a copy. This is much more concise and leads to
+        # a better docstring than using `None` as a default in the parameters
+        # list.
+        self.hdl_library: str = hdl_library
+        self.verilog_sources: List[Path] = get_abs_paths(verilog_sources)
+        self.vhdl_sources: List[Path] = get_abs_paths(vhdl_sources)
+        self.sources: List[Path] = get_abs_paths(sources)
+        self.includes: List[Path] = get_abs_paths(includes)
+        self.defines = dict(defines)
+        self.parameters = dict(parameters)
+        self.build_args = list(build_args)
+        self.always: bool = always
+        self.hdl_toplevel: Optional[str] = hdl_toplevel
+        self.verbose: bool = verbose
+        self.timescale: Optional[Timescale] = timescale
+        self.log_file: Optional[PathLike] = log_file
+    
+        self.waves = bool(waves)
+    
+        for e in os.environ:
+            self.env[e] = os.environ[e]
+    
+        cmds: Sequence[Command] = self._build_command()
+>       self._execute(cmds, cwd=self.build_dir)
+E       SystemExit: Process 'iverilog' terminated with error 2
+
+/usr/local/lib/python3.9/dist-packages/cocotb/runner.py:264: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 8
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+______________________________ test_rounding[16] _______________________________
+
+WIDTH = 16
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+>       runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <cocotb.runner.Icarus object at 0x7463bf6e5c10>, hdl_library = 'top'
+verilog_sources = [], vhdl_sources = [], sources = ['/code/rtl/rounding.sv']
+includes = [], defines = {}, parameters = {'WIDTH': 16}, build_args = []
+hdl_toplevel = 'rounding', always = True, build_dir = 'sim_build', clean = True
+verbose = True, timescale = ('1ns', '1ps'), waves = True
+log_file = 'sim_WIDTH_16.log'
+
+    def build(
+        self,
+        hdl_library: str = "top",
+        verilog_sources: Sequence[PathLike] = [],
+        vhdl_sources: Sequence[PathLike] = [],
+        sources: Sequence[Union[PathLike, VHDL, Verilog]] = [],
+        includes: Sequence[PathLike] = [],
+        defines: Mapping[str, object] = {},
+        parameters: Mapping[str, object] = {},
+        build_args: Sequence[Union[str, VHDL, Verilog]] = [],
+        hdl_toplevel: Optional[str] = None,
+        always: bool = False,
+        build_dir: PathLike = "sim_build",
+        clean: bool = False,
+        verbose: bool = False,
+        timescale: Optional[Timescale] = None,
+        waves: Optional[bool] = None,
+        log_file: Optional[PathLike] = None,
+    ) -> None:
+        """Build the HDL sources.
+    
+        With mixed language simulators, *sources* will be built,
+        followed by *vhdl_sources*, then *verilog_sources*.
+        With simulators that only support either VHDL or Verilog, *sources* will be built,
+        followed by *vhdl_sources* and *verilog_sources*, respectively.
+    
+        If your source files use an atypical file extension,
+        use :class:`VHDL` and :class:`Verilog` to tag the path as a VHDL or Verilog source file, respectively.
+        If the filepaths aren't tagged, the extension is used to determine if they are VHDL or Verilog files.
+    
+        +----------+------------------------------------+
+        | Language | File Extensions                    |
+        +==========+====================================+
+        | VHDL     | ``.vhd``, ``.vhdl``                |
+        +----------+------------------------------------+
+        | Verilog  | ``.v``, ``.sv``, ``.vh``, ``.svh`` |
+        +----------+------------------------------------+
+    
+    
+        .. code-block:: python3
+    
+            runner.build(
+                sources=[
+                    VHDL("/my/file.is_actually_vhdl"),
+                    Verilog("/other/file.verilog"),
+                ],
+            )
+    
+        The same tagging works for *build_args*.
+        Tagged *build_args* only supply that option to the compiler when building the source file for the tagged language.
+        Non-tagged *build_args* are supplied when compiling any language.
+    
+        Args:
+            hdl_library: The library name to compile into.
+            verilog_sources: Verilog source files to build.
+            vhdl_sources: VHDL source files to build.
+            sources: Language-agnostic list of source files to build.
+            includes: Verilog include directories.
+            defines: Defines to set.
+            parameters: Verilog parameters or VHDL generics.
+            build_args: Extra build arguments for the simulator.
+            hdl_toplevel: The name of the HDL toplevel module.
+            always: Always run the build step.
+            build_dir: Directory to run the build step in.
+            clean: Delete build_dir before building
+            verbose: Enable verbose messages.
+            timescale: Tuple containing time unit and time precision for simulation.
+            waves: Record signal traces.
+            log_file: File to write the build log to.
+        """
+    
+        self.clean: bool = clean
+        self.build_dir = get_abs_path(build_dir)
+        if self.clean:
+            self.rm_build_folder(self.build_dir)
+        os.makedirs(self.build_dir, exist_ok=True)
+    
+        # note: to avoid mutating argument defaults, we ensure that no value
+        # is written without a copy. This is much more concise and leads to
+        # a better docstring than using `None` as a default in the parameters
+        # list.
+        self.hdl_library: str = hdl_library
+        self.verilog_sources: List[Path] = get_abs_paths(verilog_sources)
+        self.vhdl_sources: List[Path] = get_abs_paths(vhdl_sources)
+        self.sources: List[Path] = get_abs_paths(sources)
+        self.includes: List[Path] = get_abs_paths(includes)
+        self.defines = dict(defines)
+        self.parameters = dict(parameters)
+        self.build_args = list(build_args)
+        self.always: bool = always
+        self.hdl_toplevel: Optional[str] = hdl_toplevel
+        self.verbose: bool = verbose
+        self.timescale: Optional[Timescale] = timescale
+        self.log_file: Optional[PathLike] = log_file
+    
+        self.waves = bool(waves)
+    
+        for e in os.environ:
+            self.env[e] = os.environ[e]
+    
+        cmds: Sequence[Command] = self._build_command()
+>       self._execute(cmds, cwd=self.build_dir)
+E       SystemExit: Process 'iverilog' terminated with error 2
+
+/usr/local/lib/python3.9/dist-packages/cocotb/runner.py:264: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 16
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+______________________________ test_rounding[24] _______________________________
+
+WIDTH = 24
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+>       runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <cocotb.runner.Icarus object at 0x7463bf7bde50>, hdl_library = 'top'
+verilog_sources = [], vhdl_sources = [], sources = ['/code/rtl/rounding.sv']
+includes = [], defines = {}, parameters = {'WIDTH': 24}, build_args = []
+hdl_toplevel = 'rounding', always = True, build_dir = 'sim_build', clean = True
+verbose = True, timescale = ('1ns', '1ps'), waves = True
+log_file = 'sim_WIDTH_24.log'
+
+    def build(
+        self,
+        hdl_library: str = "top",
+        verilog_sources: Sequence[PathLike] = [],
+        vhdl_sources: Sequence[PathLike] = [],
+        sources: Sequence[Union[PathLike, VHDL, Verilog]] = [],
+        includes: Sequence[PathLike] = [],
+        defines: Mapping[str, object] = {},
+        parameters: Mapping[str, object] = {},
+        build_args: Sequence[Union[str, VHDL, Verilog]] = [],
+        hdl_toplevel: Optional[str] = None,
+        always: bool = False,
+        build_dir: PathLike = "sim_build",
+        clean: bool = False,
+        verbose: bool = False,
+        timescale: Optional[Timescale] = None,
+        waves: Optional[bool] = None,
+        log_file: Optional[PathLike] = None,
+    ) -> None:
+        """Build the HDL sources.
+    
+        With mixed language simulators, *sources* will be built,
+        followed by *vhdl_sources*, then *verilog_sources*.
+        With simulators that only support either VHDL or Verilog, *sources* will be built,
+        followed by *vhdl_sources* and *verilog_sources*, respectively.
+    
+        If your source files use an atypical file extension,
+        use :class:`VHDL` and :class:`Verilog` to tag the path as a VHDL or Verilog source file, respectively.
+        If the filepaths aren't tagged, the extension is used to determine if they are VHDL or Verilog files.
+    
+        +----------+------------------------------------+
+        | Language | File Extensions                    |
+        +==========+====================================+
+        | VHDL     | ``.vhd``, ``.vhdl``                |
+        +----------+------------------------------------+
+        | Verilog  | ``.v``, ``.sv``, ``.vh``, ``.svh`` |
+        +----------+------------------------------------+
+    
+    
+        .. code-block:: python3
+    
+            runner.build(
+                sources=[
+                    VHDL("/my/file.is_actually_vhdl"),
+                    Verilog("/other/file.verilog"),
+                ],
+            )
+    
+        The same tagging works for *build_args*.
+        Tagged *build_args* only supply that option to the compiler when building the source file for the tagged language.
+        Non-tagged *build_args* are supplied when compiling any language.
+    
+        Args:
+            hdl_library: The library name to compile into.
+            verilog_sources: Verilog source files to build.
+            vhdl_sources: VHDL source files to build.
+            sources: Language-agnostic list of source files to build.
+            includes: Verilog include directories.
+            defines: Defines to set.
+            parameters: Verilog parameters or VHDL generics.
+            build_args: Extra build arguments for the simulator.
+            hdl_toplevel: The name of the HDL toplevel module.
+            always: Always run the build step.
+            build_dir: Directory to run the build step in.
+            clean: Delete build_dir before building
+            verbose: Enable verbose messages.
+            timescale: Tuple containing time unit and time precision for simulation.
+            waves: Record signal traces.
+            log_file: File to write the build log to.
+        """
+    
+        self.clean: bool = clean
+        self.build_dir = get_abs_path(build_dir)
+        if self.clean:
+            self.rm_build_folder(self.build_dir)
+        os.makedirs(self.build_dir, exist_ok=True)
+    
+        # note: to avoid mutating argument defaults, we ensure that no value
+        # is written without a copy. This is much more concise and leads to
+        # a better docstring than using `None` as a default in the parameters
+        # list.
+        self.hdl_library: str = hdl_library
+        self.verilog_sources: List[Path] = get_abs_paths(verilog_sources)
+        self.vhdl_sources: List[Path] = get_abs_paths(vhdl_sources)
+        self.sources: List[Path] = get_abs_paths(sources)
+        self.includes: List[Path] = get_abs_paths(includes)
+        self.defines = dict(defines)
+        self.parameters = dict(parameters)
+        self.build_args = list(build_args)
+        self.always: bool = always
+        self.hdl_toplevel: Optional[str] = hdl_toplevel
+        self.verbose: bool = verbose
+        self.timescale: Optional[Timescale] = timescale
+        self.log_file: Optional[PathLike] = log_file
+    
+        self.waves = bool(waves)
+    
+        for e in os.environ:
+            self.env[e] = os.environ[e]
+    
+        cmds: Sequence[Command] = self._build_command()
+>       self._execute(cmds, cwd=self.build_dir)
+E       SystemExit: Process 'iverilog' terminated with error 2
+
+/usr/local/lib/python3.9/dist-packages/cocotb/runner.py:264: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 24
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=24 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+______________________________ test_rounding[32] _______________________________
+
+WIDTH = 32
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+>       runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <cocotb.runner.Icarus object at 0x7463bf6e5340>, hdl_library = 'top'
+verilog_sources = [], vhdl_sources = [], sources = ['/code/rtl/rounding.sv']
+includes = [], defines = {}, parameters = {'WIDTH': 32}, build_args = []
+hdl_toplevel = 'rounding', always = True, build_dir = 'sim_build', clean = True
+verbose = True, timescale = ('1ns', '1ps'), waves = True
+log_file = 'sim_WIDTH_32.log'
+
+    def build(
+        self,
+        hdl_library: str = "top",
+        verilog_sources: Sequence[PathLike] = [],
+        vhdl_sources: Sequence[PathLike] = [],
+        sources: Sequence[Union[PathLike, VHDL, Verilog]] = [],
+        includes: Sequence[PathLike] = [],
+        defines: Mapping[str, object] = {},
+        parameters: Mapping[str, object] = {},
+        build_args: Sequence[Union[str, VHDL, Verilog]] = [],
+        hdl_toplevel: Optional[str] = None,
+        always: bool = False,
+        build_dir: PathLike = "sim_build",
+        clean: bool = False,
+        verbose: bool = False,
+        timescale: Optional[Timescale] = None,
+        waves: Optional[bool] = None,
+        log_file: Optional[PathLike] = None,
+    ) -> None:
+        """Build the HDL sources.
+    
+        With mixed language simulators, *sources* will be built,
+        followed by *vhdl_sources*, then *verilog_sources*.
+        With simulators that only support either VHDL or Verilog, *sources* will be built,
+        followed by *vhdl_sources* and *verilog_sources*, respectively.
+    
+        If your source files use an atypical file extension,
+        use :class:`VHDL` and :class:`Verilog` to tag the path as a VHDL or Verilog source file, respectively.
+        If the filepaths aren't tagged, the extension is used to determine if they are VHDL or Verilog files.
+    
+        +----------+------------------------------------+
+        | Language | File Extensions                    |
+        +==========+====================================+
+        | VHDL     | ``.vhd``, ``.vhdl``                |
+        +----------+------------------------------------+
+        | Verilog  | ``.v``, ``.sv``, ``.vh``, ``.svh`` |
+        +----------+------------------------------------+
+    
+    
+        .. code-block:: python3
+    
+            runner.build(
+                sources=[
+                    VHDL("/my/file.is_actually_vhdl"),
+                    Verilog("/other/file.verilog"),
+                ],
+            )
+    
+        The same tagging works for *build_args*.
+        Tagged *build_args* only supply that option to the compiler when building the source file for the tagged language.
+        Non-tagged *build_args* are supplied when compiling any language.
+    
+        Args:
+            hdl_library: The library name to compile into.
+            verilog_sources: Verilog source files to build.
+            vhdl_sources: VHDL source files to build.
+            sources: Language-agnostic list of source files to build.
+            includes: Verilog include directories.
+            defines: Defines to set.
+            parameters: Verilog parameters or VHDL generics.
+            build_args: Extra build arguments for the simulator.
+            hdl_toplevel: The name of the HDL toplevel module.
+            always: Always run the build step.
+            build_dir: Directory to run the build step in.
+            clean: Delete build_dir before building
+            verbose: Enable verbose messages.
+            timescale: Tuple containing time unit and time precision for simulation.
+            waves: Record signal traces.
+            log_file: File to write the build log to.
+        """
+    
+        self.clean: bool = clean
+        self.build_dir = get_abs_path(build_dir)
+        if self.clean:
+            self.rm_build_folder(self.build_dir)
+        os.makedirs(self.build_dir, exist_ok=True)
+    
+        # note: to avoid mutating argument defaults, we ensure that no value
+        # is written without a copy. This is much more concise and leads to
+        # a better docstring than using `None` as a default in the parameters
+        # list.
+        self.hdl_library: str = hdl_library
+        self.verilog_sources: List[Path] = get_abs_paths(verilog_sources)
+        self.vhdl_sources: List[Path] = get_abs_paths(vhdl_sources)
+        self.sources: List[Path] = get_abs_paths(sources)
+        self.includes: List[Path] = get_abs_paths(includes)
+        self.defines = dict(defines)
+        self.parameters = dict(parameters)
+        self.build_args = list(build_args)
+        self.always: bool = always
+        self.hdl_toplevel: Optional[str] = hdl_toplevel
+        self.verbose: bool = verbose
+        self.timescale: Optional[Timescale] = timescale
+        self.log_file: Optional[PathLike] = log_file
+    
+        self.waves = bool(waves)
+    
+        for e in os.environ:
+            self.env[e] = os.environ[e]
+    
+        cmds: Sequence[Command] = self._build_command()
+>       self._execute(cmds, cwd=self.build_dir)
+E       SystemExit: Process 'iverilog' terminated with error 2
+
+/usr/local/lib/python3.9/dist-packages/cocotb/runner.py:264: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 32
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=32 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+=============================== warnings summary ===============================
+../../src/test_runner.py:7
+  /src/test_runner.py:7: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_rounding[8] - SystemExit: Process 'iver...
+FAILED ../../src/test_runner.py::test_rounding[16] - SystemExit: Process 'ive...
+FAILED ../../src/test_runner.py::test_rounding[24] - SystemExit: Process 'ive...
+FAILED ../../src/test_runner.py::test_rounding[32] - SystemExit: Process 'ive...
+========================= 4 failed, 1 warning in 0.14s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_rounding_1_1774851767-direct:latest
+Deleted: sha256:ceb91350411ce03ff269c73502acff384d678e6527a3fd6f97d7a325ebb57d19

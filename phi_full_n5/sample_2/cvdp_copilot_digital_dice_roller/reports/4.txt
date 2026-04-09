@@ -1,0 +1,407 @@
+Running harness with project name: cvdp_copilot_digital_dice_roller_4_1774042576
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 5 items
+
+../../src/test_runner.py::test_runner [DEBUG] Running simulation with DICE_MAX=6, NUM_DICE=2
+[DEBUG] Parameters: {'DICE_MAX': 6, 'NUM_DICE': 2}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=6 -Pdigital_dice_roller.NUM_DICE=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774042577
+     0.00ns INFO     cocotb.regression                  running test_dice_roller.test_digital_dice_roller (1/1)
+Test Case 1: Assert asynchronous reset with random delay
+Test Case: After Reset
+    90.00ns INFO     cocotb.regression                  test_dice_roller.test_digital_dice_roller failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_dice_roller.py", line 39, in test_digital_dice_roller
+                                                            display_dice_values(dut, "After Reset", NUM_DICE, BIT_WIDTH)
+                                                          File "/src/test_dice_roller.py", line 13, in display_dice_values
+                                                            dice_values = dut.dice_values.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    90.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_dice_roller.test_digital_dice_roller   FAIL          90.00           0.00      63230.71  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                              90.00           0.01      16311.08  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/digital_dice_roller.fst opened for output.
+FAILED
+../../src/test_runner.py::test_digital_dice_roller[2-6] [DEBUG] Running simulation with DICE_MAX=6, NUM_DICE=2
+[DEBUG] Parameters: {'DICE_MAX': 6, 'NUM_DICE': 2}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=6 -Pdigital_dice_roller.NUM_DICE=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774042578
+     0.00ns INFO     cocotb.regression                  running test_dice_roller.test_digital_dice_roller (1/1)
+Test Case 1: Assert asynchronous reset with random delay
+Test Case: After Reset
+    80.00ns INFO     cocotb.regression                  test_dice_roller.test_digital_dice_roller failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_dice_roller.py", line 39, in test_digital_dice_roller
+                                                            display_dice_values(dut, "After Reset", NUM_DICE, BIT_WIDTH)
+                                                          File "/src/test_dice_roller.py", line 13, in display_dice_values
+                                                            dice_values = dut.dice_values.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_dice_roller.test_digital_dice_roller   FAIL          80.00           0.00      58908.76  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                              80.00           0.01      14492.48  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/digital_dice_roller.fst opened for output.
+FAILED
+../../src/test_runner.py::test_digital_dice_roller[2-8] [DEBUG] Running simulation with DICE_MAX=8, NUM_DICE=2
+[DEBUG] Parameters: {'DICE_MAX': 8, 'NUM_DICE': 2}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=8 -Pdigital_dice_roller.NUM_DICE=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774042578
+     0.00ns INFO     cocotb.regression                  running test_dice_roller.test_digital_dice_roller (1/1)
+Test Case 1: Assert asynchronous reset with random delay
+Test Case: After Reset
+    80.00ns INFO     cocotb.regression                  test_dice_roller.test_digital_dice_roller failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_dice_roller.py", line 39, in test_digital_dice_roller
+                                                            display_dice_values(dut, "After Reset", NUM_DICE, BIT_WIDTH)
+                                                          File "/src/test_dice_roller.py", line 13, in display_dice_values
+                                                            dice_values = dut.dice_values.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_dice_roller.test_digital_dice_roller   FAIL          80.00           0.00      58244.11  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                              80.00           0.01      14363.44  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/digital_dice_roller.fst opened for output.
+FAILED
+../../src/test_runner.py::test_digital_dice_roller[3-6] [DEBUG] Running simulation with DICE_MAX=6, NUM_DICE=3
+[DEBUG] Parameters: {'DICE_MAX': 6, 'NUM_DICE': 3}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=6 -Pdigital_dice_roller.NUM_DICE=3 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774042578
+     0.00ns INFO     cocotb.regression                  running test_dice_roller.test_digital_dice_roller (1/1)
+Test Case 1: Assert asynchronous reset with random delay
+Test Case: After Reset
+    80.00ns INFO     cocotb.regression                  test_dice_roller.test_digital_dice_roller failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_dice_roller.py", line 39, in test_digital_dice_roller
+                                                            display_dice_values(dut, "After Reset", NUM_DICE, BIT_WIDTH)
+                                                          File "/src/test_dice_roller.py", line 13, in display_dice_values
+                                                            dice_values = dut.dice_values.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_dice_roller.test_digital_dice_roller   FAIL          80.00           0.00      55188.21  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                              80.00           0.01      14156.20  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/digital_dice_roller.fst opened for output.
+FAILED
+../../src/test_runner.py::test_digital_dice_roller[3-8] [DEBUG] Running simulation with DICE_MAX=8, NUM_DICE=3
+[DEBUG] Parameters: {'DICE_MAX': 8, 'NUM_DICE': 3}
+
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=8 -Pdigital_dice_roller.NUM_DICE=3 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774042578
+     0.00ns INFO     cocotb.regression                  running test_dice_roller.test_digital_dice_roller (1/1)
+Test Case 1: Assert asynchronous reset with random delay
+Test Case: After Reset
+    80.00ns INFO     cocotb.regression                  test_dice_roller.test_digital_dice_roller failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_dice_roller.py", line 39, in test_digital_dice_roller
+                                                            display_dice_values(dut, "After Reset", NUM_DICE, BIT_WIDTH)
+                                                          File "/src/test_dice_roller.py", line 13, in display_dice_values
+                                                            dice_values = dut.dice_values.value.to_unsigned()
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_dice_roller.test_digital_dice_roller   FAIL          80.00           0.00      60328.00  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                              80.00           0.01      14448.79  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/digital_dice_roller.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+DICE_MAX = 6, NUM_DICE = 2
+
+    def test_runner(DICE_MAX: int=6, NUM_DICE: int=2 ):
+        parameter = {"DICE_MAX":DICE_MAX, "NUM_DICE":NUM_DICE}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DICE_MAX={DICE_MAX}, NUM_DICE={NUM_DICE}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:33: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=6 -Pdigital_dice_roller.NUM_DICE=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+________________________ test_digital_dice_roller[2-6] _________________________
+
+DICE_MAX = 6, NUM_DICE = 2
+
+    @pytest.mark.parametrize("DICE_MAX", [6,8])
+    @pytest.mark.parametrize("NUM_DICE", [2,3])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_digital_dice_roller(DICE_MAX, NUM_DICE):
+        # Run the simulation with specified parameters
+>       test_runner(DICE_MAX=DICE_MAX, NUM_DICE=NUM_DICE)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DICE_MAX = 6, NUM_DICE = 2
+
+    def test_runner(DICE_MAX: int=6, NUM_DICE: int=2 ):
+        parameter = {"DICE_MAX":DICE_MAX, "NUM_DICE":NUM_DICE}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DICE_MAX={DICE_MAX}, NUM_DICE={NUM_DICE}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:33: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=6 -Pdigital_dice_roller.NUM_DICE=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+________________________ test_digital_dice_roller[2-8] _________________________
+
+DICE_MAX = 8, NUM_DICE = 2
+
+    @pytest.mark.parametrize("DICE_MAX", [6,8])
+    @pytest.mark.parametrize("NUM_DICE", [2,3])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_digital_dice_roller(DICE_MAX, NUM_DICE):
+        # Run the simulation with specified parameters
+>       test_runner(DICE_MAX=DICE_MAX, NUM_DICE=NUM_DICE)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DICE_MAX = 8, NUM_DICE = 2
+
+    def test_runner(DICE_MAX: int=6, NUM_DICE: int=2 ):
+        parameter = {"DICE_MAX":DICE_MAX, "NUM_DICE":NUM_DICE}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DICE_MAX={DICE_MAX}, NUM_DICE={NUM_DICE}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:33: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=8 -Pdigital_dice_roller.NUM_DICE=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+________________________ test_digital_dice_roller[3-6] _________________________
+
+DICE_MAX = 6, NUM_DICE = 3
+
+    @pytest.mark.parametrize("DICE_MAX", [6,8])
+    @pytest.mark.parametrize("NUM_DICE", [2,3])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_digital_dice_roller(DICE_MAX, NUM_DICE):
+        # Run the simulation with specified parameters
+>       test_runner(DICE_MAX=DICE_MAX, NUM_DICE=NUM_DICE)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DICE_MAX = 6, NUM_DICE = 3
+
+    def test_runner(DICE_MAX: int=6, NUM_DICE: int=2 ):
+        parameter = {"DICE_MAX":DICE_MAX, "NUM_DICE":NUM_DICE}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DICE_MAX={DICE_MAX}, NUM_DICE={NUM_DICE}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:33: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=6 -Pdigital_dice_roller.NUM_DICE=3 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+________________________ test_digital_dice_roller[3-8] _________________________
+
+DICE_MAX = 8, NUM_DICE = 3
+
+    @pytest.mark.parametrize("DICE_MAX", [6,8])
+    @pytest.mark.parametrize("NUM_DICE", [2,3])
+    
+    #@pytest.mark.parametrize("test", range(1))
+    def test_digital_dice_roller(DICE_MAX, NUM_DICE):
+        # Run the simulation with specified parameters
+>       test_runner(DICE_MAX=DICE_MAX, NUM_DICE=NUM_DICE)
+
+/src/test_runner.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DICE_MAX = 8, NUM_DICE = 3
+
+    def test_runner(DICE_MAX: int=6, NUM_DICE: int=2 ):
+        parameter = {"DICE_MAX":DICE_MAX, "NUM_DICE":NUM_DICE}
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DICE_MAX={DICE_MAX}, NUM_DICE={NUM_DICE}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:33: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:480 Removing: /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s digital_dice_roller -g2012 -Pdigital_dice_roller.DICE_MAX=8 -Pdigital_dice_roller.NUM_DICE=3 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/digital_dice_roller.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+FAILED ../../src/test_runner.py::test_digital_dice_roller[2-6] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_digital_dice_roller[2-8] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_digital_dice_roller[3-6] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_digital_dice_roller[3-8] - SystemExit: ...
+============================== 5 failed in 0.78s ===============================
+Cleaning up Docker resources...

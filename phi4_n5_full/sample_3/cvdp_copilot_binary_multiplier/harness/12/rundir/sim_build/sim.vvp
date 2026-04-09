@@ -1,0 +1,172 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x17b91e0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x17b6070 .scope module, "binary_multiplier" "binary_multiplier" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "valid_in";
+    .port_info 3 /INPUT 29 "A";
+    .port_info 4 /INPUT 29 "B";
+    .port_info 5 /OUTPUT 58 "Product";
+    .port_info 6 /OUTPUT 1 "valid_out";
+P_0x17b6200 .param/l "WIDTH" 0 3 2, +C4<00000000000000000000000000011101>;
+enum0x179ace0 .enum4 (2)
+   "IDLE" 2'b00,
+   "COMPUTE" 2'b01,
+   "WAIT" 2'b10,
+   "OUTPUT" 2'b11
+ ;
+o0x7a651ce11018 .functor BUFZ 29, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x17b6430_0 .net "A", 28 0, o0x7a651ce11018;  0 drivers
+o0x7a651ce11048 .functor BUFZ 29, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x17d8f20_0 .net "B", 28 0, o0x7a651ce11048;  0 drivers
+v0x17d9000_0 .var "Product", 57 0;
+v0x17d90f0_0 .var "acc", 57 0;
+o0x7a651ce110d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x17d91d0_0 .net "clk", 0 0, o0x7a651ce110d8;  0 drivers
+v0x17d92e0_0 .var/i "i", 31 0;
+v0x17d93c0_0 .var "latched_A", 28 0;
+v0x17d94a0_0 .var "latched_B", 28 0;
+o0x7a651ce11198 .functor BUFZ 1, c4<z>; HiZ drive
+v0x17d9580_0 .net "rst_n", 0 0, o0x7a651ce11198;  0 drivers
+v0x17d9640_0 .var "state", 1 0;
+o0x7a651ce111f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x17d9720_0 .net "valid_in", 0 0, o0x7a651ce111f8;  0 drivers
+v0x17d97e0_0 .var "valid_out", 0 0;
+E_0x17af270/0 .event negedge, v0x17d9580_0;
+E_0x17af270/1 .event posedge, v0x17d91d0_0;
+E_0x17af270 .event/or E_0x17af270/0, E_0x17af270/1;
+S_0x17b62a0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x17b6070;
+T_0 ;
+    %wait E_0x17af270;
+    %load/vec4 v0x17d9580_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x17d92e0_0, 0;
+    %pushi/vec4 0, 0, 58;
+    %assign/vec4 v0x17d90f0_0, 0;
+    %pushi/vec4 0, 0, 29;
+    %assign/vec4 v0x17d93c0_0, 0;
+    %pushi/vec4 0, 0, 29;
+    %assign/vec4 v0x17d94a0_0, 0;
+    %pushi/vec4 0, 0, 58;
+    %assign/vec4 v0x17d9000_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x17d97e0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x17d9640_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.2, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.3, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.4, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.5, 6;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+    %jmp T_0.7;
+T_0.2 ;
+    %load/vec4 v0x17d9720_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.8, 8;
+    %load/vec4 v0x17b6430_0;
+    %assign/vec4 v0x17d93c0_0, 0;
+    %load/vec4 v0x17d8f20_0;
+    %assign/vec4 v0x17d94a0_0, 0;
+    %pushi/vec4 0, 0, 58;
+    %assign/vec4 v0x17d90f0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x17d92e0_0, 0;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+    %jmp T_0.9;
+T_0.8 ;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+T_0.9 ;
+    %jmp T_0.7;
+T_0.3 ;
+    %load/vec4 v0x17d92e0_0;
+    %cmpi/s 29, 0, 32;
+    %jmp/0xz  T_0.10, 5;
+    %load/vec4 v0x17d93c0_0;
+    %load/vec4 v0x17d92e0_0;
+    %part/s 1;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.12, 8;
+    %load/vec4 v0x17d90f0_0;
+    %load/vec4 v0x17d94a0_0;
+    %pad/u 58;
+    %load/vec4 v0x17d92e0_0;
+    %ix/vec4 4;
+    %shiftl 4;
+    %add;
+    %assign/vec4 v0x17d90f0_0, 0;
+T_0.12 ;
+    %load/vec4 v0x17d92e0_0;
+    %addi 1, 0, 32;
+    %assign/vec4 v0x17d92e0_0, 0;
+    %pushi/vec4 1, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+    %jmp T_0.11;
+T_0.10 ;
+    %pushi/vec4 2, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+T_0.11 ;
+    %jmp T_0.7;
+T_0.4 ;
+    %pushi/vec4 3, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+    %jmp T_0.7;
+T_0.5 ;
+    %load/vec4 v0x17d90f0_0;
+    %assign/vec4 v0x17d9000_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x17d97e0_0, 0;
+    %pushi/vec4 0, 0, 2;
+    %assign/vec4 v0x17d9640_0, 0;
+    %jmp T_0.7;
+T_0.7 ;
+    %pop/vec4 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x17b62a0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/binary_multiplier.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x17b6070 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/binary_multiplier.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

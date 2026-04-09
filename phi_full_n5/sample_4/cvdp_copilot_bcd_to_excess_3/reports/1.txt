@@ -1,0 +1,124 @@
+Running harness with project name: cvdp_copilot_bcd_to_excess_3_1_1774102987
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 2 items
+
+../../src/test_runner.py::test_areg_param[0]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774102989
+     0.00ns INFO     cocotb.regression                  running test_bcd_to_excess_3.bcd_to_excess_3 (1/1)
+                                                            Test BCD to Excess-3 conversion including error flag assertions. 
+    10.00ns INFO     cocotb.regression                  test_bcd_to_excess_3.bcd_to_excess_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_bcd_to_excess_3.py", line 26, in bcd_to_excess_3
+                                                            assert dut.excess3.value == expected_value, f"Error: BCD {bcd_value} should convert to {expected_value}, got {dut.excess3.value}"
+                                                        AssertionError: Error: BCD 0 should convert to 3, got 0111
+                                                        assert LogicArray('0111', Range(3, 'downto', 0)) == 3
+                                                         +  where LogicArray('0111', Range(3, 'downto', 0)) = LogicObject(bcd_to_excess_3.excess3).value
+                                                         +    where LogicObject(bcd_to_excess_3.excess3) = HierarchyObject(bcd_to_excess_3).excess3
+    10.00ns INFO     cocotb.regression                  **********************************************************************************************
+                                                        ** TEST                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************
+                                                        ** test_bcd_to_excess_3.bcd_to_excess_3   FAIL          10.00           0.00      14041.86  **
+                                                        **********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         10.00           0.00       2354.50  **
+                                                        **********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/bcd_to_excess_3.fst opened for output.
+FAILED
+../../src/test_runner.py::test_areg_param[1]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774102989
+     0.00ns INFO     cocotb.regression                  running test_bcd_to_excess_3.bcd_to_excess_3 (1/1)
+                                                            Test BCD to Excess-3 conversion including error flag assertions. 
+    10.00ns INFO     cocotb.regression                  test_bcd_to_excess_3.bcd_to_excess_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_bcd_to_excess_3.py", line 26, in bcd_to_excess_3
+                                                            assert dut.excess3.value == expected_value, f"Error: BCD {bcd_value} should convert to {expected_value}, got {dut.excess3.value}"
+                                                        AssertionError: Error: BCD 0 should convert to 3, got 0111
+                                                        assert LogicArray('0111', Range(3, 'downto', 0)) == 3
+                                                         +  where LogicArray('0111', Range(3, 'downto', 0)) = LogicObject(bcd_to_excess_3.excess3).value
+                                                         +    where LogicObject(bcd_to_excess_3.excess3) = HierarchyObject(bcd_to_excess_3).excess3
+    10.00ns INFO     cocotb.regression                  **********************************************************************************************
+                                                        ** TEST                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **********************************************************************************************
+                                                        ** test_bcd_to_excess_3.bcd_to_excess_3   FAIL          10.00           0.00      14593.96  **
+                                                        **********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                         10.00           0.00       2346.60  **
+                                                        **********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/bcd_to_excess_3.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+______________________________ test_areg_param[0] ______________________________
+
+test = 0
+
+    @pytest.mark.parametrize("test", range(2))
+    def test_areg_param(test):
+>           runner()
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+plusargs = [], parameter = {}
+
+    def runner(plusargs=[], parameter={}):
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            parameters=parameter,
+            always=True,
+            clean=True,
+            waves=wave,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=wave, plusargs=plusargs)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:24: SystemExit
+______________________________ test_areg_param[1] ______________________________
+
+test = 1
+
+    @pytest.mark.parametrize("test", range(2))
+    def test_areg_param(test):
+>           runner()
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+plusargs = [], parameter = {}
+
+    def runner(plusargs=[], parameter={}):
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            parameters=parameter,
+            always=True,
+            clean=True,
+            waves=wave,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=wave, plusargs=plusargs)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:24: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_areg_param[0] - SystemExit: ERROR: Fail...
+FAILED ../../src/test_runner.py::test_areg_param[1] - SystemExit: ERROR: Fail...
+============================== 2 failed in 0.33s ===============================
+Cleaning up Docker resources...

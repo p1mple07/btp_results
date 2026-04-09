@@ -1,0 +1,47 @@
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:43:58: Operator AND expects 32 or 3 bits on the LHS, but LHS's VARREF 'push' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   43 |   assign w_count_bin = (w_rst) ? 0 : w_count_bin + (push & ~w_full);
+      |                                                          ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:43:60: Operator NOT expects 32 or 3 bits on the LHS, but LHS's VARREF 'w_full' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   43 |   assign w_count_bin = (w_rst) ? 0 : w_count_bin + (push & ~w_full);
+      |                                                            ^
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:44:57: Operator AND expects 32 or 3 bits on the LHS, but LHS's VARREF 'pop' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   44 |   assign r_count_bin = (r_rst) ? 0 : r_count_bin + (pop & ~r_empty);
+      |                                                         ^
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:44:59: Operator NOT expects 32 or 3 bits on the LHS, but LHS's VARREF 'r_empty' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   44 |   assign r_count_bin = (r_rst) ? 0 : r_count_bin + (pop & ~r_empty);
+      |                                                           ^
+%Error-PROCASSWIRE: /code/rtl/async_filo.sv:64:7: Procedural assignment to wire, perhaps intended var (IEEE 1800-2023 6.5): 'w_addr'
+                                                : ... note: In instance 'async_filo'
+   64 |       w_addr = w_count_bin;
+      |       ^~~~~~
+%Warning-UNDRIVEN: /code/rtl/async_filo.sv:25:24: Signal is not driven: 'w_ptr_next'
+                                                : ... note: In instance 'async_filo'
+   25 |   logic [ADDR_WIDTH:0] w_ptr_next;
+      |                        ^~~~~~~~~~
+%Warning-UNDRIVEN: /code/rtl/async_filo.sv:26:24: Signal is not driven: 'r_ptr_next'
+                                                : ... note: In instance 'async_filo'
+   26 |   logic [ADDR_WIDTH:0] r_ptr_next;
+      |                        ^~~~~~~~~~
+%Warning-UNDRIVEN: /code/rtl/async_filo.sv:30:25: Signal is not driven: 'r_addr'
+                                                : ... note: In instance 'async_filo'
+   30 |   wire [ADDR_WIDTH-1:0] r_addr;
+      |                         ^~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/async_filo.sv:32:9: Signal is not driven, nor used: 'w_full_d1'
+                                                   : ... note: In instance 'async_filo'
+   32 |   logic w_full_d1;
+      |         ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/async_filo.sv:34:24: Signal is not driven, nor used: 'w_full_f1'
+                                                    : ... note: In instance 'async_filo'
+   34 |   logic [ADDR_WIDTH:0] w_full_f1;
+      |                        ^~~~~~~~~
+%Warning-SELRANGE: /code/rtl/async_filo.sv:57:31: Selection index out of range: 3:3 outside 2:0
+                                                : ... note: In instance 'async_filo'
+   57 |   assign w_full = (w_count_bin[ADDR_WIDTH] != w_ptr_next[ADDR_WIDTH]) &&
+      |                               ^
+%Error: Exiting due to 1 error(s), 10 warning(s)

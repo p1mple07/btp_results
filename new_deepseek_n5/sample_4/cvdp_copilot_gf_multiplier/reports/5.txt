@@ -1,0 +1,359 @@
+Running harness with project name: cvdp_copilot_gf_multiplier_5_1773945078
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner 
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s gf_multiplier -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/gf_multiplier.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1773945081
+     0.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.gf_multiplier_basic_test (1/4)
+                                                            Test the GF(2^8) multiplier with known test vectors
+Calculating GF(2^8) multiplication for A = 01010111, B = 10000011
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000001010111
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000011111001
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0010101101111001
+  Before reduction: result = 0010101101111001
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0000100000011001
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000000011000001
+  Final reduced result: 11000001
+
+     1.00ns INFO     cocotb                             Basic Test: A = 57, B = 83, Expected = C1, Actual = C1
+Calculating GF(2^8) multiplication for A = 11110000, B = 00001111
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000011110000
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000100010000
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000001011010000
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000010101010000
+  Before reduction: result = 0000010101010000
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000000100111100
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000000100111
+  Final reduced result: 00100111
+
+     2.00ns INFO     cocotb                             Basic Test: A = F0, B = 0F, Expected = 27, Actual = 27
+     2.00ns INFO     cocotb.regression                  test_gf_mult_8bit.gf_multiplier_basic_test passed
+     2.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.gf_multiplier_random_test (2/4)
+                                                            Test the GF(2^8) multiplier with random values
+Random Test 1: A = 01001111, B = 01110010
+Calculating GF(2^8) multiplication for A = 01001111, B = 01110010
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000010011110
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000010001101110
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000110110001110
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001111001001110
+  Before reduction: result = 0001111001001110
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000111111111110
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000011100100110
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001101001010
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000101111100
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000001100111
+  Final reduced result: 01100111
+
+     4.00ns INFO     cocotb                             Random Test 1: A = 4F, B = 72, Expected = 67, Actual = 67
+Random Test 2: A = 10100001, B = 00101010
+Calculating GF(2^8) multiplication for A = 10100001, B = 00101010
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000101000010
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000010001001010
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0001000001101010
+  Before reduction: result = 0001000001101010
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000000111011010
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000011000001
+  Final reduced result: 11000001
+
+     5.00ns INFO     cocotb                             Random Test 2: A = A1, B = 2A, Expected = C1, Actual = C1
+Random Test 3: A = 01001011, B = 01010100
+Calculating GF(2^8) multiplication for A = 01001011, B = 01010100
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000000100101100
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000010110011100
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001011101011100
+  Before reduction: result = 0001011101011100
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000011011101100
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001010000000
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000010110110
+  Final reduced result: 10110110
+
+     6.00ns INFO     cocotb                             Random Test 3: A = 4B, B = 54, Expected = B6, Actual = B6
+Random Test 4: A = 10010111, B = 01101110
+Calculating GF(2^8) multiplication for A = 10010111, B = 01101110
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000100101110
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000001101110010
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000011111001010
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0001010100101010
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0011000011101010
+  Before reduction: result = 0011000011101010
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0001001110001010
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000001000111010
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000000001100
+  Final reduced result: 00001100
+
+     7.00ns INFO     cocotb                             Random Test 4: A = 97, B = 6E, Expected = 0C, Actual = 0C
+Random Test 5: A = 01000010, B = 11100111
+Calculating GF(2^8) multiplication for A = 01000010, B = 11100111
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000001000010
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000011000110
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000000111001110
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000100110001110
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001100100001110
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0011100000001110
+  Before reduction: result = 0011100000001110
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0001101101101110
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000101011011110
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000001000000110
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000000110000
+  Final reduced result: 00110000
+
+     8.00ns INFO     cocotb                             Random Test 5: A = 42, B = E7, Expected = 30, Actual = 30
+Random Test 6: A = 11000111, B = 10001110
+Calculating GF(2^8) multiplication for A = 11000111, B = 10001110
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000110001110
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000001010010010
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000010010101010
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0110011100101010
+  Before reduction: result = 0110011100101010
+  - Bit 14 of result is 1: result = result XOR (irreducible_poly << 6) = 0010000111101010
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0000001010001010
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000010111100
+  Final reduced result: 10111100
+
+     9.00ns INFO     cocotb                             Random Test 6: A = C7, B = 8E, Expected = BC, Actual = BC
+Random Test 7: A = 00100111, B = 11001101
+Calculating GF(2^8) multiplication for A = 00100111, B = 11001101
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000000100111
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000000010111011
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000000110000011
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0000100001000011
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0001101111000011
+  Before reduction: result = 0001101111000011
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000101001110011
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000001010101011
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000010011101
+  Final reduced result: 10011101
+
+    10.00ns INFO     cocotb                             Random Test 7: A = 27, B = CD, Expected = 9D, Actual = 9D
+Random Test 8: A = 01111011, B = 01100001
+Calculating GF(2^8) multiplication for A = 01111011, B = 01100001
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000001111011
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000111100011011
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001000111011011
+  Before reduction: result = 0001000111011011
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000000001101011
+  Final reduced result: 01101011
+
+    11.00ns INFO     cocotb                             Random Test 8: A = 7B, B = 61, Expected = 6B, Actual = 6B
+Random Test 9: A = 01001101, B = 01100000
+Calculating GF(2^8) multiplication for A = 01001101, B = 01100000
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000100110100000
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001101011100000
+  Before reduction: result = 0001101011100000
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000101101010000
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000001110001000
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000110111110
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000010100101
+  Final reduced result: 10100101
+
+    12.00ns INFO     cocotb                             Random Test 9: A = 4D, B = 60, Expected = A5, Actual = A5
+Random Test 10: A = 01110010, B = 10101000
+Calculating GF(2^8) multiplication for A = 01110010, B = 10101000
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000001110010000
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000110111010000
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0011010011010000
+  Before reduction: result = 0011010011010000
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0001011110110000
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000011000000000
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001001101100
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000001011010
+  Final reduced result: 01011010
+
+    13.00ns INFO     cocotb                             Random Test 10: A = 72, B = A8, Expected = 5A, Actual = 5A
+Random Test 11: A = 11011100, B = 10111000
+Calculating GF(2^8) multiplication for A = 11011100, B = 10111000
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000011011100000
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000101100100000
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0001000010100000
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0111111010100000
+  Before reduction: result = 0111111010100000
+  - Bit 14 of result is 1: result = result XOR (irreducible_poly << 6) = 0011100001100000
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0001101100000000
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000101010110000
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000001001101000
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000001011110
+  Final reduced result: 01011110
+
+    14.00ns INFO     cocotb                             Random Test 11: A = DC, B = B8, Expected = 5E, Actual = 5E
+Random Test 12: A = 11100011, B = 00010011
+Calculating GF(2^8) multiplication for A = 11100011, B = 00010011
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000011100011
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000100100101
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000111100010101
+  Before reduction: result = 0000111100010101
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000011111001101
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001110100001
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000110010111
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000010001100
+  Final reduced result: 10001100
+
+    15.00ns INFO     cocotb                             Random Test 12: A = E3, B = 13, Expected = 8C, Actual = 8C
+Random Test 13: A = 00000001, B = 10101011
+Calculating GF(2^8) multiplication for A = 00000001, B = 10101011
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000000000001
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000000000011
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000000000001011
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000000000101011
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0000000010101011
+  Before reduction: result = 0000000010101011
+  Final reduced result: 10101011
+
+    16.00ns INFO     cocotb                             Random Test 13: A = 01, B = AB, Expected = AB, Actual = AB
+Random Test 14: A = 10110101, B = 10100101
+Calculating GF(2^8) multiplication for A = 10110101, B = 10100101
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000010110101
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000001001100001
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0001010011000001
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0100111001000001
+  Before reduction: result = 0100111001000001
+  - Bit 14 of result is 1: result = result XOR (irreducible_poly << 6) = 0000100010000001
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000000001011001
+  Final reduced result: 01011001
+
+    17.00ns INFO     cocotb                             Random Test 14: A = B5, B = A5, Expected = 59, Actual = 59
+Random Test 15: A = 00101110, B = 11111100
+Calculating GF(2^8) multiplication for A = 00101110, B = 11111100
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000000010111000
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000000111001000
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000001100101000
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000011011101000
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0000110101101000
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0001101001101000
+  Before reduction: result = 0001101001101000
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000101111011000
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000001100000000
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000100110110
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000000101101
+  Final reduced result: 00101101
+
+    18.00ns INFO     cocotb                             Random Test 15: A = 2E, B = FC, Expected = 2D, Actual = 2D
+Random Test 16: A = 01001110, B = 11100110
+Calculating GF(2^8) multiplication for A = 01001110, B = 11100110
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000010011100
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000000110100100
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000100001100100
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001101111100100
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0011110011100100
+  Before reduction: result = 0011110011100100
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0001111110000100
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000111000110100
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000011011101100
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001010000000
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000010110110
+  Final reduced result: 10110110
+
+    19.00ns INFO     cocotb                             Random Test 16: A = 4E, B = E6, Expected = B6, Actual = B6
+Random Test 17: A = 10100111, B = 01000001
+Calculating GF(2^8) multiplication for A = 10100111, B = 01000001
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000010100111
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0010100101100111
+  Before reduction: result = 0010100101100111
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0000101000000111
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000001011011111
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000011101001
+  Final reduced result: 11101001
+
+    20.00ns INFO     cocotb                             Random Test 17: A = A7, B = 41, Expected = E9, Actual = E9
+Random Test 18: A = 01100101, B = 11000000
+Calculating GF(2^8) multiplication for A = 01100101, B = 11000000
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0001100101000000
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0010101111000000
+  Before reduction: result = 0010101111000000
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0000100010100000
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000000001111000
+  Final reduced result: 01111000
+
+    21.00ns INFO     cocotb                             Random Test 18: A = 65, B = C0, Expected = 78, Actual = 78
+Random Test 19: A = 00101110, B = 01100010
+Calculating GF(2^8) multiplication for A = 00101110, B = 01100010
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000001011100
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0000010110011100
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0000111000011100
+  Before reduction: result = 0000111000011100
+  - Bit 11 of result is 1: result = result XOR (irreducible_poly << 3) = 0000011011000100
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001010101000
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000010011110
+  Final reduced result: 10011110
+
+    22.00ns INFO     cocotb                             Random Test 19: A = 2E, B = 62, Expected = 9E, Actual = 9E
+Random Test 20: A = 11100110, B = 10110101
+Calculating GF(2^8) multiplication for A = 11100110, B = 10110101
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000011100110
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000001101111110
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000110100011110
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0001000111011110
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0110001011011110
+  Before reduction: result = 0110001011011110
+  - Bit 14 of result is 1: result = result XOR (irreducible_poly << 6) = 0010010000011110
+  - Bit 13 of result is 1: result = result XOR (irreducible_poly << 5) = 0000011101111110
+  - Bit 10 of result is 1: result = result XOR (irreducible_poly << 2) = 0000001100010010
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000100100100
+  - Bit 8 of result is 1: result = result XOR (irreducible_poly << 0) = 0000000000111111
+  Final reduced result: 00111111
+
+    23.00ns INFO     cocotb                             Random Test 20: A = E6, B = B5, Expected = 3F, Actual = 3F
+    23.00ns INFO     cocotb.regression                  test_gf_mult_8bit.gf_multiplier_random_test passed
+    23.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.gf_multiplier_maximum_value_test (3/4)
+                                                            Test the GF(2^8) multiplier with known test vectors
+Calculating GF(2^8) multiplication for A = 11111111, B = 11111111
+  - Bit 0 of B is 1: result = result XOR (A << 0) = 0000000011111111
+  - Bit 1 of B is 1: result = result XOR (A << 1) = 0000000100000001
+  - Bit 2 of B is 1: result = result XOR (A << 2) = 0000001011111101
+  - Bit 3 of B is 1: result = result XOR (A << 3) = 0000010100000101
+  - Bit 4 of B is 1: result = result XOR (A << 4) = 0000101011110101
+  - Bit 5 of B is 1: result = result XOR (A << 5) = 0001010100010101
+  - Bit 6 of B is 1: result = result XOR (A << 6) = 0010101011010101
+  - Bit 7 of B is 1: result = result XOR (A << 7) = 0101010101010101
+  Before reduction: result = 0101010101010101
+  - Bit 14 of result is 1: result = result XOR (irreducible_poly << 6) = 0001001110010101
+  - Bit 12 of result is 1: result = result XOR (irreducible_poly << 4) = 0000001000100101
+  - Bit 9 of result is 1: result = result XOR (irreducible_poly << 1) = 0000000000010011
+  Final reduced result: 00010011
+
+    25.00ns INFO     cocotb                             Basic Test: A = FF, B = FF, Expected = 13, Actual = 13
+    25.00ns INFO     cocotb.regression                  test_gf_mult_8bit.gf_multiplier_maximum_value_test passed
+    25.00ns INFO     cocotb.regression                  running test_gf_mult_8bit.gf_multiplier_zero_value_test (4/4)
+                                                            Test the GF(2^8) multiplier with known test vectors
+Calculating GF(2^8) multiplication for A = 11111111, B = 00000000
+  Before reduction: result = 0000000000000000
+  Final reduced result: 00000000
+
+    27.00ns INFO     cocotb                             Basic Test: A = FF, B = 00, Expected = 00, Actual = 00
+    27.00ns INFO     cocotb.regression                  test_gf_mult_8bit.gf_multiplier_zero_value_test passed
+    27.00ns INFO     cocotb.regression                  ************************************************************************************************************
+                                                        ** TEST                                                STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************************
+                                                        ** test_gf_mult_8bit.gf_multiplier_basic_test           PASS           2.00           0.00       2267.80  **
+                                                        ** test_gf_mult_8bit.gf_multiplier_random_test          PASS          21.00           0.00       5480.02  **
+                                                        ** test_gf_mult_8bit.gf_multiplier_maximum_value_test   PASS           2.00           0.00      10010.27  **
+                                                        ** test_gf_mult_8bit.gf_multiplier_zero_value_test      PASS           2.00           0.00       8971.77  **
+                                                        ************************************************************************************************************
+                                                        ** TESTS=4 PASS=4 FAIL=0 SKIP=0                                       27.00           0.01       2661.67  **
+                                                        ************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/gf_multiplier.fst opened for output.
+INFO     Icarus:runner.py:438 Results file: /code/rundir/sim_build/test_runner.None
+PASSED
+
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 1 passed, 2 warnings in 0.17s =========================
+Cleaning up Docker resources...

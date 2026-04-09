@@ -1,0 +1,27 @@
+
+module image_stego #(
+  parameter row = 2,
+  parameter col = 2
+)(
+  input  [(row*col*8)-1:0] img_in,
+  input  [(row*col*4)-1:0] data_in,
+  input  [1:0]             bpp,
+  output [(row*col*8)-1:0] img_out
+);
+
+  genvar i;
+  generate
+    for(i = 0; i < row*col; i++) begin
+      if (bpp == 2'b00) begin
+        assign img_out[(i*8)+7:(i*8)] = img_in[(i*8)+7:(i*8)];
+      end else if (bpp == 2'b01) begin
+        assign img_out[(i*8)+7:(i*8)] = data_in[i];
+      end else if (bpp == 2'b10) begin
+        assign img_out[(i*8)+7:(i*8)] = {img_in[(i*8)+7 : (i*8)+1], data_in[i]};
+      end else if (bpp == 2'b11) begin
+        assign img_out[(i*8)+7:(i*8)] = {img_in[(i*8)+7 : (i*8)+2], data_in[(2*i)+1], data_in[2*i]};
+      end
+    end
+  endgenerate
+
+endmodule

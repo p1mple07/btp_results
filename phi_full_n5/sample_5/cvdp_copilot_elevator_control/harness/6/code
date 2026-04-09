@@ -1,0 +1,22 @@
+module floor_to_seven_segment (current_floor, seven_seg_out);
+	input [N-1:0] current_floor;
+	output reg [6:0] seven_seg_out;
+
+	always @ (current_floor) begin
+		case (current_floor)
+		0: seven_seg_out = 7'b100000;
+		1: seven_seg_out = 7'b010010;
+		2: seven_seg_out = 7'b011000;
+		3: seven_seg_out = 7'b001100;
+		4: seven_seg_out = 7'b001001;
+		5: seven_seg_out = 7'b000001;
+		6: seven_seg_out = 7'b100001;
+		7: seven_seg_out = 7'b010011;
+		8: seven_seg_out = 7'b011001;
+		9: seven_seg_out = 7'b001101;
+		default: seven_seg_out = 7'b000000;
+		
+		endcase
+	end
+
+endmodule

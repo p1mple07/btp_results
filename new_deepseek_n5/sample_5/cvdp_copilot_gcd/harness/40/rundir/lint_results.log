@@ -1,0 +1,45 @@
+%Error: /code/rtl/gcd_top.sv:1:1: syntax error, unexpected IDENTIFIER
+    1 | Okay, I need to perform a LINT code review on the provided `lcm_3_ip` module and its submodules. The main issues to address are unused signals, incorrect signal widths, and assigning to input or const variables. Let me go through each part step by step.
+      | ^~~~
+%Error: /code/rtl/gcd_top.sv:1:60: Define or directive not defined: '`lcm_3_ip'
+    1 | Okay, I need to perform a LINT code review on the provided `lcm_3_ip` module and its submodules. The main issues to address are unused signals, incorrect signal widths, and assigning to input or const variables. Let me go through each part step by step.
+      |                                                            ^~~~~~~~~
+%Error: /code/rtl/gcd_top.sv:3:23: Define or directive not defined: '`lcm_3_ip'
+    3 | First, looking at the `lcm_3_ip` module. I notice that it has several parameters and input signals. The parameters are WIDTH and others, but I should check if all parameters are correctly used. The inputs include A, B, C, go, and rst. The outputs are done and OUT. 
+      |                       ^~~~~~~~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:3:206: Unsupported: Verilog 2001-config reserved word not implemented; suggest you want `include instead: 'include'
+    3 | First, looking at the `lcm_3_ip` module. I notice that it has several parameters and input signals. The parameters are WIDTH and others, but I should check if all parameters are correctly used. The inputs include A, B, C, go, and rst. The outputs are done and OUT. 
+      |                                                                                                                                                                                                              ^~~~~~~
+                    ... For error description see https://verilator.org/warn/UNSUPPORTED?v=5.027
+%Error: /code/rtl/gcd_top.sv:7:345: syntax error, unexpected IDENTIFIER, expecting ';'
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:7:487: Unsupported: Verilog 2001-config reserved word not implemented; suggest you want `include instead: 'include'
+%Error: /code/rtl/gcd_top.sv:9:15: Define or directive not defined: '`gcd_top'
+    9 | Moving to the `gcd_top` module. It's defined with WIDTH = 4, but in the instantiation, it's called without any parameter. So again, the instantiation is incorrect. It should include the WIDTH parameter. Also, within `gcd_top`, there are signals like done_ab, done_bc, done_ab_latched, done_bc_latched, and go_abc. I need to check if all these signals are used. 
+      |               ^~~~~~~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:9:175: Unsupported: Verilog 2001-config reserved word not implemented; suggest you want `include instead: 'include'
+    9 | Moving to the `gcd_top` module. It's defined with WIDTH = 4, but in the instantiation, it's called without any parameter. So again, the instantiation is incorrect. It should include the WIDTH parameter. Also, within `gcd_top`, there are signals like done_ab, done_bc, done_ab_latched, done_bc_latched, and go_abc. I need to check if all these signals are used. 
+      |                                                                                                                                                                               ^~~~~~~
+%Error: /code/rtl/gcd_top.sv:9:217: Define or directive not defined: '`gcd_top'
+    9 | Moving to the `gcd_top` module. It's defined with WIDTH = 4, but in the instantiation, it's called without any parameter. So again, the instantiation is incorrect. It should include the WIDTH parameter. Also, within `gcd_top`, there are signals like done_ab, done_bc, done_ab_latched, done_bc_latched, and go_abc. I need to check if all these signals are used. 
+      |                                                                                                                                                                                                                         ^~~~~~~~
+%Error: /code/rtl/gcd_top.sv:11:35: Define or directive not defined: '`gcd_top'
+%Error: /code/rtl/gcd_top.sv:13:8: Define or directive not defined: '`gcd_datapath'
+   13 | In the `gcd_datapath` module, the signals A_ff and B_ff are assigned in the always_ff block. The initial state loads A and B into these registers. The controlpath_state is used to manage the computation states. I need to check if all signals in this module are properly declared and used.
+      |        ^~~~~~~~~~~~~
+%Error: /code/rtl/gcd_top.sv:15:16: Define or directive not defined: '`gcd_controlpath'
+   15 | Looking at the `gcd_controlpath` module, the controlpath_state is used to transition between states. The always_comb block correctly uses the curr_state to determine the next_state. The always_ff block correctly updates the current state on the clock edge. The assign statement correctly outputs the controlpath_state. So this module seems okay.
+      |                ^~~~~~~~~~~~~~~~
+%Error: /code/rtl/gcd_top.sv:17:9: Define or directive not defined: '`lcm_3_ip'
+%Error: /code/rtl/gcd_top.sv:19:22: Define or directive not defined: '`lcm_3_ip'
+   19 | Additionally, in the `lcm_3_ip` module, the signals product and gcd_result are WIDTH-1 downto 0, which is 3 downto 0 for WIDTH=4. But as I noted earlier, these should be 2*WIDTH-1 downto 0, which would be 7 downto 0 for WIDTH=4. This is a clear issue because the multiplication results can't fit into WIDTH bits.
+      |                      ^~~~~~~~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:21:22: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   21 | Another point is the use of the 'product' variable. It's assigned as A * B * C, but since A, B, and C are WIDTH bits, their product would require 2*WIDTH bits. Assigning them to WIDTH bits would cause overflow, leading to incorrect results. So the signal width for 'product' should be extended.
+      |                      ^~~
+%Error: /code/rtl/gcd_top.sv:26:82: Define or directive not defined: '`gcd_top'
+   26 | 1. Unused signals: done_ab, done_bc, done_ab_latched, done_bc_latched, go_abc in `gcd_top`.
+      |                                                                                  ^~~~~~~~
+%Error: /code/rtl/gcd_top.sv:27:80: Define or directive not defined: '`lcm_3_ip'
+   27 | 2. Incorrect signal widths for A_int, B_int, C_int, product, and gcd_result in `lcm_3_ip`.
+      |                                                                                ^~~~~~~~~
+%Error: Exiting due to 17 error(s)

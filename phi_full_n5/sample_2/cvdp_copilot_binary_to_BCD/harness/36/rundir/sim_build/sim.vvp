@@ -1,0 +1,81 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1b8cb60 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x1ba0d80 .scope module, "binary_to_bcd" "binary_to_bcd" 3 2;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 8 "binary_in";
+    .port_info 1 /OUTPUT 12 "bcd_out";
+v0x1ba1110_0 .var "bcd_out", 11 0;
+o0x79869723b048 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x1bb1060_0 .net "binary_in", 7 0, o0x79869723b048;  0 drivers
+v0x1bb1140_0 .var/i "i", 31 0;
+v0x1bb1200_0 .var "shift_reg", 11 0;
+E_0x1b77ca0 .event anyedge, v0x1bb1060_0, v0x1bb1200_0;
+S_0x1ba0f60 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x1ba0d80;
+T_0 ;
+    %wait E_0x1b77ca0;
+    %pushi/vec4 0, 0, 12;
+    %load/vec4 v0x1bb1060_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 12;
+    %store/vec4 v0x1bb1200_0, 0, 12;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x1bb1140_0, 0, 32;
+T_0.0 ; Top of for-loop
+    %load/vec4 v0x1bb1140_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_0.1, 5;
+    %load/vec4 v0x1bb1200_0;
+    %parti/s 4, 8, 5;
+    %pad/u 32;
+    %cmpi/u 5, 0, 32;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_0.3, 5;
+    %load/vec4 v0x1bb1200_0;
+    %parti/s 4, 8, 5;
+    %addi 3, 0, 4;
+    %ix/load 4, 8, 0;
+    %flag_set/imm 4, 0;
+    %store/vec4 v0x1bb1200_0, 4, 4;
+T_0.3 ;
+    %load/vec4 v0x1bb1200_0;
+    %parti/s 12, 8, 5;
+    %load/vec4 v0x1bb1200_0;
+    %parti/s 4, 8, 5;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 12;
+    %store/vec4 v0x1bb1200_0, 0, 12;
+T_0.2 ; for-loop step statement
+    %load/vec4 v0x1bb1140_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x1bb1140_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ; for-loop exit label
+    %load/vec4 v0x1bb1200_0;
+    %store/vec4 v0x1ba1110_0, 0, 12;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x1ba0f60;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/binary_to_bcd.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1ba0d80 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/binary_to_bcd.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

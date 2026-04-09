@@ -1,0 +1,98 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x2041960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x2041af0 .scope module, "montgomery_redc" "montgomery_redc" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 12 "T";
+    .port_info 1 /OUTPUT 5 "result";
+P_0x2041390 .param/l "N" 0 3 3, +C4<00000000000000000000000000010111>;
+P_0x20413d0 .param/l "NWIDTH" 0 3 6, +C4<00000000000000000000000000000101>;
+P_0x2041410 .param/l "N_PRIME" 1 3 16, C4<1011001>;
+P_0x2041450 .param/l "R" 0 3 4, +C4<00000000000000000000000010000000>;
+P_0x2041490 .param/l "RWIDTH" 1 3 14, +C4<00000000000000000000000000000111>;
+P_0x20414d0 .param/l "R_INVERSE" 0 3 5, +C4<00000000000000000000000000010000>;
+P_0x2041510 .param/l "TWIDTH" 0 3 7, +C4<00000000000000000000000000001100>;
+o0x78dbf52c9018 .functor BUFZ 12, c4<zzzzzzzzzzzz>; HiZ drive
+v0x2041ee0_0 .net "T", 11 0, o0x78dbf52c9018;  0 drivers
+v0x2042050_0 .net "T_mod_R", 6 0, L_0x2083970;  1 drivers
+v0x2081f70_0 .net "T_mod_R_X_N_PRIME", 13 0, L_0x2093b70;  1 drivers
+v0x2082030_0 .net *"_ivl_12", 31 0, L_0x2093e00;  1 drivers
+L_0x78dbf52800a8 .functor BUFT 1, C4<00000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2082110_0 .net *"_ivl_15", 19 0, L_0x78dbf52800a8;  1 drivers
+v0x2082240_0 .net *"_ivl_16", 31 0, L_0x2093f40;  1 drivers
+L_0x78dbf52800f0 .functor BUFT 1, C4<0000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2082320_0 .net *"_ivl_19", 24 0, L_0x78dbf52800f0;  1 drivers
+v0x2082400_0 .net *"_ivl_2", 13 0, L_0x2083a40;  1 drivers
+L_0x78dbf5280138 .functor BUFT 1, C4<00000000000000000000000000010111>, C4<0>, C4<0>, C4<0>;
+v0x20824e0_0 .net/2u *"_ivl_20", 31 0, L_0x78dbf5280138;  1 drivers
+v0x20825c0_0 .net *"_ivl_23", 31 0, L_0x2094140;  1 drivers
+v0x20826a0_0 .net *"_ivl_24", 31 0, L_0x2094280;  1 drivers
+v0x2082780_0 .net *"_ivl_26", 31 0, L_0x2094500;  1 drivers
+v0x2082860_0 .net *"_ivl_28", 24 0, L_0x2094410;  1 drivers
+L_0x78dbf5280180 .functor BUFT 1, C4<0000000>, C4<0>, C4<0>, C4<0>;
+v0x2082940_0 .net *"_ivl_30", 6 0, L_0x78dbf5280180;  1 drivers
+v0x2082a20_0 .net *"_ivl_34", 31 0, L_0x2094740;  1 drivers
+L_0x78dbf52801c8 .functor BUFT 1, C4<00000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2082b00_0 .net *"_ivl_37", 25 0, L_0x78dbf52801c8;  1 drivers
+L_0x78dbf5280210 .functor BUFT 1, C4<00000000000000000000000000010111>, C4<0>, C4<0>, C4<0>;
+v0x2082be0_0 .net/2u *"_ivl_38", 31 0, L_0x78dbf5280210;  1 drivers
+v0x2082dd0_0 .net *"_ivl_40", 0 0, L_0x20948f0;  1 drivers
+v0x2082e90_0 .net *"_ivl_42", 31 0, L_0x2094a30;  1 drivers
+L_0x78dbf5280258 .functor BUFT 1, C4<00000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x2082f70_0 .net *"_ivl_45", 25 0, L_0x78dbf5280258;  1 drivers
+L_0x78dbf52802a0 .functor BUFT 1, C4<00000000000000000000000000010111>, C4<0>, C4<0>, C4<0>;
+v0x2083050_0 .net/2u *"_ivl_46", 31 0, L_0x78dbf52802a0;  1 drivers
+v0x2083130_0 .net *"_ivl_48", 31 0, L_0x2094ba0;  1 drivers
+L_0x78dbf5280018 .functor BUFT 1, C4<0000000>, C4<0>, C4<0>, C4<0>;
+v0x2083210_0 .net *"_ivl_5", 6 0, L_0x78dbf5280018;  1 drivers
+v0x20832f0_0 .net *"_ivl_50", 31 0, L_0x2094c90;  1 drivers
+L_0x78dbf52802e8 .functor BUFT 1, C4<00000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x20833d0_0 .net *"_ivl_53", 25 0, L_0x78dbf52802e8;  1 drivers
+v0x20834b0_0 .net *"_ivl_54", 31 0, L_0x2094e50;  1 drivers
+L_0x78dbf5280060 .functor BUFT 1, C4<00000001011001>, C4<0>, C4<0>, C4<0>;
+v0x2083590_0 .net/2u *"_ivl_6", 13 0, L_0x78dbf5280060;  1 drivers
+v0x2083670_0 .net "m", 6 0, L_0x2093ce0;  1 drivers
+v0x2083750_0 .net "result", 4 0, L_0x2094fe0;  1 drivers
+v0x2083830_0 .net "t", 5 0, L_0x20946a0;  1 drivers
+L_0x2083970 .part o0x78dbf52c9018, 0, 7;
+L_0x2083a40 .concat [ 7 7 0 0], L_0x2083970, L_0x78dbf5280018;
+L_0x2093b70 .arith/mult 14, L_0x2083a40, L_0x78dbf5280060;
+L_0x2093ce0 .part L_0x2093b70, 0, 7;
+L_0x2093e00 .concat [ 12 20 0 0], o0x78dbf52c9018, L_0x78dbf52800a8;
+L_0x2093f40 .concat [ 7 25 0 0], L_0x2093ce0, L_0x78dbf52800f0;
+L_0x2094140 .arith/mult 32, L_0x2093f40, L_0x78dbf5280138;
+L_0x2094280 .arith/sum 32, L_0x2093e00, L_0x2094140;
+L_0x2094410 .part L_0x2094280, 7, 25;
+L_0x2094500 .concat [ 25 7 0 0], L_0x2094410, L_0x78dbf5280180;
+L_0x20946a0 .part L_0x2094500, 0, 6;
+L_0x2094740 .concat [ 6 26 0 0], L_0x20946a0, L_0x78dbf52801c8;
+L_0x20948f0 .cmp/ge 32, L_0x2094740, L_0x78dbf5280210;
+L_0x2094a30 .concat [ 6 26 0 0], L_0x20946a0, L_0x78dbf5280258;
+L_0x2094ba0 .arith/sub 32, L_0x2094a30, L_0x78dbf52802a0;
+L_0x2094c90 .concat [ 6 26 0 0], L_0x20946a0, L_0x78dbf52802e8;
+L_0x2094e50 .functor MUXZ 32, L_0x2094c90, L_0x2094ba0, L_0x20948f0, C4<>;
+L_0x2094fe0 .part L_0x2094e50, 0, 5;
+S_0x205d9f0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x205d9f0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/montgomery_redc.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x2041af0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/montgomery_redc.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

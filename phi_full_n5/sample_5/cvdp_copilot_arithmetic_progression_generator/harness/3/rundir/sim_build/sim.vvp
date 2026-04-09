@@ -1,0 +1,103 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x23b4820 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x23b49b0 .scope module, "arithmetic_progression_generator" "arithmetic_progression_generator" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "resetn";
+    .port_info 2 /INPUT 1 "enable";
+    .port_info 3 /INPUT 16 "start_val";
+    .port_info 4 /INPUT 16 "step_size";
+    .port_info 5 /OUTPUT 288 "out_val";
+    .port_info 6 /OUTPUT 1 "done";
+P_0x23b4b40 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000010000>;
+P_0x23b4b80 .param/l "SEQUENCE_LENGTH" 0 3 3, +C4<00000000000000000000000000010010>;
+P_0x23b4bc0 .param/l "WIDTH_OUT_VAL" 1 3 17, +C4<0000000000000000000000000000000000000000000000000000000100100000>;
+L_0x23b43f0 .functor BUFZ 288, v0x23da930_0, C4<000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>, C4<000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>, C4<000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000>;
+o0x7052836c2018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x23c7a30_0 .net "clk", 0 0, o0x7052836c2018;  0 drivers
+v0x23da850_0 .var "counter", 4 0;
+v0x23da930_0 .var "current_val", 287 0;
+v0x23daa20_0 .var "done", 0 0;
+o0x7052836c20d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x23daae0_0 .net "enable", 0 0, o0x7052836c20d8;  0 drivers
+v0x23dabf0_0 .net "out_val", 287 0, L_0x23b43f0;  1 drivers
+o0x7052836c2138 .functor BUFZ 1, c4<z>; HiZ drive
+v0x23dacd0_0 .net "resetn", 0 0, o0x7052836c2138;  0 drivers
+o0x7052836c2168 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x23dad90_0 .net "start_val", 15 0, o0x7052836c2168;  0 drivers
+o0x7052836c2198 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x23dae70_0 .net "step_size", 15 0, o0x7052836c2198;  0 drivers
+E_0x23c3d30/0 .event negedge, v0x23dacd0_0;
+E_0x23c3d30/1 .event posedge, v0x23c7a30_0;
+E_0x23c3d30 .event/or E_0x23c3d30/0, E_0x23c3d30/1;
+S_0x23c78a0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x23b49b0;
+T_0 ;
+    %wait E_0x23c3d30;
+    %load/vec4 v0x23dacd0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 288;
+    %assign/vec4 v0x23da930_0, 0;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x23da850_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x23daa20_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x23daae0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0x23daa20_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.4, 8;
+    %load/vec4 v0x23da850_0;
+    %pad/u 32;
+    %cmpi/e 17, 0, 32;
+    %jmp/0xz  T_0.6, 4;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x23da850_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x23daa20_0, 0;
+    %jmp T_0.7;
+T_0.6 ;
+    %load/vec4 v0x23da930_0;
+    %load/vec4 v0x23dae70_0;
+    %pad/u 288;
+    %add;
+    %assign/vec4 v0x23da930_0, 0;
+    %load/vec4 v0x23da850_0;
+    %addi 1, 0, 5;
+    %assign/vec4 v0x23da850_0, 0;
+T_0.7 ;
+T_0.4 ;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x23c78a0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/arithmetic_progression_generator.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x23b49b0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/arithmetic_progression_generator.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

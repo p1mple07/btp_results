@@ -1,0 +1,59 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1646e00 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1659fc0 .scope module, "bcd_to_excess_3" "bcd_to_excess_3" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "bcd";
+    .port_info 1 /OUTPUT 4 "excess3";
+    .port_info 2 /OUTPUT 1 "error";
+o0x7225d6851018 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x165a370_0 .net "bcd", 3 0, o0x7225d6851018;  0 drivers
+v0x16696a0_0 .var "error", 0 0;
+v0x1669760_0 .var "excess3", 3 0;
+E_0x1632ca0 .event anyedge, v0x165a370_0;
+S_0x165a1c0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1659fc0;
+T_0 ;
+Ewait_0 .event/or E_0x1632ca0, E_0x0;
+    %wait Ewait_0;
+    %load/vec4 v0x165a370_0;
+    %cmpi/u 10, 0, 4;
+    %flag_inv 5; GE is !LT
+    %jmp/0xz  T_0.0, 5;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x1669760_0, 0, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x16696a0_0, 0, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x165a370_0;
+    %addi 3, 0, 4;
+    %store/vec4 v0x1669760_0, 0, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x16696a0_0, 0, 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x165a1c0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/bcd_to_excess_3.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1659fc0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bcd_to_excess_3.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

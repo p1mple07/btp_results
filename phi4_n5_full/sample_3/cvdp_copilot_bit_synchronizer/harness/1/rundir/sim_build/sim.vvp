@@ -1,0 +1,85 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x200c8b0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x200ca40 .scope module, "bit_sync" "bit_sync" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "aclk";
+    .port_info 1 /INPUT 1 "bclk";
+    .port_info 2 /INPUT 1 "rst_n";
+    .port_info 3 /INPUT 1 "adata";
+    .port_info 4 /OUTPUT 1 "aq2_data";
+    .port_info 5 /OUTPUT 1 "bq2_data";
+P_0x200cbd0 .param/l "STAGES" 0 3 2, +C4<00000000000000000000000000000101>;
+v0x200cd80_0 .var "a_sync_chain", 4 0;
+o0x721541880048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x202fd20_0 .net "aclk", 0 0, o0x721541880048;  0 drivers
+o0x721541880078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x202fde0_0 .net "adata", 0 0, o0x721541880078;  0 drivers
+v0x202feb0_0 .net "aq2_data", 0 0, L_0x2030470;  1 drivers
+v0x202ff70_0 .var "b_sync_chain", 4 0;
+o0x721541880108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x20300a0_0 .net "bclk", 0 0, o0x721541880108;  0 drivers
+v0x2030160_0 .net "bq2_data", 0 0, L_0x20303a0;  1 drivers
+o0x721541880168 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2030220_0 .net "rst_n", 0 0, o0x721541880168;  0 drivers
+E_0x201d430/0 .event negedge, v0x2030220_0;
+E_0x201d430/1 .event posedge, v0x202fd20_0;
+E_0x201d430 .event/or E_0x201d430/0, E_0x201d430/1;
+E_0x2008f60/0 .event negedge, v0x2030220_0;
+E_0x2008f60/1 .event posedge, v0x20300a0_0;
+E_0x2008f60 .event/or E_0x2008f60/0, E_0x2008f60/1;
+L_0x20303a0 .part v0x202ff70_0, 4, 1;
+L_0x2030470 .part v0x200cd80_0, 4, 1;
+    .scope S_0x200ca40;
+T_0 ;
+    %wait E_0x2008f60;
+    %load/vec4 v0x2030220_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x202ff70_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x202ff70_0;
+    %parti/s 4, 0, 2;
+    %load/vec4 v0x202fde0_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x202ff70_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x200ca40;
+T_1 ;
+    %wait E_0x201d430;
+    %load/vec4 v0x2030220_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 5;
+    %assign/vec4 v0x200cd80_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x200cd80_0;
+    %parti/s 4, 0, 2;
+    %load/vec4 v0x2030160_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x200cd80_0, 0;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bit_sync.sv";

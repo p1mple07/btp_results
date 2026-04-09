@@ -1,0 +1,1 @@
+rtl/Min_Hamming_Distance_Finder.sv

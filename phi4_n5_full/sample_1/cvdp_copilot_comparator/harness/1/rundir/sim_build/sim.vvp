@@ -1,0 +1,71 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x73cef0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x725960 .scope module, "signed_unsigned_comparator" "signed_unsigned_comparator" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 5 "i_A";
+    .port_info 1 /INPUT 5 "i_B";
+    .port_info 2 /INPUT 1 "i_enable";
+    .port_info 3 /INPUT 1 "i_mode";
+    .port_info 4 /OUTPUT 1 "o_greater";
+    .port_info 5 /OUTPUT 1 "o_less";
+    .port_info 6 /OUTPUT 1 "o_equal";
+P_0x725af0 .param/l "WIDTH" 0 3 2, +C4<00000000000000000000000000000101>;
+v0x739c90_0 .net *"_ivl_0", 0 0, L_0x7612a0;  1 drivers
+v0x7603a0_0 .net *"_ivl_10", 0 0, L_0x7615d0;  1 drivers
+v0x760460_0 .net *"_ivl_12", 0 0, L_0x7616a0;  1 drivers
+L_0x75e4b6220060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x760520_0 .net/2u *"_ivl_14", 0 0, L_0x75e4b6220060;  1 drivers
+L_0x75e4b6220018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x760600_0 .net/2u *"_ivl_2", 0 0, L_0x75e4b6220018;  1 drivers
+v0x760730_0 .net *"_ivl_20", 0 0, L_0x7619b0;  1 drivers
+v0x7607f0_0 .net *"_ivl_22", 0 0, L_0x761ae0;  1 drivers
+v0x7608b0_0 .net *"_ivl_24", 0 0, L_0x761bd0;  1 drivers
+L_0x75e4b62200a8 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x760990_0 .net/2u *"_ivl_26", 0 0, L_0x75e4b62200a8;  1 drivers
+v0x760a70_0 .net *"_ivl_8", 0 0, L_0x761490;  1 drivers
+o0x75e4b62691f8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x760b30_0 .net "i_A", 4 0, o0x75e4b62691f8;  0 drivers
+o0x75e4b6269228 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x760c10_0 .net "i_B", 4 0, o0x75e4b6269228;  0 drivers
+o0x75e4b6269258 .functor BUFZ 1, c4<z>; HiZ drive
+v0x760cf0_0 .net "i_enable", 0 0, o0x75e4b6269258;  0 drivers
+o0x75e4b6269288 .functor BUFZ 1, c4<z>; HiZ drive
+v0x760db0_0 .net "i_mode", 0 0, o0x75e4b6269288;  0 drivers
+v0x760e70_0 .net "o_equal", 0 0, L_0x761340;  1 drivers
+v0x760f30_0 .net "o_greater", 0 0, L_0x7617e0;  1 drivers
+v0x760ff0_0 .net "o_less", 0 0, L_0x761cc0;  1 drivers
+L_0x7612a0 .cmp/eq 5, o0x75e4b62691f8, o0x75e4b6269228;
+L_0x761340 .functor MUXZ 1, L_0x75e4b6220018, L_0x7612a0, o0x75e4b6269258, C4<>;
+L_0x761490 .cmp/gt.s 5, o0x75e4b62691f8, o0x75e4b6269228;
+L_0x7615d0 .cmp/gt 5, o0x75e4b62691f8, o0x75e4b6269228;
+L_0x7616a0 .functor MUXZ 1, L_0x7615d0, L_0x761490, o0x75e4b6269288, C4<>;
+L_0x7617e0 .functor MUXZ 1, L_0x75e4b6220060, L_0x7616a0, o0x75e4b6269258, C4<>;
+L_0x7619b0 .cmp/gt.s 5, o0x75e4b6269228, o0x75e4b62691f8;
+L_0x761ae0 .cmp/gt 5, o0x75e4b6269228, o0x75e4b62691f8;
+L_0x761bd0 .functor MUXZ 1, L_0x761ae0, L_0x7619b0, o0x75e4b6269288, C4<>;
+L_0x761cc0 .functor MUXZ 1, L_0x75e4b62200a8, L_0x761bd0, o0x75e4b6269258, C4<>;
+S_0x725c80 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x725c80;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/signed_unsigned_comparator.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x725960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/signed_comparator.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

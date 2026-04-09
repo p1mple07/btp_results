@@ -1,0 +1,150 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x84e850 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x84e9e0 .scope module, "continuous_adder" "continuous_adder" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 32 "data_in";
+    .port_info 3 /INPUT 1 "data_valid";
+    .port_info 4 /INPUT 16 "window_size";
+    .port_info 5 /OUTPUT 32 "sum_out";
+    .port_info 6 /OUTPUT 32 "avg_out";
+    .port_info 7 /OUTPUT 1 "threshold_1";
+    .port_info 8 /OUTPUT 1 "threshold_2";
+    .port_info 9 /OUTPUT 1 "sum_ready";
+P_0x84eb70 .param/l "ACCUM_MODE" 0 3 6, +C4<00000000000000000000000000000001>;
+P_0x84ebb0 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000100000>;
+P_0x84ebf0 .param/l "SIGNED_INPUTS" 0 3 5, +C4<00000000000000000000000000000001>;
+P_0x84ec30 .param/l "THRESHOLD_VALUE_1" 0 3 3, +C4<00000000000000000000000000110010>;
+P_0x84ec70 .param/l "THRESHOLD_VALUE_2" 0 3 4, +C4<00000000000000000000000001100100>;
+P_0x84ecb0 .param/l "WEIGHT" 0 3 7, +C4<00000000000000000000000000000010>;
+L_0x87bdd0 .functor BUFZ 32, v0x87b400_0, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+L_0x87be90 .functor BUFZ 1, v0x87b5a0_0, C4<0>, C4<0>, C4<0>;
+L_0x87bf60 .functor BUFZ 1, v0x87b720_0, C4<0>, C4<0>, C4<0>;
+L_0x87c030 .functor BUFZ 1, v0x87b8a0_0, C4<0>, C4<0>, C4<0>;
+v0x85bfb0_0 .var/s "avg_out", 31 0;
+o0x74618be03048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x85fae0_0 .net "clk", 0 0, o0x74618be03048;  0 drivers
+o0x74618be03078 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x85be40_0 .net/s "data_in", 31 0, o0x74618be03078;  0 drivers
+o0x74618be030a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x87af90_0 .net "data_valid", 0 0, o0x74618be030a8;  0 drivers
+o0x74618be030d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x87b050_0 .net "reset", 0 0, o0x74618be030d8;  0 drivers
+v0x87b160_0 .var "sample_count", 15 0;
+v0x87b240_0 .var/s "sum_accum", 31 0;
+v0x87b320_0 .net/s "sum_out", 31 0, L_0x87bdd0;  1 drivers
+v0x87b400_0 .var/s "sum_out_reg", 31 0;
+v0x87b4e0_0 .net "sum_ready", 0 0, L_0x87be90;  1 drivers
+v0x87b5a0_0 .var "sum_ready_reg", 0 0;
+v0x87b660_0 .net "threshold_1", 0 0, L_0x87bf60;  1 drivers
+v0x87b720_0 .var "threshold_1_comb", 0 0;
+v0x87b7e0_0 .net "threshold_2", 0 0, L_0x87c030;  1 drivers
+v0x87b8a0_0 .var "threshold_2_comb", 0 0;
+v0x87b960_0 .var/s "weighted_input", 31 0;
+o0x74618be03318 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x87ba40_0 .net "window_size", 15 0, o0x74618be03318;  0 drivers
+E_0x85fd10 .event posedge, v0x85fae0_0;
+    .scope S_0x84e9e0;
+T_0 ;
+    %wait E_0x85fd10;
+    %load/vec4 v0x87b050_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x87b240_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x87b160_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x87b5a0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x87b400_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x85bfb0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x87af90_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0x85be40_0;
+    %muli 2, 0, 32;
+    %store/vec4 v0x87b960_0, 0, 32;
+    %load/vec4 v0x87b240_0;
+    %load/vec4 v0x87b960_0;
+    %add;
+    %assign/vec4 v0x87b240_0, 0;
+    %load/vec4 v0x87b160_0;
+    %addi 1, 0, 16;
+    %assign/vec4 v0x87b160_0, 0;
+    %load/vec4 v0x87b240_0;
+    %cmpi/s 50, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_get/vec4 5;
+    %jmp/1 T_0.4, 5;
+    %load/vec4 v0x87b240_0;
+    %cmpi/s 4294967246, 0, 32;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %or;
+T_0.4;
+    %store/vec4 v0x87b720_0, 0, 1;
+    %load/vec4 v0x87b240_0;
+    %cmpi/s 100, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_get/vec4 5;
+    %jmp/1 T_0.5, 5;
+    %load/vec4 v0x87b240_0;
+    %cmpi/s 4294967196, 0, 32;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %or;
+T_0.5;
+    %store/vec4 v0x87b8a0_0, 0, 1;
+    %load/vec4 v0x87b160_0;
+    %load/vec4 v0x87ba40_0;
+    %cmp/e;
+    %jmp/0xz  T_0.6, 4;
+    %load/vec4 v0x87b240_0;
+    %assign/vec4 v0x87b400_0, 0;
+    %load/vec4 v0x87b240_0;
+    %load/vec4 v0x87ba40_0;
+    %pad/u 32;
+    %div;
+    %assign/vec4 v0x85bfb0_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x87b5a0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x87b240_0, 0;
+    %pushi/vec4 0, 0, 16;
+    %assign/vec4 v0x87b160_0, 0;
+    %jmp T_0.7;
+T_0.6 ;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x87b400_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x85bfb0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x87b5a0_0, 0;
+T_0.7 ;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/cont_adder_top.sv";

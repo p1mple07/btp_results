@@ -1,0 +1,56 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x912580 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x912710 .scope module, "clock_jitter_detection_module" "clock_jitter_detection_module" 3 2;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "system_clk";
+    .port_info 2 /INPUT 1 "rst";
+    .port_info 3 /OUTPUT 1 "jitter_detected";
+P_0x9128a0 .param/l "JITTER_THRESHOLD" 0 3 3, +C4<00000000000000000000000000001010>;
+o0x721eaaa1d018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x925890_0 .net "clk", 0 0, o0x721eaaa1d018;  0 drivers
+v0x935290_0 .var "jitter_detected", 0 0;
+v0x935350_0 .var "prev_system_clk", 0 0;
+o0x721eaaa1d0a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x935420_0 .net "rst", 0 0, o0x721eaaa1d0a8;  0 drivers
+o0x721eaaa1d0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9354e0_0 .net "system_clk", 0 0, o0x721eaaa1d0d8;  0 drivers
+E_0x923c20 .event posedge, v0x925890_0;
+S_0x925700 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x912710;
+T_0 ;
+    %wait E_0x923c20;
+    %load/vec4 v0x935420_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x9354e0_0;
+    %assign/vec4 v0x935350_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x925700;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/clock_jitter_detection_module.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x912710 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/clock_jitter_detection_module.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

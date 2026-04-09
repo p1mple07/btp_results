@@ -1,0 +1,842 @@
+Running harness with project name: cvdp_copilot_gaussian_rounding_div_23_1774682580
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 8 items
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682582
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+   100.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   100.00ns INFO     cocotb.divider                     Hardware:  quotient=8, remainder=0, valid=1
+   100.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   100.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=8, SW=0
+                                                        assert 8 == 0
+   100.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   210.00ns INFO     cocotb.divider                     Dividing 15 by 1
+   210.00ns INFO     cocotb.divider                     Hardware:  quotient=15, remainder=0, valid=1
+   210.00ns INFO     cocotb.divider                     Software:  quotient=15, remainder=0
+   210.00ns INFO     cocotb.divider                     PASS
+                                                        
+   280.00ns INFO     cocotb.divider                     Dividing 1 by 7
+   280.00ns INFO     cocotb.divider                     Hardware:  quotient=8, remainder=1, valid=1
+   280.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=1
+   280.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 90, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=1, divisor=max_val_divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=8, SW=0
+                                                        assert 8 == 0
+   280.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   410.00ns INFO     cocotb.divider                     Dividing 14 by 1
+   410.00ns INFO     cocotb.divider                     Hardware:  quotient=15, remainder=0, valid=1
+   410.00ns INFO     cocotb.divider                     Software:  quotient=14, remainder=0
+   410.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=15, SW=14
+                                                        assert 15 == 14
+   410.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL         100.00           0.00      51306.47  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         180.00           0.00      75107.33  **
+                                                        ** test_divider.test_divider_randomized     FAIL         130.00           0.00      80600.70  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          410.00           0.01      35098.23  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4
+[DEBUG] Parameters: {'WIDTH': 4}
+FAILED
+../../src/test_runner.py::test_gcd[2]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682582
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    80.00ns INFO     cocotb.divider                     Dividing 0 by 1
+    80.00ns INFO     cocotb.divider                     Hardware:  quotient=2, remainder=0, valid=1
+    80.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+    80.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=2, SW=0
+                                                        assert 2 == 0
+    80.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   170.00ns INFO     cocotb.divider                     Dividing 3 by 1
+   170.00ns INFO     cocotb.divider                     Hardware:  quotient=3, remainder=0, valid=1
+   170.00ns INFO     cocotb.divider                     Software:  quotient=3, remainder=0
+   170.00ns INFO     cocotb.divider                     PASS
+                                                        
+   220.00ns INFO     cocotb.divider                     Dividing 1 by 1
+   220.00ns INFO     cocotb.divider                     Hardware:  quotient=2, remainder=0, valid=1
+   220.00ns INFO     cocotb.divider                     Software:  quotient=1, remainder=0
+   220.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 90, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=1, divisor=max_val_divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=2, SW=1
+                                                        assert 2 == 1
+   220.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   330.00ns INFO     cocotb.divider                     Dividing 3 by 1
+   330.00ns INFO     cocotb.divider                     Hardware:  quotient=3, remainder=0, valid=1
+   330.00ns INFO     cocotb.divider                     Software:  quotient=3, remainder=0
+   330.00ns INFO     cocotb.divider                     PASS
+                                                        
+   380.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   380.00ns INFO     cocotb.divider                     Hardware:  quotient=2, remainder=0, valid=1
+   380.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   380.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=2, SW=0
+                                                        assert 2 == 0
+   380.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          80.00           0.00      42132.64  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         140.00           0.00      68335.48  **
+                                                        ** test_divider.test_divider_randomized     FAIL         160.00           0.00      71135.56  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          380.00           0.01      31596.93  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=2
+[DEBUG] Parameters: {'WIDTH': 2}
+FAILED
+../../src/test_runner.py::test_gcd[3]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682583
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+    90.00ns INFO     cocotb.divider                     Dividing 0 by 1
+    90.00ns INFO     cocotb.divider                     Hardware:  quotient=4, remainder=0, valid=1
+    90.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+    90.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=4, SW=0
+                                                        assert 4 == 0
+    90.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   190.00ns INFO     cocotb.divider                     Dividing 7 by 1
+   190.00ns INFO     cocotb.divider                     Hardware:  quotient=7, remainder=0, valid=1
+   190.00ns INFO     cocotb.divider                     Software:  quotient=7, remainder=0
+   190.00ns INFO     cocotb.divider                     PASS
+                                                        
+   250.00ns INFO     cocotb.divider                     Dividing 1 by 3
+   250.00ns INFO     cocotb.divider                     Hardware:  quotient=4, remainder=1, valid=1
+   250.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=1
+   250.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 90, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=1, divisor=max_val_divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=4, SW=0
+                                                        assert 4 == 0
+   250.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   370.00ns INFO     cocotb.divider                     Dividing 7 by 1
+   370.00ns INFO     cocotb.divider                     Hardware:  quotient=7, remainder=0, valid=1
+   370.00ns INFO     cocotb.divider                     Software:  quotient=7, remainder=0
+   370.00ns INFO     cocotb.divider                     PASS
+                                                        
+   430.00ns INFO     cocotb.divider                     Dividing 1 by 2
+   430.00ns INFO     cocotb.divider                     Hardware:  quotient=4, remainder=1, valid=1
+   430.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=1
+   430.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=4, SW=0
+                                                        assert 4 == 0
+   430.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL          90.00           0.00      46477.14  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         160.00           0.00      72660.55  **
+                                                        ** test_divider.test_divider_randomized     FAIL         180.00           0.00      73534.52  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          430.00           0.01      35144.77  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=3
+[DEBUG] Parameters: {'WIDTH': 3}
+FAILED
+../../src/test_runner.py::test_gcd[4]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682583
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+   100.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   100.00ns INFO     cocotb.divider                     Hardware:  quotient=8, remainder=0, valid=1
+   100.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   100.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=8, SW=0
+                                                        assert 8 == 0
+   100.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   210.00ns INFO     cocotb.divider                     Dividing 15 by 1
+   210.00ns INFO     cocotb.divider                     Hardware:  quotient=15, remainder=0, valid=1
+   210.00ns INFO     cocotb.divider                     Software:  quotient=15, remainder=0
+   210.00ns INFO     cocotb.divider                     PASS
+                                                        
+   280.00ns INFO     cocotb.divider                     Dividing 1 by 7
+   280.00ns INFO     cocotb.divider                     Hardware:  quotient=8, remainder=1, valid=1
+   280.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=1
+   280.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 90, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=1, divisor=max_val_divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=8, SW=0
+                                                        assert 8 == 0
+   280.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   410.00ns INFO     cocotb.divider                     Dividing 14 by 1
+   410.00ns INFO     cocotb.divider                     Hardware:  quotient=15, remainder=0, valid=1
+   410.00ns INFO     cocotb.divider                     Software:  quotient=14, remainder=0
+   410.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=15, SW=14
+                                                        assert 15 == 14
+   410.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL         100.00           0.00      49217.37  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         180.00           0.00      75317.13  **
+                                                        ** test_divider.test_divider_randomized     FAIL         130.00           0.00      80150.48  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          410.00           0.01      34958.39  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4
+[DEBUG] Parameters: {'WIDTH': 4}
+FAILED
+../../src/test_runner.py::test_gcd[5]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682583
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+   110.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   110.00ns INFO     cocotb.divider                     Hardware:  quotient=16, remainder=0, valid=1
+   110.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   110.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=16, SW=0
+                                                        assert 16 == 0
+   110.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   230.00ns INFO     cocotb.divider                     Dividing 31 by 1
+   230.00ns INFO     cocotb.divider                     Hardware:  quotient=31, remainder=0, valid=1
+   230.00ns INFO     cocotb.divider                     Software:  quotient=31, remainder=0
+   230.00ns INFO     cocotb.divider                     PASS
+                                                        
+   310.00ns INFO     cocotb.divider                     Dividing 1 by 15
+   310.00ns INFO     cocotb.divider                     Hardware:  quotient=16, remainder=1, valid=1
+   310.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=1
+   310.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 90, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=1, divisor=max_val_divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=16, SW=0
+                                                        assert 16 == 0
+   310.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   450.00ns INFO     cocotb.divider                     Dividing 28 by 1
+   450.00ns INFO     cocotb.divider                     Hardware:  quotient=30, remainder=0, valid=1
+   450.00ns INFO     cocotb.divider                     Software:  quotient=28, remainder=0
+   450.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=30, SW=28
+                                                        assert 30 == 28
+   450.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL         110.00           0.00      51031.24  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         200.00           0.00      76066.83  **
+                                                        ** test_divider.test_divider_randomized     FAIL         140.00           0.00      78221.23  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          450.00           0.01      36221.79  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=5
+[DEBUG] Parameters: {'WIDTH': 5}
+FAILED
+../../src/test_runner.py::test_gcd[8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682583
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+   140.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   140.00ns INFO     cocotb.divider                     Hardware:  quotient=128, remainder=0, valid=1
+   140.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   140.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=128, SW=0
+                                                        assert 128 == 0
+   140.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   290.00ns INFO     cocotb.divider                     Dividing 0 by 100
+   290.00ns INFO     cocotb.divider                     Hardware:  quotient=128, remainder=0, valid=1
+   290.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   290.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 81, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=0, divisor=100)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=128, SW=0
+                                                        assert 128 == 0
+   290.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   460.00ns INFO     cocotb.divider                     Dividing 224 by 2
+   460.00ns INFO     cocotb.divider                     Hardware:  quotient=184, remainder=0, valid=1
+   460.00ns INFO     cocotb.divider                     Software:  quotient=112, remainder=0
+   460.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=184, SW=112
+                                                        assert 184 == 112
+   460.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL         140.00           0.00      57789.84  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         150.00           0.00      78184.39  **
+                                                        ** test_divider.test_divider_randomized     FAIL         170.00           0.00      82969.03  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          460.00           0.01      37996.54  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=8
+[DEBUG] Parameters: {'WIDTH': 8}
+FAILED
+../../src/test_runner.py::test_gcd[12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682583
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+   180.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   180.00ns INFO     cocotb.divider                     Hardware:  quotient=2048, remainder=0, valid=1
+   180.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   180.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=2048, SW=0
+                                                        assert 2048 == 0
+   180.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   370.00ns INFO     cocotb.divider                     Dividing 0 by 100
+   370.00ns INFO     cocotb.divider                     Hardware:  quotient=2048, remainder=0, valid=1
+   370.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   370.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 81, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=0, divisor=100)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=2048, SW=0
+                                                        assert 2048 == 0
+   370.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   580.00ns INFO     cocotb.divider                     Dividing 3596 by 23
+   580.00ns INFO     cocotb.divider                     Hardware:  quotient=2126, remainder=8, valid=1
+   580.00ns INFO     cocotb.divider                     Software:  quotient=156, remainder=8
+   580.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=2126, SW=156
+                                                        assert 2126 == 156
+   580.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL         180.00           0.00      64379.19  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         190.00           0.00      84294.69  **
+                                                        ** test_divider.test_divider_randomized     FAIL         210.00           0.00      86916.13  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          580.00           0.01      43648.49  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=12
+[DEBUG] Parameters: {'WIDTH': 12}
+FAILED
+../../src/test_runner.py::test_gcd[16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682583
+     0.00ns INFO     cocotb.regression                  running test_divider.test_divider_basic (1/3)
+                                                            Test the divider in a basic scenario with a few directed test vectors.
+   220.00ns INFO     cocotb.divider                     Dividing 0 by 1
+   220.00ns INFO     cocotb.divider                     Hardware:  quotient=32768, remainder=0, valid=1
+   220.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   220.00ns INFO     cocotb.regression                  test_divider.test_divider_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 33, in test_divider_basic
+                                                            await run_division_test(dut, dividend=0, divisor=1)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=32768, SW=0
+                                                        assert 32768 == 0
+   220.00ns INFO     cocotb.regression                  running test_divider.test_divider_corner_cases (2/3)
+                                                            Test corner cases: dividing by zero, maximum values, etc.
+   450.00ns INFO     cocotb.divider                     Dividing 0 by 100
+   450.00ns INFO     cocotb.divider                     Hardware:  quotient=32768, remainder=0, valid=1
+   450.00ns INFO     cocotb.divider                     Software:  quotient=0, remainder=0
+   450.00ns INFO     cocotb.regression                  test_divider.test_divider_corner_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 81, in test_divider_corner_cases
+                                                            await run_division_test(dut, dividend=0, divisor=100)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=32768, SW=0
+                                                        assert 32768 == 0
+   450.00ns INFO     cocotb.regression                  running test_divider.test_divider_randomized (3/3)
+                                                            Perform randomized testing of the divider.
+   700.00ns INFO     cocotb.divider                     Dividing 57551 by 354
+   700.00ns INFO     cocotb.divider                     Hardware:  quotient=32849, remainder=203, valid=1
+   700.00ns INFO     cocotb.divider                     Software:  quotient=162, remainder=203
+   700.00ns INFO     cocotb.regression                  test_divider.test_divider_randomized failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_divider.py", line 127, in test_divider_randomized
+                                                            await run_division_test(dut, dividend, divisor)
+                                                          File "/src/test_divider.py", line 181, in run_division_test
+                                                            assert quotient_hw == quotient_sw, f"ERROR: Quotient mismatch. HW={quotient_hw}, SW={quotient_sw}"
+                                                        AssertionError: ERROR: Quotient mismatch. HW=32849, SW=162
+                                                        assert 32849 == 162
+   700.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_divider.test_divider_basic          FAIL         220.00           0.00      70149.53  **
+                                                        ** test_divider.test_divider_corner_cases   FAIL         230.00           0.00      89207.89  **
+                                                        ** test_divider.test_divider_randomized     FAIL         250.00           0.00      86231.92  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          700.00           0.01      48057.44  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/divider.fst opened for output.
+[DEBUG] Running simulation with WIDTH=16
+[DEBUG] Parameters: {'WIDTH': 16}
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+WIDTH = 4
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[2] __________________________________
+
+WIDTH = 2
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 2
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[3] __________________________________
+
+WIDTH = 3
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 3
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[4] __________________________________
+
+WIDTH = 4
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 4
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[5] __________________________________
+
+WIDTH = 5
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 5
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[8] __________________________________
+
+WIDTH = 8
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 8
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[12] _________________________________
+
+WIDTH = 12
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 12
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+_________________________________ test_gcd[16] _________________________________
+
+WIDTH = 16
+
+    @pytest.mark.parametrize("WIDTH", [2,3,4,5,8,12,16])
+    
+    def test_gcd(WIDTH):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH)
+
+/src/test_runner.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 16
+
+    def test_runner(WIDTH: int=4):
+    
+        parameter = {"WIDTH":WIDTH}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:34: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[2] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[3] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[4] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[5] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[8] - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_gcd[12] - SystemExit: ERROR: Failed 3 o...
+FAILED ../../src/test_runner.py::test_gcd[16] - SystemExit: ERROR: Failed 3 o...
+======================== 8 failed, 3 warnings in 1.31s =========================
+Cleaning up Docker resources...

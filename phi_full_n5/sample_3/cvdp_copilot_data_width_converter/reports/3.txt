@@ -1,0 +1,112 @@
+Running harness with project name: cvdp_copilot_data_width_converter_3_1774074576
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner 
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s data_width_converter -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_width_converter.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774074578
+     0.00ns INFO     cocotb.regression                  running DW_convertor.test_data_width_converter (1/3)
+                                                            Test data_width_converter with multiple test cases 
+    20.00ns INFO     cocotb.data_width_converter        Sending data 0x12345678
+    40.00ns INFO     cocotb.data_width_converter        Sending data 0x9abcdef0
+    50.00ns INFO     cocotb.data_width_converter        Sending data 0xfedcba9
+    60.00ns INFO     cocotb.data_width_converter        Sending data 0x87654321
+    70.00ns INFO     cocotb.data_width_converter        Expected output: 0x123456789abcdef00fedcba987654321
+    70.00ns INFO     cocotb.regression                  DW_convertor.test_data_width_converter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/DW_convertor.py", line 115, in test_data_width_converter
+                                                            await test_case_1(dut)
+                                                          File "/src/DW_convertor.py", line 47, in test_case_1
+                                                            assert dut.o_data_out.value == expected_output, f"Output mismatch: Expected {hex(expected_output)}, got {hex(dut.o_data_out.value)}"
+                                                        TypeError: 'LogicArray' object cannot be interpreted as an integer
+    70.00ns INFO     cocotb.regression                  running DW_convertor.test_data_width_converter (2/3)
+                                                            Test data_width_converter with multiple test cases 
+    70.00ns INFO     cocotb.data_width_converter        Sending data 0xdeadbeef
+    80.00ns INFO     cocotb.data_width_converter        Sending data 0xcafebabe
+    90.00ns INFO     cocotb.data_width_converter        Sending data 0xbaadf00d
+   100.00ns INFO     cocotb.data_width_converter        Sending data 0xfacefeed
+   110.00ns INFO     cocotb.data_width_converter        Expected output: 0xdeadbeefcafebabebaadf00dfacefeed
+   110.00ns INFO     cocotb.regression                  DW_convertor.test_data_width_converter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/DW_convertor.py", line 131, in test_data_width_converter
+                                                            await test_case_2(dut)
+                                                          File "/src/DW_convertor.py", line 74, in test_case_2
+                                                            assert dut.o_data_out.value == expected_output, f"Output mismatch: Expected {hex(expected_output)}, got {hex(dut.o_data_out.value)}"
+                                                        TypeError: 'LogicArray' object cannot be interpreted as an integer
+   110.00ns INFO     cocotb.regression                  running DW_convertor.test_data_width_converter (3/3)
+                                                            Test data_width_converter with multiple test cases 
+   110.00ns INFO     cocotb.data_width_converter        Sending data 0x11111111
+   120.00ns INFO     cocotb.data_width_converter        Sending data 0x22222222
+   130.00ns INFO     cocotb.data_width_converter        Sending data 0x33333333
+   140.00ns INFO     cocotb.data_width_converter        Sending data 0x44444444
+   150.00ns INFO     cocotb.data_width_converter        Expected output: 0x11111111222222223333333344444444
+   150.00ns INFO     cocotb.regression                  DW_convertor.test_data_width_converter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/DW_convertor.py", line 143, in test_data_width_converter
+                                                            await test_case_3(dut)
+                                                          File "/src/DW_convertor.py", line 99, in test_case_3
+                                                            assert dut.o_data_out.value == expected_output, f"Output mismatch: Expected {hex(expected_output)}, got {hex(dut.o_data_out.value)}"
+                                                        TypeError: 'LogicArray' object cannot be interpreted as an integer
+   150.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** DW_convertor.test_data_width_converter   FAIL          70.00           0.00      33231.61  **
+                                                        ** DW_convertor.test_data_width_converter   FAIL          40.00           0.00      32949.01  **
+                                                        ** DW_convertor.test_data_width_converter   FAIL          40.00           0.00      40515.90  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                          150.00           0.01      18137.51  **
+                                                        ************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_width_converter.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        # List from Files
+        verilog_sources = os.getenv("VERILOG_SOURCES").split()
+    
+        # Language of Top Level File
+        toplevel_lang   = os.getenv("TOPLEVEL_LANG")
+    
+        sim             = os.getenv("SIM", "icarus")
+        toplevel        = os.getenv("TOPLEVEL")
+        module          = os.getenv("MODULE")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log",
+    
+        )
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:32: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s data_width_converter -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_width_converter.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 3 of...
+============================== 1 failed in 0.17s ===============================
+Cleaning up Docker resources...

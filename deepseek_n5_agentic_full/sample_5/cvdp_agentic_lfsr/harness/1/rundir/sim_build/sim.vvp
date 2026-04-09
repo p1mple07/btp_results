@@ -1,0 +1,77 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x209b960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x209baf0 .scope module, "lfsr_8bit" "lfsr_8bit" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 8 "seed";
+    .port_info 3 /OUTPUT 8 "lfsr_out";
+P_0x209bc80 .param/l "POLY" 0 3 8, C4<10011111>;
+o0x7d156e094018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x20afeb0_0 .net "clk", 0 0, o0x7d156e094018;  0 drivers
+v0x20d2270_0 .var "lfsr_out", 7 0;
+o0x7d156e094078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x20d2350_0 .net "rst", 0 0, o0x7d156e094078;  0 drivers
+o0x7d156e0940a8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x20d23f0_0 .net "seed", 7 0, o0x7d156e0940a8;  0 drivers
+E_0x20c0df0 .event posedge, v0x20d2350_0, v0x20afeb0_0;
+S_0x20afce0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x209baf0;
+T_0 ;
+    %wait E_0x20c0df0;
+    %load/vec4 v0x20d2350_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 1, 0, 8;
+    %store/vec4 v0x20d2270_0, 0, 8;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x20d2270_0;
+    %parti/s 7, 0, 2;
+    %load/vec4 v0x20d2270_0;
+    %parti/s 1, 7, 4;
+    %pad/u 8;
+    %load/vec4 v0x20d2270_0;
+    %parti/s 1, 5, 4;
+    %pad/u 8;
+    %xor;
+    %load/vec4 v0x20d2270_0;
+    %parti/s 1, 4, 4;
+    %pad/u 8;
+    %xor;
+    %load/vec4 v0x20d2270_0;
+    %parti/s 1, 3, 3;
+    %pad/u 8;
+    %xor;
+    %pushi/vec4 159, 0, 8;
+    %and;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 8;
+    %store/vec4 v0x20d2270_0, 0, 8;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x20afce0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/lfsr_8bit.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x209baf0 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/lfsr_8bit.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

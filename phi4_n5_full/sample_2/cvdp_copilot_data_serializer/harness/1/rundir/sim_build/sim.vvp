@@ -1,0 +1,175 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xd8d530 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0xd8d6c0 .scope module, "data_serializer" "data_serializer" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "p_valid_i";
+    .port_info 3 /INPUT 8 "p_data_i";
+    .port_info 4 /OUTPUT 1 "p_ready_o";
+    .port_info 5 /OUTPUT 1 "s_valid_o";
+    .port_info 6 /OUTPUT 1 "s_data_o";
+    .port_info 7 /INPUT 1 "s_ready_i";
+    .port_info 8 /INPUT 1 "tx_en_i";
+P_0xd72390 .param/l "BIT_ORDER" 0 3 3, +C4<00000000000000000000000000000001>;
+P_0xd723d0 .param/l "DATA_W" 0 3 2, +C4<00000000000000000000000000001000>;
+P_0xd72410 .param/l "EXTRA_BIT" 1 3 25, +C4<00000000000000000000000000000001>;
+P_0xd72450 .param/l "PARITY" 0 3 4, +C4<00000000000000000000000000000010>;
+P_0xd72490 .param/l "SHIFT_W" 1 3 26, +C4<000000000000000000000000000001001>;
+P_0xd724d0 .param/l "ST_RX" 1 3 21, C4<0>;
+P_0xd72510 .param/l "ST_TX" 1 3 22, C4<1>;
+L_0xdbac00 .functor BUFZ 1, L_0xdbab30, C4<0>, C4<0>, C4<0>;
+L_0x7e0979345018 .functor BUFT 1, C4<1>, C4<0>, C4<0>, C4<0>;
+L_0xdbacc0 .functor XNOR 1, v0xdba7c0_0, L_0x7e0979345018, C4<0>, C4<0>;
+L_0x7e0979345060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+L_0xdbaee0 .functor XNOR 1, v0xdba7c0_0, L_0x7e0979345060, C4<0>, C4<0>;
+v0xd73050_0 .net/2u *"_ivl_12", 0 0, L_0x7e0979345060;  1 drivers
+v0xd72ee0_0 .net/2u *"_ivl_6", 0 0, L_0x7e0979345018;  1 drivers
+o0x7e097938e078 .functor BUFZ 1, c4<z>; HiZ drive
+v0xdb99b0_0 .net "clk", 0 0, o0x7e097938e078;  0 drivers
+v0xdb9a80_0 .var "count_d", 3 0;
+v0xdb9b60_0 .var "count_q", 3 0;
+o0x7e097938e108 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0xdb9c90_0 .net "p_data_i", 7 0, o0x7e097938e108;  0 drivers
+v0xdb9d70_0 .net "p_ready_o", 0 0, L_0xdbaee0;  1 drivers
+o0x7e097938e168 .functor BUFZ 1, c4<z>; HiZ drive
+v0xdb9e30_0 .net "p_valid_i", 0 0, o0x7e097938e168;  0 drivers
+v0xdb9ef0_0 .net "parity_bit", 0 0, L_0xdbac00;  1 drivers
+v0xdb9fb0_0 .net "parity_bit_even", 0 0, L_0xdbaa60;  1 drivers
+v0xdba070_0 .net "parity_bit_odd", 0 0, L_0xdbab30;  1 drivers
+o0x7e097938e228 .functor BUFZ 1, c4<z>; HiZ drive
+v0xdba130_0 .net "reset", 0 0, o0x7e097938e228;  0 drivers
+v0xdba1f0_0 .net "s_data_o", 0 0, L_0xdbade0;  1 drivers
+o0x7e097938e288 .functor BUFZ 1, c4<z>; HiZ drive
+v0xdba2b0_0 .net "s_ready_i", 0 0, o0x7e097938e288;  0 drivers
+v0xdba370_0 .net "s_valid_o", 0 0, L_0xdbacc0;  1 drivers
+v0xdba430_0 .var "shift_reg_d", 8 0;
+v0xdba510_0 .var "shift_reg_q", 8 0;
+v0xdba700_0 .var "state_d", 0 0;
+v0xdba7c0_0 .var "state_q", 0 0;
+o0x7e097938e3a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xdba880_0 .net "tx_en_i", 0 0, o0x7e097938e3a8;  0 drivers
+E_0xd99d50/0 .event anyedge, v0xdba7c0_0, v0xdba510_0, v0xdb9b60_0, v0xdb9e30_0;
+E_0xd99d50/1 .event anyedge, v0xdb9c90_0, v0xdb9ef0_0, v0xdba2b0_0, v0xdba880_0;
+E_0xd99d50 .event/or E_0xd99d50/0, E_0xd99d50/1;
+E_0xd99bd0 .event posedge, v0xdba130_0, v0xdb99b0_0;
+L_0xdbaa60 .reduce/xor o0x7e097938e108;
+L_0xdbab30 .reduce/xnor o0x7e097938e108;
+L_0xdbade0 .part v0xdba510_0, 8, 1;
+S_0xd72960 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0xd8d6c0;
+T_0 ;
+    %wait E_0xd99bd0;
+    %load/vec4 v0xdba130_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xdba7c0_0, 0;
+    %pushi/vec4 0, 0, 9;
+    %assign/vec4 v0xdba510_0, 0;
+    %pushi/vec4 0, 0, 4;
+    %assign/vec4 v0xdb9b60_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xdba700_0;
+    %assign/vec4 v0xdba7c0_0, 0;
+    %load/vec4 v0xdba430_0;
+    %assign/vec4 v0xdba510_0, 0;
+    %load/vec4 v0xdb9a80_0;
+    %assign/vec4 v0xdb9b60_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xd8d6c0;
+T_1 ;
+    %wait E_0xd99d50;
+    %load/vec4 v0xdba7c0_0;
+    %store/vec4 v0xdba700_0, 0, 1;
+    %load/vec4 v0xdba510_0;
+    %store/vec4 v0xdba430_0, 0, 9;
+    %load/vec4 v0xdb9b60_0;
+    %store/vec4 v0xdb9a80_0, 0, 4;
+    %load/vec4 v0xdba7c0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 1;
+    %cmp/u;
+    %jmp/1 T_1.0, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 1;
+    %cmp/u;
+    %jmp/1 T_1.1, 6;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xdba700_0, 0, 1;
+    %jmp T_1.3;
+T_1.0 ;
+    %load/vec4 v0xdb9e30_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.4, 8;
+    %load/vec4 v0xdb9c90_0;
+    %load/vec4 v0xdb9ef0_0;
+    %concat/vec4; draw_concat_vec4
+    %store/vec4 v0xdba430_0, 0, 9;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0xdb9a80_0, 0, 4;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0xdba700_0, 0, 1;
+T_1.4 ;
+    %jmp T_1.3;
+T_1.1 ;
+    %load/vec4 v0xdba2b0_0;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_1.8, 9;
+    %load/vec4 v0xdba880_0;
+    %and;
+T_1.8;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.6, 8;
+    %load/vec4 v0xdb9b60_0;
+    %pad/u 33;
+    %cmpi/e 8, 0, 33;
+    %jmp/0xz  T_1.9, 4;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0xdba700_0, 0, 1;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0xdb9a80_0, 0, 4;
+    %jmp T_1.10;
+T_1.9 ;
+    %load/vec4 v0xdba510_0;
+    %parti/s 8, 0, 2;
+    %concati/vec4 0, 0, 1;
+    %store/vec4 v0xdba430_0, 0, 9;
+    %load/vec4 v0xdb9b60_0;
+    %addi 1, 0, 4;
+    %store/vec4 v0xdb9a80_0, 0, 4;
+T_1.10 ;
+T_1.6 ;
+    %jmp T_1.3;
+T_1.3 ;
+    %pop/vec4 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0xd72960;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/data_serializer.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xd8d6c0 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/data_serializer.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

@@ -1,0 +1,123 @@
+%Warning-WIDTHEXPAND: /code/rtl/hill_cipher.sv:29:15: Operator ASSIGNW expects 15 bits on the Assign RHS, but Assign RHS's SEL generates 5 bits.
+                                                    : ... note: In instance 'hill_cipher'
+   29 |     assign P0 = plaintext[14:10];
+      |               ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /code/rtl/hill_cipher.sv:30:15: Operator ASSIGNW expects 15 bits on the Assign RHS, but Assign RHS's SEL generates 5 bits.
+                                                    : ... note: In instance 'hill_cipher'
+   30 |     assign P1 = plaintext[9:5];
+      |               ^
+%Warning-WIDTHEXPAND: /code/rtl/hill_cipher.sv:31:15: Operator ASSIGNW expects 15 bits on the Assign RHS, but Assign RHS's SEL generates 5 bits.
+                                                    : ... note: In instance 'hill_cipher'
+   31 |     assign P2 = plaintext[4:0];
+      |               ^
+%Warning-WIDTHTRUNC: /code/rtl/hill_cipher.sv:109:23: Operator ASSIGNW expects 15 bits on the Assign RHS, but Assign RHS's REPLICATE generates 45 bits.
+                                                    : ... note: In instance 'hill_cipher'
+  109 |     assign ciphertext = {C0_reg, C1_reg, C2_reg};
+      |                       ^
+%Warning-MULTIDRIVEN: /code/rtl/hill_cipher.sv:88:21: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'temp0'
+                                                    : ... note: In instance 'hill_cipher'
+                      /code/rtl/hill_cipher.sv:88:21: 
+   88 |                     temp0 <= (K00 * P0)%26 + (K01 * P1)%26 + (K02 * P2)%26;
+      |                     ^~~~~
+                      /code/rtl/hill_cipher.sv:67:17: ... Location of always_comb write
+   67 |                 temp0 <= (K00 * P0)%26 + (K01 * P1)%26 + (K02 * P2)%26;
+      |                 ^~~~~
+%Warning-MULTIDRIVEN: /code/rtl/hill_cipher.sv:89:21: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'temp1'
+                                                    : ... note: In instance 'hill_cipher'
+                      /code/rtl/hill_cipher.sv:89:21: 
+   89 |                     temp1 <= (K10 * P0)%26 + (K11 * P1)%26 + (K12 * P2)%26;
+      |                     ^~~~~
+                      /code/rtl/hill_cipher.sv:68:17: ... Location of always_comb write
+   68 |                 temp1 <= (K10 * P0)%26 + (K11 * P1)%26 + (K12 * P2)%26;
+      |                 ^~~~~
+%Warning-MULTIDRIVEN: /code/rtl/hill_cipher.sv:90:21: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'temp2'
+                                                    : ... note: In instance 'hill_cipher'
+                      /code/rtl/hill_cipher.sv:90:21: 
+   90 |                     temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                     ^~~~~
+                      /code/rtl/hill_cipher.sv:69:17: ... Location of always_comb write
+   69 |                 temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                 ^~~~~
+%Warning-MULTIDRIVEN: /code/rtl/hill_cipher.sv:98:21: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'temp0'
+                                                    : ... note: In instance 'hill_cipher'
+                      /code/rtl/hill_cipher.sv:98:21: 
+   98 |                     temp0 <= 15'b0;
+      |                     ^~~~~
+                      /code/rtl/hill_cipher.sv:88:21: ... Location of always_comb write
+   88 |                     temp0 <= (K00 * P0)%26 + (K01 * P1)%26 + (K02 * P2)%26;
+      |                     ^~~~~
+%Warning-MULTIDRIVEN: /code/rtl/hill_cipher.sv:99:21: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'temp1'
+                                                    : ... note: In instance 'hill_cipher'
+                      /code/rtl/hill_cipher.sv:99:21: 
+   99 |                     temp1 <= 15'b0;
+      |                     ^~~~~
+                      /code/rtl/hill_cipher.sv:89:21: ... Location of always_comb write
+   89 |                     temp1 <= (K10 * P0)%26 + (K11 * P1)%26 + (K12 * P2)%26;
+      |                     ^~~~~
+%Warning-MULTIDRIVEN: /code/rtl/hill_cipher.sv:100:21: Variable also written to in always_comb (IEEE 1800-2023 9.2.2.2): 'temp2'
+                                                     : ... note: In instance 'hill_cipher'
+                      /code/rtl/hill_cipher.sv:100:21: 
+  100 |                     temp2 <= 15'b0;
+      |                     ^~~~~
+                      /code/rtl/hill_cipher.sv:90:21: ... Location of always_comb write
+   90 |                     temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                     ^~~~~
+%Warning-COMBDLY: /code/rtl/hill_cipher.sv:67:23: Non-blocking assignment '<=' in combinational logic process
+                                                : ... This will be executed as a blocking assignment '='!
+   67 |                 temp0 <= (K00 * P0)%26 + (K01 * P1)%26 + (K02 * P2)%26;
+      |                       ^~
+                  *** See https://verilator.org/warn/COMBDLY before disabling this,
+                  else you may end up with different sim results.
+%Warning-COMBDLY: /code/rtl/hill_cipher.sv:68:23: Non-blocking assignment '<=' in combinational logic process
+                                                : ... This will be executed as a blocking assignment '='!
+   68 |                 temp1 <= (K10 * P0)%26 + (K11 * P1)%26 + (K12 * P2)%26;
+      |                       ^~
+%Warning-COMBDLY: /code/rtl/hill_cipher.sv:69:23: Non-blocking assignment '<=' in combinational logic process
+                                                : ... This will be executed as a blocking assignment '='!
+   69 |                 temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                       ^~
+%Warning-COMBDLY: /code/rtl/hill_cipher.sv:61:23: Non-blocking assignment '<=' in combinational logic process
+                                                : ... This will be executed as a blocking assignment '='!
+   61 |                 temp0 <= 15'b0;  
+      |                       ^~
+%Warning-COMBDLY: /code/rtl/hill_cipher.sv:62:23: Non-blocking assignment '<=' in combinational logic process
+                                                : ... This will be executed as a blocking assignment '='!
+   62 |                 temp1 <= 15'b0;
+      |                       ^~
+%Warning-COMBDLY: /code/rtl/hill_cipher.sv:63:23: Non-blocking assignment '<=' in combinational logic process
+                                                : ... This will be executed as a blocking assignment '='!
+   63 |                 temp2 <= 15'b0;
+      |                       ^~
+%Warning-LATCH: /code/rtl/hill_cipher.sv:50:5: Latch inferred for signal 'hill_cipher.temp0' (not all control paths of combinational always assign a value)
+                                             : ... Suggest use of always_latch for intentional latches
+   50 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Warning-LATCH: /code/rtl/hill_cipher.sv:50:5: Latch inferred for signal 'hill_cipher.temp1' (not all control paths of combinational always assign a value)
+                                             : ... Suggest use of always_latch for intentional latches
+   50 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Warning-LATCH: /code/rtl/hill_cipher.sv:50:5: Latch inferred for signal 'hill_cipher.temp2' (not all control paths of combinational always assign a value)
+                                             : ... Suggest use of always_latch for intentional latches
+   50 |     always_comb begin
+      |     ^~~~~~~~~~~
+%Error-BLKANDNBLK: /code/rtl/hill_cipher.sv:17:32: Unsupported: Blocked and non-blocking assignments to same variable: 'hill_cipher.temp2'
+   17 |     logic [14:0] temp0, temp1, temp2;  
+      |                                ^~~~~
+                   /code/rtl/hill_cipher.sv:69:23: ... Location of blocking assignment
+   69 |                 temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                       ^~
+                   /code/rtl/hill_cipher.sv:90:27: ... Location of nonblocking assignment
+   90 |                     temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                           ^~
+%Error-BLKANDNBLK: /code/rtl/hill_cipher.sv:17:32: Unsupported: Blocked and non-blocking assignments to same variable: 'hill_cipher.temp2'
+   17 |     logic [14:0] temp0, temp1, temp2;  
+      |                                ^~~~~
+                   /code/rtl/hill_cipher.sv:69:23: ... Location of blocking assignment
+   69 |                 temp2 <= (K20 * P0)%26 + (K21 * P1)%26 + (K22 * P2)%26;
+      |                       ^~
+                   /code/rtl/hill_cipher.sv:100:27: ... Location of nonblocking assignment
+  100 |                     temp2 <= 15'b0;
+      |                           ^~
+%Error: Exiting due to 2 error(s), 19 warning(s)

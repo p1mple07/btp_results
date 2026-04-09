@@ -1,0 +1,85 @@
+Running harness with project name: cvdp_copilot_huffman_1_1774851228
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_moving_run[0] 
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s huffman_encoder -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/huffman_encoder.sv /code/rtl/single_port_ram.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp +encoder_in=58 -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774851230
+     0.00ns INFO     cocotb.regression                  running test_huffman_encoder.test_huffman_encoder (1/1)
+                                                            Comprehensive test including random data and boundary condition testing. 
+    25.00ns INFO     cocotb.regression                  test_huffman_encoder.test_huffman_encoder failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_huffman_encoder.py", line 27, in test_huffman_encoder
+                                                            assert dut.huffman_code_out.value == 0, "Huffman code out should reset to 0"
+                                                        AssertionError: Huffman code out should reset to 0
+                                                        assert LogicArray('XXXXXXX', Range(6, 'downto', 0)) == 0
+                                                         +  where LogicArray('XXXXXXX', Range(6, 'downto', 0)) = LogicObject(huffman_encoder.huffman_code_out).value
+                                                         +    where LogicObject(huffman_encoder.huffman_code_out) = HierarchyObject(huffman_encoder).huffman_code_out
+    25.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_huffman_encoder.test_huffman_encoder   FAIL          25.00           0.00      25909.96  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                              25.00           0.01       4803.81  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/huffman_encoder.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+______________________________ test_moving_run[0] ______________________________
+
+test = 0
+
+    @pytest.mark.parametrize("test", range(1))
+    def test_moving_run(test):
+        encoder_in = random.randint(0, 255)
+    
+        plusargs=[f'+encoder_in={encoder_in}']
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            # parameters=parameter,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+>       runner.test(hdl_toplevel=toplevel, test_module=module, plusargs=plusargs, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:34: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s huffman_encoder -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/huffman_encoder.sv /code/rtl/single_port_ram.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp +encoder_in=58 -fst in directory /code/rundir/sim_build
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_moving_run[0] - SystemExit: ERROR: Fail...
+======================== 1 failed, 3 warnings in 0.18s =========================
+Cleaning up Docker resources...

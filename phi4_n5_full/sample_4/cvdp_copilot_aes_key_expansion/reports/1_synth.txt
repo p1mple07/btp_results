@@ -1,0 +1,113 @@
+Running harness with project name: cvdp_copilot_aes_key_expansion_1_1774849940
+#1 [internal] load local bake definitions
+#1 reading from stdin 740B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 1.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.3s done
+#5 DONE 0.3s
+
+#6 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#6 DONE 0.4s
+
+#7 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#7 CACHED
+
+#8 [3/4] RUN python3 ./get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:de52f2961d153f8cd32928f05ca9148c17327f1fbb81fea9e5c120fa67fbc8c1
+#10 exporting manifest sha256:de52f2961d153f8cd32928f05ca9148c17327f1fbb81fea9e5c120fa67fbc8c1 0.3s done
+#10 exporting config sha256:bc5af787869200130a383c025b70456810ad1b36a1dbd4625e846d449e543235
+#10 exporting config sha256:bc5af787869200130a383c025b70456810ad1b36a1dbd4625e846d449e543235 0.3s done
+#10 exporting attestation manifest sha256:822a8653ba5deef7511489bb50b59533c5a8082c10af330311fe370223dc0f3c
+#10 exporting attestation manifest sha256:822a8653ba5deef7511489bb50b59533c5a8082c10af330311fe370223dc0f3c 0.5s done
+#10 exporting manifest list sha256:3e55a6944bd9163102f3d719a62b6cb12692c72c2a018abf9f5c24361fade70a
+#10 exporting manifest list sha256:3e55a6944bd9163102f3d719a62b6cb12692c72c2a018abf9f5c24361fade70a 0.2s done
+#10 naming to docker.io/library/cvdp_copilot_aes_key_expansion_1_1774849940-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_aes_key_expansion_1_1774849940-synth:latest 0.0s done
+#10 unpacking to docker.io/library/cvdp_copilot_aes_key_expansion_1_1774849940-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_aes_key_expansion_1_1774849940-synth:latest 1.6s done
+#10 DONE 3.2s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/key_expansion_128aes.sv
+FAILED
+
+=================================== FAILURES ===================================
+__________________________________ test_yosys __________________________________
+
+    def test_yosys():
+    
+        # Check for logs
+        log_file = "/code/rundir/synth.log"
+        error = 0
+        if os.path.exists(log_file):
+            os.remove(log_file)
+            error = 0 if not os.path.exists(log_file) else 1
+    
+        # Verifica se ocorreu algum erro
+        assert error == 0, "Error to remove previous synth log."
+        # Run synthesis
+        synth_error = synth()
+>       assert synth_error == 0, "Error to run synthesis"
+E       AssertionError: Error to run synthesis
+E       assert 1 == 0
+
+/src/synth.py:45: AssertionError
+=========================== short test summary info ============================
+FAILED ../../src/synth.py::test_yosys - AssertionError: Error to run synthesis
+============================== 1 failed in 0.02s ===============================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_aes_key_expansion_1_1774849940-synth:latest
+Deleted: sha256:3e55a6944bd9163102f3d719a62b6cb12692c72c2a018abf9f5c24361fade70a

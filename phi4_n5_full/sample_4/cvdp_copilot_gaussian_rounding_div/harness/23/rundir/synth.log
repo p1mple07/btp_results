@@ -1,0 +1,812 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/divider.sv
+Parsing SystemVerilog input from `/code/rtl/divider.sv' to AST representation.
+Generating RTLIL representation for module `\divider'.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:45.13-45.31.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:63.25-63.40.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:77.25-77.38.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:79.25-79.38.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:90.25-90.38.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:92.25-92.38.
+Warning: wire '\state' is assigned in a block at /code/rtl/divider.sv:95.26-95.39.
+/code/rtl/divider.sv:45: Warning: Identifier `\state' is implicitly declared.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \divider
+
+2.2. Analyzing design hierarchy..
+Top module:  \divider
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module divider...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 2 dead cases from process $proc$/code/rtl/divider.sv:43$1 in module divider.
+Marked 3 switch rules as full_case in process $proc$/code/rtl/divider.sv:43$1 in module divider.
+Removed a total of 2 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\divider.$proc$/code/rtl/divider.sv:43$1'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~3 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+     1/8: $0\aq[64:0] [64:1]
+     2/8: $0\aq[64:0] [0]
+     3/8: $0\valid_reg[0:0]
+     4/8: $0\remainder_reg[31:0]
+     5/8: $0\quotient_reg[31:0]
+     6/8: $0\n[4:0]
+     7/8: $0\m[32:0]
+     8/8: $0\state[0:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\divider.\aq' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$44' with positive edge clock and negative level reset.
+Creating register for signal `\divider.\m' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$45' with positive edge clock and negative level reset.
+Creating register for signal `\divider.\n' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$46' with positive edge clock and negative level reset.
+Creating register for signal `\divider.\quotient_reg' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$47' with positive edge clock and negative level reset.
+Creating register for signal `\divider.\remainder_reg' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$48' with positive edge clock and negative level reset.
+Creating register for signal `\divider.\valid_reg' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$49' with positive edge clock and negative level reset.
+Creating register for signal `\divider.\state' using process `\divider.$proc$/code/rtl/divider.sv:43$1'.
+  created $adff cell `$procdff$50' with positive edge clock and negative level reset.
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 3 empty switches in `\divider.$proc$/code/rtl/divider.sv:43$1'.
+Removing empty process `divider.$proc$/code/rtl/divider.sv:43$1'.
+Cleaned up 3 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+<suppressed ~14 debug messages>
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$39: \state -> 1'0
+      Replacing known input bits on port A of cell $procmux$41: \state -> 1'0
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$49 ($adff) from module divider (D = 1'0, Q = \valid_reg).
+Handling D = Q on $procdff$48 ($adff) from module divider (removing D path).
+Handling D = Q on $procdff$47 ($adff) from module divider (removing D path).
+Adding EN signal on $procdff$44 ($adff) from module divider (D = { $procmux$13_Y [63:31] $procmux$18_Y }, Q = { \aq [64:32] \aq [0] }).
+Adding EN signal on $procdff$44 ($adff) from module divider (D = $procmux$13_Y [30:0], Q = \aq [31:1]).
+Adding EN signal on $procdff$45 ($adff) from module divider (D = { 1'0 \divisor }, Q = \m).
+Adding EN signal on $procdff$46 ($adff) from module divider (D = $procmux$26_Y, Q = \n).
+Setting constant 0-bit at position 0 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 1 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 2 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 3 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 4 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 5 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 6 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 7 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 8 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 9 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 10 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 11 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 12 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 13 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 14 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 15 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 16 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 17 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 18 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 19 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 20 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 21 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 22 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 23 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 24 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 25 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 26 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 27 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 28 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 29 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 30 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 31 on $procdff$47 ($dlatch) from module divider.
+Setting constant 0-bit at position 32 on $auto$ff.cc:266:slice$68 ($adffe) from module divider.
+Setting constant 0-bit at position 0 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 1 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 2 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 3 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 4 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 5 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 6 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 7 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 8 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 9 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 10 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 11 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 12 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 13 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 14 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 15 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 16 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 17 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 18 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 19 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 20 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 21 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 22 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 23 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 24 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 25 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 26 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 27 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 28 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 29 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 30 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 31 on $procdff$48 ($dlatch) from module divider.
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$51 ($adffe) from module divider.
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+Removed 40 unused cells and 61 unused wires.
+<suppressed ~44 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+5.16. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing FSM pass (extract and optimize FSM).
+
+6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+7.9. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing MEMORY pass.
+
+8.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+8.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+8.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+8.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+9.9. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing TECHMAP pass (map to technology primitives).
+
+10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+11.9. Finished OPT passes. (There is nothing left to do.)
+
+12. Executing SYNTH pass.
+
+12.1. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1.1. Analyzing design hierarchy..
+Top module:  \divider
+
+12.1.2. Analyzing design hierarchy..
+Top module:  \divider
+Removed 0 unused modules.
+
+12.2. Executing PROC pass (convert processes to netlists).
+
+12.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+12.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+12.2.4. Executing PROC_INIT pass (extract init attributes).
+
+12.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+12.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+12.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+12.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+12.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+12.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+12.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.5. Executing CHECK pass (checking for obvious problems).
+Checking module divider...
+Found and reported 0 problems.
+
+12.6. Executing OPT pass (performing simple optimizations).
+
+12.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+12.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.6.9. Finished OPT passes. (There is nothing left to do.)
+
+12.7. Executing FSM pass (extract and optimize FSM).
+
+12.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+12.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+12.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+12.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+12.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+12.8. Executing OPT pass (performing simple optimizations).
+
+12.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+12.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.8.9. Finished OPT passes. (There is nothing left to do.)
+
+12.9. Executing WREDUCE pass (reducing word size of cells).
+
+12.10. Executing PEEPOPT pass (run peephole optimizers).
+
+12.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module divider:
+  created 0 $alu and 0 $macc cells.
+
+12.13. Executing SHARE pass (SAT-based resource sharing).
+
+12.14. Executing OPT pass (performing simple optimizations).
+
+12.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+12.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.14.9. Finished OPT passes. (There is nothing left to do.)
+
+12.15. Executing MEMORY pass.
+
+12.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+12.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+12.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+12.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+12.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+12.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+12.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+12.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+12.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.17. Executing OPT pass (performing simple optimizations).
+
+12.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+<suppressed ~2 debug messages>
+
+12.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.17.5. Finished fast OPT passes.
+
+12.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+12.19. Executing OPT pass (performing simple optimizations).
+
+12.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \divider..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \divider.
+Performed a total of 0 changes.
+
+12.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.19.6. Executing OPT_SHARE pass.
+
+12.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.19.10. Finished OPT passes. (There is nothing left to do.)
+
+12.20. Executing TECHMAP pass (map to technology primitives).
+
+12.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+12.20.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+12.21. Executing OPT pass (performing simple optimizations).
+
+12.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.21.5. Finished fast OPT passes.
+
+12.22. Executing ABC pass (technology mapping using ABC).
+
+12.22.1. Extracting gate netlist of module `\divider' to `<abc-temp-dir>/input.blif'..
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+12.23. Executing OPT pass (performing simple optimizations).
+
+12.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module divider.
+
+12.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\divider'.
+Removed a total of 0 cells.
+
+12.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \divider..
+
+12.23.5. Finished fast OPT passes.
+
+12.24. Executing HIERARCHY pass (managing design hierarchy).
+
+12.24.1. Analyzing design hierarchy..
+Top module:  \divider
+
+12.24.2. Analyzing design hierarchy..
+Top module:  \divider
+Removed 0 unused modules.
+
+12.25. Printing statistics.
+
+=== divider ===
+
+   Number of wires:                 12
+   Number of wire bits:            230
+   Number of public wires:          12
+   Number of public wire bits:     230
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  0
+
+12.26. Executing CHECK pass (checking for obvious problems).
+Checking module divider...
+Found and reported 0 problems.
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
+Dumping module `\divider'.
+
+Warnings: 8 unique messages, 8 total
+End of script. Logfile hash: 6875b08c9e, CPU: user 0.05s system 0.01s, MEM: 14.75 MB peak
+Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+Time spent: 23% 4x read_verilog (0 sec), 19% 23x opt_expr (0 sec), ...

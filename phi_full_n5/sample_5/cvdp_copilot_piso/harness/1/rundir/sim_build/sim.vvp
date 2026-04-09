@@ -1,0 +1,71 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x8c49b0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x8c4b40 .scope module, "piso_8bit" "piso_8bit" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 1 "serial_out";
+o0x7d111a33b018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8d8a20_0 .net "clk", 0 0, o0x7d111a33b018;  0 drivers
+o0x7d111a33b048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x8fb660_0 .net "rst", 0 0, o0x7d111a33b048;  0 drivers
+v0x8fb720_0 .var "serial_out", 0 0;
+v0x8fb7c0_0 .var "tmp", 7 0;
+E_0x8c4e70/0 .event negedge, v0x8fb660_0;
+E_0x8c4e70/1 .event posedge, v0x8d8a20_0;
+E_0x8c4e70 .event/or E_0x8c4e70/0, E_0x8c4e70/1;
+S_0x8d8850 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x8c4b40;
+T_0 ;
+    %wait E_0x8c4e70;
+    %load/vec4 v0x8fb660_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 1, 0, 8;
+    %assign/vec4 v0x8fb7c0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x8fb720_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x8fb7c0_0;
+    %cmpi/e 255, 0, 8;
+    %jmp/0xz  T_0.2, 4;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x8fb7c0_0, 0;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0x8fb7c0_0;
+    %addi 1, 0, 8;
+    %assign/vec4 v0x8fb7c0_0, 0;
+T_0.3 ;
+    %load/vec4 v0x8fb7c0_0;
+    %parti/s 1, 7, 4;
+    %assign/vec4 v0x8fb720_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x8d8850;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/piso_8bit.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x8c4b40 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/piso_8bit.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

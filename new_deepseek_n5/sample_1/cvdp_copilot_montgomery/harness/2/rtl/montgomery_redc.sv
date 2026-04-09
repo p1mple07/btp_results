@@ -1,0 +1,77 @@
+module montgomery_mult #(parameter N = 7, parameter R = 8, parameter R_INVERSE = 1)
+(
+    parameter NWIDTH = $clog2(N)
+)
+(
+    input clk, 
+    input rst_n,
+    input wire [NWIDTH-1:0] a, b,
+    input wire [NWIDTH-1:0] valid_in,
+    output wire [NWIDTH-1:0] result,
+    output wire [NWIDTH-1:0] valid_out
+)
+    localparam TWO_NWIDTH = $clog2(2*N);
+    reg [NWIDTH-1:0] a_q, b_q;
+    wire [NWIDTH-1:0] a_redc, b_redc;
+    reg [NWIDTH-1:0] a_redc_q, b_redc_q;
+    wire [2*NWIDTH-1:0] ar = a_q * R, br = b_q * R;
+    wire [2*NWIDTH-1:0] a_redc_x_b_redc;
+    assign a_redc_x_b_redc = a_redc_q * b_redc_q;
+    reg [NWIDTH-1:0] result_q;
+    reg valid_in_q, valid_in_q1, valid_in_q2;
+    reg valid_out_q;
+    wire [2*NWIDTH-1:0] ar = a_q * R, br = b_q * R;
+    wire [2*NWIDTH-1:0] a_redc_x_b_redc;
+    assign a_redc_x_b_redc = a_redc_q * b_redc_q;
+    assign result = result_q;
+    assign valid_out = valid_out_q;
+    always_ff @(posedge clk or negedge rst_n) begin : valid_out_pipeline
+        if (!rst_n) begin
+            valid_in_q <= 0;
+            valid_in_q1 <= 0;
+            valid_in_q2 <= 0;
+            valid_out_q <= 0;
+        else begin
+            valid_in_q <= valid_in;
+            valid_in_q1 <= valid_in_q;
+            valid_in_q2 <= valid_in_q1;
+            valid_out_q <= valid_in_q2;
+        end
+    end
+    always_ff @(posedge clk or negedge rst_n) begin : input_registers
+        if (!rst_n) begin
+            a_q <= 0;
+            b_q <= 0;
+        end else begin
+            if(valid_in) begin
+                a_q <= a;
+                b_q <= b;
+            end
+        end
+    end
+    always_ff @(posedge clk or negedge rst_n) begin : a_b_reduction_pipeline
+        if (!rst_n) begin
+            a_redc_q <= 0;
+            b_redc_q <= 0;
+        end else begin
+            a_redc_q <= a_redc;
+            b_redc_q <= b_redc;
+        end
+    end
+    always_ff @(posedge clk or negedge rst_n) begin : output_register
+        if (!rst_n) begin
+            result_q <= 0;
+        end else begin
+            result_q <= result_d;
+        end
+    end
+    montgomery_redc #(N, R, R_INVERSE) prod_redc (
+        .T(a_redc_x_b_redc),
+        .result(result_d)
+    );
+    wire [NWIDTH-1:0] t;
+    assign t = (a_redc_x_b_redc + R * N) >> (NWIDTH + 1);
+    assign result_d = (t >= N) ? (t - N) : t;
+    assign result = result_d;
+    assign valid_out = valid_out_q;
+endmodule

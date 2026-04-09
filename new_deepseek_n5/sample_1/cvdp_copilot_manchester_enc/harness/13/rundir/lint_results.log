@@ -1,0 +1,52 @@
+%Warning-MULTITOP: /code/rtl/top_manchester.sv:38:8: Multiple top level modules
+                                                   : ... Suggest see manual; fix the duplicates, or use --top-module to select top.
+                   ... For warning description see https://verilator.org/warn/MULTITOP?v=5.027
+                   ... Use "/* verilator lint_off MULTITOP */" and lint_on around source to disable this message.
+                                                   : ... Top module 'manchester_encoder'
+    1 | module manchester_encoder #(
+      |        ^~~~~~~~~~~~~~~~~~
+                                                   : ... Top module 'manchester_decoder'
+   38 | module manchester_decoder #(
+      |        ^~~~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/top_manchester.sv:12:21: Signal is not driven, nor used: 'encoded_data'
+                                                        : ... note: In instance 'manchester_encoder'
+   12 |     logic [2*N-1:0] encoded_data;
+      |                     ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/top_manchester.sv:13:11: Signal is not driven, nor used: 'encoded_data_valid'
+                                                        : ... note: In instance 'manchester_encoder'
+   13 |     logic encoded_data_valid;
+      |           ^~~~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/top_manchester.sv:49:19: Signal is not driven, nor used: 'decoded_data'
+                                                        : ... note: In instance 'manchester_decoder'
+   49 |     logic [N-1:0] decoded_data;
+      |                   ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/top_manchester.sv:50:11: Signal is not driven, nor used: 'decoded_data_valid'
+                                                        : ... note: In instance 'manchester_decoder'
+   50 |     logic decoded_data_valid;
+      |           ^~~~~~~~~~~~~~~~~~
+%Warning-BLKSEQ: /code/rtl/top_manchester.sv:22:41: Blocking assignment '=' in sequential logic process
+                                                  : ... Suggest using delayed assignment '<='
+   22 |                     enc_data_out[2*i]   = 1'b1;
+      |                                         ^
+%Warning-BLKSEQ: /code/rtl/top_manchester.sv:55:27: Blocking assignment '=' in sequential logic process
+                                                  : ... Suggest using delayed assignment '<='
+   55 |             dec_valid_out = 1'b0;
+      |                           ^
+%Warning-BLKSEQ: /code/rtl/top_manchester.sv:66:27: Blocking assignment '=' in sequential logic process
+                                                  : ... Suggest using delayed assignment '<='
+   66 |             dec_valid_out = 1'b1;
+      |                           ^
+%Warning-BLKSEQ: /code/rtl/top_manchester.sv:69:27: Blocking assignment '=' in sequential logic process
+                                                  : ... Suggest using delayed assignment '<='
+   69 |             dec_valid_out = 1'b0;
+      |                           ^
+%Error-BLKANDNBLK: /code/rtl/top_manchester.sv:9:28: Unsupported: Blocked and non-blocking assignments to same variable: 'enc_data_out'
+    9 |     output logic [2*N-1:0] enc_data_out  
+      |                            ^~~~~~~~~~~~
+                   /code/rtl/top_manchester.sv:22:41: ... Location of blocking assignment
+   22 |                     enc_data_out[2*i]   = 1'b1;
+      |                                         ^
+                   /code/rtl/top_manchester.sv:17:13: ... Location of nonblocking assignment
+   17 |             enc_data_out <= '0;
+      |             ^~~~~~~~~~~~
+%Error: Exiting due to 1 error(s), 9 warning(s)

@@ -1,0 +1,194 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xd62b70 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xd76800 .scope module, "ahb_clock_counter" "ahb_clock_counter" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "HCLK";
+    .port_info 1 /INPUT 1 "HRESETn";
+    .port_info 2 /INPUT 1 "HSEL";
+    .port_info 3 /INPUT 32 "HADDR";
+    .port_info 4 /INPUT 1 "HWRITE";
+    .port_info 5 /INPUT 32 "HWDATA";
+    .port_info 6 /INPUT 1 "HREADY";
+    .port_info 7 /OUTPUT 32 "HRDATA";
+    .port_info 8 /OUTPUT 1 "HRESP";
+    .port_info 9 /OUTPUT 32 "COUNTER";
+P_0xd5f9b0 .param/l "ADDR_WIDTH" 0 3 2, +C4<00000000000000000000000000100000>;
+P_0xd5f9f0 .param/l "DATA_WIDTH" 0 3 3, +C4<00000000000000000000000000100000>;
+v0xd61390_0 .var "COUNTER", 31 0;
+o0x7138057df048 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xd8c520_0 .net "HADDR", 31 0, o0x7138057df048;  0 drivers
+o0x7138057df078 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd8c600_0 .net "HCLK", 0 0, o0x7138057df078;  0 drivers
+v0xd8c6a0_0 .net "HRDATA", 31 0, L_0xd9e280;  1 drivers
+o0x7138057df0d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd8c780_0 .net "HREADY", 0 0, o0x7138057df0d8;  0 drivers
+o0x7138057df108 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd8c890_0 .net "HRESETn", 0 0, o0x7138057df108;  0 drivers
+L_0x713805796138 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0xd8c950_0 .net "HRESP", 0 0, L_0x713805796138;  1 drivers
+o0x7138057df168 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd8ca10_0 .net "HSEL", 0 0, o0x7138057df168;  0 drivers
+o0x7138057df198 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xd8cad0_0 .net "HWDATA", 31 0, o0x7138057df198;  0 drivers
+o0x7138057df1c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xd8cbb0_0 .net "HWRITE", 0 0, o0x7138057df1c8;  0 drivers
+L_0x713805796018 .functor BUFT 1, C4<00000000000000000000000000001000>, C4<0>, C4<0>, C4<0>;
+v0xd8cc70_0 .net/2u *"_ivl_0", 31 0, L_0x713805796018;  1 drivers
+L_0x7138057960a8 .functor BUFT 1, C4<0000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0xd8cd50_0 .net *"_ivl_11", 30 0, L_0x7138057960a8;  1 drivers
+L_0x7138057960f0 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0xd8ce30_0 .net/2u *"_ivl_12", 31 0, L_0x7138057960f0;  1 drivers
+v0xd8cf10_0 .net *"_ivl_14", 31 0, L_0xd9e090;  1 drivers
+v0xd8cff0_0 .net *"_ivl_2", 0 0, L_0xd9dcd0;  1 drivers
+v0xd8d0b0_0 .net *"_ivl_24", 0 0, L_0xd9e410;  1 drivers
+L_0x713805796060 .functor BUFT 1, C4<00000000000000000000000000001100>, C4<0>, C4<0>, C4<0>;
+v0xd8d190_0 .net/2u *"_ivl_4", 31 0, L_0x713805796060;  1 drivers
+v0xd8d380_0 .net *"_ivl_6", 0 0, L_0xd9ddd0;  1 drivers
+v0xd8d440_0 .net *"_ivl_8", 31 0, L_0xd9df40;  1 drivers
+v0xd8d520_0 .var "addr_counter_reg", 31 0;
+v0xd8d600_0 .var "addr_maxcnt_reg", 31 0;
+v0xd8d6e0_0 .var "addr_overflow_reg", 31 0;
+v0xd8d7c0_0 .var "addr_start_reg", 31 0;
+v0xd8d8a0_0 .var "addr_stop_reg", 31 0;
+v0xd8d980_0 .var "counter_value_reg", 31 0;
+v0xd8da60_0 .var "overflow_flag_reg", 0 0;
+E_0xd70320 .event posedge, v0xd8c600_0;
+E_0xd71460 .event posedge, L_0xd9e410;
+L_0xd9dcd0 .cmp/eq 32, o0x7138057df048, L_0x713805796018;
+L_0xd9ddd0 .cmp/eq 32, o0x7138057df048, L_0x713805796060;
+L_0xd9df40 .concat [ 1 31 0 0], v0xd8da60_0, L_0x7138057960a8;
+L_0xd9e090 .functor MUXZ 32, L_0x7138057960f0, L_0xd9df40, L_0xd9ddd0, C4<>;
+L_0xd9e280 .functor MUXZ 32, L_0xd9e090, v0xd8d980_0, L_0xd9dcd0, C4<>;
+L_0xd9e410 .part o0x7138057df048, 8, 1;
+S_0xd63320 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0xd76800;
+T_0 ;
+    %wait E_0xd70320;
+    %load/vec4 v0xd8c890_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xd8d7c0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xd8d8a0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xd8d520_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xd8d6e0_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xd8d600_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xd8d980_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xd8da60_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xd8ca10_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0xd8c520_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 32;
+    %cmp/u;
+    %jmp/1 T_0.4, 6;
+    %dup/vec4;
+    %pushi/vec4 4, 0, 32;
+    %cmp/u;
+    %jmp/1 T_0.5, 6;
+    %dup/vec4;
+    %pushi/vec4 8, 0, 32;
+    %cmp/u;
+    %jmp/1 T_0.6, 6;
+    %dup/vec4;
+    %pushi/vec4 12, 0, 32;
+    %cmp/u;
+    %jmp/1 T_0.7, 6;
+    %dup/vec4;
+    %pushi/vec4 16, 0, 32;
+    %cmp/u;
+    %jmp/1 T_0.8, 6;
+    %load/vec4 v0xd8d980_0;
+    %assign/vec4 v0xd8d520_0, 0;
+    %jmp T_0.10;
+T_0.4 ;
+    %pushi/vec4 1, 0, 32;
+    %assign/vec4 v0xd8d7c0_0, 0;
+    %jmp T_0.10;
+T_0.5 ;
+    %pushi/vec4 1, 0, 32;
+    %assign/vec4 v0xd8d8a0_0, 0;
+    %jmp T_0.10;
+T_0.6 ;
+    %load/vec4 v0xd8d980_0;
+    %addi 1, 0, 32;
+    %assign/vec4 v0xd8d520_0, 0;
+    %jmp T_0.10;
+T_0.7 ;
+    %load/vec4 v0xd8da60_0;
+    %pad/u 32;
+    %assign/vec4 v0xd8d6e0_0, 0;
+    %jmp T_0.10;
+T_0.8 ;
+    %load/vec4 v0xd8cad0_0;
+    %assign/vec4 v0xd8d600_0, 0;
+    %jmp T_0.10;
+T_0.10 ;
+    %pop/vec4 1;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xd76800;
+T_1 ;
+    %wait E_0xd71460;
+    %load/vec4 v0xd8cbb0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v0xd8c520_0;
+    %cmpi/e 8, 0, 32;
+    %jmp/0xz  T_1.2, 4;
+    %load/vec4 v0xd8d520_0;
+    %assign/vec4 v0xd8d980_0, 0;
+T_1.2 ;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0xd76800;
+T_2 ;
+    %wait E_0xd70320;
+    %load/vec4 v0xd8c520_0;
+    %cmpi/e 12, 0, 32;
+    %jmp/0xz  T_2.0, 4;
+    %load/vec4 v0xd8d980_0;
+    %load/vec4 v0xd8d600_0;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %assign/vec4 v0xd8da60_0, 0;
+T_2.0 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0xd63320;
+T_3 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/ahb_clock_counter.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xd76800 {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/ahb_clock_counter.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

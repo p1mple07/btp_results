@@ -1,0 +1,93 @@
+Running harness with project name: cvdp_copilot_neuromorphic_array_1_1774075500
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_neuromorphic_array[0]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774075502
+     0.00ns INFO     cocotb.regression                  running test_neuromorphic_array.test_neuromorphic_array (1/1)
+                                                            Test the neuromorphic_array with various inputs and control signals.
+test 0
+control_signal=0,input_data=0
+expected_output=0,actual_output=0
+
+Test passed! 
+test 1
+control_signal=1,input_data=241
+expected_output=241,actual_output=0
+
+   105.00ns INFO     cocotb.regression                  test_neuromorphic_array.test_neuromorphic_array failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_neuromorphic_array.py", line 31, in test_neuromorphic_array
+                                                            await apply_test_case(dut, random.randint(0, 1), 0xF1)
+                                                          File "/src/test_neuromorphic_array.py", line 69, in apply_test_case
+                                                            assert dut.uo_out.value.to_unsigned() == expected_output, (
+                                                        AssertionError: Expected=11110001, Got=00000000
+                                                        assert 0 == 241
+                                                         +  where 0 = to_unsigned()
+                                                         +    where to_unsigned = LogicArray('00000000', Range(7, 'downto', 0)).to_unsigned
+                                                         +      where LogicArray('00000000', Range(7, 'downto', 0)) = LogicObject(neuromorphic_array.uo_out).value
+                                                         +        where LogicObject(neuromorphic_array.uo_out) = HierarchyObject(neuromorphic_array).uo_out
+   105.00ns INFO     cocotb.regression                  *********************************************************************************************************
+                                                        ** TEST                                             STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *********************************************************************************************************
+                                                        ** test_neuromorphic_array.test_neuromorphic_array   FAIL         105.00           0.00      51921.94  **
+                                                        *********************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                   105.00           0.01      17017.73  **
+                                                        *********************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/neuromorphic_array.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+__________________________ test_neuromorphic_array[0] __________________________
+
+test = 0
+
+    @pytest.mark.parametrize("test", range(1))
+    def test_neuromorphic_array(test):
+>       runner()
+
+/src/test_runner.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def runner():
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:26: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_neuromorphic_array[0] - SystemExit: ERR...
+======================== 1 failed, 3 warnings in 0.20s =========================
+Cleaning up Docker resources...

@@ -1,0 +1,79 @@
+
+module spi_fsm (
+    input  wire         i_clk,       // System clock
+    input  wire         i_rst_b,     // Active-low async reset
+    input  wire [15:0]  i_data_in,   // Parallel 16-bit data to transmit
+    input  wire         i_enable,    // Enable block
+    input  wire         i_fault,     // Fault indicator
+    input  wire         i_clear,     // Forces FSM to clear/idle
+    
+    output reg          o_spi_cs_b,  // SPI chip select (active-low)
+    output reg          o_spi_clk,   // SPI clock
+    output reg          o_spi_data,  // Serialized SPI data out
+    output reg [4:0]    o_bits_left, // Bits left to transmit
+    output reg          o_done,      // Single-cycle pulse when done or error
+    output reg [1:0]    o_fsm_state  // FSM state for external monitoring
+);
+
+    // Internal signals
+    reg [1:0] internal_state, next_state;
+    reg [4:0] counter;
+
+    // State transition logic
+    always @(posedge i_clk or posedge i_rst_b) begin
+        if (i_rst_b) begin
+            internal_state <= 2'b00;
+            o_spi_cs_b <= 1;
+            o_spi_clk <= 0;
+            o_spi_data <= 0;
+            o_bits_left <= 10'b0;
+            o_done <= 0;
+            o_fsm_state <= 2'b00;
+        end else begin
+            case (internal_state)
+                2'b00: begin
+                    if (i_enable) begin
+                        internal_state <= 2'b01;
+                        o_spi_cs_b <= 0;
+                        o_spi_clk <= 1;
+                    end
+                end
+                2'b01: begin
+                    if (o_bits_left > 0) begin
+                        internal_state <= 2'b10;
+                        counter <= counter + 1;
+                    end else begin
+                        internal_state <= 2'b11;
+                        o_done <= 1;
+                    end
+                end
+                2'b10: begin
+                    if (counter > 0) begin
+                        internal_state <= 2'b00;
+                        o_spi_clk <= ~o_spi_clk;
+                        counter <= counter - 1;
+                    end else begin
+                        internal_state <= 2'b01;
+                    end
+                end
+                2'b11: begin
+                    if (i_fault) begin
+                        internal_state <= 2'b00;
+                        o_spi_cs_b <= 1;
+                        o_spi_clk <= 0;
+                        o_spi_data <= 0;
+                        o_done <= 0;
+                        o_fsm_state <= 2'b00;
+                    end
+                end
+            endcase
+        end
+    end
+
+    // Output logic
+    always @(*) begin
+        o_spi_data = i_data_in[4:0];
+        o_bits_left = counter;
+    end
+
+endmodule

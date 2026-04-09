@@ -1,0 +1,79 @@
+Running harness with project name: cvdp_copilot_axis_mux_1_1773944195
+#1 [internal] load local bake definitions
+#1 reading from stdin 704B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 89B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.2s done
+#5 DONE 0.2s
+
+#6 [2/2] RUN pip install cocotb-bus
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:f9fe97196aa3edf71003e1db95cbb094fcf1854f490ad1d284261acdee2002a3
+#7 exporting manifest sha256:f9fe97196aa3edf71003e1db95cbb094fcf1854f490ad1d284261acdee2002a3 0.2s done
+#7 exporting config sha256:0fe7e50f0509f5678d3d56b1b154d39d8cee827a81d5e8445555d9b6c31715e1
+#7 exporting config sha256:0fe7e50f0509f5678d3d56b1b154d39d8cee827a81d5e8445555d9b6c31715e1 0.3s done
+#7 exporting attestation manifest sha256:12fd51b3d955c435e7ded8269869076d6ba85ef9d289e2c5bcd586329bc68279
+#7 exporting attestation manifest sha256:12fd51b3d955c435e7ded8269869076d6ba85ef9d289e2c5bcd586329bc68279 0.4s done
+#7 exporting manifest list sha256:72b5b602742cb0d7727649c18b2eb391e4b4f8543ad3cf321d5fa21a0d975b63
+#7 exporting manifest list sha256:72b5b602742cb0d7727649c18b2eb391e4b4f8543ad3cf321d5fa21a0d975b63 0.4s done
+#7 naming to docker.io/library/cvdp_copilot_axis_mux_1_1773944195-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_axis_mux_1_1773944195-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_axis_mux_1_1773944195-direct:latest
+#7 unpacking to docker.io/library/cvdp_copilot_axis_mux_1_1773944195-direct:latest 0.5s done
+#7 DONE 2.1s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+_______________________ ERROR collecting test_runner.py ________________________
+ImportError while importing test module '/src/test_runner.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.9/importlib/__init__.py:127: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+/src/test_runner.py:2: in <module>
+    from cocotb.runner import get_runner
+E   ModuleNotFoundError: No module named 'cocotb.runner'
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR ../../src/test_runner.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+========================= 3 warnings, 1 error in 0.09s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_axis_mux_1_1773944195-direct:latest
+Deleted: sha256:72b5b602742cb0d7727649c18b2eb391e4b4f8543ad3cf321d5fa21a0d975b63

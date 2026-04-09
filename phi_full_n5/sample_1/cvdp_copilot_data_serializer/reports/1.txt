@@ -1,0 +1,725 @@
+Running harness with project name: cvdp_copilot_data_serializer_1_1774013800
+#1 [internal] load local bake definitions
+#1 reading from stdin 724B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 212B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.1s done
+#5 DONE 0.1s
+
+#6 [2/2] RUN pip3 install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:176f405e51b8c4f0b2e72d046dc19e93c204705bb24808bf414771c935bceea3
+#7 exporting manifest sha256:176f405e51b8c4f0b2e72d046dc19e93c204705bb24808bf414771c935bceea3 0.3s done
+#7 exporting config sha256:059c737757e9413faffd5fd5f24bed0ec479247f9fc86b81b13e1063fa5bbc77
+#7 exporting config sha256:059c737757e9413faffd5fd5f24bed0ec479247f9fc86b81b13e1063fa5bbc77 0.2s done
+#7 exporting attestation manifest sha256:cf5b6a38bb4ddf15d4611bedf46fbe7d7420f7050d3bc19d501f50e4ae790566
+#7 exporting attestation manifest sha256:cf5b6a38bb4ddf15d4611bedf46fbe7d7420f7050d3bc19d501f50e4ae790566 0.6s done
+#7 exporting manifest list sha256:9974c9f9f17ec3c2941b93b32bf68fe5717fdfc3421656863f4c6d6ce5935e96
+#7 exporting manifest list sha256:9974c9f9f17ec3c2941b93b32bf68fe5717fdfc3421656863f4c6d6ce5935e96 0.2s done
+#7 naming to docker.io/library/cvdp_copilot_data_serializer_1_1774013800-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_data_serializer_1_1774013800-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_data_serializer_1_1774013800-direct:latest
+#7 unpacking to docker.io/library/cvdp_copilot_data_serializer_1_1774013800-direct:latest 0.3s done
+#7 DONE 1.9s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 6 items
+
+../../src/test_runner.py::test_data_serializer[0-0-8] FAILED             [ 16%]
+../../src/test_runner.py::test_data_serializer[0-1-8] FAILED             [ 33%]
+../../src/test_runner.py::test_data_serializer[1-0-8] FAILED             [ 50%]
+../../src/test_runner.py::test_data_serializer[1-1-8] FAILED             [ 66%]
+../../src/test_runner.py::test_data_serializer[2-0-8] FAILED             [ 83%]
+../../src/test_runner.py::test_data_serializer[2-1-8] FAILED             [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_data_serializer[0-0-8] __________________________
+
+DATA_W = 8, BIT_ORDER = 0, PARITY = 0
+
+    @pytest.mark.parametrize("DATA_W",    DATA_W_values)
+    @pytest.mark.parametrize("BIT_ORDER", BIT_ORDER_values)
+    @pytest.mark.parametrize("PARITY",    PARITY_values)
+    def test_data_serializer(DATA_W, BIT_ORDER, PARITY):
+        """
+        Parameterized test that compiles and simulates data_serializer
+        for each combination of (DATA_W, BIT_ORDER, PARITY).
+        Uses Cocotb's built-in runner with the 'parameters' dict argument.
+        """
+    
+        print(f"Running simulation with DATA_W={DATA_W}, BIT_ORDER={BIT_ORDER}, PARITY={PARITY}")
+    
+        # Create a runner for your chosen simulator
+        runner = get_runner(sim)
+    
+        # Build (compile) the design, passing Verilog parameters in 'parameters={}'
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                "DATA_W":   DATA_W,
+                "BIT_ORDER":BIT_ORDER,
+                "PARITY":   PARITY
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_dw{DATA_W}_bo{BIT_ORDER}_pa{PARITY}.log"
+        )
+    
+        # Run Cocotb test(s) in the Python module 'module'
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:53: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with DATA_W=8, BIT_ORDER=0, PARITY=0
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s data_serializer -g2012 -Pdata_serializer.DATA_W=8 -Pdata_serializer.BIT_ORDER=0 -Pdata_serializer.PARITY=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_serializer.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774013807
+     0.00ns INFO     cocotb.regression                  Found test test_data_serializer.test_data_serializer_single_param
+     0.00ns INFO     cocotb.regression                  running test_data_serializer_single_param (1/1)
+                                                          Single-parameter test of data_serializer with added TIMEOUT checks.
+                                                          The actual (BIT_ORDER, PARITY) must match how the DUT was compiled.
+                                                          For example:
+                                                            iverilog -o sim.vvp -s data_serializer                -P data_serializer.BIT_ORDER=0                -P data_serializer.PARITY=1                data_serializer.sv
+                                                          
+                                                          Then run Cocotb on 'sim.vvp':
+                                                            make SIM=icarus TOPLEVEL=data_serializer MODULE=test_data_serializer
+                                                          
+                                                          This test will:
+                                                            1) Create a clock
+                                                            2) Perform a reset
+                                                            3) Run three sub-tests:
+                                                               - Basic transmission
+                                                               - Gating pause/resume
+                                                               - Multiple words
+                                                            4) If any sub-test times out, we raise TestFailure.
+     0.00ns INFO     cocotb.data_serializer             Running with BIT_ORDER=0, PARITY=0 (compile-time).
+    20.00ns INFO     cocotb.data_serializer             [TEST] Basic Transmission
+    70.00ns ERROR    cocotb.data_serializer             [ERROR] Mismatch in captured word!
+    70.00ns ERROR    cocotb.data_serializer               Captured = 0x0
+    70.00ns ERROR    cocotb.data_serializer               Expected = 0xAA
+    70.00ns INFO     cocotb.regression                  test_data_serializer_single_param failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_data_serializer.py", line 81, in test_data_serializer_single_param
+                                                            await with_timeout(test_basic_transmission(dut, bit_order, parity), BASIC_TRANSMISSION_TIMEOUT, "ns")
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 1098, in with_timeout
+                                                            res = await First(timeout_timer, trigger)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 979, in _wait
+                                                            return await first_trigger  # the first of multiple triggers that fired
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 137, in __await__
+                                                            return (yield self)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/task.py", line 289, in __await__
+                                                            return (yield self)
+                                                          File "/src/test_data_serializer.py", line 124, in test_basic_transmission
+                                                            await capture_word_and_compare(dut, vec, bit_order, parity)
+                                                          File "/src/test_data_serializer.py", line 289, in capture_word_and_compare
+                                                            raise TestFailure("Captured serial bits do not match expected pattern.")
+                                                        cocotb.result.TestFailure: Captured serial bits do not match expected pattern.
+    70.00ns INFO     cocotb.regression                  ****************************************************************************************************************
+                                                        ** TEST                                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************************
+                                                        ** test_data_serializer.test_data_serializer_single_param   FAIL          70.00           0.00      21652.32  **
+                                                        ****************************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                           70.00           0.03       2317.24  **
+                                                        ****************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_serializer.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_data_serializer.py:289: DeprecationWarning: TestFailure is deprecated, use an ``assert`` statement instead
+  raise TestFailure("Captured serial bits do not match expected pattern.")
+/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py:786: FutureWarning: Tasks started with `cocotb.start_soon()` that raise Exceptions will not propagate those Exceptions in 2.0. Instead such Tasks will *always* fail the test. An alternative for `cocotb.start_soon()` that *always* propagates Exceptions will be added in 2.0.
+  warnings.warn(
+_________________________ test_data_serializer[0-1-8] __________________________
+
+DATA_W = 8, BIT_ORDER = 1, PARITY = 0
+
+    @pytest.mark.parametrize("DATA_W",    DATA_W_values)
+    @pytest.mark.parametrize("BIT_ORDER", BIT_ORDER_values)
+    @pytest.mark.parametrize("PARITY",    PARITY_values)
+    def test_data_serializer(DATA_W, BIT_ORDER, PARITY):
+        """
+        Parameterized test that compiles and simulates data_serializer
+        for each combination of (DATA_W, BIT_ORDER, PARITY).
+        Uses Cocotb's built-in runner with the 'parameters' dict argument.
+        """
+    
+        print(f"Running simulation with DATA_W={DATA_W}, BIT_ORDER={BIT_ORDER}, PARITY={PARITY}")
+    
+        # Create a runner for your chosen simulator
+        runner = get_runner(sim)
+    
+        # Build (compile) the design, passing Verilog parameters in 'parameters={}'
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                "DATA_W":   DATA_W,
+                "BIT_ORDER":BIT_ORDER,
+                "PARITY":   PARITY
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_dw{DATA_W}_bo{BIT_ORDER}_pa{PARITY}.log"
+        )
+    
+        # Run Cocotb test(s) in the Python module 'module'
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:53: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with DATA_W=8, BIT_ORDER=1, PARITY=0
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s data_serializer -g2012 -Pdata_serializer.DATA_W=8 -Pdata_serializer.BIT_ORDER=1 -Pdata_serializer.PARITY=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_serializer.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774013807
+     0.00ns INFO     cocotb.regression                  Found test test_data_serializer.test_data_serializer_single_param
+     0.00ns INFO     cocotb.regression                  running test_data_serializer_single_param (1/1)
+                                                          Single-parameter test of data_serializer with added TIMEOUT checks.
+                                                          The actual (BIT_ORDER, PARITY) must match how the DUT was compiled.
+                                                          For example:
+                                                            iverilog -o sim.vvp -s data_serializer                -P data_serializer.BIT_ORDER=0                -P data_serializer.PARITY=1                data_serializer.sv
+                                                          
+                                                          Then run Cocotb on 'sim.vvp':
+                                                            make SIM=icarus TOPLEVEL=data_serializer MODULE=test_data_serializer
+                                                          
+                                                          This test will:
+                                                            1) Create a clock
+                                                            2) Perform a reset
+                                                            3) Run three sub-tests:
+                                                               - Basic transmission
+                                                               - Gating pause/resume
+                                                               - Multiple words
+                                                            4) If any sub-test times out, we raise TestFailure.
+     0.00ns INFO     cocotb.data_serializer             Running with BIT_ORDER=1, PARITY=0 (compile-time).
+    20.00ns INFO     cocotb.data_serializer             [TEST] Basic Transmission
+    70.00ns ERROR    cocotb.data_serializer             [ERROR] Mismatch in captured word!
+    70.00ns ERROR    cocotb.data_serializer               Captured = 0x1
+    70.00ns ERROR    cocotb.data_serializer               Expected = 0x55
+    70.00ns INFO     cocotb.regression                  test_data_serializer_single_param failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_data_serializer.py", line 81, in test_data_serializer_single_param
+                                                            await with_timeout(test_basic_transmission(dut, bit_order, parity), BASIC_TRANSMISSION_TIMEOUT, "ns")
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 1098, in with_timeout
+                                                            res = await First(timeout_timer, trigger)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 979, in _wait
+                                                            return await first_trigger  # the first of multiple triggers that fired
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 137, in __await__
+                                                            return (yield self)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/task.py", line 289, in __await__
+                                                            return (yield self)
+                                                          File "/src/test_data_serializer.py", line 124, in test_basic_transmission
+                                                            await capture_word_and_compare(dut, vec, bit_order, parity)
+                                                          File "/src/test_data_serializer.py", line 289, in capture_word_and_compare
+                                                            raise TestFailure("Captured serial bits do not match expected pattern.")
+                                                        cocotb.result.TestFailure: Captured serial bits do not match expected pattern.
+    70.00ns INFO     cocotb.regression                  ****************************************************************************************************************
+                                                        ** TEST                                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************************
+                                                        ** test_data_serializer.test_data_serializer_single_param   FAIL          70.00           0.00      21566.44  **
+                                                        ****************************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                           70.00           0.03       2316.10  **
+                                                        ****************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_serializer.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_data_serializer.py:289: DeprecationWarning: TestFailure is deprecated, use an ``assert`` statement instead
+  raise TestFailure("Captured serial bits do not match expected pattern.")
+/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py:786: FutureWarning: Tasks started with `cocotb.start_soon()` that raise Exceptions will not propagate those Exceptions in 2.0. Instead such Tasks will *always* fail the test. An alternative for `cocotb.start_soon()` that *always* propagates Exceptions will be added in 2.0.
+  warnings.warn(
+_________________________ test_data_serializer[1-0-8] __________________________
+
+DATA_W = 8, BIT_ORDER = 0, PARITY = 1
+
+    @pytest.mark.parametrize("DATA_W",    DATA_W_values)
+    @pytest.mark.parametrize("BIT_ORDER", BIT_ORDER_values)
+    @pytest.mark.parametrize("PARITY",    PARITY_values)
+    def test_data_serializer(DATA_W, BIT_ORDER, PARITY):
+        """
+        Parameterized test that compiles and simulates data_serializer
+        for each combination of (DATA_W, BIT_ORDER, PARITY).
+        Uses Cocotb's built-in runner with the 'parameters' dict argument.
+        """
+    
+        print(f"Running simulation with DATA_W={DATA_W}, BIT_ORDER={BIT_ORDER}, PARITY={PARITY}")
+    
+        # Create a runner for your chosen simulator
+        runner = get_runner(sim)
+    
+        # Build (compile) the design, passing Verilog parameters in 'parameters={}'
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                "DATA_W":   DATA_W,
+                "BIT_ORDER":BIT_ORDER,
+                "PARITY":   PARITY
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_dw{DATA_W}_bo{BIT_ORDER}_pa{PARITY}.log"
+        )
+    
+        # Run Cocotb test(s) in the Python module 'module'
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:53: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with DATA_W=8, BIT_ORDER=0, PARITY=1
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s data_serializer -g2012 -Pdata_serializer.DATA_W=8 -Pdata_serializer.BIT_ORDER=0 -Pdata_serializer.PARITY=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_serializer.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774013807
+     0.00ns INFO     cocotb.regression                  Found test test_data_serializer.test_data_serializer_single_param
+     0.00ns INFO     cocotb.regression                  running test_data_serializer_single_param (1/1)
+                                                          Single-parameter test of data_serializer with added TIMEOUT checks.
+                                                          The actual (BIT_ORDER, PARITY) must match how the DUT was compiled.
+                                                          For example:
+                                                            iverilog -o sim.vvp -s data_serializer                -P data_serializer.BIT_ORDER=0                -P data_serializer.PARITY=1                data_serializer.sv
+                                                          
+                                                          Then run Cocotb on 'sim.vvp':
+                                                            make SIM=icarus TOPLEVEL=data_serializer MODULE=test_data_serializer
+                                                          
+                                                          This test will:
+                                                            1) Create a clock
+                                                            2) Perform a reset
+                                                            3) Run three sub-tests:
+                                                               - Basic transmission
+                                                               - Gating pause/resume
+                                                               - Multiple words
+                                                            4) If any sub-test times out, we raise TestFailure.
+     0.00ns INFO     cocotb.data_serializer             Running with BIT_ORDER=0, PARITY=1 (compile-time).
+    20.00ns INFO     cocotb.data_serializer             [TEST] Basic Transmission
+    75.00ns ERROR    cocotb.data_serializer             [ERROR] Mismatch in captured word!
+    75.00ns ERROR    cocotb.data_serializer               Captured = 0x0
+    75.00ns ERROR    cocotb.data_serializer               Expected = 0xAA
+    75.00ns INFO     cocotb.regression                  test_data_serializer_single_param failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_data_serializer.py", line 81, in test_data_serializer_single_param
+                                                            await with_timeout(test_basic_transmission(dut, bit_order, parity), BASIC_TRANSMISSION_TIMEOUT, "ns")
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 1098, in with_timeout
+                                                            res = await First(timeout_timer, trigger)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 979, in _wait
+                                                            return await first_trigger  # the first of multiple triggers that fired
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 137, in __await__
+                                                            return (yield self)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/task.py", line 289, in __await__
+                                                            return (yield self)
+                                                          File "/src/test_data_serializer.py", line 124, in test_basic_transmission
+                                                            await capture_word_and_compare(dut, vec, bit_order, parity)
+                                                          File "/src/test_data_serializer.py", line 289, in capture_word_and_compare
+                                                            raise TestFailure("Captured serial bits do not match expected pattern.")
+                                                        cocotb.result.TestFailure: Captured serial bits do not match expected pattern.
+    75.00ns INFO     cocotb.regression                  ****************************************************************************************************************
+                                                        ** TEST                                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************************
+                                                        ** test_data_serializer.test_data_serializer_single_param   FAIL          75.00           0.00      22553.56  **
+                                                        ****************************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                           75.00           0.03       2431.72  **
+                                                        ****************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_serializer.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_data_serializer.py:289: DeprecationWarning: TestFailure is deprecated, use an ``assert`` statement instead
+  raise TestFailure("Captured serial bits do not match expected pattern.")
+/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py:786: FutureWarning: Tasks started with `cocotb.start_soon()` that raise Exceptions will not propagate those Exceptions in 2.0. Instead such Tasks will *always* fail the test. An alternative for `cocotb.start_soon()` that *always* propagates Exceptions will be added in 2.0.
+  warnings.warn(
+_________________________ test_data_serializer[1-1-8] __________________________
+
+DATA_W = 8, BIT_ORDER = 1, PARITY = 1
+
+    @pytest.mark.parametrize("DATA_W",    DATA_W_values)
+    @pytest.mark.parametrize("BIT_ORDER", BIT_ORDER_values)
+    @pytest.mark.parametrize("PARITY",    PARITY_values)
+    def test_data_serializer(DATA_W, BIT_ORDER, PARITY):
+        """
+        Parameterized test that compiles and simulates data_serializer
+        for each combination of (DATA_W, BIT_ORDER, PARITY).
+        Uses Cocotb's built-in runner with the 'parameters' dict argument.
+        """
+    
+        print(f"Running simulation with DATA_W={DATA_W}, BIT_ORDER={BIT_ORDER}, PARITY={PARITY}")
+    
+        # Create a runner for your chosen simulator
+        runner = get_runner(sim)
+    
+        # Build (compile) the design, passing Verilog parameters in 'parameters={}'
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                "DATA_W":   DATA_W,
+                "BIT_ORDER":BIT_ORDER,
+                "PARITY":   PARITY
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_dw{DATA_W}_bo{BIT_ORDER}_pa{PARITY}.log"
+        )
+    
+        # Run Cocotb test(s) in the Python module 'module'
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:53: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with DATA_W=8, BIT_ORDER=1, PARITY=1
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s data_serializer -g2012 -Pdata_serializer.DATA_W=8 -Pdata_serializer.BIT_ORDER=1 -Pdata_serializer.PARITY=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_serializer.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774013807
+     0.00ns INFO     cocotb.regression                  Found test test_data_serializer.test_data_serializer_single_param
+     0.00ns INFO     cocotb.regression                  running test_data_serializer_single_param (1/1)
+                                                          Single-parameter test of data_serializer with added TIMEOUT checks.
+                                                          The actual (BIT_ORDER, PARITY) must match how the DUT was compiled.
+                                                          For example:
+                                                            iverilog -o sim.vvp -s data_serializer                -P data_serializer.BIT_ORDER=0                -P data_serializer.PARITY=1                data_serializer.sv
+                                                          
+                                                          Then run Cocotb on 'sim.vvp':
+                                                            make SIM=icarus TOPLEVEL=data_serializer MODULE=test_data_serializer
+                                                          
+                                                          This test will:
+                                                            1) Create a clock
+                                                            2) Perform a reset
+                                                            3) Run three sub-tests:
+                                                               - Basic transmission
+                                                               - Gating pause/resume
+                                                               - Multiple words
+                                                            4) If any sub-test times out, we raise TestFailure.
+     0.00ns INFO     cocotb.data_serializer             Running with BIT_ORDER=1, PARITY=1 (compile-time).
+    20.00ns INFO     cocotb.data_serializer             [TEST] Basic Transmission
+    75.00ns ERROR    cocotb.data_serializer             [ERROR] Mismatch in captured word!
+    75.00ns ERROR    cocotb.data_serializer               Captured = 0x0
+    75.00ns ERROR    cocotb.data_serializer               Expected = 0x55
+    75.00ns INFO     cocotb.regression                  test_data_serializer_single_param failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_data_serializer.py", line 81, in test_data_serializer_single_param
+                                                            await with_timeout(test_basic_transmission(dut, bit_order, parity), BASIC_TRANSMISSION_TIMEOUT, "ns")
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 1098, in with_timeout
+                                                            res = await First(timeout_timer, trigger)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 979, in _wait
+                                                            return await first_trigger  # the first of multiple triggers that fired
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 137, in __await__
+                                                            return (yield self)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/task.py", line 289, in __await__
+                                                            return (yield self)
+                                                          File "/src/test_data_serializer.py", line 124, in test_basic_transmission
+                                                            await capture_word_and_compare(dut, vec, bit_order, parity)
+                                                          File "/src/test_data_serializer.py", line 289, in capture_word_and_compare
+                                                            raise TestFailure("Captured serial bits do not match expected pattern.")
+                                                        cocotb.result.TestFailure: Captured serial bits do not match expected pattern.
+    75.00ns INFO     cocotb.regression                  ****************************************************************************************************************
+                                                        ** TEST                                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************************
+                                                        ** test_data_serializer.test_data_serializer_single_param   FAIL          75.00           0.00      22448.94  **
+                                                        ****************************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                           75.00           0.03       2336.60  **
+                                                        ****************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_serializer.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_data_serializer.py:289: DeprecationWarning: TestFailure is deprecated, use an ``assert`` statement instead
+  raise TestFailure("Captured serial bits do not match expected pattern.")
+/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py:786: FutureWarning: Tasks started with `cocotb.start_soon()` that raise Exceptions will not propagate those Exceptions in 2.0. Instead such Tasks will *always* fail the test. An alternative for `cocotb.start_soon()` that *always* propagates Exceptions will be added in 2.0.
+  warnings.warn(
+_________________________ test_data_serializer[2-0-8] __________________________
+
+DATA_W = 8, BIT_ORDER = 0, PARITY = 2
+
+    @pytest.mark.parametrize("DATA_W",    DATA_W_values)
+    @pytest.mark.parametrize("BIT_ORDER", BIT_ORDER_values)
+    @pytest.mark.parametrize("PARITY",    PARITY_values)
+    def test_data_serializer(DATA_W, BIT_ORDER, PARITY):
+        """
+        Parameterized test that compiles and simulates data_serializer
+        for each combination of (DATA_W, BIT_ORDER, PARITY).
+        Uses Cocotb's built-in runner with the 'parameters' dict argument.
+        """
+    
+        print(f"Running simulation with DATA_W={DATA_W}, BIT_ORDER={BIT_ORDER}, PARITY={PARITY}")
+    
+        # Create a runner for your chosen simulator
+        runner = get_runner(sim)
+    
+        # Build (compile) the design, passing Verilog parameters in 'parameters={}'
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                "DATA_W":   DATA_W,
+                "BIT_ORDER":BIT_ORDER,
+                "PARITY":   PARITY
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_dw{DATA_W}_bo{BIT_ORDER}_pa{PARITY}.log"
+        )
+    
+        # Run Cocotb test(s) in the Python module 'module'
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:53: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with DATA_W=8, BIT_ORDER=0, PARITY=2
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s data_serializer -g2012 -Pdata_serializer.DATA_W=8 -Pdata_serializer.BIT_ORDER=0 -Pdata_serializer.PARITY=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_serializer.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774013808
+     0.00ns INFO     cocotb.regression                  Found test test_data_serializer.test_data_serializer_single_param
+     0.00ns INFO     cocotb.regression                  running test_data_serializer_single_param (1/1)
+                                                          Single-parameter test of data_serializer with added TIMEOUT checks.
+                                                          The actual (BIT_ORDER, PARITY) must match how the DUT was compiled.
+                                                          For example:
+                                                            iverilog -o sim.vvp -s data_serializer                -P data_serializer.BIT_ORDER=0                -P data_serializer.PARITY=1                data_serializer.sv
+                                                          
+                                                          Then run Cocotb on 'sim.vvp':
+                                                            make SIM=icarus TOPLEVEL=data_serializer MODULE=test_data_serializer
+                                                          
+                                                          This test will:
+                                                            1) Create a clock
+                                                            2) Perform a reset
+                                                            3) Run three sub-tests:
+                                                               - Basic transmission
+                                                               - Gating pause/resume
+                                                               - Multiple words
+                                                            4) If any sub-test times out, we raise TestFailure.
+     0.00ns INFO     cocotb.data_serializer             Running with BIT_ORDER=0, PARITY=2 (compile-time).
+    20.00ns INFO     cocotb.data_serializer             [TEST] Basic Transmission
+    75.00ns ERROR    cocotb.data_serializer             [ERROR] Mismatch in captured word!
+    75.00ns ERROR    cocotb.data_serializer               Captured = 0x0
+    75.00ns ERROR    cocotb.data_serializer               Expected = 0x1AA
+    75.00ns INFO     cocotb.regression                  test_data_serializer_single_param failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_data_serializer.py", line 81, in test_data_serializer_single_param
+                                                            await with_timeout(test_basic_transmission(dut, bit_order, parity), BASIC_TRANSMISSION_TIMEOUT, "ns")
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 1098, in with_timeout
+                                                            res = await First(timeout_timer, trigger)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 979, in _wait
+                                                            return await first_trigger  # the first of multiple triggers that fired
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 137, in __await__
+                                                            return (yield self)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/task.py", line 289, in __await__
+                                                            return (yield self)
+                                                          File "/src/test_data_serializer.py", line 124, in test_basic_transmission
+                                                            await capture_word_and_compare(dut, vec, bit_order, parity)
+                                                          File "/src/test_data_serializer.py", line 289, in capture_word_and_compare
+                                                            raise TestFailure("Captured serial bits do not match expected pattern.")
+                                                        cocotb.result.TestFailure: Captured serial bits do not match expected pattern.
+    75.00ns INFO     cocotb.regression                  ****************************************************************************************************************
+                                                        ** TEST                                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************************
+                                                        ** test_data_serializer.test_data_serializer_single_param   FAIL          75.00           0.00      21783.60  **
+                                                        ****************************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                           75.00           0.03       2419.56  **
+                                                        ****************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_serializer.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_data_serializer.py:289: DeprecationWarning: TestFailure is deprecated, use an ``assert`` statement instead
+  raise TestFailure("Captured serial bits do not match expected pattern.")
+/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py:786: FutureWarning: Tasks started with `cocotb.start_soon()` that raise Exceptions will not propagate those Exceptions in 2.0. Instead such Tasks will *always* fail the test. An alternative for `cocotb.start_soon()` that *always* propagates Exceptions will be added in 2.0.
+  warnings.warn(
+_________________________ test_data_serializer[2-1-8] __________________________
+
+DATA_W = 8, BIT_ORDER = 1, PARITY = 2
+
+    @pytest.mark.parametrize("DATA_W",    DATA_W_values)
+    @pytest.mark.parametrize("BIT_ORDER", BIT_ORDER_values)
+    @pytest.mark.parametrize("PARITY",    PARITY_values)
+    def test_data_serializer(DATA_W, BIT_ORDER, PARITY):
+        """
+        Parameterized test that compiles and simulates data_serializer
+        for each combination of (DATA_W, BIT_ORDER, PARITY).
+        Uses Cocotb's built-in runner with the 'parameters' dict argument.
+        """
+    
+        print(f"Running simulation with DATA_W={DATA_W}, BIT_ORDER={BIT_ORDER}, PARITY={PARITY}")
+    
+        # Create a runner for your chosen simulator
+        runner = get_runner(sim)
+    
+        # Build (compile) the design, passing Verilog parameters in 'parameters={}'
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                "DATA_W":   DATA_W,
+                "BIT_ORDER":BIT_ORDER,
+                "PARITY":   PARITY
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_dw{DATA_W}_bo{BIT_ORDER}_pa{PARITY}.log"
+        )
+    
+        # Run Cocotb test(s) in the Python module 'module'
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:53: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with DATA_W=8, BIT_ORDER=1, PARITY=2
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s data_serializer -g2012 -Pdata_serializer.DATA_W=8 -Pdata_serializer.BIT_ORDER=1 -Pdata_serializer.PARITY=2 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/data_serializer.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774013808
+     0.00ns INFO     cocotb.regression                  Found test test_data_serializer.test_data_serializer_single_param
+     0.00ns INFO     cocotb.regression                  running test_data_serializer_single_param (1/1)
+                                                          Single-parameter test of data_serializer with added TIMEOUT checks.
+                                                          The actual (BIT_ORDER, PARITY) must match how the DUT was compiled.
+                                                          For example:
+                                                            iverilog -o sim.vvp -s data_serializer                -P data_serializer.BIT_ORDER=0                -P data_serializer.PARITY=1                data_serializer.sv
+                                                          
+                                                          Then run Cocotb on 'sim.vvp':
+                                                            make SIM=icarus TOPLEVEL=data_serializer MODULE=test_data_serializer
+                                                          
+                                                          This test will:
+                                                            1) Create a clock
+                                                            2) Perform a reset
+                                                            3) Run three sub-tests:
+                                                               - Basic transmission
+                                                               - Gating pause/resume
+                                                               - Multiple words
+                                                            4) If any sub-test times out, we raise TestFailure.
+     0.00ns INFO     cocotb.data_serializer             Running with BIT_ORDER=1, PARITY=2 (compile-time).
+    20.00ns INFO     cocotb.data_serializer             [TEST] Basic Transmission
+    75.00ns ERROR    cocotb.data_serializer             [ERROR] Mismatch in captured word!
+    75.00ns ERROR    cocotb.data_serializer               Captured = 0x10
+    75.00ns ERROR    cocotb.data_serializer               Expected = 0x155
+    75.00ns INFO     cocotb.regression                  test_data_serializer_single_param failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_data_serializer.py", line 81, in test_data_serializer_single_param
+                                                            await with_timeout(test_basic_transmission(dut, bit_order, parity), BASIC_TRANSMISSION_TIMEOUT, "ns")
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 1098, in with_timeout
+                                                            res = await First(timeout_timer, trigger)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 979, in _wait
+                                                            return await first_trigger  # the first of multiple triggers that fired
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py", line 137, in __await__
+                                                            return (yield self)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/task.py", line 289, in __await__
+                                                            return (yield self)
+                                                          File "/src/test_data_serializer.py", line 124, in test_basic_transmission
+                                                            await capture_word_and_compare(dut, vec, bit_order, parity)
+                                                          File "/src/test_data_serializer.py", line 289, in capture_word_and_compare
+                                                            raise TestFailure("Captured serial bits do not match expected pattern.")
+                                                        cocotb.result.TestFailure: Captured serial bits do not match expected pattern.
+    75.00ns INFO     cocotb.regression                  ****************************************************************************************************************
+                                                        ** TEST                                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************************************
+                                                        ** test_data_serializer.test_data_serializer_single_param   FAIL          75.00           0.00      22098.84  **
+                                                        ****************************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                                           75.00           0.03       2422.38  **
+                                                        ****************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/data_serializer.fst opened for output.
+----------------------------- Captured stderr call -----------------------------
+/src/test_data_serializer.py:289: DeprecationWarning: TestFailure is deprecated, use an ``assert`` statement instead
+  raise TestFailure("Captured serial bits do not match expected pattern.")
+/usr/local/lib/python3.9/dist-packages/cocotb/triggers.py:786: FutureWarning: Tasks started with `cocotb.start_soon()` that raise Exceptions will not propagate those Exceptions in 2.0. Instead such Tasks will *always* fail the test. An alternative for `cocotb.start_soon()` that *always* propagates Exceptions will be added in 2.0.
+  warnings.warn(
+=============================== warnings summary ===============================
+../../src/test_runner.py:6
+  /src/test_runner.py:6: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_data_serializer[0-0-8] - SystemExit: ER...
+FAILED ../../src/test_runner.py::test_data_serializer[0-1-8] - SystemExit: ER...
+FAILED ../../src/test_runner.py::test_data_serializer[1-0-8] - SystemExit: ER...
+FAILED ../../src/test_runner.py::test_data_serializer[1-1-8] - SystemExit: ER...
+FAILED ../../src/test_runner.py::test_data_serializer[2-0-8] - SystemExit: ER...
+FAILED ../../src/test_runner.py::test_data_serializer[2-1-8] - SystemExit: ER...
+========================= 6 failed, 1 warning in 0.99s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_data_serializer_1_1774013800-direct:latest
+Deleted: sha256:9974c9f9f17ec3c2941b93b32bf68fe5717fdfc3421656863f4c6d6ce5935e96

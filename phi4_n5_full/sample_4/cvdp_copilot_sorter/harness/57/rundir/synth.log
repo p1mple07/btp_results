@@ -1,0 +1,1953 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/sorting_engine.sv
+Parsing SystemVerilog input from `/code/rtl/sorting_engine.sv' to AST representation.
+Generating RTLIL representation for module `\sorting_engine'.
+Warning: Replacing memory \tmp_merge with list of registers. See /code/rtl/sorting_engine.sv:154
+Warning: Replacing memory \data_mem with list of registers. See /code/rtl/sorting_engine.sv:96
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \sorting_engine
+
+2.2. Analyzing design hierarchy..
+Top module:  \sorting_engine
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module sorting_engine...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 2 dead cases from process $proc$/code/rtl/sorting_engine.sv:69$20 in module sorting_engine.
+Marked 33 switch rules as full_case in process $proc$/code/rtl/sorting_engine.sv:69$20 in module sorting_engine.
+Removed a total of 2 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 36 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~34 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+     1/198: $0\out_data[63:0] [63:56]
+     2/198: $0\out_data[63:0] [55:48]
+     3/198: $0\out_data[63:0] [47:40]
+     4/198: $0\out_data[63:0] [39:32]
+     5/198: $0\out_data[63:0] [31:24]
+     6/198: $0\out_data[63:0] [23:16]
+     7/198: $0\out_data[63:0] [15:8]
+     8/198: $0\out_data[63:0] [7:0]
+     9/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA[7:0]$285
+    10/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR[2:0]$274
+    11/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA[7:0]$275
+    12/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR[2:0]$264
+    13/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA[7:0]$265
+    14/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR[2:0]$254
+    15/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA[7:0]$255
+    16/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR[2:0]$244
+    17/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA[7:0]$245
+    18/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR[2:0]$234
+    19/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA[7:0]$235
+    20/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR[2:0]$224
+    21/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA[7:0]$225
+    22/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR[2:0]$214
+    23/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA[7:0]$215
+    24/198: $5$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_ADDR[2:0]$187
+    25/198: $5$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_DATA[7:0]$188
+    26/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA[7:0]$204
+    27/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR[2:0]$203
+    28/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA[7:0]$202
+    29/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR[2:0]$201
+    30/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA[7:0]$200
+    31/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR[2:0]$199
+    32/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA[7:0]$198
+    33/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR[2:0]$197
+    34/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA[7:0]$196
+    35/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR[2:0]$195
+    36/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA[7:0]$194
+    37/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR[2:0]$193
+    38/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA[7:0]$192
+    39/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR[2:0]$191
+    40/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA[7:0]$190
+    41/198: $5$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR[2:0]$189
+    42/198: $5\k[31:0]
+    43/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_ADDR[2:0]$164
+    44/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_DATA[7:0]$165
+    45/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA[7:0]$183
+    46/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR[2:0]$182
+    47/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA[7:0]$181
+    48/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR[2:0]$180
+    49/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA[7:0]$179
+    50/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR[2:0]$178
+    51/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA[7:0]$177
+    52/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR[2:0]$176
+    53/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA[7:0]$175
+    54/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR[2:0]$174
+    55/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA[7:0]$173
+    56/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR[2:0]$172
+    57/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA[7:0]$171
+    58/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR[2:0]$170
+    59/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA[7:0]$169
+    60/198: $4$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR[2:0]$168
+    61/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_DATA[7:0]$167
+    62/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_ADDR[2:0]$166
+    63/198: $4\k[31:0]
+    64/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_ADDR[2:0]$156
+    65/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_DATA[7:0]$157
+    66/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_DATA[7:0]$159
+    67/198: $4$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_ADDR[2:0]$158
+    68/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_DATA[7:0]$134
+    69/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_ADDR[2:0]$133
+    70/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_DATA[7:0]$132
+    71/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_ADDR[2:0]$131
+    72/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA[7:0]$154
+    73/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR[2:0]$153
+    74/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA[7:0]$152
+    75/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR[2:0]$151
+    76/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA[7:0]$150
+    77/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR[2:0]$149
+    78/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA[7:0]$148
+    79/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR[2:0]$147
+    80/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA[7:0]$146
+    81/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR[2:0]$145
+    82/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA[7:0]$144
+    83/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR[2:0]$143
+    84/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA[7:0]$142
+    85/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR[2:0]$141
+    86/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA[7:0]$140
+    87/198: $3$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR[2:0]$139
+    88/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_DATA[7:0]$138
+    89/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_ADDR[2:0]$137
+    90/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_DATA[7:0]$136
+    91/198: $3$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_ADDR[2:0]$135
+    92/198: $3\k[31:0]
+    93/198: $4$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_DATA[7:0]$127
+    94/198: $3\right_val[7:0]
+    95/198: $3$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_DATA[7:0]$126
+    96/198: $3$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_ADDR[2:0]$125
+    97/198: $4$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_DATA[7:0]$121
+    98/198: $3\left_val[7:0]
+    99/198: $3$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_DATA[7:0]$120
+   100/198: $3$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_ADDR[2:0]$119
+   101/198: $3\right_end[31:0]
+   102/198: $3\left_end[31:0]
+   103/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA[7:0]$104
+   104/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR[2:0]$103
+   105/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA[7:0]$102
+   106/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR[2:0]$101
+   107/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA[7:0]$100
+   108/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR[2:0]$99
+   109/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA[7:0]$98
+   110/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR[2:0]$97
+   111/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA[7:0]$96
+   112/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR[2:0]$95
+   113/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA[7:0]$94
+   114/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR[2:0]$93
+   115/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA[7:0]$92
+   116/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR[2:0]$91
+   117/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA[7:0]$90
+   118/198: $2$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR[2:0]$89
+   119/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_DATA[7:0]$88
+   120/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_ADDR[2:0]$87
+   121/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_DATA[7:0]$86
+   122/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_ADDR[2:0]$85
+   123/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_DATA[7:0]$84
+   124/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_ADDR[2:0]$83
+   125/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_DATA[7:0]$82
+   126/198: $2$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_ADDR[2:0]$81
+   127/198: $2$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_DATA[7:0]$80
+   128/198: $2$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_ADDR[2:0]$79
+   129/198: $2$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_DATA[7:0]$78
+   130/198: $2$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_ADDR[2:0]$77
+   131/198: $2\r_addr[31:0]
+   132/198: $2\l_addr[31:0]
+   133/198: $2\right_end[31:0]
+   134/198: $2\left_end[31:0]
+   135/198: $2\k[31:0]
+   136/198: $2\i[31:0]
+   137/198: $2\right_val[7:0]
+   138/198: $2\left_val[7:0]
+   139/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA[7:0]$76
+   140/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR[2:0]$75
+   141/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA[7:0]$74
+   142/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR[2:0]$73
+   143/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA[7:0]$72
+   144/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR[2:0]$71
+   145/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA[7:0]$70
+   146/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR[2:0]$69
+   147/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA[7:0]$68
+   148/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR[2:0]$67
+   149/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA[7:0]$66
+   150/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR[2:0]$65
+   151/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA[7:0]$64
+   152/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR[2:0]$63
+   153/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA[7:0]$62
+   154/198: $1$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR[2:0]$61
+   155/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_DATA[7:0]$60
+   156/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_ADDR[2:0]$59
+   157/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_DATA[7:0]$58
+   158/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_ADDR[2:0]$57
+   159/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_DATA[7:0]$56
+   160/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_ADDR[2:0]$55
+   161/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_DATA[7:0]$54
+   162/198: $1$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_ADDR[2:0]$53
+   163/198: $1$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_DATA[7:0]$52
+   164/198: $1$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_ADDR[2:0]$51
+   165/198: $1$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_DATA[7:0]$50
+   166/198: $1$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_ADDR[2:0]$49
+   167/198: $1\r_addr[31:0]
+   168/198: $1\l_addr[31:0]
+   169/198: $1\right_end[31:0]
+   170/198: $1\left_end[31:0]
+   171/198: $1\k[31:0]
+   172/198: $1\i[31:0]
+   173/198: $1\right_val[7:0]
+   174/198: $1\left_val[7:0]
+   175/198: $0\tmp_merge[7][7:0]
+   176/198: $0\tmp_merge[6][7:0]
+   177/198: $0\tmp_merge[5][7:0]
+   178/198: $0\tmp_merge[4][7:0]
+   179/198: $0\tmp_merge[3][7:0]
+   180/198: $0\tmp_merge[2][7:0]
+   181/198: $0\tmp_merge[1][7:0]
+   182/198: $0\tmp_merge[0][7:0]
+   183/198: $0\data_mem[7][7:0]
+   184/198: $0\data_mem[6][7:0]
+   185/198: $0\data_mem[5][7:0]
+   186/198: $0\data_mem[4][7:0]
+   187/198: $0\data_mem[3][7:0]
+   188/198: $0\data_mem[2][7:0]
+   189/198: $0\data_mem[1][7:0]
+   190/198: $0\data_mem[0][7:0]
+   191/198: $0\subarray_size[5:0]
+   192/198: $0\merge_idx[5:0]
+   193/198: $0\right_idx[5:0]
+   194/198: $0\left_idx[5:0]
+   195/198: $0\base_idx[5:0]
+   196/198: $0\state[2:0]
+   197/198: $6$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR[2:0]$284
+   198/198: $0\done[0:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\sorting_engine.\done' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2558' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\out_data' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2559' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\state' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2560' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\base_idx' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2561' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\left_idx' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2562' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\right_idx' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2563' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\merge_idx' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2564' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\subarray_size' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2565' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\left_val' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2568' with positive edge clock.
+Creating register for signal `\sorting_engine.\right_val' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2571' with positive edge clock.
+Creating register for signal `\sorting_engine.\i' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2574' with positive edge clock.
+Creating register for signal `\sorting_engine.\k' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2577' with positive edge clock.
+Creating register for signal `\sorting_engine.\left_end' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2580' with positive edge clock.
+Creating register for signal `\sorting_engine.\right_end' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2583' with positive edge clock.
+Creating register for signal `\sorting_engine.\l_addr' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2586' with positive edge clock.
+Creating register for signal `\sorting_engine.\r_addr' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2589' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[0]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2592' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[1]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2595' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[2]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2598' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[3]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2601' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[4]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2604' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[5]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2607' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[6]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2610' with positive edge clock.
+Creating register for signal `\sorting_engine.\data_mem[7]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2613' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[0]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2616' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[1]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2619' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[2]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2622' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[3]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2625' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[4]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2628' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[5]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2631' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[6]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2634' with positive edge clock.
+Creating register for signal `\sorting_engine.\tmp_merge[7]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $dff cell `$procdff$2637' with positive edge clock.
+Creating register for signal `\sorting_engine.$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2638' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:142$6_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2639' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2640' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_rd$\data_mem$/code/rtl/sorting_engine.sv:148$7_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2641' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2642' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:154$8_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2643' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2644' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:157$9_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2645' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2646' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:162$10_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2647' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2648' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\tmp_merge$/code/rtl/sorting_engine.sv:166$11_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2649' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2650' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$12_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2651' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2652' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$13_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2653' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2654' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$14_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2655' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2656' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$15_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2657' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2658' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$16_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2659' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2660' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$17_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2661' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2662' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$18_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2663' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2664' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\data_mem$/code/rtl/sorting_engine.sv:173$19_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+  created $adff cell `$procdff$2665' with positive edge clock and positive level reset.
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 34 empty switches in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+Removing empty process `sorting_engine.$proc$/code/rtl/sorting_engine.sv:69$20'.
+Cleaned up 34 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~28 debug messages>
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~2 debug messages>
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~741 debug messages>
+Removed a total of 247 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$2552.
+    dead port 2/2 on $mux $procmux$2552.
+    dead port 1/2 on $mux $procmux$2550.
+    dead port 2/2 on $mux $procmux$2550.
+    dead port 1/2 on $mux $procmux$2547.
+    dead port 2/2 on $mux $procmux$2547.
+    dead port 1/2 on $mux $procmux$2544.
+    dead port 2/2 on $mux $procmux$2544.
+    dead port 1/2 on $mux $procmux$2541.
+    dead port 2/2 on $mux $procmux$2541.
+    dead port 1/2 on $mux $procmux$1427.
+    dead port 2/2 on $mux $procmux$1427.
+    dead port 1/2 on $mux $procmux$1423.
+    dead port 2/2 on $mux $procmux$1423.
+    dead port 1/2 on $mux $procmux$1419.
+    dead port 2/2 on $mux $procmux$1419.
+    dead port 1/2 on $mux $procmux$1415.
+    dead port 2/2 on $mux $procmux$1415.
+    dead port 1/2 on $mux $procmux$1411.
+    dead port 2/2 on $mux $procmux$1411.
+    dead port 1/2 on $mux $procmux$1407.
+    dead port 2/2 on $mux $procmux$1407.
+    dead port 1/2 on $mux $procmux$1403.
+    dead port 2/2 on $mux $procmux$1403.
+    dead port 1/2 on $mux $procmux$1399.
+    dead port 2/2 on $mux $procmux$1399.
+    dead port 1/2 on $mux $procmux$1395.
+    dead port 2/2 on $mux $procmux$1395.
+    dead port 1/2 on $mux $procmux$1391.
+    dead port 2/2 on $mux $procmux$1391.
+    dead port 1/2 on $mux $procmux$1387.
+    dead port 2/2 on $mux $procmux$1387.
+    dead port 1/2 on $mux $procmux$1383.
+    dead port 2/2 on $mux $procmux$1383.
+    dead port 1/2 on $mux $procmux$1379.
+    dead port 2/2 on $mux $procmux$1379.
+    dead port 1/2 on $mux $procmux$1375.
+    dead port 2/2 on $mux $procmux$1375.
+    dead port 1/2 on $mux $procmux$1371.
+    dead port 2/2 on $mux $procmux$1371.
+    dead port 1/2 on $mux $procmux$1367.
+    dead port 2/2 on $mux $procmux$1367.
+    dead port 1/2 on $mux $procmux$1363.
+    dead port 2/2 on $mux $procmux$1363.
+    dead port 1/2 on $mux $procmux$1359.
+    dead port 2/2 on $mux $procmux$1359.
+    dead port 1/2 on $mux $procmux$1355.
+    dead port 2/2 on $mux $procmux$1355.
+    dead port 1/2 on $mux $procmux$1351.
+    dead port 2/2 on $mux $procmux$1351.
+    dead port 1/2 on $mux $procmux$1347.
+    dead port 2/2 on $mux $procmux$1347.
+    dead port 1/2 on $mux $procmux$1343.
+    dead port 2/2 on $mux $procmux$1343.
+    dead port 1/2 on $mux $procmux$1339.
+    dead port 2/2 on $mux $procmux$1339.
+    dead port 1/2 on $mux $procmux$1335.
+    dead port 2/2 on $mux $procmux$1335.
+    dead port 1/2 on $mux $procmux$1331.
+    dead port 2/2 on $mux $procmux$1331.
+    dead port 1/2 on $mux $procmux$1327.
+    dead port 2/2 on $mux $procmux$1327.
+    dead port 1/2 on $mux $procmux$1323.
+    dead port 2/2 on $mux $procmux$1323.
+    dead port 1/2 on $mux $procmux$1319.
+    dead port 2/2 on $mux $procmux$1319.
+    dead port 1/2 on $mux $procmux$1301.
+    dead port 2/2 on $mux $procmux$1301.
+    dead port 1/2 on $mux $procmux$1299.
+    dead port 2/2 on $mux $procmux$1299.
+    dead port 1/2 on $mux $procmux$1294.
+    dead port 2/2 on $mux $procmux$1294.
+    dead port 1/2 on $mux $procmux$1292.
+    dead port 2/2 on $mux $procmux$1292.
+    dead port 2/2 on $mux $procmux$1280.
+    dead port 2/2 on $mux $procmux$1278.
+    dead port 1/2 on $mux $procmux$1264.
+    dead port 2/2 on $mux $procmux$1264.
+    dead port 1/2 on $mux $procmux$1262.
+    dead port 2/2 on $mux $procmux$1262.
+    dead port 1/2 on $mux $procmux$1257.
+    dead port 2/2 on $mux $procmux$1257.
+    dead port 1/2 on $mux $procmux$1255.
+    dead port 2/2 on $mux $procmux$1255.
+    dead port 2/2 on $mux $procmux$1243.
+    dead port 2/2 on $mux $procmux$1241.
+    dead port 2/2 on $mux $procmux$1227.
+    dead port 1/2 on $mux $procmux$1220.
+    dead port 2/2 on $mux $procmux$1220.
+    dead port 1/2 on $mux $procmux$1218.
+    dead port 2/2 on $mux $procmux$1218.
+    dead port 1/2 on $mux $procmux$1213.
+    dead port 2/2 on $mux $procmux$1213.
+    dead port 1/2 on $mux $procmux$1211.
+    dead port 2/2 on $mux $procmux$1211.
+    dead port 1/2 on $mux $procmux$1206.
+    dead port 2/2 on $mux $procmux$1206.
+    dead port 1/2 on $mux $procmux$1204.
+    dead port 2/2 on $mux $procmux$1204.
+    dead port 1/2 on $mux $procmux$1199.
+    dead port 2/2 on $mux $procmux$1199.
+    dead port 1/2 on $mux $procmux$1197.
+    dead port 2/2 on $mux $procmux$1197.
+    dead port 1/2 on $mux $procmux$1192.
+    dead port 2/2 on $mux $procmux$1192.
+    dead port 1/2 on $mux $procmux$1190.
+    dead port 2/2 on $mux $procmux$1190.
+    dead port 1/2 on $mux $procmux$1185.
+    dead port 2/2 on $mux $procmux$1185.
+    dead port 1/2 on $mux $procmux$1183.
+    dead port 2/2 on $mux $procmux$1183.
+    dead port 1/2 on $mux $procmux$1178.
+    dead port 2/2 on $mux $procmux$1178.
+    dead port 1/2 on $mux $procmux$1176.
+    dead port 2/2 on $mux $procmux$1176.
+    dead port 1/2 on $mux $procmux$1171.
+    dead port 2/2 on $mux $procmux$1171.
+    dead port 1/2 on $mux $procmux$1169.
+    dead port 2/2 on $mux $procmux$1169.
+    dead port 1/2 on $mux $procmux$1164.
+    dead port 2/2 on $mux $procmux$1164.
+    dead port 1/2 on $mux $procmux$1162.
+    dead port 2/2 on $mux $procmux$1162.
+    dead port 1/2 on $mux $procmux$1157.
+    dead port 2/2 on $mux $procmux$1157.
+    dead port 1/2 on $mux $procmux$1155.
+    dead port 2/2 on $mux $procmux$1155.
+    dead port 1/2 on $mux $procmux$1150.
+    dead port 2/2 on $mux $procmux$1150.
+    dead port 1/2 on $mux $procmux$1148.
+    dead port 2/2 on $mux $procmux$1148.
+    dead port 1/2 on $mux $procmux$1143.
+    dead port 2/2 on $mux $procmux$1143.
+    dead port 1/2 on $mux $procmux$1141.
+    dead port 2/2 on $mux $procmux$1141.
+    dead port 1/2 on $mux $procmux$1136.
+    dead port 2/2 on $mux $procmux$1136.
+    dead port 1/2 on $mux $procmux$1134.
+    dead port 2/2 on $mux $procmux$1134.
+    dead port 1/2 on $mux $procmux$1129.
+    dead port 2/2 on $mux $procmux$1129.
+    dead port 1/2 on $mux $procmux$1127.
+    dead port 2/2 on $mux $procmux$1127.
+    dead port 1/2 on $mux $procmux$1122.
+    dead port 2/2 on $mux $procmux$1122.
+    dead port 1/2 on $mux $procmux$1120.
+    dead port 2/2 on $mux $procmux$1120.
+    dead port 1/2 on $mux $procmux$1115.
+    dead port 2/2 on $mux $procmux$1115.
+    dead port 1/2 on $mux $procmux$1113.
+    dead port 2/2 on $mux $procmux$1113.
+    dead port 1/2 on $mux $procmux$1108.
+    dead port 2/2 on $mux $procmux$1108.
+    dead port 1/2 on $mux $procmux$1106.
+    dead port 2/2 on $mux $procmux$1106.
+    dead port 1/2 on $mux $procmux$1101.
+    dead port 2/2 on $mux $procmux$1101.
+    dead port 1/2 on $mux $procmux$1099.
+    dead port 2/2 on $mux $procmux$1099.
+    dead port 1/2 on $mux $procmux$1094.
+    dead port 2/2 on $mux $procmux$1094.
+    dead port 1/2 on $mux $procmux$1092.
+    dead port 2/2 on $mux $procmux$1092.
+    dead port 1/2 on $mux $procmux$1087.
+    dead port 2/2 on $mux $procmux$1087.
+    dead port 1/2 on $mux $procmux$1085.
+    dead port 2/2 on $mux $procmux$1085.
+    dead port 1/2 on $mux $procmux$1080.
+    dead port 2/2 on $mux $procmux$1080.
+    dead port 1/2 on $mux $procmux$1078.
+    dead port 2/2 on $mux $procmux$1078.
+    dead port 1/2 on $mux $procmux$1073.
+    dead port 2/2 on $mux $procmux$1073.
+    dead port 1/2 on $mux $procmux$1071.
+    dead port 2/2 on $mux $procmux$1071.
+    dead port 1/2 on $mux $procmux$1066.
+    dead port 2/2 on $mux $procmux$1066.
+    dead port 1/2 on $mux $procmux$1064.
+    dead port 2/2 on $mux $procmux$1064.
+    dead port 1/2 on $mux $procmux$1059.
+    dead port 2/2 on $mux $procmux$1059.
+    dead port 1/2 on $mux $procmux$1057.
+    dead port 2/2 on $mux $procmux$1057.
+    dead port 1/2 on $mux $procmux$1052.
+    dead port 2/2 on $mux $procmux$1052.
+    dead port 1/2 on $mux $procmux$1050.
+    dead port 2/2 on $mux $procmux$1050.
+    dead port 1/2 on $mux $procmux$1048.
+    dead port 2/2 on $mux $procmux$1048.
+    dead port 1/2 on $mux $procmux$1042.
+    dead port 2/2 on $mux $procmux$1042.
+    dead port 1/2 on $mux $procmux$1040.
+    dead port 2/2 on $mux $procmux$1040.
+    dead port 1/2 on $mux $procmux$1038.
+    dead port 2/2 on $mux $procmux$1038.
+    dead port 1/2 on $mux $procmux$1032.
+    dead port 2/2 on $mux $procmux$1032.
+    dead port 1/2 on $mux $procmux$1030.
+    dead port 2/2 on $mux $procmux$1030.
+    dead port 1/2 on $mux $procmux$1028.
+    dead port 2/2 on $mux $procmux$1028.
+    dead port 1/2 on $mux $procmux$1022.
+    dead port 2/2 on $mux $procmux$1022.
+    dead port 1/2 on $mux $procmux$1020.
+    dead port 2/2 on $mux $procmux$1020.
+    dead port 1/2 on $mux $procmux$1018.
+    dead port 2/2 on $mux $procmux$1018.
+    dead port 2/2 on $mux $procmux$1012.
+    dead port 1/2 on $mux $procmux$1010.
+    dead port 1/2 on $mux $procmux$1002.
+    dead port 2/2 on $mux $procmux$1002.
+    dead port 1/2 on $mux $procmux$1000.
+    dead port 2/2 on $mux $procmux$1000.
+    dead port 1/2 on $mux $procmux$997.
+    dead port 2/2 on $mux $procmux$997.
+    dead port 1/2 on $mux $procmux$992.
+    dead port 2/2 on $mux $procmux$992.
+    dead port 1/2 on $mux $procmux$990.
+    dead port 2/2 on $mux $procmux$990.
+    dead port 1/2 on $mux $procmux$987.
+    dead port 2/2 on $mux $procmux$987.
+    dead port 1/2 on $mux $procmux$982.
+    dead port 2/2 on $mux $procmux$982.
+    dead port 1/2 on $mux $procmux$980.
+    dead port 2/2 on $mux $procmux$980.
+    dead port 1/2 on $mux $procmux$977.
+    dead port 2/2 on $mux $procmux$977.
+    dead port 1/2 on $mux $procmux$972.
+    dead port 2/2 on $mux $procmux$972.
+    dead port 1/2 on $mux $procmux$970.
+    dead port 2/2 on $mux $procmux$970.
+    dead port 1/2 on $mux $procmux$967.
+    dead port 2/2 on $mux $procmux$967.
+    dead port 1/2 on $mux $procmux$962.
+    dead port 2/2 on $mux $procmux$962.
+    dead port 1/2 on $mux $procmux$960.
+    dead port 2/2 on $mux $procmux$960.
+    dead port 1/2 on $mux $procmux$957.
+    dead port 2/2 on $mux $procmux$957.
+    dead port 1/2 on $mux $procmux$952.
+    dead port 2/2 on $mux $procmux$952.
+    dead port 1/2 on $mux $procmux$950.
+    dead port 2/2 on $mux $procmux$950.
+    dead port 1/2 on $mux $procmux$947.
+    dead port 2/2 on $mux $procmux$947.
+    dead port 1/2 on $mux $procmux$942.
+    dead port 2/2 on $mux $procmux$942.
+    dead port 1/2 on $mux $procmux$940.
+    dead port 2/2 on $mux $procmux$940.
+    dead port 1/2 on $mux $procmux$937.
+    dead port 2/2 on $mux $procmux$937.
+    dead port 1/2 on $mux $procmux$932.
+    dead port 2/2 on $mux $procmux$932.
+    dead port 1/2 on $mux $procmux$930.
+    dead port 2/2 on $mux $procmux$930.
+    dead port 1/2 on $mux $procmux$927.
+    dead port 2/2 on $mux $procmux$927.
+    dead port 1/2 on $mux $procmux$922.
+    dead port 2/2 on $mux $procmux$922.
+    dead port 1/2 on $mux $procmux$920.
+    dead port 2/2 on $mux $procmux$920.
+    dead port 1/2 on $mux $procmux$917.
+    dead port 2/2 on $mux $procmux$917.
+    dead port 1/2 on $mux $procmux$912.
+    dead port 2/2 on $mux $procmux$912.
+    dead port 1/2 on $mux $procmux$910.
+    dead port 2/2 on $mux $procmux$910.
+    dead port 1/2 on $mux $procmux$907.
+    dead port 2/2 on $mux $procmux$907.
+    dead port 1/2 on $mux $procmux$902.
+    dead port 2/2 on $mux $procmux$902.
+    dead port 1/2 on $mux $procmux$900.
+    dead port 2/2 on $mux $procmux$900.
+    dead port 1/2 on $mux $procmux$897.
+    dead port 2/2 on $mux $procmux$897.
+    dead port 1/2 on $mux $procmux$892.
+    dead port 2/2 on $mux $procmux$892.
+    dead port 1/2 on $mux $procmux$890.
+    dead port 2/2 on $mux $procmux$890.
+    dead port 1/2 on $mux $procmux$887.
+    dead port 2/2 on $mux $procmux$887.
+    dead port 1/2 on $mux $procmux$882.
+    dead port 2/2 on $mux $procmux$882.
+    dead port 1/2 on $mux $procmux$880.
+    dead port 2/2 on $mux $procmux$880.
+    dead port 1/2 on $mux $procmux$877.
+    dead port 2/2 on $mux $procmux$877.
+    dead port 1/2 on $mux $procmux$872.
+    dead port 2/2 on $mux $procmux$872.
+    dead port 1/2 on $mux $procmux$870.
+    dead port 2/2 on $mux $procmux$870.
+    dead port 1/2 on $mux $procmux$867.
+    dead port 2/2 on $mux $procmux$867.
+    dead port 1/2 on $mux $procmux$862.
+    dead port 2/2 on $mux $procmux$862.
+    dead port 1/2 on $mux $procmux$860.
+    dead port 2/2 on $mux $procmux$860.
+    dead port 1/2 on $mux $procmux$857.
+    dead port 2/2 on $mux $procmux$857.
+    dead port 1/2 on $mux $procmux$852.
+    dead port 2/2 on $mux $procmux$852.
+    dead port 1/2 on $mux $procmux$850.
+    dead port 2/2 on $mux $procmux$850.
+    dead port 1/2 on $mux $procmux$847.
+    dead port 2/2 on $mux $procmux$847.
+    dead port 1/2 on $mux $procmux$842.
+    dead port 2/2 on $mux $procmux$842.
+    dead port 1/2 on $mux $procmux$840.
+    dead port 2/2 on $mux $procmux$840.
+    dead port 1/2 on $mux $procmux$837.
+    dead port 2/2 on $mux $procmux$837.
+    dead port 1/2 on $mux $procmux$832.
+    dead port 2/2 on $mux $procmux$832.
+    dead port 1/2 on $mux $procmux$830.
+    dead port 2/2 on $mux $procmux$830.
+    dead port 1/2 on $mux $procmux$827.
+    dead port 2/2 on $mux $procmux$827.
+    dead port 1/2 on $mux $procmux$822.
+    dead port 2/2 on $mux $procmux$822.
+    dead port 1/2 on $mux $procmux$820.
+    dead port 2/2 on $mux $procmux$820.
+    dead port 1/2 on $mux $procmux$817.
+    dead port 2/2 on $mux $procmux$817.
+    dead port 1/2 on $mux $procmux$812.
+    dead port 2/2 on $mux $procmux$812.
+    dead port 1/2 on $mux $procmux$810.
+    dead port 2/2 on $mux $procmux$810.
+    dead port 1/2 on $mux $procmux$807.
+    dead port 2/2 on $mux $procmux$807.
+    dead port 2/2 on $mux $procmux$802.
+    dead port 1/2 on $mux $procmux$800.
+    dead port 1/2 on $mux $procmux$797.
+    dead port 1/2 on $mux $procmux$789.
+    dead port 2/2 on $mux $procmux$789.
+    dead port 1/2 on $mux $procmux$787.
+    dead port 2/2 on $mux $procmux$787.
+    dead port 1/2 on $mux $procmux$784.
+    dead port 2/2 on $mux $procmux$784.
+    dead port 1/2 on $mux $procmux$781.
+    dead port 2/2 on $mux $procmux$781.
+    dead port 1/2 on $mux $procmux$776.
+    dead port 2/2 on $mux $procmux$776.
+    dead port 1/2 on $mux $procmux$774.
+    dead port 2/2 on $mux $procmux$774.
+    dead port 1/2 on $mux $procmux$771.
+    dead port 2/2 on $mux $procmux$771.
+    dead port 1/2 on $mux $procmux$768.
+    dead port 2/2 on $mux $procmux$768.
+    dead port 1/2 on $mux $procmux$763.
+    dead port 2/2 on $mux $procmux$763.
+    dead port 1/2 on $mux $procmux$761.
+    dead port 2/2 on $mux $procmux$761.
+    dead port 1/2 on $mux $procmux$758.
+    dead port 2/2 on $mux $procmux$758.
+    dead port 1/2 on $mux $procmux$755.
+    dead port 2/2 on $mux $procmux$755.
+    dead port 1/2 on $mux $procmux$750.
+    dead port 2/2 on $mux $procmux$750.
+    dead port 1/2 on $mux $procmux$748.
+    dead port 2/2 on $mux $procmux$748.
+    dead port 1/2 on $mux $procmux$745.
+    dead port 2/2 on $mux $procmux$745.
+    dead port 1/2 on $mux $procmux$742.
+    dead port 2/2 on $mux $procmux$742.
+    dead port 1/2 on $mux $procmux$737.
+    dead port 2/2 on $mux $procmux$737.
+    dead port 1/2 on $mux $procmux$735.
+    dead port 2/2 on $mux $procmux$735.
+    dead port 1/2 on $mux $procmux$732.
+    dead port 2/2 on $mux $procmux$732.
+    dead port 1/2 on $mux $procmux$729.
+    dead port 2/2 on $mux $procmux$729.
+    dead port 1/2 on $mux $procmux$724.
+    dead port 2/2 on $mux $procmux$724.
+    dead port 1/2 on $mux $procmux$722.
+    dead port 2/2 on $mux $procmux$722.
+    dead port 1/2 on $mux $procmux$719.
+    dead port 2/2 on $mux $procmux$719.
+    dead port 1/2 on $mux $procmux$716.
+    dead port 2/2 on $mux $procmux$716.
+    dead port 1/2 on $mux $procmux$711.
+    dead port 2/2 on $mux $procmux$711.
+    dead port 1/2 on $mux $procmux$709.
+    dead port 2/2 on $mux $procmux$709.
+    dead port 1/2 on $mux $procmux$706.
+    dead port 2/2 on $mux $procmux$706.
+    dead port 1/2 on $mux $procmux$703.
+    dead port 2/2 on $mux $procmux$703.
+    dead port 1/2 on $mux $procmux$698.
+    dead port 2/2 on $mux $procmux$698.
+    dead port 1/2 on $mux $procmux$696.
+    dead port 2/2 on $mux $procmux$696.
+    dead port 1/2 on $mux $procmux$693.
+    dead port 2/2 on $mux $procmux$693.
+    dead port 1/2 on $mux $procmux$690.
+    dead port 2/2 on $mux $procmux$690.
+    dead port 1/2 on $mux $procmux$685.
+    dead port 2/2 on $mux $procmux$685.
+    dead port 1/2 on $mux $procmux$683.
+    dead port 2/2 on $mux $procmux$683.
+    dead port 1/2 on $mux $procmux$680.
+    dead port 2/2 on $mux $procmux$680.
+    dead port 1/2 on $mux $procmux$677.
+    dead port 2/2 on $mux $procmux$677.
+    dead port 1/2 on $mux $procmux$672.
+    dead port 2/2 on $mux $procmux$672.
+    dead port 1/2 on $mux $procmux$670.
+    dead port 2/2 on $mux $procmux$670.
+    dead port 1/2 on $mux $procmux$667.
+    dead port 2/2 on $mux $procmux$667.
+    dead port 1/2 on $mux $procmux$664.
+    dead port 2/2 on $mux $procmux$664.
+    dead port 1/2 on $mux $procmux$659.
+    dead port 2/2 on $mux $procmux$659.
+    dead port 1/2 on $mux $procmux$657.
+    dead port 2/2 on $mux $procmux$657.
+    dead port 1/2 on $mux $procmux$654.
+    dead port 2/2 on $mux $procmux$654.
+    dead port 1/2 on $mux $procmux$651.
+    dead port 2/2 on $mux $procmux$651.
+    dead port 1/2 on $mux $procmux$646.
+    dead port 2/2 on $mux $procmux$646.
+    dead port 1/2 on $mux $procmux$644.
+    dead port 2/2 on $mux $procmux$644.
+    dead port 1/2 on $mux $procmux$641.
+    dead port 2/2 on $mux $procmux$641.
+    dead port 1/2 on $mux $procmux$638.
+    dead port 2/2 on $mux $procmux$638.
+    dead port 1/2 on $mux $procmux$633.
+    dead port 2/2 on $mux $procmux$633.
+    dead port 1/2 on $mux $procmux$631.
+    dead port 2/2 on $mux $procmux$631.
+    dead port 1/2 on $mux $procmux$628.
+    dead port 2/2 on $mux $procmux$628.
+    dead port 1/2 on $mux $procmux$625.
+    dead port 2/2 on $mux $procmux$625.
+    dead port 1/2 on $mux $procmux$620.
+    dead port 2/2 on $mux $procmux$620.
+    dead port 1/2 on $mux $procmux$618.
+    dead port 2/2 on $mux $procmux$618.
+    dead port 1/2 on $mux $procmux$615.
+    dead port 2/2 on $mux $procmux$615.
+    dead port 1/2 on $mux $procmux$612.
+    dead port 2/2 on $mux $procmux$612.
+    dead port 1/2 on $mux $procmux$607.
+    dead port 2/2 on $mux $procmux$607.
+    dead port 1/2 on $mux $procmux$605.
+    dead port 2/2 on $mux $procmux$605.
+    dead port 1/2 on $mux $procmux$602.
+    dead port 2/2 on $mux $procmux$602.
+    dead port 1/2 on $mux $procmux$599.
+    dead port 2/2 on $mux $procmux$599.
+    dead port 1/2 on $mux $procmux$594.
+    dead port 2/2 on $mux $procmux$594.
+    dead port 1/2 on $mux $procmux$592.
+    dead port 2/2 on $mux $procmux$592.
+    dead port 1/2 on $mux $procmux$589.
+    dead port 2/2 on $mux $procmux$589.
+    dead port 1/2 on $mux $procmux$586.
+    dead port 2/2 on $mux $procmux$586.
+    dead port 1/2 on $mux $procmux$581.
+    dead port 2/2 on $mux $procmux$581.
+    dead port 1/2 on $mux $procmux$579.
+    dead port 2/2 on $mux $procmux$579.
+    dead port 1/2 on $mux $procmux$576.
+    dead port 2/2 on $mux $procmux$576.
+    dead port 1/2 on $mux $procmux$573.
+    dead port 2/2 on $mux $procmux$573.
+    dead port 1/2 on $mux $procmux$568.
+    dead port 2/2 on $mux $procmux$568.
+    dead port 1/2 on $mux $procmux$566.
+    dead port 2/2 on $mux $procmux$566.
+    dead port 1/2 on $mux $procmux$563.
+    dead port 2/2 on $mux $procmux$563.
+    dead port 1/2 on $mux $procmux$560.
+    dead port 2/2 on $mux $procmux$560.
+    dead port 1/2 on $mux $procmux$555.
+    dead port 2/2 on $mux $procmux$555.
+    dead port 1/2 on $mux $procmux$553.
+    dead port 2/2 on $mux $procmux$553.
+    dead port 1/2 on $mux $procmux$550.
+    dead port 2/2 on $mux $procmux$550.
+    dead port 1/2 on $mux $procmux$547.
+    dead port 2/2 on $mux $procmux$547.
+    dead port 1/2 on $mux $procmux$544.
+    dead port 2/2 on $mux $procmux$544.
+    dead port 1/2 on $mux $procmux$539.
+    dead port 2/2 on $mux $procmux$539.
+    dead port 1/2 on $mux $procmux$537.
+    dead port 2/2 on $mux $procmux$537.
+    dead port 1/2 on $mux $procmux$534.
+    dead port 2/2 on $mux $procmux$534.
+    dead port 1/2 on $mux $procmux$531.
+    dead port 2/2 on $mux $procmux$531.
+    dead port 1/2 on $mux $procmux$528.
+    dead port 2/2 on $mux $procmux$528.
+    dead port 1/2 on $mux $procmux$523.
+    dead port 2/2 on $mux $procmux$523.
+    dead port 1/2 on $mux $procmux$521.
+    dead port 2/2 on $mux $procmux$521.
+    dead port 1/2 on $mux $procmux$518.
+    dead port 2/2 on $mux $procmux$518.
+    dead port 1/2 on $mux $procmux$515.
+    dead port 2/2 on $mux $procmux$515.
+    dead port 1/2 on $mux $procmux$512.
+    dead port 2/2 on $mux $procmux$512.
+    dead port 1/2 on $mux $procmux$507.
+    dead port 2/2 on $mux $procmux$507.
+    dead port 1/2 on $mux $procmux$505.
+    dead port 2/2 on $mux $procmux$505.
+    dead port 1/2 on $mux $procmux$502.
+    dead port 2/2 on $mux $procmux$502.
+    dead port 1/2 on $mux $procmux$499.
+    dead port 2/2 on $mux $procmux$499.
+    dead port 1/2 on $mux $procmux$496.
+    dead port 2/2 on $mux $procmux$496.
+    dead port 1/2 on $mux $procmux$491.
+    dead port 2/2 on $mux $procmux$491.
+    dead port 1/2 on $mux $procmux$489.
+    dead port 2/2 on $mux $procmux$489.
+    dead port 1/2 on $mux $procmux$486.
+    dead port 2/2 on $mux $procmux$486.
+    dead port 1/2 on $mux $procmux$483.
+    dead port 2/2 on $mux $procmux$483.
+    dead port 1/2 on $mux $procmux$480.
+    dead port 2/2 on $mux $procmux$480.
+    dead port 1/2 on $mux $procmux$475.
+    dead port 2/2 on $mux $procmux$475.
+    dead port 1/2 on $mux $procmux$473.
+    dead port 2/2 on $mux $procmux$473.
+    dead port 1/2 on $mux $procmux$470.
+    dead port 2/2 on $mux $procmux$470.
+    dead port 1/2 on $mux $procmux$467.
+    dead port 2/2 on $mux $procmux$467.
+    dead port 1/2 on $mux $procmux$464.
+    dead port 2/2 on $mux $procmux$464.
+    dead port 1/2 on $mux $procmux$459.
+    dead port 2/2 on $mux $procmux$459.
+    dead port 1/2 on $mux $procmux$457.
+    dead port 2/2 on $mux $procmux$457.
+    dead port 1/2 on $mux $procmux$454.
+    dead port 2/2 on $mux $procmux$454.
+    dead port 1/2 on $mux $procmux$451.
+    dead port 2/2 on $mux $procmux$451.
+    dead port 1/2 on $mux $procmux$448.
+    dead port 2/2 on $mux $procmux$448.
+    dead port 1/2 on $mux $procmux$443.
+    dead port 2/2 on $mux $procmux$443.
+    dead port 1/2 on $mux $procmux$441.
+    dead port 2/2 on $mux $procmux$441.
+    dead port 1/2 on $mux $procmux$438.
+    dead port 2/2 on $mux $procmux$438.
+    dead port 1/2 on $mux $procmux$435.
+    dead port 2/2 on $mux $procmux$435.
+    dead port 1/2 on $mux $procmux$432.
+    dead port 2/2 on $mux $procmux$432.
+    dead port 1/2 on $mux $procmux$427.
+    dead port 2/2 on $mux $procmux$427.
+    dead port 1/2 on $mux $procmux$425.
+    dead port 2/2 on $mux $procmux$425.
+    dead port 1/2 on $mux $procmux$422.
+    dead port 2/2 on $mux $procmux$422.
+    dead port 1/2 on $mux $procmux$419.
+    dead port 2/2 on $mux $procmux$419.
+    dead port 1/2 on $mux $procmux$416.
+    dead port 2/2 on $mux $procmux$416.
+    dead port 1/2 on $mux $procmux$411.
+    dead port 2/2 on $mux $procmux$411.
+    dead port 1/2 on $mux $procmux$409.
+    dead port 2/2 on $mux $procmux$409.
+    dead port 1/2 on $mux $procmux$406.
+    dead port 2/2 on $mux $procmux$406.
+    dead port 1/2 on $mux $procmux$403.
+    dead port 2/2 on $mux $procmux$403.
+    dead port 1/2 on $mux $procmux$400.
+    dead port 2/2 on $mux $procmux$400.
+    dead port 1/2 on $mux $procmux$395.
+    dead port 2/2 on $mux $procmux$395.
+    dead port 1/2 on $mux $procmux$393.
+    dead port 2/2 on $mux $procmux$393.
+    dead port 1/2 on $mux $procmux$390.
+    dead port 2/2 on $mux $procmux$390.
+    dead port 1/2 on $mux $procmux$387.
+    dead port 2/2 on $mux $procmux$387.
+    dead port 1/2 on $mux $procmux$384.
+    dead port 2/2 on $mux $procmux$384.
+    dead port 1/2 on $mux $procmux$379.
+    dead port 2/2 on $mux $procmux$379.
+    dead port 1/2 on $mux $procmux$377.
+    dead port 2/2 on $mux $procmux$377.
+    dead port 1/2 on $mux $procmux$374.
+    dead port 2/2 on $mux $procmux$374.
+    dead port 1/2 on $mux $procmux$371.
+    dead port 2/2 on $mux $procmux$371.
+    dead port 1/2 on $mux $procmux$368.
+    dead port 2/2 on $mux $procmux$368.
+    dead port 1/2 on $mux $procmux$363.
+    dead port 2/2 on $mux $procmux$363.
+    dead port 1/2 on $mux $procmux$361.
+    dead port 2/2 on $mux $procmux$361.
+    dead port 1/2 on $mux $procmux$358.
+    dead port 2/2 on $mux $procmux$358.
+    dead port 1/2 on $mux $procmux$355.
+    dead port 2/2 on $mux $procmux$355.
+    dead port 1/2 on $mux $procmux$352.
+    dead port 2/2 on $mux $procmux$352.
+    dead port 1/2 on $mux $procmux$347.
+    dead port 2/2 on $mux $procmux$347.
+    dead port 1/2 on $mux $procmux$345.
+    dead port 2/2 on $mux $procmux$345.
+    dead port 1/2 on $mux $procmux$342.
+    dead port 2/2 on $mux $procmux$342.
+    dead port 1/2 on $mux $procmux$339.
+    dead port 2/2 on $mux $procmux$339.
+    dead port 1/2 on $mux $procmux$336.
+    dead port 2/2 on $mux $procmux$336.
+    dead port 1/2 on $mux $procmux$331.
+    dead port 2/2 on $mux $procmux$331.
+    dead port 1/2 on $mux $procmux$329.
+    dead port 2/2 on $mux $procmux$329.
+    dead port 1/2 on $mux $procmux$326.
+    dead port 2/2 on $mux $procmux$326.
+    dead port 1/2 on $mux $procmux$323.
+    dead port 2/2 on $mux $procmux$323.
+    dead port 1/2 on $mux $procmux$320.
+    dead port 2/2 on $mux $procmux$320.
+Removed 626 multiplexer ports.
+<suppressed ~115 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+    New ctrl vector for $pmux cell $procmux$1450: $auto$opt_reduce.cc:134:opt_pmux$2667
+  Optimizing cells in module \sorting_engine.
+Performed a total of 1 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~48 debug messages>
+Removed a total of 16 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$2607 ($dff) from module sorting_engine (D = $procmux$1948_Y, Q = \data_mem[5]).
+Adding EN signal on $procdff$2625 ($dff) from module sorting_engine (D = $procmux$1617_Y, Q = \tmp_merge[3]).
+Adding EN signal on $procdff$2628 ($dff) from module sorting_engine (D = $procmux$1577_Y, Q = \tmp_merge[4]).
+Adding EN signal on $procdff$2631 ($dff) from module sorting_engine (D = $procmux$1541_Y, Q = \tmp_merge[5]).
+Adding EN signal on $procdff$2634 ($dff) from module sorting_engine (D = $procmux$1509_Y, Q = \tmp_merge[6]).
+Adding EN signal on $procdff$2637 ($dff) from module sorting_engine (D = $procmux$1481_Y, Q = \tmp_merge[7]).
+Adding EN signal on $procdff$2604 ($dff) from module sorting_engine (D = $procmux$2026_Y, Q = \data_mem[4]).
+Adding EN signal on $procdff$2610 ($dff) from module sorting_engine (D = $procmux$1878_Y, Q = \data_mem[6]).
+Adding EN signal on $procdff$2558 ($adff) from module sorting_engine (D = $procmux$2555_Y, Q = \done).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[7], Q = \out_data [63:56]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[6], Q = \out_data [55:48]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[5], Q = \out_data [47:40]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[4], Q = \out_data [39:32]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[3], Q = \out_data [31:24]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[2], Q = \out_data [23:16]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[1], Q = \out_data [15:8]).
+Adding EN signal on $procdff$2559 ($adff) from module sorting_engine (D = \data_mem[0], Q = \out_data [7:0]).
+Adding EN signal on $procdff$2560 ($adff) from module sorting_engine (D = $procmux$2528_Y, Q = \state).
+Adding EN signal on $procdff$2561 ($adff) from module sorting_engine (D = $procmux$2508_Y, Q = \base_idx).
+Adding EN signal on $procdff$2562 ($adff) from module sorting_engine (D = $procmux$2490_Y, Q = \left_idx).
+Adding EN signal on $procdff$2563 ($adff) from module sorting_engine (D = $procmux$2469_Y, Q = \right_idx).
+Adding EN signal on $procdff$2564 ($adff) from module sorting_engine (D = $procmux$2448_Y, Q = \merge_idx).
+Adding EN signal on $procdff$2565 ($adff) from module sorting_engine (D = $procmux$2434_Y, Q = \subarray_size).
+Adding EN signal on $procdff$2568 ($dff) from module sorting_engine (D = $3\left_val[7:0], Q = \left_val).
+Adding EN signal on $procdff$2622 ($dff) from module sorting_engine (D = $procmux$1661_Y, Q = \tmp_merge[2]).
+Adding EN signal on $procdff$2571 ($dff) from module sorting_engine (D = $3\right_val[7:0], Q = \right_val).
+Adding EN signal on $procdff$2574 ($dff) from module sorting_engine (D = 8, Q = \i).
+Adding EN signal on $procdff$2601 ($dff) from module sorting_engine (D = $procmux$2112_Y, Q = \data_mem[3]).
+Adding EN signal on $procdff$2577 ($dff) from module sorting_engine (D = $3\k[31:0], Q = \k).
+Adding EN signal on $procdff$2580 ($dff) from module sorting_engine (D = $3\left_end[31:0], Q = \left_end).
+Adding EN signal on $procdff$2583 ($dff) from module sorting_engine (D = $3\right_end[31:0], Q = \right_end).
+Adding EN signal on $procdff$2586 ($dff) from module sorting_engine (D = $add$/code/rtl/sorting_engine.sv:137$113_Y, Q = \l_addr).
+Adding EN signal on $procdff$2589 ($dff) from module sorting_engine (D = $add$/code/rtl/sorting_engine.sv:138$115_Y, Q = \r_addr).
+Adding EN signal on $procdff$2613 ($dff) from module sorting_engine (D = $procmux$1816_Y, Q = \data_mem[7]).
+Adding EN signal on $procdff$2592 ($dff) from module sorting_engine (D = $procmux$2418_Y, Q = \data_mem[0]).
+Adding EN signal on $procdff$2595 ($dff) from module sorting_engine (D = $procmux$2308_Y, Q = \data_mem[1]).
+Adding EN signal on $procdff$2598 ($dff) from module sorting_engine (D = $procmux$2206_Y, Q = \data_mem[2]).
+Adding EN signal on $procdff$2616 ($dff) from module sorting_engine (D = $procmux$1761_Y, Q = \tmp_merge[0]).
+Adding EN signal on $procdff$2619 ($dff) from module sorting_engine (D = $procmux$1709_Y, Q = \tmp_merge[1]).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 1 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 2 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 1-bit at position 3 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 7 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 8 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 9 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 10 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 11 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 12 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 13 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 14 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 15 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 16 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 17 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 18 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 21 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 22 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 23 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 24 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 25 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 26 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 27 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 28 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 29 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 30 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 31 on $auto$ff.cc:266:slice$2838 ($dffe) from module sorting_engine.
+Setting constant 1-bit at position 0 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 1 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 2 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 3 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 4 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 5 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 6 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 7 on $procdff$2653 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 0 on $procdff$2652 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 1 on $procdff$2652 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 2 on $procdff$2652 ($adff) from module sorting_engine.
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 75 unused cells and 1252 unused wires.
+<suppressed ~84 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~22 debug messages>
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~163 debug messages>
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~258 debug messages>
+Removed a total of 86 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 0 unused cells and 86 unused wires.
+<suppressed ~1 debug messages>
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+5.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~164 debug messages>
+
+5.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+5.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+5.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+5.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+5.23. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing FSM pass (extract and optimize FSM).
+
+6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~164 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+7.9. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing MEMORY pass.
+
+8.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+8.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+8.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+8.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~164 debug messages>
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+9.9. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing TECHMAP pass (map to technology primitives).
+
+10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.2. Continuing TECHMAP pass.
+Running "alumacc" on wrapper $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$sub:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$sub:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$sub:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$ge:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$lt:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $logic_and.
+Running "alumacc" on wrapper $extern:wrap:$le:A_SIGNED=0:A_WIDTH=8:B_SIGNED=0:B_WIDTH=8:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$le:A_SIGNED=0:A_WIDTH=8:B_SIGNED=0:B_WIDTH=8:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$le:A_SIGNED=0:A_WIDTH=8:B_SIGNED=0:B_WIDTH=8:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$le:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$le:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$le:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$lt:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=6:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=6:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=0:A_WIDTH=6:B_SIGNED=0:B_WIDTH=6:Y_WIDTH=6:394426c56d1a028ba8fdd5469b163e04011def47.
+Running "alumacc" on wrapper $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$ge:A_SIGNED=0:A_WIDTH=32:B_SIGNED=0:B_WIDTH=32:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$72f7795a18b8bd21d2def9f98cbb7d0e4ff65a7f\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$fc16b9f758000d363d24f130038bd99b46b4fa1b\_90_pmux for cells of type $pmux.
+Using template $paramod$ed0bb9616228df1e6c226f91f8133e751815f1b1\_90_pmux for cells of type $pmux.
+Using template $paramod$c15e84c77f007506123baf6c4be45847f0e33a3b\_90_pmux for cells of type $pmux.
+Using template $paramod$d31bf4d7d72e59528d18fbd4f322e9d608532043\_90_pmux for cells of type $pmux.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod$ae0147484b1ff1c0caf19799670ecd3c54c1601d\_90_alu for cells of type $alu.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using template $paramod$ccffe8a0fba1f865afa657ba65e83caf6cd2427d\_90_alu for cells of type $alu.
+Using template $paramod$2653f68ddb8eab7b1907b4a20767b72a824a7a36\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~8882 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~14771 debug messages>
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~5178 debug messages>
+Removed a total of 1726 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 443 unused cells and 8678 unused wires.
+<suppressed ~444 debug messages>
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~8 debug messages>
+
+11.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+11.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+11.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+11.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+11.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+11.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+11.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+11.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+11.23. Finished OPT passes. (There is nothing left to do.)
+
+12. Executing SYNTH pass.
+
+12.1. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1.1. Analyzing design hierarchy..
+Top module:  \sorting_engine
+
+12.1.2. Analyzing design hierarchy..
+Top module:  \sorting_engine
+Removed 0 unused modules.
+
+12.2. Executing PROC pass (convert processes to netlists).
+
+12.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+12.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+12.2.4. Executing PROC_INIT pass (extract init attributes).
+
+12.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+12.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+12.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+12.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+12.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+12.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+12.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.5. Executing CHECK pass (checking for obvious problems).
+Checking module sorting_engine...
+Found and reported 0 problems.
+
+12.6. Executing OPT pass (performing simple optimizations).
+
+12.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.6.9. Finished OPT passes. (There is nothing left to do.)
+
+12.7. Executing FSM pass (extract and optimize FSM).
+
+12.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+12.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+12.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+12.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+12.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+12.8. Executing OPT pass (performing simple optimizations).
+
+12.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.8.9. Finished OPT passes. (There is nothing left to do.)
+
+12.9. Executing WREDUCE pass (reducing word size of cells).
+Removed top 12 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$6918.
+Removed top 6 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$6935.
+Removed top 13 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$6965.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$6982.
+Removed top 15 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7006.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7023.
+Removed top 15 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7047.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7064.
+Removed top 15 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7088.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7105.
+Removed top 14 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7129.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7146.
+Removed top 3 bits (of 4) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7155.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7187.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7228.
+Removed top 3 bits (of 4) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7237.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7269.
+Removed top 13 bits (of 16) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7488.
+Removed top 7 bits (of 8) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7505.
+Removed top 3 bits (of 4) from wire sorting_engine.$auto$simplemap.cc:117:simplemap_reduce$7514.
+
+12.10. Executing PEEPOPT pass (run peephole optimizers).
+
+12.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 0 unused cells and 20 unused wires.
+<suppressed ~1 debug messages>
+
+12.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module sorting_engine:
+  created 0 $alu and 0 $macc cells.
+
+12.13. Executing SHARE pass (SAT-based resource sharing).
+
+12.14. Executing OPT pass (performing simple optimizations).
+
+12.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.14.9. Finished OPT passes. (There is nothing left to do.)
+
+12.15. Executing MEMORY pass.
+
+12.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+12.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+12.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+12.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+12.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+12.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+12.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+12.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+12.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.17. Executing OPT pass (performing simple optimizations).
+
+12.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~524 debug messages>
+
+12.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 15 unused cells and 81 unused wires.
+<suppressed ~16 debug messages>
+
+12.17.5. Finished fast OPT passes.
+
+12.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+12.19. Executing OPT pass (performing simple optimizations).
+
+12.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~6 debug messages>
+
+12.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.19.6. Executing OPT_SHARE pass.
+
+12.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.19.10. Finished OPT passes. (There is nothing left to do.)
+
+12.20. Executing TECHMAP pass (map to technology primitives).
+
+12.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+12.20.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+12.21. Executing OPT pass (performing simple optimizations).
+
+12.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.21.5. Finished fast OPT passes.
+
+12.22. Executing ABC pass (technology mapping using ABC).
+
+12.22.1. Extracting gate netlist of module `\sorting_engine' to `<abc-temp-dir>/input.blif'..
+Extracted 2942 gates and 3171 wires to a netlist network with 227 inputs and 172 outputs.
+
+12.22.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+12.22.1.2. Re-integrating ABC results.
+ABC RESULTS:             ORNOT cells:       58
+ABC RESULTS:               NOT cells:      152
+ABC RESULTS:               NOR cells:       62
+ABC RESULTS:              XNOR cells:       33
+ABC RESULTS:              NAND cells:       33
+ABC RESULTS:               XOR cells:       91
+ABC RESULTS:                OR cells:      356
+ABC RESULTS:               MUX cells:     1368
+ABC RESULTS:               AND cells:      115
+ABC RESULTS:            ANDNOT cells:      526
+ABC RESULTS:        internal signals:     2772
+ABC RESULTS:           input signals:      227
+ABC RESULTS:          output signals:      172
+Removing temp directory.
+
+12.23. Executing OPT pass (performing simple optimizations).
+
+12.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~150 debug messages>
+
+12.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~54 debug messages>
+Removed a total of 18 cells.
+
+12.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 2 unused cells and 1228 unused wires.
+<suppressed ~3 debug messages>
+
+12.23.5. Finished fast OPT passes.
+
+12.24. Executing HIERARCHY pass (managing design hierarchy).
+
+12.24.1. Analyzing design hierarchy..
+Top module:  \sorting_engine
+
+12.24.2. Analyzing design hierarchy..
+Top module:  \sorting_engine
+Removed 0 unused modules.
+
+12.25. Printing statistics.
+
+=== sorting_engine ===
+
+   Number of wires:               2721
+   Number of wire bits:           3156
+   Number of public wires:          29
+   Number of public wire bits:     325
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               3000
+     $_ANDNOT_                     519
+     $_AND_                        115
+     $_DFFE_PP0P_                   97
+     $_DFFE_PP1P_                    1
+     $_DFFE_PP_                    128
+     $_MUX_                       1368
+     $_NAND_                        32
+     $_NOR_                         58
+     $_NOT_                        150
+     $_ORNOT_                       57
+     $_OR_                         353
+     $_XNOR_                        33
+     $_XOR_                         89
+
+12.26. Executing CHECK pass (checking for obvious problems).
+Checking module sorting_engine...
+Found and reported 0 problems.
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
+Dumping module `\sorting_engine'.
+
+Warnings: 2 unique messages, 2 total
+End of script. Logfile hash: ad7fcd473b, CPU: user 2.06s system 0.02s, MEM: 93.01 MB peak
+Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+Time spent: 34% 32x opt_expr (0 sec), 15% 27x opt_clean (0 sec), ...

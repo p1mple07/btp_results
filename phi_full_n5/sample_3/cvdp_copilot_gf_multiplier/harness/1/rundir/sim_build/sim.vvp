@@ -1,0 +1,129 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x2563d90 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x254e960 .scope module, "gf_multiplier" "gf_multiplier" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "A";
+    .port_info 1 /INPUT 4 "B";
+    .port_info 2 /OUTPUT 4 "result";
+P_0x254eaf0 .param/l "irreducible_poly" 1 3 8, C4<10011>;
+o0x7a6b559fe048 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x2589c40_0 .net "A", 3 0, o0x7a6b559fe048;  0 drivers
+o0x7a6b559fe078 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x2589d40_0 .net "B", 3 0, o0x7a6b559fe078;  0 drivers
+v0x2589e20_0 .var "multiplicand", 3 0;
+v0x2589ee0_0 .var "result", 3 0;
+v0x2589fc0_0 .var "temp_result", 3 0;
+E_0x2574300 .event anyedge, v0x2589d40_0;
+S_0x25644d0 .scope begin, "$ivl_for_loop0" "$ivl_for_loop0" 3 25, 3 25 0, S_0x254e960;
+ .timescale -9 -9;
+v0x2563f20_0 .var/2s "i", 31 0;
+S_0x254ec20 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x254e960;
+T_0 ;
+    %load/vec4 v0x2589c40_0;
+    %store/vec4 v0x2589e20_0, 0, 4;
+    %pushi/vec4 0, 0, 4;
+    %store/vec4 v0x2589fc0_0, 0, 4;
+    %end;
+    .thread T_0;
+    .scope S_0x254e960;
+T_1 ;
+    %wait E_0x2574300;
+    %load/vec4 v0x2589c40_0;
+    %store/vec4 v0x2589e20_0, 0, 4;
+    %fork t_1, S_0x25644d0;
+    %jmp t_0;
+    .scope S_0x25644d0;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x2563f20_0, 0, 32;
+T_1.0 ; Top of for-loop
+    %load/vec4 v0x2563f20_0;
+    %cmpi/s 4, 0, 32;
+	  %jmp/0xz T_1.1, 5;
+    %load/vec4 v0x2589d40_0;
+    %load/vec4 v0x2563f20_0;
+    %part/s 1;
+    %cmpi/e 1, 0, 1;
+    %jmp/0xz  T_1.3, 4;
+    %load/vec4 v0x2589fc0_0;
+    %load/vec4 v0x2589e20_0;
+    %xor;
+    %store/vec4 v0x2589fc0_0, 0, 4;
+    %load/vec4 v0x2589e20_0;
+    %parti/s 1, 0, 2;
+    %load/vec4 v0x2589e20_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 4;
+    %store/vec4 v0x2589e20_0, 0, 4;
+    %load/vec4 v0x2589e20_0;
+    %parti/s 1, 3, 3;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.5, 8;
+    %load/vec4 v0x2589e20_0;
+    %pad/u 5;
+    %pushi/vec4 19, 0, 5;
+    %xor;
+    %pad/u 4;
+    %store/vec4 v0x2589e20_0, 0, 4;
+T_1.5 ;
+    %jmp T_1.4;
+T_1.3 ;
+    %load/vec4 v0x2589e20_0;
+    %parti/s 1, 0, 2;
+    %load/vec4 v0x2589e20_0;
+    %concat/vec4; draw_concat_vec4
+    %pad/u 4;
+    %store/vec4 v0x2589e20_0, 0, 4;
+    %load/vec4 v0x2589e20_0;
+    %parti/s 1, 3, 3;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.7, 8;
+    %load/vec4 v0x2589e20_0;
+    %pad/u 5;
+    %pushi/vec4 19, 0, 5;
+    %xor;
+    %pad/u 4;
+    %store/vec4 v0x2589e20_0, 0, 4;
+T_1.7 ;
+T_1.4 ;
+T_1.2 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x2563f20_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x2563f20_0, 0, 32;
+    %jmp T_1.0;
+T_1.1 ; for-loop exit label
+    %end;
+    .scope S_0x254e960;
+t_0 %join;
+    %load/vec4 v0x2589fc0_0;
+    %store/vec4 v0x2589ee0_0, 0, 4;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_0x254ec20;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/gf_multiplier.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x254e960 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/gf_multiplier.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

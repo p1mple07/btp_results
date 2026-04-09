@@ -1,0 +1,268 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x9910a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x990d00 .scope module, "instruction_cache_controller" "instruction_cache_controller" 3 2;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /OUTPUT 1 "io_mem_valid";
+    .port_info 3 /INPUT 1 "io_mem_ready";
+    .port_info 4 /OUTPUT 17 "io_mem_addr";
+    .port_info 5 /OUTPUT 1 "l1b_wait";
+    .port_info 6 /OUTPUT 32 "l1b_data";
+    .port_info 7 /INPUT 18 "l1b_addr";
+    .port_info 8 /OUTPUT 1 "ram256_t0_we";
+    .port_info 9 /OUTPUT 8 "ram256_t0_addr";
+    .port_info 10 /INPUT 8 "ram256_t0_data";
+    .port_info 11 /OUTPUT 1 "ram256_t1_we";
+    .port_info 12 /OUTPUT 8 "ram256_t1_addr";
+    .port_info 13 /INPUT 8 "ram256_t1_data";
+    .port_info 14 /OUTPUT 1 "ram512_d0_we";
+    .port_info 15 /OUTPUT 9 "ram512_d0_addr";
+    .port_info 16 /INPUT 16 "ram512_d0_data";
+    .port_info 17 /OUTPUT 1 "ram512_d1_we";
+    .port_info 18 /OUTPUT 9 "ram512_d1_addr";
+    .port_info 19 /INPUT 16 "ram512_d1_data";
+P_0x997940 .param/l "ADR_BITS" 1 3 40, +C4<00000000000000000000000000001001>;
+P_0x997980 .param/l "IDLE" 1 3 42, C4<000>;
+P_0x9979c0 .param/l "READCACHE" 1 3 45, C4<011>;
+P_0x997a00 .param/l "READMEM0" 1 3 43, C4<001>;
+P_0x997a40 .param/l "READMEM1" 1 3 44, C4<010>;
+P_0x997a80 .param/l "TAG_BITS" 1 3 39, +C4<00000000000000000000000000001000>;
+L_0x9a0360 .functor AND 1, L_0x9d7520, L_0x9d8190, C4<1>, C4<1>;
+L_0x9a08f0 .functor AND 1, L_0x9d7930, L_0x9d8580, C4<1>, C4<1>;
+v0x9d45a0_0 .net *"_ivl_1", 8 0, L_0x9d6e20;  1 drivers
+v0x9d46a0_0 .net *"_ivl_13", 8 0, L_0x9d7370;  1 drivers
+v0x9d4780_0 .net *"_ivl_14", 8 0, L_0x9d7450;  1 drivers
+L_0x7a25710a6060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x9d4840_0 .net *"_ivl_17", 0 0, L_0x7a25710a6060;  1 drivers
+v0x9d4920_0 .net *"_ivl_18", 0 0, L_0x9d7520;  1 drivers
+L_0x7a25710a6018 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x9d49e0_0 .net/2u *"_ivl_2", 7 0, L_0x7a25710a6018;  1 drivers
+v0x9d4ac0_0 .net *"_ivl_23", 8 0, L_0x9d7700;  1 drivers
+v0x9d4ba0_0 .net *"_ivl_24", 8 0, L_0x9d77a0;  1 drivers
+L_0x7a25710a60a8 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x9d4c80_0 .net *"_ivl_27", 0 0, L_0x7a25710a60a8;  1 drivers
+v0x9d4d60_0 .net *"_ivl_28", 0 0, L_0x9d7930;  1 drivers
+v0x9d4e20_0 .net *"_ivl_5", 0 0, L_0x9d6f50;  1 drivers
+v0x9d4f00_0 .net *"_ivl_6", 8 0, L_0x9d7020;  1 drivers
+v0x9d4fe0_0 .var "addr_0", 8 0;
+v0x9d50c0_0 .var "addr_1", 8 0;
+o0x7a25710ef0a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d51a0_0 .net "clk", 0 0, o0x7a25710ef0a8;  0 drivers
+v0x9d5240_0 .net "data_0_ready", 0 0, L_0x9a0360;  1 drivers
+v0x9d52e0_0 .net "data_1_ready", 0 0, L_0x9a08f0;  1 drivers
+v0x9d54b0_0 .net "data_addr_0", 8 0, L_0x9d7160;  1 drivers
+v0x9d5590_0 .net "data_addr_1", 8 0, L_0x9d72d0;  1 drivers
+v0x9d5670_0 .var "io_mem_addr", 16 0;
+o0x7a25710efa38 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d5750_0 .net "io_mem_ready", 0 0, o0x7a25710efa38;  0 drivers
+v0x9d5810_0 .var "io_mem_valid", 0 0;
+o0x7a25710efa98 .functor BUFZ 18, c4<zzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x9d58d0_0 .net "l1b_addr", 17 0, o0x7a25710efa98;  0 drivers
+o0x7a25710efac8 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x9d59b0_0 .net "l1b_data", 31 0, o0x7a25710efac8;  0 drivers
+v0x9d5a90_0 .var "l1b_wait", 0 0;
+v0x9d5b50_0 .var "next_state", 2 0;
+v0x9d5c30_0 .net "ram256_t0_addr", 7 0, v0x9d3630_0;  1 drivers
+o0x7a25710ef168 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x9d5cf0_0 .net "ram256_t0_data", 7 0, o0x7a25710ef168;  0 drivers
+v0x9d5d90_0 .net "ram256_t0_we", 0 0, v0x9d37f0_0;  1 drivers
+v0x9d5e60_0 .net "ram256_t1_addr", 7 0, v0x9d38b0_0;  1 drivers
+o0x7a25710ef1f8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x9d5f30_0 .net "ram256_t1_data", 7 0, o0x7a25710ef1f8;  0 drivers
+v0x9d6000_0 .net "ram256_t1_we", 0 0, v0x9d3a70_0;  1 drivers
+o0x7a25710efb58 .functor BUFZ 9, c4<zzzzzzzzz>; HiZ drive
+v0x9d60d0_0 .net "ram512_d0_addr", 8 0, o0x7a25710efb58;  0 drivers
+o0x7a25710efb88 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x9d6170_0 .net "ram512_d0_data", 15 0, o0x7a25710efb88;  0 drivers
+o0x7a25710efbb8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d6230_0 .net "ram512_d0_we", 0 0, o0x7a25710efbb8;  0 drivers
+o0x7a25710efbe8 .functor BUFZ 9, c4<zzzzzzzzz>; HiZ drive
+v0x9d62f0_0 .net "ram512_d1_addr", 8 0, o0x7a25710efbe8;  0 drivers
+o0x7a25710efc18 .functor BUFZ 16, c4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x9d63d0_0 .net "ram512_d1_data", 15 0, o0x7a25710efc18;  0 drivers
+o0x7a25710efc48 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d64b0_0 .net "ram512_d1_we", 0 0, o0x7a25710efc48;  0 drivers
+o0x7a25710ef2b8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d6570_0 .net "rst", 0 0, o0x7a25710ef2b8;  0 drivers
+v0x9d6640_0 .var "state", 2 0;
+v0x9d6700_0 .net "tag_0", 7 0, L_0x9d8280;  1 drivers
+v0x9d67e0_0 .net "tag_1", 7 0, L_0x9d8700;  1 drivers
+v0x9d68c0_0 .net "valid_0", 0 0, L_0x9d8190;  1 drivers
+v0x9d6980_0 .net "valid_1", 0 0, L_0x9d8580;  1 drivers
+v0x9d6a40_0 .var "write_enable", 0 0;
+L_0x9d6e20 .part o0x7a25710efa98, 9, 9;
+L_0x9d6f50 .part o0x7a25710efa98, 0, 1;
+L_0x9d7020 .concat [ 1 8 0 0], L_0x9d6f50, L_0x7a25710a6018;
+L_0x9d7160 .arith/sum 9, L_0x9d6e20, L_0x9d7020;
+L_0x9d72d0 .part o0x7a25710efa98, 9, 9;
+L_0x9d7370 .part o0x7a25710efa98, 9, 9;
+L_0x9d7450 .concat [ 8 1 0 0], L_0x9d8280, L_0x7a25710a6060;
+L_0x9d7520 .cmp/eq 9, L_0x9d7370, L_0x9d7450;
+L_0x9d7700 .part o0x7a25710efa98, 9, 9;
+L_0x9d77a0 .concat [ 8 1 0 0], L_0x9d8700, L_0x7a25710a60a8;
+L_0x9d7930 .cmp/eq 9, L_0x9d7700, L_0x9d77a0;
+L_0x9d8080 .part v0x9d5670_0, 0, 9;
+L_0x9d8190 .part v0x9d3420_0, 8, 1;
+L_0x9d8280 .part v0x9d3420_0, 0, 8;
+L_0x9d8440 .part L_0x9d7160, 0, 8;
+L_0x9d8580 .part v0x9d3550_0, 8, 1;
+L_0x9d8700 .part v0x9d3550_0, 0, 8;
+L_0x9d8840 .part L_0x9d72d0, 0, 8;
+S_0x99e400 .scope module, "tag_ctrl" "tag_controller" 3 83, 3 103 0, S_0x990d00;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 1 "write_enable";
+    .port_info 3 /INPUT 9 "write_addr";
+    .port_info 4 /OUTPUT 9 "data_0_out";
+    .port_info 5 /INPUT 8 "read_addr_0";
+    .port_info 6 /OUTPUT 9 "data_1_out";
+    .port_info 7 /INPUT 8 "read_addr_1";
+    .port_info 8 /OUTPUT 1 "ram_t0_we";
+    .port_info 9 /OUTPUT 8 "ram_t0_addr";
+    .port_info 10 /INPUT 8 "ram_t0_data";
+    .port_info 11 /OUTPUT 1 "ram_t1_we";
+    .port_info 12 /OUTPUT 8 "ram_t1_addr";
+    .port_info 13 /INPUT 8 "ram_t1_data";
+L_0x9a0960 .functor BUFZ 8, o0x7a25710ef168, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x9d7fc0 .functor BUFZ 8, o0x7a25710ef1f8, C4<00000000>, C4<00000000>, C4<00000000>;
+v0x9a0470_0 .var "RAM", 511 0;
+v0x9a0510_0 .net *"_ivl_1", 7 0, L_0x9d7af0;  1 drivers
+v0x9d32a0_0 .net *"_ivl_5", 7 0, L_0x9d7d30;  1 drivers
+v0x9d3360_0 .net "clk", 0 0, o0x7a25710ef0a8;  alias, 0 drivers
+v0x9d3420_0 .var "data_0_out", 8 0;
+v0x9d3550_0 .var "data_1_out", 8 0;
+v0x9d3630_0 .var "ram_t0_addr", 7 0;
+v0x9d3710_0 .net "ram_t0_data", 7 0, o0x7a25710ef168;  alias, 0 drivers
+v0x9d37f0_0 .var "ram_t0_we", 0 0;
+v0x9d38b0_0 .var "ram_t1_addr", 7 0;
+v0x9d3990_0 .net "ram_t1_data", 7 0, o0x7a25710ef1f8;  alias, 0 drivers
+v0x9d3a70_0 .var "ram_t1_we", 0 0;
+v0x9d3b30_0 .net "read_addr_0", 7 0, L_0x9d8440;  1 drivers
+v0x9d3c10_0 .net "read_addr_1", 7 0, L_0x9d8840;  1 drivers
+v0x9d3cf0_0 .net "rst", 0 0, o0x7a25710ef2b8;  alias, 0 drivers
+v0x9d3db0_0 .net "tag_0_data", 7 0, L_0x9a0960;  1 drivers
+v0x9d3e90_0 .net "tag_1_data", 7 0, L_0x9d7fc0;  1 drivers
+v0x9d4080_0 .net "tag_addr_0", 7 0, L_0x9d7bc0;  1 drivers
+v0x9d4160_0 .net "tag_addr_1", 7 0, L_0x9d7e20;  1 drivers
+v0x9d4240_0 .net "write_addr", 8 0, L_0x9d8080;  1 drivers
+v0x9d4320_0 .net "write_enable", 0 0, v0x9d6a40_0;  1 drivers
+E_0x9a86f0 .event "_ivl_15";
+E_0x9a8870 .event posedge, v0x9d3cf0_0, v0x9d3360_0;
+L_0x9d7af0 .part L_0x9d8080, 0, 8;
+L_0x9d7bc0 .functor MUXZ 8, L_0x9d8440, L_0x9d7af0, v0x9d6a40_0, C4<>;
+L_0x9d7d30 .part L_0x9d8080, 0, 8;
+L_0x9d7e20 .functor MUXZ 8, L_0x9d8840, L_0x9d7d30, v0x9d6a40_0, C4<>;
+S_0x99eb90 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x99e400;
+T_0 ;
+    %wait E_0x9a8870;
+    %load/vec4 v0x9d3cf0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 512;
+    %assign/vec4 v0x9a0470_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x9d37f0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x9d3a70_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x9d3630_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x9d38b0_0, 0;
+    %pushi/vec4 0, 0, 9;
+    %assign/vec4 v0x9d3420_0, 0;
+    %pushi/vec4 0, 0, 9;
+    %assign/vec4 v0x9d3550_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x9d4320_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %ix/load 5, 0, 0;
+    %load/vec4 v0x9d4240_0;
+    %parti/s 8, 0, 2;
+    %ix/vec4 4;
+    %assign/vec4/off/d v0x9a0470_0, 4, 5;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x99e400;
+T_1 ;
+    %wait E_0x9a86f0;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x990d00;
+T_2 ;
+    %wait E_0x9a8870;
+    %load/vec4 v0x9d6570_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 0, 0, 3;
+    %assign/vec4 v0x9d6640_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x9d6a40_0, 0;
+    %pushi/vec4 0, 0, 9;
+    %assign/vec4 v0x9d4fe0_0, 0;
+    %pushi/vec4 0, 0, 9;
+    %assign/vec4 v0x9d50c0_0, 0;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/vec4 v0x9d6640_0;
+    %cmpi/e 1, 0, 3;
+    %jmp/1 T_2.5, 4;
+    %flag_mov 9, 4;
+    %load/vec4 v0x9d6640_0;
+    %cmpi/e 2, 0, 3;
+    %flag_or 4, 9;
+T_2.5;
+    %flag_get/vec4 4;
+    %jmp/0 T_2.4, 4;
+    %load/vec4 v0x9d5750_0;
+    %and;
+T_2.4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x9d6a40_0, 0;
+    %jmp T_2.3;
+T_2.2 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x9d6a40_0, 0;
+T_2.3 ;
+    %load/vec4 v0x9d5b50_0;
+    %assign/vec4 v0x9d6640_0, 0;
+    %load/vec4 v0x9d54b0_0;
+    %assign/vec4 v0x9d4fe0_0, 0;
+    %load/vec4 v0x9d5590_0;
+    %assign/vec4 v0x9d50c0_0, 0;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x99eb90;
+T_3 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/instruction_cache_controller.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x990d00 {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/instruction_cache_controller.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

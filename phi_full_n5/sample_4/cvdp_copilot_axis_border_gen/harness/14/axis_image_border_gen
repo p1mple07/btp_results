@@ -1,0 +1,17 @@
+module axis_image_border_gen #(parameter IMG_WIDTH  = 320,               // Image width (X resolution)
+                                      parameter IMG_HEIGHT = 240,               // Image height (Y resolution)
+                                      parameter BORDER_COLOR = 16'hFFFF,      // Border pixel value
+                                      parameter DATA_MASK    = 16'h0000       // Mask for input pixels)
+                (input  wire            clk,              // AXI clock
+                input  wire            resetn,           // Active-low reset
+                input  wire [15:0]     s_axis_tdata,     // Input stream data
+                input  wire            s_axis_tvalid,    // Input data valid
+                output wire            s_axis_tready,    // Output ready
+                input  wire            s_axis_tlast,     // Input last signal
+                input  wire            s_axis_tuser,     // Frame start signal
+                output wire [15:0]     m_axis_tdata,     // Output stream data
+                output wire            m_axis_tvalid,    // Output data valid
+                input  wire            m_axis_tready,    // input ready
+                output wire            m_axis_tlast,     // output end-of-row signal
+                output wire            m_axis_tuser      // Frame start signal
+            );

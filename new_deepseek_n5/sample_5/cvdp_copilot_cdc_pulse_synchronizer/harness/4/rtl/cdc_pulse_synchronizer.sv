@@ -1,0 +1,1 @@
+reg $toggle_count = 0;

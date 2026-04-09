@@ -1,0 +1,157 @@
+Running harness with project name: cvdp_copilot_gcd_45_1774132815
+#1 [internal] load local bake definitions
+#1 reading from stdin 686B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#5 DONE 0.2s
+
+#6 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#6 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#6 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.2s done
+#6 DONE 0.2s
+
+#7 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#7 CACHED
+
+#8 [3/4] RUN python3 ./get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers done
+#10 exporting manifest sha256:66eba71ecbaac121d65d11cfecee867a6befbbc048e04d2b27351e0188f16cda
+#10 exporting manifest sha256:66eba71ecbaac121d65d11cfecee867a6befbbc048e04d2b27351e0188f16cda 0.2s done
+#10 exporting config sha256:7c7c96b6b2f1a30b95e61049c54e9835690360b4f46e47180ccae464201e659c
+#10 exporting config sha256:7c7c96b6b2f1a30b95e61049c54e9835690360b4f46e47180ccae464201e659c 0.2s done
+#10 exporting attestation manifest sha256:641b65103faf9b01f97bc8be6c19ee9bbc3241aaec0247bb05d31ac8db258f22
+#10 exporting attestation manifest sha256:641b65103faf9b01f97bc8be6c19ee9bbc3241aaec0247bb05d31ac8db258f22 0.6s done
+#10 exporting manifest list sha256:676e939259264c8a76931978b64cc86c49d88897442e7eb28d1458fe5ba0ca40
+#10 exporting manifest list sha256:676e939259264c8a76931978b64cc86c49d88897442e7eb28d1458fe5ba0ca40 0.2s done
+#10 naming to docker.io/library/cvdp_copilot_gcd_45_1774132815-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_gcd_45_1774132815-synth:latest 0.0s done
+#10 unpacking to docker.io/library/cvdp_copilot_gcd_45_1774132815-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_gcd_45_1774132815-synth:latest 1.0s done
+#10 DONE 2.6s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/gcd_top.sv
+Parsing SystemVerilog input from `/code/rtl/gcd_top.sv' to AST representation.
+Warning: Literal has a width of 2 bit, but value requires 3 bit. (/code/rtl/gcd_top.sv:19)
+Generating RTLIL representation for module `\gcd_top'.
+Warning: reg '\done' is assigned in a continuous assignment at /code/rtl/gcd_top.sv:77.11-77.35.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \gcd_top
+
+2.2. Analyzing design hierarchy..
+Top module:  \gcd_top
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module gcd_top...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/code/rtl/gcd_top.sv:61$2 in module gcd_top.
+Removed 2 dead cases from process $proc$/code/rtl/gcd_top.sv:0$1 in module gcd_top.
+Marked 2 switch rules as full_case in process $proc$/code/rtl/gcd_top.sv:0$1 in module gcd_top.
+Removed a total of 2 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 0 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~3 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\gcd_top.$proc$/code/rtl/gcd_top.sv:61$2'.
+     1/4: $0\k_reg[3:0]
+     2/4: $1\B_reg[3:0]
+     3/4: $1\A_reg[3:0]
+     4/4: $1\fsm_state[1:0]
+Creating decoders for process `\gcd_top.$proc$/code/rtl/gcd_top.sv:0$1'.
+     1/4: $0\B_reg[3:0]
+     2/4: $0\A_reg[3:0]
+     3/4: $0\fsm_state[1:0]
+     4/4: $0\done[0:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+Yosys Synthesis Log Comparison:
+{}
+True
+No upgrades in synthesis: Errors detected in the after log. Synthesis failed.
+PASSED
+
+=============================== warnings summary ===============================
+synth.py::test_yosys
+  /usr/local/lib/python3.9/dist-packages/_pytest/python.py:163: PytestReturnNotNoneWarning: Expected None, but synth.py::test_yosys returned False, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 1 passed, 1 warning in 0.01s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_gcd_45_1774132815-synth:latest
+Deleted: sha256:676e939259264c8a76931978b64cc86c49d88897442e7eb28d1458fe5ba0ca40

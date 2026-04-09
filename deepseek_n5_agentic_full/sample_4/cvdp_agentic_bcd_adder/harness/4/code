@@ -1,0 +1,20 @@
+module bcd_adder(
+                 input [3:0] a,             // 4-bit input a
+                 input [3:0] b,             // 4-bit input b
+                 input cin,               // Carry input
+                 output [3:0] sum,          // 4-bit sum output
+                 output cout              // Carry output
+                );
+
+wire [3:0] sum_bin;
+wire carry_out;
+
+assign sum_bin = a + b + cin;
+
+if (sum_bin > 9) begin
+  sum = sum_bin - 10;
+  carry_out = 1;
+else
+  sum = sum_bin;
+  carry_out = 0;
+end

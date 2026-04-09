@@ -1,0 +1,2407 @@
+Running harness with project name: cvdp_copilot_cont_adder_6_1774132074
+#1 [internal] load local bake definitions
+#1 reading from stdin 704B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 96B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.2s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.3s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.1s done
+#5 DONE 0.2s
+
+#6 [2/2] RUN pip install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:6cde29b8a5cee6e31bb2b682a5c18495b3d4d004f2c52b8f58fa29149a92fbfc
+#7 exporting manifest sha256:6cde29b8a5cee6e31bb2b682a5c18495b3d4d004f2c52b8f58fa29149a92fbfc 0.4s done
+#7 exporting config sha256:27df65cb7c2a8984e8c63973923e0783bce7fcedb67c830fc5b62077cd82271b
+#7 exporting config sha256:27df65cb7c2a8984e8c63973923e0783bce7fcedb67c830fc5b62077cd82271b 0.2s done
+#7 exporting attestation manifest sha256:187d2e9e3d87e9c92d623cffd4eb1c6e53b8dda7bb7aaa97ec708d01ce01e03f
+#7 exporting attestation manifest sha256:187d2e9e3d87e9c92d623cffd4eb1c6e53b8dda7bb7aaa97ec708d01ce01e03f 0.5s done
+#7 exporting manifest list sha256:a52e96f403bf7a68e6610dd62277c4f2ba1e5e20864f8f23ac76d0bc5d6ac2a0
+#7 exporting manifest list sha256:a52e96f403bf7a68e6610dd62277c4f2ba1e5e20864f8f23ac76d0bc5d6ac2a0 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_cont_adder_6_1774132074-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_cont_adder_6_1774132074-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_cont_adder_6_1774132074-direct:latest 0.0s done
+#7 DONE 1.8s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 25 items
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132081
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+-25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+-25
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-25
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-25
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      37155.47  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63220.30  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      60960.82  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3511.44  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=100, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 1}
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-10-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132081
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+5
+-3
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=2
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+5
+-3
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=2
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-3
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-3
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35919.21  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      64478.97  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      62220.95  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3511.85  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=10, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 10, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=10 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-10-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132081
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+5
+-3
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=2
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+5
+-3
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=2
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-3
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-3
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35377.84  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63439.76  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      62570.93  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3489.41  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=10, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 10, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=10 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-10-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132082
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+5
+-3
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=2
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+5
+-3
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=2
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-3
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-3
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      33753.63  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      58601.13  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      60045.19  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3437.89  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=10, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 10, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=10 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-100-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132082
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+-25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+-25
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-25
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-25
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      33691.41  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      64740.02  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      62570.93  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3441.38  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=100, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-100-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132082
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+-25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+-25
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-25
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-25
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35564.71  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63251.56  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      64674.56  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3446.43  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=100, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-100-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132082
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+-25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+-25
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=25
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-25
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-25
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35471.03  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      57676.41  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      58174.75  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3461.80  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=100, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-1000-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132082
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+500
+-250
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=250
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+500
+-250
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=250
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-250
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-250
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      36813.32  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63361.20  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61800.13  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3530.74  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=1000, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 1000, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=1000 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-1000-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132082
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+500
+-250
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=250
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+500
+-250
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=250
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-250
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-250
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      34523.35  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      59597.61  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      58843.73  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3489.01  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=1000, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 1000, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=1000 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-1000-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132083
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+500
+-250
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=250
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+500
+-250
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=250
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-250
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-250
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35397.42  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      57819.78  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      58069.12  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3484.27  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=1000, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 1000, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=1000 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-555-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132083
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+277
+-139
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=138
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+277
+-139
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=138
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-139
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-139
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      37128.51  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      65452.17  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      65301.82  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3439.60  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=555, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 555, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=555 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-555-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132083
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+277
+-139
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=138
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+277
+-139
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=138
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-139
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-139
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      36342.69  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      62555.63  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      63676.59  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3508.85  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=555, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 555, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=555 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[1-555-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132083
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+277
+-139
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 64, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=138
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+277
+-139
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 154, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=138
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+-139
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 244, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=-139
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      33102.93  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      55789.91  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61033.53  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3506.37  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=555, SIGNED_INPUTS=1
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 555, 'SIGNED_INPUTS': 1}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=555 -Pcontinuous_adder.SIGNED_INPUTS=1 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-10-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132083
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+5
+2
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=7
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+5
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=5
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35828.67  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      61443.93  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61844.95  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3507.79  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=10, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 10, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=10 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-10-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132084
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+5
+2
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=7
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+5
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=5
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      37328.94  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      60200.60  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      63439.76  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3534.07  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=10, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 10, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=10 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-10-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132084
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+5
+2
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=7
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+5
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=5
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      34191.17  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      60073.38  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      56654.68  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.06       3295.33  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=10, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 10, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=10 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-100-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132084
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=75
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=50
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      36446.23  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      60385.31  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      62205.82  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3508.07  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=100, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-100-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132084
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=75
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=50
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35110.82  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      59974.81  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      62494.51  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3510.71  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=100, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-100-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132084
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+50
+25
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=75
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+50
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=50
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      33811.62  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      58082.30  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      62525.06  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3514.28  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=100, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 100, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=100 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-1000-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132084
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+500
+250
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=750
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+500
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=500
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      36244.87  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      60714.89  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61547.40  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3494.27  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=1000, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 1000, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=1000 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-1000-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132085
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+500
+250
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=750
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+500
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=500
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      34862.04  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63111.14  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61077.24  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3502.93  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=1000, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 1000, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=1000 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-1000-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132085
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+500
+250
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=750
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+500
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=500
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      34416.54  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      61532.60  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61048.09  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3481.46  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=1000, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 1000, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=1000 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-555-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132085
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+277
+138
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=415
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+277
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=277
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      36373.69  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63947.15  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      67082.47  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3479.13  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=16, THRESHOLD_VALUE=555, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 16, 'THRESHOLD_VALUE': 555, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=16 -Pcontinuous_adder.THRESHOLD_VALUE=555 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-555-32]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132085
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+277
+138
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=415
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+277
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=277
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      37144.68  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      63439.76  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      60917.27  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3523.40  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=32, THRESHOLD_VALUE=555, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 32, 'THRESHOLD_VALUE': 555, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=32 -Pcontinuous_adder.THRESHOLD_VALUE=555 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+../../src/test_runner.py::test_continous_adder[0-555-64]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774132085
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_1
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_2
+     0.00ns INFO     cocotb.regression                  Found test test_cont_adder.test_continuous_adder_3
+     0.00ns INFO     cocotb.regression                  running test_continuous_adder_1 (1/3)
+277
+138
+    61.00ns INFO     cocotb.regression                  test_continuous_adder_1 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 75, in test_continuous_adder_1
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=415
+                                                        assert 1 == 0
+    61.00ns INFO     cocotb.regression                  running test_continuous_adder_2 (2/3)
+277
+0
+   122.00ns INFO     cocotb.regression                  test_continuous_adder_2 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 165, in test_continuous_adder_2
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=277
+                                                        assert 1 == 0
+   122.00ns INFO     cocotb.regression                  running test_continuous_adder_3 (3/3)
+0
+1
+   183.00ns INFO     cocotb.regression                  test_continuous_adder_3 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_cont_adder.py", line 255, in test_continuous_adder_3
+                                                            assert sum_ready == 0, f"sum_ready should not be asserted yet, total_sum={total_sum}"
+                                                        AssertionError: sum_ready should not be asserted yet, total_sum=1
+                                                        assert 1 == 0
+   183.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_cont_adder.test_continuous_adder_1   FAIL          61.00           0.00      35270.55  **
+                                                        ** test_cont_adder.test_continuous_adder_2   FAIL          61.00           0.00      61800.13  **
+                                                        ** test_cont_adder.test_continuous_adder_3   FAIL          61.00           0.00      61815.06  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=3 PASS=0 FAIL=3 SKIP=0                           183.00           0.05       3519.79  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/continuous_adder.fst opened for output.
+[DEBUG] Running simulation with DATA_WIDTH=64, THRESHOLD_VALUE=555, SIGNED_INPUTS=0
+[DEBUG] Parameters: {'DATA_WIDTH': 64, 'THRESHOLD_VALUE': 555, 'SIGNED_INPUTS': 0}
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s continuous_adder -g2012 -Pcontinuous_adder.DATA_WIDTH=64 -Pcontinuous_adder.THRESHOLD_VALUE=555 -Pcontinuous_adder.SIGNED_INPUTS=0 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/cont_adder_top.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-10-16] _________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-10-32] _________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-10-64] _________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-100-16] ________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-100-32] ________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-100-64] ________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+_______________________ test_continous_adder[1-1000-16] ________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+_______________________ test_continous_adder[1-1000-32] ________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+_______________________ test_continous_adder[1-1000-64] ________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-555-16] ________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-555-32] ________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[1-555-64] ________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 1
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 1
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-10-16] _________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-10-32] _________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-10-64] _________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 10, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-100-16] ________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-100-32] ________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-100-64] ________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 100, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+_______________________ test_continous_adder[0-1000-16] ________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+_______________________ test_continous_adder[0-1000-32] ________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+_______________________ test_continous_adder[0-1000-64] ________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 1000, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-555-16] ________________________
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 16, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-555-32] ________________________
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 32, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+________________________ test_continous_adder[0-555-64] ________________________
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 0
+
+    @pytest.mark.parametrize("DATA_WIDTH", [16,32,64])
+    @pytest.mark.parametrize("THRESHOLD_VALUE", [10,100,1000,555])
+    @pytest.mark.parametrize("SIGNED_INPUTS", [1,0])
+    #@pytest.mark.parametrize("test", range(1))
+    def test_continous_adder(DATA_WIDTH, THRESHOLD_VALUE, SIGNED_INPUTS):
+        # Run the simulation with specified parameters
+>       test_runner(DATA_WIDTH=DATA_WIDTH, THRESHOLD_VALUE=THRESHOLD_VALUE, SIGNED_INPUTS=SIGNED_INPUTS)
+
+/src/test_runner.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+DATA_WIDTH = 64, THRESHOLD_VALUE = 555, SIGNED_INPUTS = 0
+
+    def test_runner(DATA_WIDTH: int=32, THRESHOLD_VALUE: int=100, SIGNED_INPUTS: int=1 ):
+        parameter = {"DATA_WIDTH":DATA_WIDTH, "THRESHOLD_VALUE":THRESHOLD_VALUE, "SIGNED_INPUTS":SIGNED_INPUTS }
+    
+        # Debug information
+        print(f"[DEBUG] Running simulation with DATA_WIDTH={DATA_WIDTH}, THRESHOLD_VALUE={THRESHOLD_VALUE}, SIGNED_INPUTS={SIGNED_INPUTS}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ns"),
+            log_file="build.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 3 tests.
+
+/src/test_runner.py:35: SystemExit
+=============================== warnings summary ===============================
+../../src/test_runner.py:3
+  /src/test_runner.py:3: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 3 of...
+FAILED ../../src/test_runner.py::test_continous_adder[1-10-16] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_continous_adder[1-10-32] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_continous_adder[1-10-64] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_continous_adder[1-100-16] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[1-100-32] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[1-100-64] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[1-1000-16] - SystemExit...
+FAILED ../../src/test_runner.py::test_continous_adder[1-1000-32] - SystemExit...
+FAILED ../../src/test_runner.py::test_continous_adder[1-1000-64] - SystemExit...
+FAILED ../../src/test_runner.py::test_continous_adder[1-555-16] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[1-555-32] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[1-555-64] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[0-10-16] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_continous_adder[0-10-32] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_continous_adder[0-10-64] - SystemExit: ...
+FAILED ../../src/test_runner.py::test_continous_adder[0-100-16] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[0-100-32] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[0-100-64] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[0-1000-16] - SystemExit...
+FAILED ../../src/test_runner.py::test_continous_adder[0-1000-32] - SystemExit...
+FAILED ../../src/test_runner.py::test_continous_adder[0-1000-64] - SystemExit...
+FAILED ../../src/test_runner.py::test_continous_adder[0-555-16] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[0-555-32] - SystemExit:...
+FAILED ../../src/test_runner.py::test_continous_adder[0-555-64] - SystemExit:...
+======================== 25 failed, 4 warnings in 4.48s ========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_cont_adder_6_1774132074-direct:latest
+Deleted: sha256:a52e96f403bf7a68e6610dd62277c4f2ba1e5e20864f8f23ac76d0bc5d6ac2a0

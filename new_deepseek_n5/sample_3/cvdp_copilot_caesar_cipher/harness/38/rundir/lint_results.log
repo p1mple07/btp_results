@@ -1,0 +1,108 @@
+%Error: /code/rtl/caesar_cipher.sv:1:1: syntax error, unexpected IDENTIFIER
+    1 | Okay, I need to perform a LINT code review on the provided caesar_cipher module. Let me go through the code step by step.
+      | ^~~~
+%Error: /code/rtl/caesar_cipher.sv:7:82: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:9:109: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+    9 | But in this case, since input_char is either uppercase or lowercase, and key is a 4-bit unsigned value, the sum should always be non-negative. So maybe that's not the issue.
+      |                                                                                                             ^~~
+%Error: /code/rtl/caesar_cipher.sv:17:118: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+   17 | Wait, but the issue might be that the intermediate result before modulo is 8 bits, but when you add a 4-bit key, the sum could be up to 40, which is 5 bits. So when you do (input_char - "A" + key), it's 8 bits, but the modulo 26 would correctly wrap it. So perhaps the bit-widths are okay.
+      |                                                                                                                      ^~~
+%Error-UNSUPPORTED: /code/rtl/caesar_cipher.sv:19:32: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+                    ... For error description see https://verilator.org/warn/UNSUPPORTED?v=5.027
+%Error: /code/rtl/caesar_cipher.sv:21:81: syntax error, unexpected '.', expecting ',' or ';'
+   21 | Wait, but in the code, the key is an input wire, which is a 4-bit unsigned value. So key is treated as an unsigned 4-bit value, meaning it ranges from 0 to 15. So when added to (input_char - 'A'), which is 0-25, the sum is 0-40. Then, modulo 26 brings it back to 0-25. So the output is correctly wrapped.
+      |                                                                                 ^
+%Error: /code/rtl/caesar_cipher.sv:21:137: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+   21 | Wait, but in the code, the key is an input wire, which is a 4-bit unsigned value. So key is treated as an unsigned 4-bit value, meaning it ranges from 0 to 15. So when added to (input_char - 'A'), which is 0-25, the sum is 0-40. Then, modulo 26 brings it back to 0-25. So the output is correctly wrapped.
+      |                                                                                                                                         ^~
+%Error: /code/rtl/caesar_cipher.sv:25:136: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:25:164: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:27:81: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:27:156: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error-UNSUPPORTED: /code/rtl/caesar_cipher.sv:33:31: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   33 | Another possible issue is the use of the modulo operator. In Verilog, the % operator returns the remainder, but it's important to ensure that the result is correctly handled. For example, if the sum is negative, the modulo might not give the expected result. But in this case, since the sum is always non-negative, it's fine.
+      |                               ^~~
+%Error: /code/rtl/caesar_cipher.sv:35:170: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+   35 | Wait, but in the code, the key is an input, so it's possible that the user could input a key that's larger than 15, but the code treats it as a 4-bit unsigned value, so it's clamped to 0-15. But since the key is a 4-bit input, it's up to the user to ensure it's within 0-15. So no issue there.
+      |                                                                                                                                                                          ^~
+%Error: /code/rtl/caesar_cipher.sv:37:155: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+   37 | Another thing to consider is the data types. The code uses wires and registers, which are bit vectors. So the operations are done at the bit level, which is correct.
+      |                                                                                                                                                           ^~
+%Error: /code/rtl/caesar_cipher.sv:39:81: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:39:156: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error-UNSUPPORTED: /code/rtl/caesar_cipher.sv:47:31: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   47 | Another thing to check is the use of the minus operator. In Verilog, when subtracting two numbers, if the result is negative, it's represented as a two's complement. But in this case, since we're only processing uppercase and lowercase letters, the subtraction should result in non-negative values, so no issue.
+      |                               ^~~
+%Error: /code/rtl/caesar_cipher.sv:49:164: syntax error, unexpected "'", expecting ',' or ';'
+   49 | Wait, but in the code, the key is an input, so it's possible that the user could input a key that's larger than 15, but since the key is a 4-bit unsigned value, it's clamped to 0-15. So no problem.
+      |                                                                                                                                                                    ^
+%Error: /code/rtl/caesar_cipher.sv:53:122: Number is missing value digits: 'D
+   53 | Wait, but in the code, the key is added to both uppercase and lowercase shifts. So for example, if key is 3, 'A' becomes 'D', and 'a' becomes 'd'. That's correct.
+      |                                                                                                                          ^~
+%Error: /code/rtl/caesar_cipher.sv:53:143: Number is missing value digits: 'd
+   53 | Wait, but in the code, the key is added to both uppercase and lowercase shifts. So for example, if key is 3, 'A' becomes 'D', and 'a' becomes 'd'. That's correct.
+      |                                                                                                                                               ^~
+%Error: /code/rtl/caesar_cipher.sv:57:81: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:57:155: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error-UNSUPPORTED: /code/rtl/caesar_cipher.sv:65:31: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   65 | Another thing to check is the use of the assignment operator. The code uses = for assignment, which is correct in Verilog for assigning a value to a register.
+      |                               ^~~
+%Error: /code/rtl/caesar_cipher.sv:71:64: Number is missing value digits: 'o
+   71 | Another possible issue is that the code uses the same variable 'output_char' for both uppercase and lowercase shifts. But that's correct because the key is the same for all.
+      |                                                                ^~
+%Error: /code/rtl/caesar_cipher.sv:83:105: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+   83 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                         ^~~
+%Error: /code/rtl/caesar_cipher.sv:83:153: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+   83 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                                                                         ^~
+%Error: /code/rtl/caesar_cipher.sv:85:77: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:85:115: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:85:187: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:89:64: Number is missing value digits: 'o
+   89 | Another possible issue is that the code uses the same variable 'output_char' for both uppercase and lowercase shifts. But that's correct because the key is the same for all.
+      |                                                                ^~
+%Error: /code/rtl/caesar_cipher.sv:101:105: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  101 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                         ^~~
+%Error: /code/rtl/caesar_cipher.sv:101:153: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  101 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                                                                         ^~
+%Error: /code/rtl/caesar_cipher.sv:103:77: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:103:115: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:103:187: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:107:64: Number is missing value digits: 'o
+  107 | Another possible issue is that the code uses the same variable 'output_char' for both uppercase and lowercase shifts. But that's correct because the key is the same for all.
+      |                                                                ^~
+%Error: /code/rtl/caesar_cipher.sv:119:105: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  119 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                         ^~~
+%Error: /code/rtl/caesar_cipher.sv:119:153: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  119 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                                                                         ^~
+%Error: /code/rtl/caesar_cipher.sv:121:77: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:121:115: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:121:187: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:125:64: Number is missing value digits: 'o
+  125 | Another possible issue is that the code uses the same variable 'output_char' for both uppercase and lowercase shifts. But that's correct because the key is the same for all.
+      |                                                                ^~
+%Error: /code/rtl/caesar_cipher.sv:137:105: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  137 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                         ^~~
+%Error: /code/rtl/caesar_cipher.sv:137:153: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  137 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                                                                         ^~
+%Error: /code/rtl/caesar_cipher.sv:139:77: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:139:115: syntax error, unexpected '.', expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:139:187: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+%Error: /code/rtl/caesar_cipher.sv:143:64: Number is missing value digits: 'o
+  143 | Another possible issue is that the code uses the same variable 'output_char' for both uppercase and lowercase shifts. But that's correct because the key is the same for all.
+      |                                                                ^~
+%Error: /code/rtl/caesar_cipher.sv:155:105: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  155 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                         ^~~
+%Error: /code/rtl/caesar_cipher.sv:155:153: syntax error, unexpected IDENTIFIER, expecting ',' or ';'
+  155 | Another thing to check is the data types of the variables. All variables are treated as bit vectors, so the operations are done at the bit level, which is correct.
+      |                                                                                                                                                         ^~
+%Error: Exiting due to too many errors encountered; --error-limit=50

@@ -1,0 +1,75 @@
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:37:29: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'weighted_input' generates 32 bits.
+                                                   : ... note: In instance 'cont_adder'
+   37 |         new_sum = sum_accum + weighted_input;
+      |                             ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:37:17: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's ADD generates 34 bits.
+                                                  : ... note: In instance 'cont_adder'
+   37 |         new_sum = sum_accum + weighted_input;
+      |                 ^
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:39:26: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's LOGOR generates 1 bits.
+                                                   : ... note: In instance 'cont_adder'
+   39 |         threshold_1_comb = (new_sum >= THRESHOLD_VALUE_1) || (new_sum <= -THRESHOLD_VALUE_1);
+      |                          ^
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:40:26: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's LOGOR generates 1 bits.
+                                                   : ... note: In instance 'cont_adder'
+   40 |         threshold_2_comb = (new_sum >= THRESHOLD_VALUE_2) || (new_sum <= -THRESHOLD_VALUE_2);
+      |                          ^
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:44:38: Logical operator LOGOR expects 1 bit on the LHS, but LHS's VARREF 'threshold_1_comb' generates 32 bits.
+                                                  : ... note: In instance 'cont_adder'
+   44 |                 if (threshold_1_comb || threshold_2_comb) begin
+      |                                      ^~
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:44:38: Logical operator LOGOR expects 1 bit on the RHS, but RHS's VARREF 'threshold_2_comb' generates 32 bits.
+                                                  : ... note: In instance 'cont_adder'
+   44 |                 if (threshold_1_comb || threshold_2_comb) begin
+      |                                      ^~
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:75:43: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'weighted_input' generates 32 bits.
+                                                   : ... note: In instance 'cont_adder'
+   75 |                 sum_accum    <= sum_accum + weighted_input;
+      |                                           ^
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:78:47: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'weighted_input' generates 32 bits.
+                                                   : ... note: In instance 'cont_adder'
+   78 |                     sum_out      <= sum_accum + weighted_input;
+      |                                               ^
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:78:34: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's ADD generates 34 bits.
+                                                  : ... note: In instance 'cont_adder'
+   78 |                     sum_out      <= sum_accum + weighted_input;
+      |                                  ^~
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:79:48: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'weighted_input' generates 32 bits.
+                                                   : ... note: In instance 'cont_adder'
+   79 |                     avg_out      <= (sum_accum + weighted_input) / window_size;
+      |                                                ^
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:79:66: Operator DIV expects 34 bits on the RHS, but RHS's VARREF 'window_size' generates 16 bits.
+                                                   : ... note: In instance 'cont_adder'
+   79 |                     avg_out      <= (sum_accum + weighted_input) / window_size;
+      |                                                                  ^
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:79:34: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's DIV generates 34 bits.
+                                                  : ... note: In instance 'cont_adder'
+   79 |                     avg_out      <= (sum_accum + weighted_input) / window_size;
+      |                                  ^~
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:77:17: Logical operator IF expects 1 bit on the If, but If's VARREF 'sum_ready_reg' generates 32 bits.
+                                                  : ... note: In instance 'cont_adder'
+   77 |                 if (sum_ready_reg) begin
+      |                 ^~
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:89:40: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'weighted_input' generates 32 bits.
+                                                   : ... note: In instance 'cont_adder'
+   89 |                 sum_accum <= sum_accum + weighted_input;
+      |                                        ^
+%Warning-WIDTHEXPAND: /code/rtl/cont_adder.sv:91:44: Operator ADD expects 34 bits on the RHS, but RHS's VARREF 'weighted_input' generates 32 bits.
+                                                   : ... note: In instance 'cont_adder'
+   91 |                     sum_out   <= sum_accum + weighted_input;
+      |                                            ^
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:91:31: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's ADD generates 34 bits.
+                                                  : ... note: In instance 'cont_adder'
+   91 |                     sum_out   <= sum_accum + weighted_input;
+      |                               ^~
+%Warning-WIDTHTRUNC: /code/rtl/cont_adder.sv:90:17: Logical operator IF expects 1 bit on the If, but If's VARREF 'sum_ready_reg' generates 32 bits.
+                                                  : ... note: In instance 'cont_adder'
+   90 |                 if (sum_ready_reg) begin
+      |                 ^~
+%Warning-UNUSEDPARAM: /code/rtl/cont_adder.sv:6:15: Parameter is not used: 'SIGNED_INPUTS'
+                                                  : ... note: In instance 'cont_adder'
+    6 |     parameter SIGNED_INPUTS = 1,
+      |               ^~~~~~~~~~~~~
+%Error: Exiting due to 18 warning(s)

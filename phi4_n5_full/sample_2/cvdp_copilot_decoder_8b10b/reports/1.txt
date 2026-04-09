@@ -1,0 +1,96 @@
+Running harness with project name: cvdp_copilot_decoder_8b10b_1_1774682150
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774682152
+     0.00ns INFO     cocotb.regression                  running test_decoder_8b10b.test_decoder_8b10b_reset (1/5)
+                                                            Test sending any random control symbol continuously out of 12 symbols and reset HIGH.
+Delayed decoder_in: 0000000000
+   100.00ns INFO     cocotb.regression                  test_decoder_8b10b.test_decoder_8b10b_reset failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_decoder_8b10b.py", line 111, in test_decoder_8b10b_reset
+                                                            await check_output(dut, expected_value, expected_control, delayed_decoder_in)
+                                                          File "/src/test_decoder_8b10b.py", line 49, in check_output
+                                                            print(f"Expected: {hex(int(expected_value, 16)):>4}, Got: {hex(int(dut.decoder_out.value.binstr, 2)):>4}, Input: {input_value}")
+                                                        ValueError: invalid literal for int() with base 2: 'XXXXXXXX'
+   100.00ns INFO     cocotb.regression                  running test_decoder_8b10b.test_continuous_control_symbol (2/5)
+   251.00ns INFO     cocotb.regression                  test_decoder_8b10b.test_continuous_control_symbol failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_decoder_8b10b.py", line 146, in test_continuous_control_symbol
+                                                            await check_output(dut, expected_value, expected_control, delayed_decoder_in)
+                                                          File "/src/test_decoder_8b10b.py", line 49, in check_output
+                                                            print(f"Expected: {hex(int(expected_value, 16)):>4}, Got: {hex(int(dut.decoder_out.value.binstr, 2)):>4}, Input: {input_value}")
+                                                        ValueError: invalid literal for int() with base 2: 'XXXXXXXX'
+   251.00ns INFO     cocotb.regression                  running test_decoder_8b10b.test_random_control_symbol (3/5)
+                                                            Test sending any random control symbol continuously out of 12 symbols.
+   402.00ns INFO     cocotb.regression                  test_decoder_8b10b.test_random_control_symbol failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_decoder_8b10b.py", line 178, in test_random_control_symbol
+                                                            await check_output(dut, expected_value, expected_control, delayed_decoder_in)
+                                                          File "/src/test_decoder_8b10b.py", line 49, in check_output
+                                                            print(f"Expected: {hex(int(expected_value, 16)):>4}, Got: {hex(int(dut.decoder_out.value.binstr, 2)):>4}, Input: {input_value}")
+                                                        ValueError: invalid literal for int() with base 2: 'XXXXXXXX'
+   402.00ns INFO     cocotb.regression                  running test_decoder_8b10b.test_same_control_symbol (4/5)
+                                                            Test sending the same control symbol continuously.
+   553.00ns INFO     cocotb.regression                  test_decoder_8b10b.test_same_control_symbol failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_decoder_8b10b.py", line 202, in test_same_control_symbol
+                                                            await check_output(dut, expected_value, expected_control, delayed_decoder_in)
+                                                          File "/src/test_decoder_8b10b.py", line 49, in check_output
+                                                            print(f"Expected: {hex(int(expected_value, 16)):>4}, Got: {hex(int(dut.decoder_out.value.binstr, 2)):>4}, Input: {input_value}")
+                                                        ValueError: invalid literal for int() with base 2: 'XXXXXXXX'
+   553.00ns INFO     cocotb.regression                  running test_decoder_8b10b.test_random_invalid_control_input (5/5)
+                                                            Test sending any 10-bit input other than 12 control symbols.
+   704.00ns INFO     cocotb.regression                  test_decoder_8b10b.test_random_invalid_control_input failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_decoder_8b10b.py", line 233, in test_random_invalid_control_input
+                                                            await check_output(dut, expected_value, expected_control, delayed_decoder_in)
+                                                          File "/src/test_decoder_8b10b.py", line 49, in check_output
+                                                            print(f"Expected: {hex(int(expected_value, 16)):>4}, Got: {hex(int(dut.decoder_out.value.binstr, 2)):>4}, Input: {input_value}")
+                                                        ValueError: invalid literal for int() with base 2: 'XXXXXXXX'
+   704.00ns INFO     cocotb.regression                  **************************************************************************************************************
+                                                        ** TEST                                                  STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************************************
+                                                        ** test_decoder_8b10b.test_decoder_8b10b_reset            FAIL         100.00           0.00     101483.28  **
+                                                        ** test_decoder_8b10b.test_continuous_control_symbol      FAIL         151.00           0.00     283627.36  **
+                                                        ** test_decoder_8b10b.test_random_control_symbol          FAIL         151.00           0.00     283120.21  **
+                                                        ** test_decoder_8b10b.test_same_control_symbol            FAIL         151.00           0.00     307595.87  **
+                                                        ** test_decoder_8b10b.test_random_invalid_control_input   FAIL         151.00           0.00     304636.80  **
+                                                        **************************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                                        704.00           0.01      68879.38  **
+                                                        **************************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/decoder_8b10b.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+        runner = get_runner(sim)
+    
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log"
+        )
+>       runner.test(hdl_toplevel=toplevel, test_module=module,waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:27: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 5 of...
+============================== 1 failed in 0.17s ===============================
+Cleaning up Docker resources...

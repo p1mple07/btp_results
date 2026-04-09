@@ -1,0 +1,117 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x9af370 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x9af500 .scope module, "elastic_buffer_pattern_matcher" "elastic_buffer_pattern_matcher" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 64 "i_data";
+    .port_info 3 /INPUT 64 "i_pattern";
+    .port_info 4 /OUTPUT 1 "o_match";
+P_0x9ac350 .param/l "ERR_TOLERANCE" 0 3 3, +C4<00000000000000000000000000000110>;
+P_0x9ac390 .param/l "WIDTH" 0 3 2, +C4<00000000000000000000000001000000>;
+o0x72d99159c0a8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d5cc0_0 .net "clk", 0 0, o0x72d99159c0a8;  0 drivers
+v0x9d5da0_0 .var "err_count", 6 0;
+o0x72d99159c108 .functor BUFZ 64, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x9d5e80_0 .net "i_data", 63 0, o0x72d99159c108;  0 drivers
+o0x72d99159c138 .functor BUFZ 64, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x9d5f70_0 .net "i_pattern", 63 0, o0x72d99159c138;  0 drivers
+v0x9d6050_0 .var "o_match", 0 0;
+o0x72d99159c198 .functor BUFZ 1, c4<z>; HiZ drive
+v0x9d6160_0 .net "rst", 0 0, o0x72d99159c198;  0 drivers
+v0x9d6220_0 .var "xor_data", 63 0;
+E_0x9992a0 .event posedge, v0x9d6160_0, v0x9d5cc0_0;
+S_0x998b10 .scope autofunction.vec4.s7, "ones_count" "ones_count" 3 36, 3 36 0, S_0x9af500;
+ .timescale -9 -12;
+v0x998cf0_0 .var/i "i", 31 0;
+v0x9d5af0_0 .var "i_data", 63 0;
+; Variable ones_count is vec4 return value of scope S_0x998b10
+TD_elastic_buffer_pattern_matcher.ones_count ;
+    %pushi/vec4 0, 0, 7;
+    %ret/vec4 0, 0, 7;  Assign to ones_count (store_vec4_to_lval)
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x998cf0_0, 0, 32;
+T_0.0 ; Top of for-loop
+    %load/vec4 v0x998cf0_0;
+    %cmpi/s 64, 0, 32;
+	  %jmp/0xz T_0.1, 5;
+    %retload/vec4 0; Load ones_count (draw_signal_vec4)
+    %load/vec4 v0x9d5af0_0;
+    %load/vec4 v0x998cf0_0;
+    %part/s 1;
+    %pad/u 7;
+    %add;
+    %ret/vec4 0, 0, 7;  Assign to ones_count (store_vec4_to_lval)
+T_0.2 ; for-loop step statement
+    %load/vec4 v0x998cf0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x998cf0_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ; for-loop exit label
+    %end;
+S_0x998960 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x9af500;
+T_1 ;
+    %wait E_0x9992a0;
+    %load/vec4 v0x9d6160_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x9d6050_0, 0;
+    %pushi/vec4 0, 0, 64;
+    %assign/vec4 v0x9d6220_0, 0;
+    %pushi/vec4 0, 0, 7;
+    %assign/vec4 v0x9d5da0_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x9d5e80_0;
+    %load/vec4 v0x9d5f70_0;
+    %xor;
+    %assign/vec4 v0x9d6220_0, 0;
+    %alloc S_0x998b10;
+    %load/vec4 v0x9d6220_0;
+    %store/vec4 v0x9d5af0_0, 0, 64;
+    %callf/vec4 TD_elastic_buffer_pattern_matcher.ones_count, S_0x998b10;
+    %free S_0x998b10;
+    %assign/vec4 v0x9d5da0_0, 0;
+    %load/vec4 v0x9d5da0_0;
+    %pad/u 32;
+    %cmpi/u 6, 0, 32;
+    %flag_mov 8, 5;
+    %jmp/0 T_1.2, 8;
+    %pushi/vec4 1, 0, 1;
+    %jmp/1 T_1.3, 8;
+T_1.2 ; End of true expr.
+    %pushi/vec4 0, 0, 1;
+    %jmp/0 T_1.3, 8;
+ ; End of false expr.
+    %blend;
+T_1.3;
+    %assign/vec4 v0x9d6050_0, 0;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x998960;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/elastic_buffer_pattern_matcher.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x9af500 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/elastic_buffer_pattern_matcher.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

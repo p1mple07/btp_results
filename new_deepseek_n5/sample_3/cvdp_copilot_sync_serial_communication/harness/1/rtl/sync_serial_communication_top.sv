@@ -1,0 +1,1 @@
+rtl/sync_serial_communication_top.sv

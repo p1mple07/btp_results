@@ -1,0 +1,68 @@
+Running harness with project name: cvdp_copilot_clock_divider_3_1774590924
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_clock_divider_run[0]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774590926
+     0.00ns INFO     cocotb.regression                  running test_clk_div.test_clock_divider (1/1)
+    20.00ns INFO     cocotb.clock_divider               Reset initialized, ready for sequential sel value tests.
+    20.00ns INFO     cocotb.clock_divider               Applying sel = 0
+   210.00ns INFO     cocotb.clock_divider               Test passed for sel = 0, clk_out is clk/2
+   210.00ns INFO     cocotb.clock_divider               Asserting reset before changing sel from 0
+   230.00ns INFO     cocotb.clock_divider               Reset deasserted, moving to next sel value after 0
+   230.00ns INFO     cocotb.clock_divider               Applying sel = 1
+   490.00ns INFO     cocotb.regression                  test_clk_div.test_clock_divider failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_clk_div.py", line 27, in test_clock_divider
+                                                            clk_out_period = await hrs_lb.measure_clk_period(dut.clk_out, dut.clk, expected_period)
+                                                          File "/src/harness_library.py", line 28, in measure_clk_period
+                                                            assert clk_out_period == expected_period, f"Error: clk_out period {clk_out_period} ns does not match expected {expected_period} ns"
+                                                        AssertionError: Error: clk_out period 60.0 ns does not match expected 40 ns
+                                                        assert 60.0 == 40
+   490.00ns INFO     cocotb.regression                  *****************************************************************************************
+                                                        ** TEST                             STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *****************************************************************************************
+                                                        ** test_clk_div.test_clock_divider   FAIL         490.00           0.00     105125.78  **
+                                                        *****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                   490.00           0.01      58522.95  **
+                                                        *****************************************************************************************
+                                                        
+FAILED
+
+=================================== FAILURES ===================================
+__________________________ test_clock_divider_run[0] ___________________________
+
+test = 0
+
+    @pytest.mark.parametrize("test", range(1))
+    def test_clock_divider_run(test):
+        # os.rmdir("sim_build")
+        # os.remove("./sim_build/sim.vvp")
+        # Get the simulator runner for the specified simulator (e.g., icarus)
+        runner = get_runner(sim)
+    
+        # Build the simulation environment
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            clean=True,              # Clean previous builds
+            # verbose=True,
+            timescale=("1ns", "1ns"), # Set timescale
+            log_file="sim.log"        # Log the output of the simulation
+        )
+    
+        # Run the test module
+>       runner.test(hdl_toplevel=toplevel, test_module=module)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:32: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_clock_divider_run[0] - SystemExit: ERRO...
+============================== 1 failed in 0.22s ===============================
+Cleaning up Docker resources...

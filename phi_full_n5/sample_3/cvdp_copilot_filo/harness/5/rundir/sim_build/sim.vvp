@@ -1,0 +1,144 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xe69960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xe69af0 .scope module, "FILO_RTL" "FILO_RTL" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "push";
+    .port_info 3 /INPUT 1 "pop";
+    .port_info 4 /INPUT 12 "data_in";
+    .port_info 5 /OUTPUT 12 "data_out";
+    .port_info 6 /OUTPUT 1 "full";
+    .port_info 7 /OUTPUT 1 "empty";
+P_0xe7bb50 .param/l "DATA_WIDTH" 0 3 1, +C4<00000000000000000000000000001100>;
+P_0xe7bb90 .param/l "FILO_DEPTH" 0 3 1, +C4<00000000000000000000000000010000>;
+v0xe7fee0 .array "buffer", 15 0, 11 0;
+o0x7069797a7018 .functor BUFZ 1, c4<z>; HiZ drive
+v0xe7ff80_0 .net "clk", 0 0, o0x7069797a7018;  0 drivers
+o0x7069797a7048 .functor BUFZ 12, c4<zzzzzzzzzzzz>; HiZ drive
+v0xea6e20_0 .net "data_in", 11 0, o0x7069797a7048;  0 drivers
+v0xea6f10_0 .var "data_out", 11 0;
+v0xea6ff0_0 .var "empty", 0 0;
+v0xea7100_0 .var "full", 0 0;
+o0x7069797a7108 .functor BUFZ 1, c4<z>; HiZ drive
+v0xea71c0_0 .net "pop", 0 0, o0x7069797a7108;  0 drivers
+o0x7069797a7138 .functor BUFZ 1, c4<z>; HiZ drive
+v0xea7280_0 .net "push", 0 0, o0x7069797a7138;  0 drivers
+o0x7069797a7168 .functor BUFZ 1, c4<z>; HiZ drive
+v0xea7340_0 .net "reset", 0 0, o0x7069797a7168;  0 drivers
+v0xea7400_0 .var/i "top", 31 0;
+E_0xe8ede0 .event posedge, v0xe7ff80_0;
+E_0xe8ebe0 .event posedge, v0xea7340_0, v0xe7ff80_0;
+S_0xe7fd10 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0xe69af0;
+T_0 ;
+    %wait E_0xe8ebe0;
+    %load/vec4 v0xea7340_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0xea6ff0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xea7100_0, 0;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0xea7400_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xea7280_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0xea7400_0;
+    %cmpi/s 15, 0, 32;
+    %jmp/0xz  T_0.4, 5;
+    %load/vec4 v0xea6e20_0;
+    %ix/getv/s 3, v0xea7400_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0xe7fee0, 0, 4;
+    %load/vec4 v0xea7400_0;
+    %addi 1, 0, 32;
+    %assign/vec4 v0xea7400_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xea7100_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xea6ff0_0, 0;
+T_0.4 ;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0xea71c0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.6, 8;
+    %load/vec4 v0xea7400_0;
+    %cmpi/s 0, 0, 32;
+    %flag_or 5, 4; GT is !LE
+    %flag_inv 5;
+    %jmp/0xz  T_0.8, 5;
+    %load/vec4 v0xea7400_0;
+    %subi 1, 0, 32;
+    %ix/vec4/s 4;
+    %load/vec4a v0xe7fee0, 4;
+    %assign/vec4 v0xea6f10_0, 0;
+    %load/vec4 v0xea7400_0;
+    %subi 1, 0, 32;
+    %assign/vec4 v0xea7400_0, 0;
+    %load/vec4 v0xea7400_0;
+    %cmpi/e 0, 0, 32;
+    %jmp/0xz  T_0.10, 4;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0xea6ff0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xea7100_0, 0;
+T_0.10 ;
+T_0.8 ;
+T_0.6 ;
+T_0.3 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0xe69af0;
+T_1 ;
+    %wait E_0xe8ede0;
+    %load/vec4 v0xea7340_0;
+    %nor/r;
+    %flag_set/vec4 10;
+    %flag_get/vec4 10;
+    %jmp/0 T_1.3, 10;
+    %load/vec4 v0xea7280_0;
+    %and;
+T_1.3;
+    %flag_set/vec4 9;
+    %flag_get/vec4 9;
+    %jmp/0 T_1.2, 9;
+    %load/vec4 v0xea71c0_0;
+    %and;
+T_1.2;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v0xea6e20_0;
+    %assign/vec4 v0xea6f10_0, 0;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0xe7fd10;
+T_2 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/FILO_RTL.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xe69af0 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/FILO_RTL.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

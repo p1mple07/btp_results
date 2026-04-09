@@ -1,0 +1,65 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/vga_controller.sv
+Parsing SystemVerilog input from `/code/rtl/vga_controller.sv' to AST representation.
+Generating RTLIL representation for module `\vga_controller'.
+Warning: wire '\h_counter' is assigned in a block at /code/rtl/vga_controller.sv:39.13-39.33.
+Warning: wire '\v_counter' is assigned in a block at /code/rtl/vga_controller.sv:40.13-40.33.
+Warning: wire '\h_counter' is assigned in a block at /code/rtl/vga_controller.sv:48.21-48.93.
+Warning: wire '\h_counter' is assigned in a block at /code/rtl/vga_controller.sv:54.21-54.92.
+Warning: wire '\h_counter' is assigned in a block at /code/rtl/vga_controller.sv:59.21-59.92.
+Warning: wire '\h_counter' is assigned in a block at /code/rtl/vga_controller.sv:64.21-64.91.
+Warning: wire '\v_counter' is assigned in a block at /code/rtl/vga_controller.sv:74.25-74.95.
+Warning: wire '\v_counter' is assigned in a block at /code/rtl/vga_controller.sv:81.25-81.94.
+Warning: wire '\v_counter' is assigned in a block at /code/rtl/vga_controller.sv:88.25-88.94.
+Warning: wire '\v_counter' is assigned in a block at /code/rtl/vga_controller.sv:95.25-95.93.
+/code/rtl/vga_controller.sv:39: Warning: Identifier `\h_counter' is implicitly declared.
+/code/rtl/vga_controller.sv:40: Warning: Identifier `\v_counter' is implicitly declared.
+/code/rtl/vga_controller.sv:43: Warning: Identifier `\LOW' is implicitly declared.
+/code/rtl/vga_controller.sv:49: Warning: Identifier `\HIGH' is implicitly declared.
+/code/rtl/vga_controller.sv:95: Warning: Identifier `\V_BACK' is implicitly declared.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \vga_controller
+
+2.2. Analyzing design hierarchy..
+Top module:  \vga_controller
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module vga_controller...
+Warning: multiple conflicting drivers for vga_controller.$or$/code/rtl/vga_controller.sv:111$57_Y:
+    port Y[0] of cell $or$/code/rtl/vga_controller.sv:111$57 ($or)
+    port Y[0] of cell $and$/code/rtl/vga_controller.sv:105$50 ($and)
+Warning: Wire vga_controller.\V_BACK is used but has no driver.
+Warning: Wire vga_controller.\HIGH is used but has no driver.
+Warning: Wire vga_controller.\LOW is used but has no driver.
+Found and reported 4 problems.
+ERROR: Found 4 problems in 'check -assert'.

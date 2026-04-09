@@ -1,0 +1,257 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xab97a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xab93b0 .scope module, "vga_controller" "vga_controller" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clock";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 8 "color_in";
+    .port_info 3 /OUTPUT 1 "hsync";
+    .port_info 4 /OUTPUT 1 "vsync";
+    .port_info 5 /OUTPUT 8 "red";
+    .port_info 6 /OUTPUT 8 "green";
+    .port_info 7 /OUTPUT 8 "blue";
+    .port_info 8 /OUTPUT 10 "next_x";
+    .port_info 9 /OUTPUT 10 "next_y";
+    .port_info 10 /OUTPUT 1 "sync";
+    .port_info 11 /OUTPUT 1 "clk";
+    .port_info 12 /OUTPUT 1 "blank";
+P_0xabeeb0 .param/l "H_ACTIVE" 1 3 20, +C4<00000000000000000000001010000000>;
+P_0xabeef0 .param/l "H_BACK" 1 3 23, +C4<00000000000000000000000000110000>;
+P_0xabef30 .param/l "H_FRONT" 1 3 21, +C4<00000000000000000000000000010000>;
+P_0xabef70 .param/l "H_PULSE" 1 3 22, +C4<00000000000000000000000001100000>;
+P_0xabefb0 .param/l "H_TOTAL" 1 3 24, +C4<00000000000000000000001100100000>;
+P_0xabeff0 .param/l "V_ACTIVE" 1 3 26, +C4<00000000000000000000000111100000>;
+P_0xabf030 .param/l "V_BACK" 1 3 29, +C4<00000000000000000000000000100001>;
+P_0xabf070 .param/l "V_FRONT" 1 3 27, +C4<00000000000000000000000000001010>;
+P_0xabf0b0 .param/l "V_PULSE" 1 3 28, +C4<00000000000000000000000000000010>;
+P_0xabf0f0 .param/l "V_TOTAL" 1 3 30, +C4<00000000000000000000001000001101>;
+L_0xac9ef0 .functor BUFZ 1, v0xaec780_0, C4<0>, C4<0>, C4<0>;
+L_0xaed4d0 .functor BUFZ 1, v0xaed1b0_0, C4<0>, C4<0>, C4<0>;
+L_0xaed5a0 .functor BUFZ 8, v0xaecdb0_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0xaed670 .functor BUFZ 8, v0xaec500_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0xaed770 .functor BUFZ 8, v0xaec0e0_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0xaed840 .functor BUFZ 10, v0xaec920_0, C4<0000000000>, C4<0000000000>, C4<0000000000>;
+L_0xaed950 .functor BUFZ 10, v0xaecae0_0, C4<0000000000>, C4<0000000000>, C4<0000000000>;
+o0x766cbf32a108 .functor BUFZ 1, c4<z>; HiZ drive
+L_0xaeda20 .functor BUFZ 1, o0x766cbf32a108, C4<0>, C4<0>, C4<0>;
+L_0xaedb40 .functor BUFZ 1, v0xaebf30_0, C4<0>, C4<0>, C4<0>;
+v0xabf6d0_0 .net "blank", 0 0, L_0xaedb40;  1 drivers
+v0xaebf30_0 .var "blank_reg", 0 0;
+v0xaebff0_0 .net "blue", 7 0, L_0xaed770;  1 drivers
+v0xaec0e0_0 .var "blue_reg", 7 0;
+v0xaec1c0_0 .net "clk", 0 0, L_0xaeda20;  1 drivers
+v0xaec280_0 .net "clock", 0 0, o0x766cbf32a108;  0 drivers
+o0x766cbf32a138 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0xaec340_0 .net "color_in", 7 0, o0x766cbf32a138;  0 drivers
+v0xaec420_0 .net "green", 7 0, L_0xaed670;  1 drivers
+v0xaec500_0 .var "green_reg", 7 0;
+v0xaec5e0_0 .var "h_counter", 9 0;
+v0xaec6c0_0 .net "hsync", 0 0, L_0xac9ef0;  1 drivers
+v0xaec780_0 .var "hsync_reg", 0 0;
+v0xaec840_0 .net "next_x", 9 0, L_0xaed840;  1 drivers
+v0xaec920_0 .var "next_x_reg", 9 0;
+v0xaeca00_0 .net "next_y", 9 0, L_0xaed950;  1 drivers
+v0xaecae0_0 .var "next_y_reg", 9 0;
+v0xaecbc0_0 .net "red", 7 0, L_0xaed5a0;  1 drivers
+v0xaecdb0_0 .var "red_reg", 7 0;
+o0x766cbf32a378 .functor BUFZ 1, c4<z>; HiZ drive
+v0xaece90_0 .net "reset", 0 0, o0x766cbf32a378;  0 drivers
+L_0x766cbf2e1018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0xaecf50_0 .net "sync", 0 0, L_0x766cbf2e1018;  1 drivers
+v0xaed010_0 .var "v_counter", 9 0;
+v0xaed0f0_0 .net "vsync", 0 0, L_0xaed4d0;  1 drivers
+v0xaed1b0_0 .var "vsync_reg", 0 0;
+E_0xacbd40 .event posedge, v0xaece90_0, v0xaec280_0;
+    .scope S_0xab93b0;
+T_0 ;
+    %wait E_0xacbd40;
+    %load/vec4 v0xaece90_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v0xaec5e0_0, 0;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v0xaed010_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0xaec780_0, 0;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0xaed1b0_0, 0;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0xaebf30_0, 0;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v0xaec920_0, 0;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v0xaecae0_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xaecdb0_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xaec500_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xaec0e0_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0xaec5e0_0;
+    %pad/u 32;
+    %cmpi/e 799, 0, 32;
+    %jmp/0xz  T_0.2, 4;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v0xaec5e0_0, 0;
+    %load/vec4 v0xaed010_0;
+    %pad/u 32;
+    %cmpi/e 524, 0, 32;
+    %jmp/0xz  T_0.4, 4;
+    %pushi/vec4 0, 0, 10;
+    %assign/vec4 v0xaed010_0, 0;
+    %jmp T_0.5;
+T_0.4 ;
+    %load/vec4 v0xaed010_0;
+    %addi 1, 0, 10;
+    %assign/vec4 v0xaed010_0, 0;
+T_0.5 ;
+    %jmp T_0.3;
+T_0.2 ;
+    %load/vec4 v0xaec5e0_0;
+    %addi 1, 0, 10;
+    %assign/vec4 v0xaec5e0_0, 0;
+T_0.3 ;
+    %load/vec4 v0xaec5e0_0;
+    %pad/u 32;
+    %cmpi/u 656, 0, 32;
+    %jmp/1 T_0.8, 5;
+    %flag_mov 8, 5;
+    %load/vec4 v0xaec5e0_0;
+    %pad/u 32;
+    %cmpi/u 800, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_or 5, 8;
+T_0.8;
+    %flag_mov 8, 5;
+    %jmp/0 T_0.6, 8;
+    %pushi/vec4 1, 0, 1;
+    %jmp/1 T_0.7, 8;
+T_0.6 ; End of true expr.
+    %pushi/vec4 0, 0, 1;
+    %jmp/0 T_0.7, 8;
+ ; End of false expr.
+    %blend;
+T_0.7;
+    %assign/vec4 v0xaec780_0, 0;
+    %load/vec4 v0xaed010_0;
+    %pad/u 32;
+    %cmpi/u 490, 0, 32;
+    %jmp/1 T_0.11, 5;
+    %flag_mov 8, 5;
+    %load/vec4 v0xaed010_0;
+    %pad/u 32;
+    %cmpi/u 525, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_or 5, 8;
+T_0.11;
+    %flag_mov 8, 5;
+    %jmp/0 T_0.9, 8;
+    %pushi/vec4 1, 0, 1;
+    %jmp/1 T_0.10, 8;
+T_0.9 ; End of true expr.
+    %pushi/vec4 0, 0, 1;
+    %jmp/0 T_0.10, 8;
+ ; End of false expr.
+    %blend;
+T_0.10;
+    %assign/vec4 v0xaed1b0_0, 0;
+    %load/vec4 v0xaec5e0_0;
+    %pad/u 32;
+    %cmpi/u 640, 0, 32;
+    %flag_inv 5; GE is !LT
+    %flag_get/vec4 5;
+    %jmp/1 T_0.12, 5;
+    %pushi/vec4 480, 0, 32;
+    %load/vec4 v0xaed010_0;
+    %pad/u 32;
+    %cmp/u;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %or;
+T_0.12;
+    %assign/vec4 v0xaebf30_0, 0;
+    %load/vec4 v0xaec5e0_0;
+    %pad/u 32;
+    %cmpi/u 640, 0, 32;
+    %flag_mov 8, 5;
+    %jmp/0 T_0.13, 8;
+    %load/vec4 v0xaec5e0_0;
+    %jmp/1 T_0.14, 8;
+T_0.13 ; End of true expr.
+    %pushi/vec4 0, 0, 10;
+    %jmp/0 T_0.14, 8;
+ ; End of false expr.
+    %blend;
+T_0.14;
+    %assign/vec4 v0xaec920_0, 0;
+    %load/vec4 v0xaed010_0;
+    %pad/u 32;
+    %cmpi/u 480, 0, 32;
+    %flag_mov 8, 5;
+    %jmp/0 T_0.15, 8;
+    %load/vec4 v0xaed010_0;
+    %jmp/1 T_0.16, 8;
+T_0.15 ; End of true expr.
+    %pushi/vec4 0, 0, 10;
+    %jmp/0 T_0.16, 8;
+ ; End of false expr.
+    %blend;
+T_0.16;
+    %assign/vec4 v0xaecae0_0, 0;
+    %load/vec4 v0xaec5e0_0;
+    %pad/u 32;
+    %cmpi/u 640, 0, 32;
+    %flag_get/vec4 5;
+    %jmp/0 T_0.19, 5;
+    %load/vec4 v0xaed010_0;
+    %pad/u 32;
+    %cmpi/u 480, 0, 32;
+    %flag_get/vec4 5;
+    %and;
+T_0.19;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.17, 8;
+    %load/vec4 v0xaec340_0;
+    %parti/s 3, 5, 4;
+    %concati/vec4 0, 0, 5;
+    %assign/vec4 v0xaecdb0_0, 0;
+    %load/vec4 v0xaec340_0;
+    %parti/s 3, 2, 3;
+    %concati/vec4 0, 0, 5;
+    %assign/vec4 v0xaec500_0, 0;
+    %load/vec4 v0xaec340_0;
+    %parti/s 2, 0, 2;
+    %concati/vec4 0, 0, 6;
+    %assign/vec4 v0xaec0e0_0, 0;
+    %jmp T_0.18;
+T_0.17 ;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xaecdb0_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xaec500_0, 0;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0xaec0e0_0, 0;
+T_0.18 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/vga_controller.sv";

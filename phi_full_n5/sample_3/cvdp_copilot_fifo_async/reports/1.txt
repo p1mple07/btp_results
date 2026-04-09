@@ -1,0 +1,302 @@
+Running harness with project name: cvdp_copilot_fifo_async_1_1774074733
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774074735
+     0.00ns INFO     cocotb.regression                  running tb.test_empty (1/4)
+    10.00ns INFO     cocotb.fifo_async                  Clocks initialized.
+   110.00ns INFO     cocotb.fifo_async                  Resets initialized, ready for sequential value tests.
+   110.00ns INFO     cocotb.fifo_async                  Test Empty Started, executing 10 read and writes.
+   110.00ns INFO     cocotb.regression                  tb.test_empty failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/tb.py", line 123, in test_empty
+                                                            assert dut.w_full.value == 0,  "FIFO should not be full. Test just started, no data was driven."
+                                                        AssertionError: FIFO should not be full. Test just started, no data was driven.
+                                                        assert LogicArray('X', Range(0, 'downto', 0)) == 0
+                                                         +  where LogicArray('X', Range(0, 'downto', 0)) = LogicObject(fifo_async.w_full).value
+                                                         +    where LogicObject(fifo_async.w_full) = HierarchyObject(fifo_async).w_full
+   110.00ns INFO     cocotb.regression                  running tb.test_basic (2/4)
+   120.00ns INFO     cocotb.fifo_async                  Clocks initialized.
+   220.00ns INFO     cocotb.fifo_async                  Resets initialized, ready for sequential value tests.
+   247.50ns INFO     cocotb.fifo_async                  Wrote 0xdeadbeaf in w_data bus.
+   281.00ns INFO     cocotb.regression                  tb.test_basic failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/tb.py", line 189, in test_basic
+                                                            read_data(dut, 0xDEADBEAF)
+                                                          File "/src/tb.py", line 51, in read_data
+                                                            assert dut.r_data.value  == expected_data, "Wrong domain transitioning"
+                                                        AssertionError: Wrong domain transitioning
+                                                        assert LogicArray('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', Range(31, 'downto', 0)) == 3735928495
+                                                         +  where LogicArray('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', Range(31, 'downto', 0)) = LogicObject(fifo_async.r_data).value
+                                                         +    where LogicObject(fifo_async.r_data) = HierarchyObject(fifo_async).r_data
+   281.00ns INFO     cocotb.regression                  running tb.test_full (3/4)
+   291.00ns INFO     cocotb.fifo_async                  Clocks initialized.
+   391.00ns INFO     cocotb.fifo_async                  Resets initialized, ready for sequential value tests.
+   391.00ns INFO     cocotb.regression                  tb.test_full failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/tb.py", line 207, in test_full
+                                                            assert dut.w_full.value == 0,  "FIFO should not be full. Test just started, no data was driven."
+                                                        AssertionError: FIFO should not be full. Test just started, no data was driven.
+                                                        assert LogicArray('X', Range(0, 'downto', 0)) == 0
+                                                         +  where LogicArray('X', Range(0, 'downto', 0)) = LogicObject(fifo_async.w_full).value
+                                                         +    where LogicObject(fifo_async.w_full) = HierarchyObject(fifo_async).w_full
+   391.00ns INFO     cocotb.regression                  running tb.test_random (4/4)
+   401.00ns INFO     cocotb.fifo_async                  Clocks initialized.
+   501.00ns INFO     cocotb.fifo_async                  Resets initialized, ready for sequential value tests.
+   501.00ns INFO     cocotb.fifo_async                  Starting w_test thread...
+   501.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   501.00ns INFO     cocotb.fifo_async                  Starting r_test thread...
+   501.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   503.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   503.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   515.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   515.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   527.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   527.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   539.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   539.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   551.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   551.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   563.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   563.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   575.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   575.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   587.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   587.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   599.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   599.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   611.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   611.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   623.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   623.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   635.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   635.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   647.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   647.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   659.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   659.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   671.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   671.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   683.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   683.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   695.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   695.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   707.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   707.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   719.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   719.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   731.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   731.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   743.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   743.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   755.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   755.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   767.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   767.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   779.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   779.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   791.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   791.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   803.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   803.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   815.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   815.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   827.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   827.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   839.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   839.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   851.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   851.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   863.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   863.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   875.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   875.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   887.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   887.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   899.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   899.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   911.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   911.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   923.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   923.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   935.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   935.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   947.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   947.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   959.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   959.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   971.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   971.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   983.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   983.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+   995.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+   995.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1007.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1007.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1019.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1019.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1031.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1031.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1043.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1043.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1055.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1055.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1067.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1067.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1079.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1079.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1091.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1091.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1103.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1103.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1115.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1115.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1127.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1127.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1139.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1139.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1151.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1151.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1163.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1163.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1175.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1175.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1187.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1187.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1199.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1199.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1211.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1211.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1223.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1223.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1235.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1235.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1247.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1247.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1259.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1259.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1271.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1271.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1283.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1283.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1295.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1295.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1307.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1307.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1319.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1319.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1331.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1331.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1343.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1343.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1355.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1355.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1367.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1367.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1379.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1379.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1391.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1391.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1403.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1403.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1415.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1415.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1427.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1427.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1439.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1439.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1451.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1451.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1463.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1463.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1475.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1475.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1487.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1487.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1499.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1499.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1511.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1511.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1523.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1523.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1535.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1535.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1547.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1547.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1559.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1559.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1571.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1571.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1583.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1583.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1595.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1595.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1607.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1607.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1619.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1619.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1631.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1631.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1643.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1643.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1655.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1655.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1667.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1667.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1679.00ns INFO     cocotb.fifo_async                  FIFO is full, skipping new data write.
+  1679.00ns INFO     cocotb.fifo_async                  Detected empty FIFO, skipping new data read.
+  1691.00ns INFO     cocotb.fifo_async                  Finished to execute w_test thread.
+  1691.00ns INFO     cocotb.fifo_async                  Finished to execute r_test thread.
+  1691.00ns INFO     cocotb.regression                  tb.test_random passed
+  1691.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** tb.test_empty                  FAIL         110.00           0.00      47310.65  **
+                                                        ** tb.test_basic                  FAIL         171.00           0.00      77756.96  **
+                                                        ** tb.test_full                   FAIL         110.00           0.00      68069.88  **
+                                                        ** tb.test_random                 PASS        1300.00           0.03      49518.22  **
+                                                        **************************************************************************************
+                                                        ** TESTS=4 PASS=1 FAIL=3 SKIP=0               1691.00           0.04      43909.02  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/fifo_async.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    @pytest.mark.tb
+    def test_runner():
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"))
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 3 of 4 tests.
+
+/src/test_runner.py:31: SystemExit
+=============================== warnings summary ===============================
+../../src/test_runner.py:17
+  /src/test_runner.py:17: PytestUnknownMarkWarning: Unknown pytest.mark.tb - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.tb
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 3 of...
+========================= 1 failed, 1 warning in 0.21s =========================
+Cleaning up Docker resources...

@@ -1,0 +1,52 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x11c06e0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x11c0870 .scope module, "bcd_to_excess_3" "bcd_to_excess_3" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "bcd";
+    .port_info 1 /OUTPUT 4 "excess3";
+    .port_info 2 /OUTPUT 1 "error";
+L_0x11e2160 .functor NOT 1, L_0x11e1f50, C4<0>, C4<0>, C4<0>;
+v0x11af8c0_0 .net *"_ivl_0", 31 0, L_0x11d1e70;  1 drivers
+v0x11d1620_0 .net *"_ivl_10", 3 0, L_0x11e20c0;  1 drivers
+L_0x7a47cae410f0 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0x11d1700_0 .net/2u *"_ivl_12", 3 0, L_0x7a47cae410f0;  1 drivers
+L_0x7a47cae41018 .functor BUFT 1, C4<0000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x11d17c0_0 .net *"_ivl_3", 27 0, L_0x7a47cae41018;  1 drivers
+L_0x7a47cae41060 .functor BUFT 1, C4<00000000000000000000000000001010>, C4<0>, C4<0>, C4<0>;
+v0x11d18a0_0 .net/2u *"_ivl_4", 31 0, L_0x7a47cae41060;  1 drivers
+L_0x7a47cae410a8 .functor BUFT 1, C4<0011>, C4<0>, C4<0>, C4<0>;
+v0x11d19d0_0 .net/2u *"_ivl_8", 3 0, L_0x7a47cae410a8;  1 drivers
+o0x7a47cae8a138 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x11d1ab0_0 .net "bcd", 3 0, o0x7a47cae8a138;  0 drivers
+v0x11d1b90_0 .net "error", 0 0, L_0x11e2160;  1 drivers
+v0x11d1c50_0 .net "excess3", 3 0, L_0x11e22a0;  1 drivers
+v0x11d1d30_0 .net "is_valid", 0 0, L_0x11e1f50;  1 drivers
+L_0x11d1e70 .concat [ 4 28 0 0], o0x7a47cae8a138, L_0x7a47cae41018;
+L_0x11e1f50 .cmp/ge 32, L_0x11d1e70, L_0x7a47cae41060;
+L_0x11e20c0 .arith/sum 4, o0x7a47cae8a138, L_0x7a47cae410a8;
+L_0x11e22a0 .functor MUXZ 4, L_0x7a47cae410f0, L_0x11e20c0, L_0x11e1f50, C4<>;
+S_0x11c0a00 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x11c0a00;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/bcd_to_excess_3.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x11c0870 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bcd_to_excess_3.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

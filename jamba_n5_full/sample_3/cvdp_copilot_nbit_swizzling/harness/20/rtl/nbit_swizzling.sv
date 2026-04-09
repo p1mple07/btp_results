@@ -1,0 +1,1 @@
+PARITY_BITS = $clog2(DATA_WIDTH + $clog2(DATA_WIDTH)) + 1

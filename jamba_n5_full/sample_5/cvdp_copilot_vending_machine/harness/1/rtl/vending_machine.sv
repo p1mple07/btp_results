@@ -1,0 +1,23 @@
+module vending_machine (
+    input wire clk,
+    input wire rst,
+    input wire item_button,
+    input wire [2:0] item_selected,
+    input wire [3:0] coin_input,
+    input wire cancel,
+    output reg dispense_item,
+    output reg return_change,
+    output reg [4:0] item_price,
+    output reg [4:0] change_amount,
+    output reg [2:0] dispense_item_id,
+    output reg error,
+    output reg return_money,
+    output reg [4:0] output_item_id,
+    output reg dispense_item,
+    output reg return_change,
+    output reg item_price,
+    output reg change_amount,
+    output reg dispense_item_id,
+    output reg error,
+    output reg return_money
+);

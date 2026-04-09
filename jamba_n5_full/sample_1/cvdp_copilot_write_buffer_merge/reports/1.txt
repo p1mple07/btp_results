@@ -1,0 +1,1522 @@
+Running harness with project name: cvdp_copilot_write_buffer_merge_1_1774921838
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 15 items
+
+../../src/test_runner.py::test_random_write_buffer_merge[0] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[1] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[2] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[3] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[4] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[5] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[6] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[7] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[8] FAILED
+../../src/test_runner.py::test_random_write_buffer_merge[9] FAILED
+../../src/test_runner.py::test_random_passthrough_write_buffer_merge[0] FAILED
+../../src/test_runner.py::test_random_passthrough_write_buffer_merge[1] FAILED
+../../src/test_runner.py::test_random_passthrough_write_buffer_merge[2] FAILED
+../../src/test_runner.py::test_random_passthrough_write_buffer_merge[3] FAILED
+../../src/test_runner.py::test_random_passthrough_write_buffer_merge[4] FAILED
+
+=================================== FAILURES ===================================
+______________________ test_random_write_buffer_merge[0] _______________________
+
+random_test = 0
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=20', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=31', '-Pwrite_buffer_merge.BUFFER_DEPTH=8', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[1] _______________________
+
+random_test = 1
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=18', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=20', '-Pwrite_buffer_merge.BUFFER_DEPTH=16', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[2] _______________________
+
+random_test = 2
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=8', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=11', '-Pwrite_buffer_merge.BUFFER_DEPTH=16', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[3] _______________________
+
+random_test = 3
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=21', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=31', '-Pwrite_buffer_merge.BUFFER_DEPTH=32', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[4] _______________________
+
+random_test = 4
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=22', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=23', '-Pwrite_buffer_merge.BUFFER_DEPTH=16', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[5] _______________________
+
+random_test = 5
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=22', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=30', '-Pwrite_buffer_merge.BUFFER_DEPTH=32', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[6] _______________________
+
+random_test = 6
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=6', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=26', '-Pwrite_buffer_merge.BUFFER_DEPTH=4', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[7] _______________________
+
+random_test = 7
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=5', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=12', '-Pwrite_buffer_merge.BUFFER_DEPTH=8', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[8] _______________________
+
+random_test = 8
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=16', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=10', '-Pwrite_buffer_merge.BUFFER_DEPTH=16', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+______________________ test_random_write_buffer_merge[9] _______________________
+
+random_test = 9
+
+    @pytest.mark.parametrize("random_test", range(10))
+    def test_random_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Calculate BUFFER_DEPTH as a power of 2 based on a random value between 1 and INPUT_ADDR_WIDTH
+      # Ensures that BUFFER_DEPTH is always a power of 2 and <= 2^INPUT_ADDR_WIDTH
+      BUFFER_DEPTH = 2**(math.ceil(math.log2(random.randint(1, INPUT_ADDR_WIDTH))))
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=21', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=9', '-Pwrite_buffer_merge.BUFFER_DEPTH=16', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+________________ test_random_passthrough_write_buffer_merge[0] _________________
+
+random_test = 0
+
+    @pytest.mark.parametrize("random_test", range(5))
+    def test_random_passthrough_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Test Passthrough Case when BUFFER_DEPTH = 1
+      BUFFER_DEPTH = 1
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=21', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=8', '-Pwrite_buffer_merge.BUFFER_DEPTH=1', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+________________ test_random_passthrough_write_buffer_merge[1] _________________
+
+random_test = 1
+
+    @pytest.mark.parametrize("random_test", range(5))
+    def test_random_passthrough_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Test Passthrough Case when BUFFER_DEPTH = 1
+      BUFFER_DEPTH = 1
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=32', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=24', '-Pwrite_buffer_merge.BUFFER_DEPTH=1', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+________________ test_random_passthrough_write_buffer_merge[2] _________________
+
+random_test = 2
+
+    @pytest.mark.parametrize("random_test", range(5))
+    def test_random_passthrough_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Test Passthrough Case when BUFFER_DEPTH = 1
+      BUFFER_DEPTH = 1
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=19', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=16', '-Pwrite_buffer_merge.BUFFER_DEPTH=1', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+________________ test_random_passthrough_write_buffer_merge[3] _________________
+
+random_test = 3
+
+    @pytest.mark.parametrize("random_test", range(5))
+    def test_random_passthrough_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Test Passthrough Case when BUFFER_DEPTH = 1
+      BUFFER_DEPTH = 1
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=4', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=14', '-Pwrite_buffer_merge.BUFFER_DEPTH=1', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+________________ test_random_passthrough_write_buffer_merge[4] _________________
+
+random_test = 4
+
+    @pytest.mark.parametrize("random_test", range(5))
+    def test_random_passthrough_write_buffer_merge(random_test):
+      # Generate random parameters
+      INPUT_DATA_WIDTH = random.randint(1, 32)  # Random input data width (1 to 32 bits)
+      INPUT_ADDR_WIDTH = random.randint(1, 32)  # Random input address width (1 to 32 bits)
+      # Test Passthrough Case when BUFFER_DEPTH = 1
+      BUFFER_DEPTH = 1
+    
+      # Run the test with the generated parameters
+>     runner(INPUT_DATA_WIDTH=INPUT_DATA_WIDTH, INPUT_ADDR_WIDTH=INPUT_ADDR_WIDTH, BUFFER_DEPTH=BUFFER_DEPTH)
+
+/src/test_runner.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/src/test_runner.py:33: in runner
+    runner.build(
+/usr/local/lib/python3.9/dist-packages/cocotb_tools/runner.py:281: in build
+    self._execute(cmds, cwd=self.build_dir)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+input = None, capture_output = False, timeout = None, check = True
+popenargs = (['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', ...],)
+kwargs = {'cwd': PosixPath('/code/rundir/sim_build'), 'env': {'HASH': '1-create-the-write-buffer-with-merge-logic-rtl', 'HOME':...c9', 'LC_CTYPE': 'C.UTF-8', ...}, 'stderr': -2, 'stdout': <_io.TextIOWrapper name='sim.log' mode='w' encoding='UTF-8'>}
+process = <Popen: returncode: 4 args: ['iverilog', '-o', '/code/rundir/sim_build/sim.v...>
+stdout = None, stderr = None, retcode = 4
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout is given, and the process takes too long, a TimeoutExpired
+        exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['iverilog', '-o', '/code/rundir/sim_build/sim.vvp', '-s', 'write_buffer_merge', '-g2012', '-Pwrite_buffer_merge.INPUT_DATA_WIDTH=10', '-Pwrite_buffer_merge.INPUT_ADDR_WIDTH=8', '-Pwrite_buffer_merge.BUFFER_DEPTH=1', '-s', 'cocotb_iverilog_dump', '-f', '/code/rundir/sim_build/cmds.f', '/code/rtl/write_buffer_merge.sv', '/code/rundir/sim_build/cocotb_iverilog_dump.v']' returned non-zero exit status 4.
+
+/usr/lib/python3.9/subprocess.py:528: CalledProcessError
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[0] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[1] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[2] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[3] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[4] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[5] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[6] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[7] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[8] - subproce...
+FAILED ../../src/test_runner.py::test_random_write_buffer_merge[9] - subproce...
+FAILED ../../src/test_runner.py::test_random_passthrough_write_buffer_merge[0]
+FAILED ../../src/test_runner.py::test_random_passthrough_write_buffer_merge[1]
+FAILED ../../src/test_runner.py::test_random_passthrough_write_buffer_merge[2]
+FAILED ../../src/test_runner.py::test_random_passthrough_write_buffer_merge[3]
+FAILED ../../src/test_runner.py::test_random_passthrough_write_buffer_merge[4]
+============================== 15 failed in 0.55s ==============================
+Cleaning up Docker resources...

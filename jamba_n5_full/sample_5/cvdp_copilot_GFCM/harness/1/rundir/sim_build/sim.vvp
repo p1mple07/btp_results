@@ -1,0 +1,56 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xbe1960 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0xbe1af0 .scope module, "glitch_free_mux" "glitch_free_mux" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk1";
+    .port_info 1 /INPUT 1 "clk2";
+    .port_info 2 /INPUT 1 "sel";
+    .port_info 3 /INPUT 1 "rst_n";
+    .port_info 4 /OUTPUT 1 "clkout";
+L_0x7f63ad2bd018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0xbf62b0_0 .net/2u *"_ivl_0", 0 0, L_0x7f63ad2bd018;  1 drivers
+v0xc17cf0_0 .net *"_ivl_10", 0 0, L_0xc288a0;  1 drivers
+v0xc17dd0_0 .net *"_ivl_2", 31 0, L_0xc18570;  1 drivers
+L_0x7f63ad2bd060 .functor BUFT 1, C4<0000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0xc17e90_0 .net *"_ivl_5", 30 0, L_0x7f63ad2bd060;  1 drivers
+L_0x7f63ad2bd0a8 .functor BUFT 1, C4<00000000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0xc17f70_0 .net/2u *"_ivl_6", 31 0, L_0x7f63ad2bd0a8;  1 drivers
+v0xc18050_0 .net *"_ivl_8", 0 0, L_0xc28730;  1 drivers
+o0x7f63ad306138 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc18110_0 .net "clk1", 0 0, o0x7f63ad306138;  0 drivers
+o0x7f63ad306168 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc181d0_0 .net "clk2", 0 0, o0x7f63ad306168;  0 drivers
+v0xc18290_0 .net "clkout", 0 0, L_0xc28990;  1 drivers
+o0x7f63ad3061c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc18350_0 .net "rst_n", 0 0, o0x7f63ad3061c8;  0 drivers
+o0x7f63ad3061f8 .functor BUFZ 1, c4<z>; HiZ drive
+v0xc18410_0 .net "sel", 0 0, o0x7f63ad3061f8;  0 drivers
+L_0xc18570 .concat [ 1 31 0 0], o0x7f63ad3061f8, L_0x7f63ad2bd060;
+L_0xc28730 .cmp/eq 32, L_0xc18570, L_0x7f63ad2bd0a8;
+L_0xc288a0 .functor MUXZ 1, o0x7f63ad306168, o0x7f63ad306138, L_0xc28730, C4<>;
+L_0xc28990 .functor MUXZ 1, L_0xc288a0, L_0x7f63ad2bd018, o0x7f63ad3061c8, C4<>;
+S_0xbe1c80 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0xbe1c80;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/glitch_free_mux.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xbe1af0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/glitch_free_mux.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

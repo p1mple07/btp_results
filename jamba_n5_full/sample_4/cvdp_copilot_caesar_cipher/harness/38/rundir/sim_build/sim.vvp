@@ -1,0 +1,109 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x260fcb0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x260fe40 .scope module, "caesar_cipher" "caesar_cipher" 3 2;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 8 "input_char";
+    .port_info 1 /INPUT 4 "key";
+    .port_info 2 /OUTPUT 8 "output_char";
+o0x772b6778e018 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x25fd210_0 .net "input_char", 7 0, o0x772b6778e018;  0 drivers
+o0x772b6778e048 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x261fed0_0 .net "key", 3 0, o0x772b6778e048;  0 drivers
+v0x261ffb0_0 .var "output_char", 7 0;
+E_0x25e7ca0 .event anyedge, v0x25fd210_0, v0x261fed0_0;
+S_0x25fd060 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x260fe40;
+T_0 ;
+    %wait E_0x25e7ca0;
+    %pushi/vec4 65, 0, 8; draw_string_vec4
+    %load/vec4 v0x25fd210_0;
+    %cmp/u;
+    %flag_or 5, 4;
+    %flag_get/vec4 5;
+    %jmp/0 T_0.2, 5;
+    %load/vec4 v0x25fd210_0;
+    %pushi/vec4 90, 0, 8; draw_string_vec4
+    %cmp/u;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %and;
+T_0.2;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %load/vec4 v0x25fd210_0;
+    %pad/u 32;
+    %pushi/vec4 65, 0, 32; draw_string_vec4
+    %sub;
+    %load/vec4 v0x261fed0_0;
+    %pad/u 32;
+    %add;
+    %pushi/vec4 26, 0, 32;
+    %mod;
+    %pushi/vec4 65, 0, 32; draw_string_vec4
+    %add;
+    %pad/u 8;
+    %store/vec4 v0x261ffb0_0, 0, 8;
+    %jmp T_0.1;
+T_0.0 ;
+    %pushi/vec4 97, 0, 8; draw_string_vec4
+    %load/vec4 v0x25fd210_0;
+    %cmp/u;
+    %flag_or 5, 4;
+    %flag_get/vec4 5;
+    %jmp/0 T_0.5, 5;
+    %load/vec4 v0x25fd210_0;
+    %pushi/vec4 122, 0, 8; draw_string_vec4
+    %cmp/u;
+    %flag_get/vec4 4;
+    %flag_get/vec4 5;
+    %or;
+    %and;
+T_0.5;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.3, 8;
+    %load/vec4 v0x25fd210_0;
+    %pad/u 32;
+    %pushi/vec4 97, 0, 32; draw_string_vec4
+    %sub;
+    %load/vec4 v0x261fed0_0;
+    %pad/u 32;
+    %add;
+    %pushi/vec4 26, 0, 32;
+    %mod;
+    %pushi/vec4 97, 0, 32; draw_string_vec4
+    %add;
+    %pad/u 8;
+    %store/vec4 v0x261ffb0_0, 0, 8;
+    %jmp T_0.4;
+T_0.3 ;
+    %load/vec4 v0x25fd210_0;
+    %store/vec4 v0x261ffb0_0, 0, 8;
+T_0.4 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x25fd060;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/caesar_cipher.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x260fe40 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/caesar_cipher.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

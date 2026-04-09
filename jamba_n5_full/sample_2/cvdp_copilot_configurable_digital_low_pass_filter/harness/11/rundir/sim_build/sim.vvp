@@ -1,0 +1,99 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x14909a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1490b30 .scope module, "sgd_linear_regression" "sgd_linear_regression" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 26 "x_in";
+    .port_info 3 /INPUT 26 "y_true";
+    .port_info 4 /OUTPUT 26 "w";
+    .port_info 5 /OUTPUT 26 "b";
+P_0x1490cc0 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000011010>;
+P_0x1490d00 .param/l "LEARNING_RATE" 0 3 3, +C4<00000000000000000000000000000010>;
+P_0x1490d40 .param/l "NBW_DELTA" 1 3 15, +C4<00000000000000000000000000000000000000000000000000000000000001010011>;
+P_0x1490d80 .param/l "NBW_ERROR" 1 3 14, +C4<000000000000000000000000000000000000000000000000000000000000110110>;
+P_0x1490dc0 .param/l "NBW_PRED" 1 3 13, +C4<00000000000000000000000000000000000000000000000000000000000110101>;
+v0x14a7610_0 .var/s "b", 25 0;
+o0x78be3529a048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x14cc5f0_0 .net "clk", 0 0, o0x78be3529a048;  0 drivers
+v0x14cc6b0_0 .var/s "delta_b", 82 0;
+v0x14cc770_0 .var/s "delta_w", 82 0;
+v0x14cc850_0 .var/s "error", 53 0;
+o0x78be3529a108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x14cc980_0 .net "reset", 0 0, o0x78be3529a108;  0 drivers
+v0x14cca40_0 .var/s "w", 25 0;
+o0x78be3529a168 .functor BUFZ 26, c4<zzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x14ccb20_0 .net/s "x_in", 25 0, o0x78be3529a168;  0 drivers
+v0x14ccc00_0 .var/s "y_pred", 52 0;
+o0x78be3529a1c8 .functor BUFZ 26, c4<zzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x14ccce0_0 .net/s "y_true", 25 0, o0x78be3529a1c8;  0 drivers
+E_0x14b65c0 .event posedge, v0x14cc980_0, v0x14cc5f0_0;
+    .scope S_0x1490b30;
+T_0 ;
+    %wait E_0x14b65c0;
+    %load/vec4 v0x14cc980_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 26;
+    %assign/vec4 v0x14cca40_0, 0;
+    %pushi/vec4 0, 0, 26;
+    %assign/vec4 v0x14a7610_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x14cca40_0;
+    %pad/s 53;
+    %load/vec4 v0x14ccb20_0;
+    %pad/s 53;
+    %mul;
+    %load/vec4 v0x14a7610_0;
+    %pad/s 53;
+    %add;
+    %store/vec4 v0x14ccc00_0, 0, 53;
+    %load/vec4 v0x14ccce0_0;
+    %pad/s 54;
+    %load/vec4 v0x14ccc00_0;
+    %pad/s 54;
+    %sub;
+    %store/vec4 v0x14cc850_0, 0, 54;
+    %load/vec4 v0x14cc850_0;
+    %pad/s 83;
+    %muli 2, 0, 83;
+    %load/vec4 v0x14ccb20_0;
+    %pad/s 83;
+    %mul;
+    %store/vec4 v0x14cc770_0, 0, 83;
+    %load/vec4 v0x14cc850_0;
+    %pad/s 83;
+    %muli 2, 0, 83;
+    %store/vec4 v0x14cc6b0_0, 0, 83;
+    %load/vec4 v0x14cca40_0;
+    %pad/s 83;
+    %load/vec4 v0x14cc770_0;
+    %add;
+    %pad/s 26;
+    %store/vec4 v0x14cca40_0, 0, 26;
+    %load/vec4 v0x14a7610_0;
+    %pad/s 83;
+    %load/vec4 v0x14cc6b0_0;
+    %add;
+    %pad/s 26;
+    %store/vec4 v0x14a7610_0, 0, 26;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sgd_linear_regression.sv";

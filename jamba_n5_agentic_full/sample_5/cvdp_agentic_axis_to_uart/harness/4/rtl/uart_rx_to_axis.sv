@@ -1,0 +1,5 @@
+localparam CLK_FREQ_DEFAULT = 100000000; // 100 MHz
+localparam BIT_RATE_DEFAULT = 115200;
+localparam BIT_PER_WORD_DEFAULT = 8;
+localparam PARITY_BIT_DEFAULT = 0;
+localparam STOP_BITS_NUM_DEFAULT = 1;

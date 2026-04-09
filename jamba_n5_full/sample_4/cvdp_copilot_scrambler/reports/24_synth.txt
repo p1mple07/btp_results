@@ -1,0 +1,1607 @@
+Running harness with project name: cvdp_copilot_scrambler_24_1775077460
+#1 [internal] load local bake definitions
+#1 reading from stdin 714B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.1s done
+#5 DONE 0.2s
+
+#6 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#6 DONE 0.5s
+
+#7 [3/4] RUN python3 ./get-pip.py
+#7 CACHED
+
+#8 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:0fc088530152ce23245e2f039d228067c54cdd469e2474413d6b7f4d9bb7fbd1
+#10 exporting manifest sha256:0fc088530152ce23245e2f039d228067c54cdd469e2474413d6b7f4d9bb7fbd1 0.2s done
+#10 exporting config sha256:ffa45df0f08f401b00dd4b1be2591fb7c516e0ec3d07908bc76f5af8a61db952
+#10 exporting config sha256:ffa45df0f08f401b00dd4b1be2591fb7c516e0ec3d07908bc76f5af8a61db952 0.2s done
+#10 exporting attestation manifest sha256:5303307a162929f99cd39060a388e36e134686ffadc379666eb1de2bf9ae3413
+#10 exporting attestation manifest sha256:5303307a162929f99cd39060a388e36e134686ffadc379666eb1de2bf9ae3413 0.5s done
+#10 exporting manifest list sha256:b3ff01c3ede336d17a3b4bc4e69b928ae0629cf5be66425bb0ec8c162b8fa3f7
+#10 exporting manifest list sha256:b3ff01c3ede336d17a3b4bc4e69b928ae0629cf5be66425bb0ec8c162b8fa3f7 0.2s done
+#10 naming to docker.io/library/cvdp_copilot_scrambler_24_1775077460-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_scrambler_24_1775077460-synth:latest 0.1s done
+#10 unpacking to docker.io/library/cvdp_copilot_scrambler_24_1775077460-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_scrambler_24_1775077460-synth:latest 1.3s done
+#10 DONE 2.9s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/intra_block.sv
+Parsing SystemVerilog input from `/code/rtl/intra_block.sv' to AST representation.
+Generating RTLIL representation for module `\intra_block'.
+Warning: Replacing memory \output_index with list of registers. See /code/rtl/intra_block.sv:31, /code/rtl/intra_block.sv:30
+Warning: Replacing memory \c_prime with list of registers. See /code/rtl/intra_block.sv:18
+Warning: Replacing memory \r_prime with list of registers. See /code/rtl/intra_block.sv:17
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \intra_block
+
+2.2. Analyzing design hierarchy..
+Top module:  \intra_block
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module intra_block...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 256 empty switches in `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+Cleaned up 256 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 1538 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+Creating decoders for process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\intra_block.\out_data' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\j' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[0]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[1]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[2]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[3]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[4]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[5]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[6]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[7]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[8]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[9]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[10]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[11]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[12]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[13]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[14]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[15]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[16]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[17]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[18]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[19]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[20]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[21]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[22]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[23]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[24]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[25]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[26]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[27]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[28]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[29]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[30]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[31]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[32]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[33]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[34]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[35]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[36]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[37]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[38]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[39]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[40]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[41]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[42]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[43]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[44]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[45]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[46]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[47]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[48]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[49]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[50]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[51]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[52]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[53]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[54]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[55]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[56]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[57]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[58]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[59]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[60]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[61]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[62]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[63]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[64]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[65]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[66]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[67]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[68]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[69]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[70]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[71]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[72]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[73]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[74]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[75]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[76]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[77]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[78]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[79]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[80]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[81]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[82]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[83]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[84]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[85]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[86]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[87]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[88]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[89]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[90]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[91]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[92]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[93]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[94]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[95]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[96]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[97]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[98]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[99]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[100]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[101]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[102]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[103]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[104]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[105]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[106]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[107]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[108]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[109]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[110]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[111]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[112]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[113]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[114]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[115]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[116]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[117]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[118]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[119]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[120]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[121]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[122]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[123]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[124]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[125]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[126]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[127]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[128]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[129]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[130]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[131]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[132]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[133]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[134]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[135]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[136]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[137]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[138]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[139]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[140]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[141]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[142]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[143]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[144]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[145]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[146]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[147]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[148]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[149]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[150]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[151]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[152]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[153]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[154]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[155]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[156]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[157]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[158]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[159]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[160]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[161]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[162]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[163]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[164]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[165]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[166]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[167]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[168]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[169]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[170]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[171]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[172]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[173]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[174]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[175]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[176]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[177]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[178]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[179]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[180]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[181]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[182]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[183]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[184]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[185]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[186]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[187]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[188]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[189]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[190]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[191]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[192]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[193]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[194]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[195]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[196]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[197]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[198]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[199]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[200]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[201]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[202]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[203]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[204]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[205]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[206]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[207]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[208]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[209]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[210]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[211]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[212]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[213]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[214]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[215]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[216]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[217]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[218]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[219]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[220]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[221]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[222]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[223]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[224]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[225]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[226]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[227]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[228]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[229]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[230]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[231]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[232]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[233]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[234]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[235]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[236]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[237]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[238]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[239]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[240]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[241]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[242]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[243]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[244]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[245]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[246]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[247]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[248]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[249]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[250]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[251]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[252]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[253]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[254]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.\output_index[255]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+No latch inferred for signal `\intra_block.$fordecl_block$1.i' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[0]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[1]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[2]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[3]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[4]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[5]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[6]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[7]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[8]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[9]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[10]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[11]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[12]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[13]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[14]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[15]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[16]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[17]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[18]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[19]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[20]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[21]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[22]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[23]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[24]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[25]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[26]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[27]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[28]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[29]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[30]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[31]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[32]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[33]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[34]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[35]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[36]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[37]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[38]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[39]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[40]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[41]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[42]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[43]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[44]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[45]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[46]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[47]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[48]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[49]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[50]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[51]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[52]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[53]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[54]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[55]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[56]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[57]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[58]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[59]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[60]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[61]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[62]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[63]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[64]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[65]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[66]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[67]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[68]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[69]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[70]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[71]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[72]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[73]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[74]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[75]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[76]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[77]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[78]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[79]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[80]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[81]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[82]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[83]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[84]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[85]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[86]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[87]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[88]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[89]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[90]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[91]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[92]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[93]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[94]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[95]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[96]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[97]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[98]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[99]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[100]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[101]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[102]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[103]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[104]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[105]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[106]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[107]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[108]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[109]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[110]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[111]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[112]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[113]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[114]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[115]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[116]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[117]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[118]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[119]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[120]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[121]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[122]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[123]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[124]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[125]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[126]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[127]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[128]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[129]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[130]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[131]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[132]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[133]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[134]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[135]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[136]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[137]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[138]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[139]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[140]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[141]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[142]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[143]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[144]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[145]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[146]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[147]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[148]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[149]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[150]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[151]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[152]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[153]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[154]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[155]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[156]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[157]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[158]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[159]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[160]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[161]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[162]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[163]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[164]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[165]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[166]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[167]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[168]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[169]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[170]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[171]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[172]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[173]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[174]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[175]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[176]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[177]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[178]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[179]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[180]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[181]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[182]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[183]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[184]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[185]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[186]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[187]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[188]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[189]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[190]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[191]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[192]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[193]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[194]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[195]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[196]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[197]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[198]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[199]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[200]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[201]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[202]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[203]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[204]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[205]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[206]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[207]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[208]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[209]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[210]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[211]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[212]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[213]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[214]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[215]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[216]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[217]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[218]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[219]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[220]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[221]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[222]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[223]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[224]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[225]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[226]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[227]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[228]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[229]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[230]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[231]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[232]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[233]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[234]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[235]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[236]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[237]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[238]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[239]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[240]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[241]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[242]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[243]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[244]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[245]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[246]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[247]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[248]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[249]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[250]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[251]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[252]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[253]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[254]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\r_prime[255]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[0]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[1]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[2]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[3]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[4]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[5]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[6]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[7]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[8]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[9]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[10]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[11]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[12]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[13]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[14]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[15]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[16]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[17]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[18]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[19]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[20]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[21]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[22]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[23]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[24]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[25]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[26]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[27]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[28]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[29]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[30]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[31]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[32]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[33]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[34]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[35]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[36]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[37]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[38]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[39]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[40]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[41]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[42]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[43]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[44]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[45]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[46]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[47]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[48]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[49]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[50]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[51]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[52]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[53]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[54]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[55]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[56]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[57]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[58]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[59]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[60]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[61]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[62]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[63]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[64]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[65]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[66]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[67]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[68]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[69]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[70]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[71]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[72]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[73]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[74]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[75]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[76]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[77]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[78]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[79]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[80]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[81]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[82]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[83]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[84]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[85]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[86]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[87]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[88]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[89]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[90]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[91]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[92]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[93]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[94]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[95]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[96]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[97]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[98]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[99]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[100]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[101]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[102]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[103]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[104]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[105]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[106]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[107]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[108]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[109]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[110]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[111]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[112]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[113]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[114]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[115]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[116]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[117]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[118]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[119]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[120]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[121]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[122]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[123]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[124]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[125]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[126]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[127]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[128]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[129]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[130]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[131]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[132]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[133]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[134]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[135]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[136]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[137]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[138]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[139]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[140]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[141]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[142]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[143]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[144]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[145]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[146]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[147]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[148]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[149]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[150]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[151]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[152]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[153]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[154]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[155]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[156]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[157]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[158]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[159]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[160]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[161]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[162]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[163]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[164]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[165]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[166]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[167]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[168]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[169]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[170]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[171]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[172]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[173]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[174]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[175]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[176]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[177]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[178]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[179]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[180]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[181]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[182]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[183]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[184]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[185]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[186]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[187]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[188]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[189]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[190]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[191]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[192]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[193]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[194]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[195]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[196]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[197]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[198]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[199]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[200]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[201]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[202]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[203]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[204]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[205]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[206]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[207]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[208]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[209]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[210]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[211]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[212]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[213]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[214]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[215]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[216]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[217]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[218]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[219]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[220]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[221]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[222]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[223]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[224]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[225]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[226]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[227]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[228]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[229]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[230]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[231]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[232]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[233]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[234]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[235]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[236]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[237]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[238]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[239]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[240]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[241]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[242]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[243]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[244]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[245]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[246]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[247]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[248]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[249]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[250]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[251]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[252]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[253]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[254]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+No latch inferred for signal `\intra_block.\c_prime[255]' from process `\intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `intra_block.$proc$/code/rtl/intra_block.sv:0$6'.
+Removing empty process `intra_block.$proc$/code/rtl/intra_block.sv:0$4'.
+Cleaned up 0 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+<suppressed ~768 debug messages>
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+Removed 0 unused cells and 2053 unused wires.
+<suppressed ~3 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+5.16. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing FSM pass (extract and optimize FSM).
+
+6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+7.9. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing MEMORY pass.
+
+8.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+8.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+8.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+8.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+9.9. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing TECHMAP pass (map to technology primitives).
+
+10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+11.9. Finished OPT passes. (There is nothing left to do.)
+
+12. Executing SYNTH pass.
+
+12.1. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1.1. Analyzing design hierarchy..
+Top module:  \intra_block
+
+12.1.2. Analyzing design hierarchy..
+Top module:  \intra_block
+Removed 0 unused modules.
+
+12.2. Executing PROC pass (convert processes to netlists).
+
+12.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+12.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+12.2.4. Executing PROC_INIT pass (extract init attributes).
+
+12.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+12.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+12.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+12.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+12.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+12.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+12.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.5. Executing CHECK pass (checking for obvious problems).
+Checking module intra_block...
+Found and reported 0 problems.
+
+12.6. Executing OPT pass (performing simple optimizations).
+
+12.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+12.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.6.9. Finished OPT passes. (There is nothing left to do.)
+
+12.7. Executing FSM pass (extract and optimize FSM).
+
+12.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+12.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+12.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+12.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+12.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+12.8. Executing OPT pass (performing simple optimizations).
+
+12.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+12.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.8.9. Finished OPT passes. (There is nothing left to do.)
+
+12.9. Executing WREDUCE pass (reducing word size of cells).
+
+12.10. Executing PEEPOPT pass (run peephole optimizers).
+
+12.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module intra_block:
+  created 0 $alu and 0 $macc cells.
+
+12.13. Executing SHARE pass (SAT-based resource sharing).
+
+12.14. Executing OPT pass (performing simple optimizations).
+
+12.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+12.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.14.9. Finished OPT passes. (There is nothing left to do.)
+
+12.15. Executing MEMORY pass.
+
+12.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+12.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+12.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+12.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+12.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+12.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+12.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+12.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+12.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.17. Executing OPT pass (performing simple optimizations).
+
+12.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.17.5. Finished fast OPT passes.
+
+12.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+12.19. Executing OPT pass (performing simple optimizations).
+
+12.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \intra_block..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \intra_block.
+Performed a total of 0 changes.
+
+12.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.19.6. Executing OPT_SHARE pass.
+
+12.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.19.10. Finished OPT passes. (There is nothing left to do.)
+
+12.20. Executing TECHMAP pass (map to technology primitives).
+
+12.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+12.20.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+12.21. Executing OPT pass (performing simple optimizations).
+
+12.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.21.5. Finished fast OPT passes.
+
+12.22. Executing ABC pass (technology mapping using ABC).
+
+12.22.1. Extracting gate netlist of module `\intra_block' to `<abc-temp-dir>/input.blif'..
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+12.23. Executing OPT pass (performing simple optimizations).
+
+12.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module intra_block.
+
+12.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\intra_block'.
+Removed a total of 0 cells.
+
+12.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \intra_block..
+
+12.23.5. Finished fast OPT passes.
+
+12.24. Executing HIERARCHY pass (managing design hierarchy).
+
+12.24.1. Analyzing design hierarchy..
+Top module:  \intra_block
+
+12.24.2. Analyzing design hierarchy..
+Top module:  \intra_block
+Removed 0 unused modules.
+
+12.25. Printing statistics.
+
+=== intra_block ===
+
+   Number of wires:                771
+   Number of wire bits:           4640
+   Number of public wires:         771
+   Number of public wire bits:    4640
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  0
+
+12.26. Executing CHECK pass (checking for obvious problems).
+Checking module intra_block...
+Found and reported 0 problems.
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
+Dumping module `\intra_block'.
+
+Warnings: 3 unique messages, 3 total
+End of script. Logfile hash: 3d92a6dbc2, CPU: user 0.48s system 0.03s, MEM: 49.60 MB peak
+Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+Time spent: 36% 3x check (0 sec), 23% 4x read_verilog (0 sec), ...
+
+Yosys Synthesis Log Comparison:
+{'Number of wires': 771, 'Number of memories': 0, 'Number of processes': 0, 'Number of cells': 0}
+False
+wires: 771 -> 771 (No significant improvement, Reduction: 0.00% below threshold 66%) -- FAIL
+FAILED
+
+=================================== FAILURES ===================================
+__________________________________ test_yosys __________________________________
+
+    def test_yosys():
+    
+        # Check for logs
+        log_file = "/code/rundir/synth.log"
+        error = 0
+        if os.path.exists(log_file):
+            os.remove(log_file)
+            error = 0 if not os.path.exists(log_file) else 1
+    
+        # Verifica se ocorreu algum erro
+        assert error == 0, "Error to remove previous synth log."
+        # Run synthesis
+        synth()
+    
+        # Compare statistics from two Yosys logs and determine if synthesis improved or failed.
+        stats_after, error_after = parse_yosys_log(log_file)
+    
+        print("\nYosys Synthesis Log Comparison:")
+        print(stats_after)
+        print(error_after)
+    
+        if os.environ.get("ERROR") is not None:
+            print("Improvement detected: Errors found in the before log but none in the after log. RTL is now synthesizable.")
+            return True
+        if error_after:
+            print("No upgrades in synthesis: Errors detected in the after log. Synthesis failed.")
+            return False
+    
+        improvs = os.environ.get("IMPROVEMENTS")
+        improvs = improvs.split(" ")
+    
+        improvement_found = False
+    
+        for key in improvs:
+    
+            up_key = str(key).upper()
+            value_before = int(os.environ.get(up_key))
+            value_after  = stats_after[f"Number of {key}"]
+    
+            difference = value_after - value_before
+            variation = ((difference) / value_before) * 100
+    
+            percent_limit = int(os.environ.get(f"PERCENT_{up_key}", "0"))
+    
+            variation = ((value_before - value_after) / value_before) * 100
+    
+            if difference < 0 and variation >= percent_limit:
+                improvement_found = True
+                print(f"{key}: {value_before} -> {value_after} "
+                      f"(Improved by {abs(difference)}, Reduction: {variation:.2f}% meets threshold {percent_limit}%) -- PASS")
+            else:
+                print(f"{key}: {value_before} -> {value_after} "
+                      f"(No significant improvement, Reduction: {variation:.2f}% below threshold {percent_limit}%) -- FAIL")
+    
+    
+>       assert improvement_found, "Optimization failed: No improvements found in the log file."
+E       AssertionError: Optimization failed: No improvements found in the log file.
+E       assert False
+
+/src/synth.py:87: AssertionError
+=========================== short test summary info ============================
+FAILED ../../src/synth.py::test_yosys - AssertionError: Optimization failed: ...
+============================== 1 failed in 0.53s ===============================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_scrambler_24_1775077460-synth:latest
+Deleted: sha256:b3ff01c3ede336d17a3b4bc4e69b928ae0629cf5be66425bb0ec8c162b8fa3f7

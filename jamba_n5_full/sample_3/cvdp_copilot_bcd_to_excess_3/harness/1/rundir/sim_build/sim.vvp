@@ -1,0 +1,58 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x236c470 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x236c600 .scope module, "bcd_to_excess_3" "bcd_to_excess_3" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 4 "bcd";
+    .port_info 1 /OUTPUT 4 "excess3";
+    .port_info 2 /OUTPUT 1 "error";
+v0x235c330_0 .net *"_ivl_0", 31 0, L_0x237ea40;  1 drivers
+L_0x7969f88b20a8 .functor BUFT 1, C4<0000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x237df50_0 .net *"_ivl_11", 27 0, L_0x7969f88b20a8;  1 drivers
+L_0x7969f88b20f0 .functor BUFT 1, C4<00000000000000000000000000001010>, C4<0>, C4<0>, C4<0>;
+v0x237e030_0 .net/2u *"_ivl_12", 31 0, L_0x7969f88b20f0;  1 drivers
+v0x237e0f0_0 .net *"_ivl_14", 0 0, L_0x238ee00;  1 drivers
+L_0x7969f88b2138 .functor BUFT 1, C4<0011>, C4<0>, C4<0>, C4<0>;
+v0x237e1b0_0 .net/2u *"_ivl_16", 3 0, L_0x7969f88b2138;  1 drivers
+v0x237e2e0_0 .net *"_ivl_18", 3 0, L_0x238eff0;  1 drivers
+L_0x7969f88b2180 .functor BUFT 1, C4<0000>, C4<0>, C4<0>, C4<0>;
+v0x237e3c0_0 .net/2u *"_ivl_20", 3 0, L_0x7969f88b2180;  1 drivers
+L_0x7969f88b2018 .functor BUFT 1, C4<0000000000000000000000000000>, C4<0>, C4<0>, C4<0>;
+v0x237e4a0_0 .net *"_ivl_3", 27 0, L_0x7969f88b2018;  1 drivers
+L_0x7969f88b2060 .functor BUFT 1, C4<00000000000000000000000000001010>, C4<0>, C4<0>, C4<0>;
+v0x237e580_0 .net/2u *"_ivl_4", 31 0, L_0x7969f88b2060;  1 drivers
+v0x237e660_0 .net *"_ivl_8", 31 0, L_0x238ecc0;  1 drivers
+o0x7969f88fb1f8 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x237e740_0 .net "bcd", 3 0, o0x7969f88fb1f8;  0 drivers
+v0x237e820_0 .net "error", 0 0, L_0x238eb50;  1 drivers
+v0x237e8e0_0 .net "excess3", 3 0, L_0x238f150;  1 drivers
+L_0x237ea40 .concat [ 4 28 0 0], o0x7969f88fb1f8, L_0x7969f88b2018;
+L_0x238eb50 .cmp/ge 32, L_0x237ea40, L_0x7969f88b2060;
+L_0x238ecc0 .concat [ 4 28 0 0], o0x7969f88fb1f8, L_0x7969f88b20a8;
+L_0x238ee00 .cmp/gt 32, L_0x7969f88b20f0, L_0x238ecc0;
+L_0x238eff0 .arith/sum 4, o0x7969f88fb1f8, L_0x7969f88b2138;
+L_0x238f150 .functor MUXZ 4, L_0x7969f88b2180, L_0x238eff0, L_0x238ee00, C4<>;
+S_0x236c790 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x236c790;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/bcd_to_excess_3.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x236c600 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/bcd_to_excess_3.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

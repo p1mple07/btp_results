@@ -1,0 +1,658 @@
+Running harness with project name: cvdp_copilot_rounding_1_1775134251
+#1 [internal] load local bake definitions
+#1 reading from stdin 700B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 212B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.4s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.1s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.2s done
+#5 DONE 0.2s
+
+#6 [2/2] RUN pip3 install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:3e0231acdb95f94402dd090848d39e9ff8cf17870b76a1a04a0179e3b89a7646
+#7 exporting manifest sha256:3e0231acdb95f94402dd090848d39e9ff8cf17870b76a1a04a0179e3b89a7646 0.2s done
+#7 exporting config sha256:4e367b74d6a0e299ba65ec2aaeec7710f47debc0be45a2ee21a32cae77019af8
+#7 exporting config sha256:4e367b74d6a0e299ba65ec2aaeec7710f47debc0be45a2ee21a32cae77019af8 0.2s done
+#7 exporting attestation manifest sha256:9fa0a2e80f1325a3b2efc50ff474291f1310ae57675f1ee7640788429dec901c
+#7 exporting attestation manifest sha256:9fa0a2e80f1325a3b2efc50ff474291f1310ae57675f1ee7640788429dec901c 0.5s done
+#7 exporting manifest list sha256:7b3451b73d7a37cd7dc5e73ab8cd7a6f2f364839b00a19fbba1653b5881120c0
+#7 exporting manifest list sha256:7b3451b73d7a37cd7dc5e73ab8cd7a6f2f364839b00a19fbba1653b5881120c0 0.3s done
+#7 naming to docker.io/library/cvdp_copilot_rounding_1_1775134251-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_rounding_1_1775134251-direct:latest 0.0s done
+#7 unpacking to docker.io/library/cvdp_copilot_rounding_1_1775134251-direct:latest 0.0s done
+#7 DONE 1.6s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 4 items
+
+../../src/test_runner.py::test_rounding[8] FAILED                        [ 25%]
+../../src/test_runner.py::test_rounding[16] FAILED                       [ 50%]
+../../src/test_runner.py::test_rounding[24] FAILED                       [ 75%]
+../../src/test_runner.py::test_rounding[32] FAILED                       [100%]
+
+=================================== FAILURES ===================================
+_______________________________ test_rounding[8] _______________________________
+
+WIDTH = 8
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+    
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:43: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 8
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=8 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134258
+     0.00ns INFO     cocotb.regression                  Found test test_rounding.rounding_test
+     0.00ns INFO     cocotb.regression                  running rounding_test (1/1)
+                                                          Cocotb testbench for the rounding module.
+     1.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 255, Got 63
+                                                        assert 00111111 == 255
+                                                         +  where 00111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     2.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 128, Got 63
+                                                        assert 00111111 == 128
+                                                         +  where 00111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     3.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000 == 1
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     4.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 255, Got 64
+                                                        assert 01000000 == 255
+                                                         +  where 01000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     5.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 64, Got 16
+                                                        assert 00010000 == 64
+                                                         +  where 00010000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     6.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000 == 2
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     7.00ns INFO     cocotb.rounding                    PASS: in_data=00, rm=001, sign=1, roundin=1, stickyin=1
+     8.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 255, Got 63
+                                                        assert 00111111 == 255
+                                                         +  where 00111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     9.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000 == 1
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    10.00ns INFO     cocotb.rounding                    PASS: in_data=00, rm=001, sign=1, roundin=1, stickyin=1
+    11.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 64
+                                                        assert 01000000 == 0
+                                                         +  where 01000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    12.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 255, Got 64
+                                                        assert 01000000 == 255
+                                                         +  where 01000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    13.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000 == 2
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    14.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000 == 2
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    15.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000 == 2
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    16.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 64
+                                                        assert 01000000 == 0
+                                                         +  where 01000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    17.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000 == 1
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    18.00ns INFO     cocotb.rounding                    PASS: in_data=00, rm=001, sign=0, roundin=0, stickyin=0
+    19.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000 == 1
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    20.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000 == 1
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    21.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16, Got 7
+                                                        assert 00000111 == 16
+                                                         +  where 00000111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    22.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 64
+                                                        assert 01000000 == 0
+                                                         +  where 01000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000 == 2
+                                                         +  where 00000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns INFO     cocotb.rounding                    Test completed: Passed = 3, Failed = 20
+    23.00ns INFO     cocotb.regression                  rounding_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_rounding.py", line 122, in rounding_test
+                                                            assert fail_count == 0, f"Some tests failed: {fail_count} failures."
+                                                        AssertionError: Some tests failed: 20 failures.
+                                                        assert 20 == 0
+    23.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_rounding.rounding_test    FAIL          23.00           0.00       5269.46  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                 23.00           0.03        696.73  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/rounding.fst opened for output.
+______________________________ test_rounding[16] _______________________________
+
+WIDTH = 16
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+    
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:43: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 16
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=16 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134258
+     0.00ns INFO     cocotb.regression                  Found test test_rounding.rounding_test
+     0.00ns INFO     cocotb.regression                  running rounding_test (1/1)
+                                                          Cocotb testbench for the rounding module.
+     1.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 65535, Got 16383
+                                                        assert 0011111111111111 == 65535
+                                                         +  where 0011111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     2.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 32768, Got 16383
+                                                        assert 0011111111111111 == 32768
+                                                         +  where 0011111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     3.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 0000000000000000 == 1
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     4.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 65535, Got 16384
+                                                        assert 0100000000000000 == 65535
+                                                         +  where 0100000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     5.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16384, Got 4096
+                                                        assert 0001000000000000 == 16384
+                                                         +  where 0001000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     6.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 0000000000000000 == 2
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     7.00ns INFO     cocotb.rounding                    PASS: in_data=0000, rm=001, sign=1, roundin=1, stickyin=1
+     8.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 65535, Got 16383
+                                                        assert 0011111111111111 == 65535
+                                                         +  where 0011111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     9.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 0000000000000000 == 1
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    10.00ns INFO     cocotb.rounding                    PASS: in_data=0000, rm=001, sign=1, roundin=1, stickyin=1
+    11.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 16384
+                                                        assert 0100000000000000 == 0
+                                                         +  where 0100000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    12.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 65535, Got 16384
+                                                        assert 0100000000000000 == 65535
+                                                         +  where 0100000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    13.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 0000000000000000 == 2
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    14.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 0000000000000000 == 2
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    15.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 0000000000000000 == 2
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    16.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 16384
+                                                        assert 0100000000000000 == 0
+                                                         +  where 0100000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    17.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 0000000000000000 == 1
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    18.00ns INFO     cocotb.rounding                    PASS: in_data=0000, rm=001, sign=0, roundin=0, stickyin=0
+    19.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 0000000000000000 == 1
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    20.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 0000000000000000 == 1
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    21.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16, Got 7
+                                                        assert 0000000000000111 == 16
+                                                         +  where 0000000000000111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    22.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 16384
+                                                        assert 0100000000000000 == 0
+                                                         +  where 0100000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 0000000000000000 == 2
+                                                         +  where 0000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns INFO     cocotb.rounding                    Test completed: Passed = 3, Failed = 20
+    23.00ns INFO     cocotb.regression                  rounding_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_rounding.py", line 122, in rounding_test
+                                                            assert fail_count == 0, f"Some tests failed: {fail_count} failures."
+                                                        AssertionError: Some tests failed: 20 failures.
+                                                        assert 20 == 0
+    23.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_rounding.rounding_test    FAIL          23.00           0.00       5099.01  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                 23.00           0.03        682.00  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/rounding.fst opened for output.
+______________________________ test_rounding[24] _______________________________
+
+WIDTH = 24
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+    
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:43: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 24
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=24 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134258
+     0.00ns INFO     cocotb.regression                  Found test test_rounding.rounding_test
+     0.00ns INFO     cocotb.regression                  running rounding_test (1/1)
+                                                          Cocotb testbench for the rounding module.
+     1.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16777215, Got 4194303
+                                                        assert 001111111111111111111111 == 16777215
+                                                         +  where 001111111111111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     2.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388608, Got 4194303
+                                                        assert 001111111111111111111111 == 8388608
+                                                         +  where 001111111111111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     3.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 000000000000000000000000 == 1
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     4.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16777215, Got 4194304
+                                                        assert 010000000000000000000000 == 16777215
+                                                         +  where 010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     5.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 4194304, Got 1048576
+                                                        assert 000100000000000000000000 == 4194304
+                                                         +  where 000100000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     6.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 000000000000000000000000 == 2
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     7.00ns INFO     cocotb.rounding                    PASS: in_data=000000, rm=001, sign=1, roundin=1, stickyin=1
+     8.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16777215, Got 4194303
+                                                        assert 001111111111111111111111 == 16777215
+                                                         +  where 001111111111111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     9.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 000000000000000000000000 == 1
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    10.00ns INFO     cocotb.rounding                    PASS: in_data=000000, rm=001, sign=1, roundin=1, stickyin=1
+    11.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 4194304
+                                                        assert 010000000000000000000000 == 0
+                                                         +  where 010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    12.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16777215, Got 4194304
+                                                        assert 010000000000000000000000 == 16777215
+                                                         +  where 010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    13.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 000000000000000000000000 == 2
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    14.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 000000000000000000000000 == 2
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    15.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 000000000000000000000000 == 2
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    16.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388608, Got 2097152
+                                                        assert 001000000000000000000000 == 8388608
+                                                         +  where 001000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    17.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388609, Got 2097152
+                                                        assert 001000000000000000000000 == 8388609
+                                                         +  where 001000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    18.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388608, Got 4194304
+                                                        assert 010000000000000000000000 == 8388608
+                                                         +  where 010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    19.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 000000000000000000000000 == 1
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    20.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 000000000000000000000000 == 1
+                                                         +  where 000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    21.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16, Got 7
+                                                        assert 000000000000000000000111 == 16
+                                                         +  where 000000000000000000000111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    22.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 0, Got 4194304
+                                                        assert 010000000000000000000000 == 0
+                                                         +  where 010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388610, Got 2097152
+                                                        assert 001000000000000000000000 == 8388610
+                                                         +  where 001000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns INFO     cocotb.rounding                    Test completed: Passed = 2, Failed = 21
+    23.00ns INFO     cocotb.regression                  rounding_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_rounding.py", line 122, in rounding_test
+                                                            assert fail_count == 0, f"Some tests failed: {fail_count} failures."
+                                                        AssertionError: Some tests failed: 21 failures.
+                                                        assert 21 == 0
+    23.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_rounding.rounding_test    FAIL          23.00           0.00       5051.75  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                 23.00           0.03        680.34  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/rounding.fst opened for output.
+______________________________ test_rounding[32] _______________________________
+
+WIDTH = 32
+
+    @pytest.mark.parametrize("WIDTH", width_values)
+    def test_rounding(WIDTH):
+        """
+        Parameterized test_runner to verify the rounding module for multiple WIDTH values.
+        """
+        print(f"Running simulation with WIDTH = {WIDTH}")
+        runner = get_runner(sim)
+    
+        # Build and simulate with parameters
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            parameters={
+                'WIDTH': WIDTH
+            },
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file=f"sim_WIDTH_{WIDTH}.log"
+        )
+    
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+            waves=True
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:43: SystemExit
+----------------------------- Captured stdout call -----------------------------
+Running simulation with WIDTH = 32
+Removing: /code/rundir/sim_build
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s rounding -g2012 -Prounding.WIDTH=32 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/rounding.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134259
+     0.00ns INFO     cocotb.regression                  Found test test_rounding.rounding_test
+     0.00ns INFO     cocotb.regression                  running rounding_test (1/1)
+                                                          Cocotb testbench for the rounding module.
+     1.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 4294967295, Got 1073741823
+                                                        assert 00111111111111111111111111111111 == 4294967295
+                                                         +  where 00111111111111111111111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     2.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2147483648, Got 1073741823
+                                                        assert 00111111111111111111111111111111 == 2147483648
+                                                         +  where 00111111111111111111111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     3.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000000000000000000000000000 == 1
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     4.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 4294967295, Got 0
+                                                        assert 00000000000000000000000000000000 == 4294967295
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     5.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1073741824, Got 268435456
+                                                        assert 00010000000000000000000000000000 == 1073741824
+                                                         +  where 00010000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     6.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000000000000000000000000000 == 2
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     7.00ns INFO     cocotb.rounding                    PASS: in_data=00000000, rm=001, sign=1, roundin=1, stickyin=1
+     8.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 4294967295, Got 1073741823
+                                                        assert 00111111111111111111111111111111 == 4294967295
+                                                         +  where 00111111111111111111111111111111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+     9.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000000000000000000000000000 == 1
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    10.00ns INFO     cocotb.rounding                    PASS: in_data=00000000, rm=001, sign=1, roundin=1, stickyin=1
+    11.00ns INFO     cocotb.rounding                    PASS: in_data=FFFFFFFF, rm=010, sign=0, roundin=1, stickyin=1
+    12.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 4294967295, Got 0
+                                                        assert 00000000000000000000000000000000 == 4294967295
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    13.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000000000000000000000000000 == 2
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    14.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000000000000000000000000000 == 2
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    15.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 2, Got 0
+                                                        assert 00000000000000000000000000000000 == 2
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    16.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388608, Got 2097152
+                                                        assert 00000000001000000000000000000000 == 8388608
+                                                         +  where 00000000001000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    17.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388609, Got 2097152
+                                                        assert 00000000001000000000000000000000 == 8388609
+                                                         +  where 00000000001000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    18.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388608, Got 4194304
+                                                        assert 00000000010000000000000000000000 == 8388608
+                                                         +  where 00000000010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    19.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000000000000000000000000000 == 1
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    20.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 1, Got 0
+                                                        assert 00000000000000000000000000000000 == 1
+                                                         +  where 00000000000000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    21.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16, Got 7
+                                                        assert 00000000000000000000000000000111 == 16
+                                                         +  where 00000000000000000000000000000111 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    22.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 16777216, Got 4194304
+                                                        assert 00000000010000000000000000000000 == 16777216
+                                                         +  where 00000000010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns ERROR    cocotb.rounding                    FAIL: OUT_DATA MISMATCH: Expected 8388610, Got 4194304
+                                                        assert 00000000010000000000000000000000 == 8388610
+                                                         +  where 00000000010000000000000000000000 = ModifiableObject(rounding.out_data).value
+                                                         +    where ModifiableObject(rounding.out_data) = HierarchyObject(rounding).out_data
+    23.00ns INFO     cocotb.rounding                    Test completed: Passed = 3, Failed = 20
+    23.00ns INFO     cocotb.regression                  rounding_test failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_rounding.py", line 122, in rounding_test
+                                                            assert fail_count == 0, f"Some tests failed: {fail_count} failures."
+                                                        AssertionError: Some tests failed: 20 failures.
+                                                        assert 20 == 0
+    23.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_rounding.rounding_test    FAIL          23.00           0.00       5176.71  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                 23.00           0.03        689.41  **
+                                                        **************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/rounding.fst opened for output.
+=============================== warnings summary ===============================
+../../src/test_runner.py:7
+  /src/test_runner.py:7: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_rounding[8] - SystemExit: ERROR: Failed...
+FAILED ../../src/test_runner.py::test_rounding[16] - SystemExit: ERROR: Faile...
+FAILED ../../src/test_runner.py::test_rounding[24] - SystemExit: ERROR: Faile...
+FAILED ../../src/test_runner.py::test_rounding[32] - SystemExit: ERROR: Faile...
+========================= 4 failed, 1 warning in 0.66s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_rounding_1_1775134251-direct:latest
+Deleted: sha256:7b3451b73d7a37cd7dc5e73ab8cd7a6f2f364839b00a19fbba1653b5881120c0

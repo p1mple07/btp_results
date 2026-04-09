@@ -1,0 +1,3 @@
+logic clk, rst_n, i_wait;
+logic [WAIT_WIDTH-1:0] i_wait;
+...

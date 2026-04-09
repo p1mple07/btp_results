@@ -1,0 +1,90 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x197a9a0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x197ab30 .scope module, "axis_broadcast" "axis_broadcast" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 8 "s_axis_tdata";
+    .port_info 3 /INPUT 1 "s_axis_tvalid";
+    .port_info 4 /OUTPUT 1 "s_axis_tready";
+    .port_info 5 /OUTPUT 8 "m_axis_tdata_1";
+    .port_info 6 /OUTPUT 1 "m_axis_tvalid_1";
+    .port_info 7 /INPUT 1 "m_axis_tready_1";
+    .port_info 8 /OUTPUT 8 "m_axis_tdata_2";
+    .port_info 9 /OUTPUT 1 "m_axis_tvalid_2";
+    .port_info 10 /INPUT 1 "m_axis_tready_2";
+    .port_info 11 /OUTPUT 8 "m_axis_tdata_3";
+    .port_info 12 /OUTPUT 1 "m_axis_tvalid_3";
+    .port_info 13 /INPUT 1 "m_axis_tready_3";
+o0x7d1d1947b198 .functor BUFZ 1, c4<z>; HiZ drive
+o0x7d1d1947b1c8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x19a07b0 .functor AND 1, o0x7d1d1947b198, o0x7d1d1947b1c8, C4<1>, C4<1>;
+o0x7d1d1947b1f8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x19a0840 .functor AND 1, L_0x19a07b0, o0x7d1d1947b1f8, C4<1>, C4<1>;
+L_0x19a08b0 .functor BUFZ 8, v0x199f4b0_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x19a0a50 .functor BUFZ 8, v0x199f6c0_0, C4<00000000>, C4<00000000>, C4<00000000>;
+L_0x19a0c50 .functor BUFZ 8, v0x199f880_0, C4<00000000>, C4<00000000>, C4<00000000>;
+v0x197acc0_0 .net *"_ivl_1", 0 0, L_0x19a07b0;  1 drivers
+o0x7d1d1947b048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x199f330_0 .net "clk", 0 0, o0x7d1d1947b048;  0 drivers
+v0x199f3f0_0 .net "m_axis_tdata_1", 7 0, L_0x19a08b0;  1 drivers
+v0x199f4b0_0 .var "m_axis_tdata_1_reg", 7 0;
+v0x199f590_0 .net "m_axis_tdata_2", 7 0, L_0x19a0a50;  1 drivers
+v0x199f6c0_0 .var "m_axis_tdata_2_reg", 7 0;
+v0x199f7a0_0 .net "m_axis_tdata_3", 7 0, L_0x19a0c50;  1 drivers
+v0x199f880_0 .var "m_axis_tdata_3_reg", 7 0;
+v0x199f960_0 .net "m_axis_tready_1", 0 0, o0x7d1d1947b198;  0 drivers
+v0x199fa20_0 .net "m_axis_tready_2", 0 0, o0x7d1d1947b1c8;  0 drivers
+v0x199fae0_0 .net "m_axis_tready_3", 0 0, o0x7d1d1947b1f8;  0 drivers
+v0x199fba0_0 .net "m_axis_tvalid_1", 0 0, L_0x19a0950;  1 drivers
+v0x199fc60_0 .var "m_axis_tvalid_1_reg", 7 0;
+v0x199fd40_0 .net "m_axis_tvalid_2", 0 0, L_0x19a0b50;  1 drivers
+v0x199fe00_0 .var "m_axis_tvalid_2_reg", 7 0;
+v0x199fee0_0 .net "m_axis_tvalid_3", 0 0, L_0x19a0d20;  1 drivers
+v0x199ffa0_0 .var "m_axis_tvalid_3_reg", 7 0;
+o0x7d1d1947b348 .functor BUFZ 1, c4<z>; HiZ drive
+v0x19a0190_0 .net "rst_n", 0 0, o0x7d1d1947b348;  0 drivers
+o0x7d1d1947b378 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x19a0250_0 .net "s_axis_tdata", 7 0, o0x7d1d1947b378;  0 drivers
+v0x19a0330_0 .var "s_axis_tready", 0 0;
+v0x19a03f0_0 .net "s_axis_tready_t1", 0 0, L_0x19a0840;  1 drivers
+o0x7d1d1947b408 .functor BUFZ 1, c4<z>; HiZ drive
+v0x19a04b0_0 .net "s_axis_tvalid", 0 0, o0x7d1d1947b408;  0 drivers
+E_0x1988f80/0 .event negedge, v0x19a0190_0;
+E_0x1988f80/1 .event posedge, v0x199f330_0;
+E_0x1988f80 .event/or E_0x1988f80/0, E_0x1988f80/1;
+L_0x19a0950 .part v0x199fc60_0, 0, 1;
+L_0x19a0b50 .part v0x199fe00_0, 0, 1;
+L_0x19a0d20 .part v0x199ffa0_0, 0, 1;
+    .scope S_0x197ab30;
+T_0 ;
+    %wait E_0x1988f80;
+    %load/vec4 v0x19a0190_0;
+    %inv;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x19a0330_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x19a03f0_0;
+    %assign/vec4 v0x19a0330_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/axis_broadcast.sv";

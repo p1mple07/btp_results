@@ -1,0 +1,135 @@
+Running harness with project name: cvdp_copilot_generic_nbit_counter_39_1775076801
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775076804
+     0.00ns INFO     cocotb.regression                  running test_generic_counter.test_reset (1/8)
+    80.00ns INFO     cocotb.regression                  test_generic_counter.test_reset failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 40, in test_reset
+                                                            assert dut.o_count.value == 0, "Counter did not reset to 0"
+                                                        AssertionError: Counter did not reset to 0
+                                                        assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == 0
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+    80.00ns INFO     cocotb.regression                  running test_generic_counter.test_ring_counter (2/8)
+   156.00ns INFO     cocotb.regression                  test_generic_counter.test_ring_counter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 71, in test_ring_counter
+                                                            assert dut.o_count.value == 2 ** 4
+                                                        AssertionError: assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == (2 ** 4)
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   156.00ns INFO     cocotb.regression                  running test_generic_counter.test_up_counter (3/8)
+   197.00ns INFO     cocotb.regression                  test_generic_counter.test_up_counter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 97, in test_up_counter
+                                                            assert dut.o_count.value == i
+                                                        AssertionError: assert LogicArray('00000000', Range(7, 'downto', 0)) == 1
+                                                         +  where LogicArray('00000000', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   197.00ns INFO     cocotb.regression                  running test_generic_counter.test_down_counter (4/8)
+   238.00ns INFO     cocotb.regression                  test_generic_counter.test_down_counter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 125, in test_down_counter
+                                                            assert dut.o_count.value == i
+                                                        AssertionError: assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == 255
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   238.00ns INFO     cocotb.regression                  running test_generic_counter.test_johnson_counter (5/8)
+   269.00ns INFO     cocotb.regression                  test_generic_counter.test_johnson_counter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 152, in test_johnson_counter
+                                                            assert dut.o_count.value == johnson_sequence[i]
+                                                        AssertionError: assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == 0
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   269.00ns INFO     cocotb.regression                  running test_generic_counter.test_mod_256 (6/8)
+   300.00ns INFO     cocotb.regression                  test_generic_counter.test_mod_256 failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 189, in test_mod_256
+                                                            assert dut.o_count.value == i
+                                                        AssertionError: assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == 0
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   300.00ns INFO     cocotb.regression                  running test_generic_counter.test_gray_counter (7/8)
+   331.00ns INFO     cocotb.regression                  test_generic_counter.test_gray_counter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 219, in test_gray_counter
+                                                            assert dut.o_count.value == gray_sequence[i], f"Gray code mismatch at step {i}: expected {gray_sequence[i]}, got {dut.o_count.value}"
+                                                        AssertionError: Gray code mismatch at step 0: expected 0, got XXXXXXXX
+                                                        assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == 0
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   331.00ns INFO     cocotb.regression                  running test_generic_counter.test_enable (8/8)
+   407.00ns INFO     cocotb.regression                  test_generic_counter.test_enable failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 245, in test_enable
+                                                            assert dut.o_count.value == 2 ** 4
+                                                        AssertionError: assert LogicArray('XXXXXXXX', Range(7, 'downto', 0)) == (2 ** 4)
+                                                         +  where LogicArray('XXXXXXXX', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+   407.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_generic_counter.test_reset             FAIL          80.00           0.00      54128.78  **
+                                                        ** test_generic_counter.test_ring_counter      FAIL          76.00           0.00      79791.52  **
+                                                        ** test_generic_counter.test_up_counter        FAIL          41.00           0.00      62738.59  **
+                                                        ** test_generic_counter.test_down_counter      FAIL          41.00           0.00      64722.04  **
+                                                        ** test_generic_counter.test_johnson_counter   FAIL          31.00           0.00      55636.90  **
+                                                        ** test_generic_counter.test_mod_256           FAIL          31.00           0.00      54862.20  **
+                                                        ** test_generic_counter.test_gray_counter      FAIL          31.00           0.00      49627.26  **
+                                                        ** test_generic_counter.test_enable            FAIL          76.00           0.00      77295.61  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=8 PASS=0 FAIL=8 SKIP=0                             407.00           0.02      27121.94  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/generic_counter.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 8 of 8 tests.
+
+/src/test_runner.py:26: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 8 of...
+======================== 1 failed, 3 warnings in 0.18s =========================
+Cleaning up Docker resources...

@@ -1,0 +1,85 @@
+Running harness with project name: cvdp_copilot_generic_nbit_counter_36_1774971921
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774971923
+     0.00ns INFO     cocotb.regression                  running test_generic_counter.test_reset (1/8)
+    80.00ns INFO     cocotb.regression                  test_generic_counter.test_reset passed
+    80.00ns INFO     cocotb.regression                  running test_generic_counter.test_ring_counter (2/8)
+   156.00ns INFO     cocotb.regression                  test_generic_counter.test_ring_counter passed
+   156.00ns INFO     cocotb.regression                  running test_generic_counter.test_up_counter (3/8)
+  2737.00ns INFO     cocotb.regression                  test_generic_counter.test_up_counter passed
+  2737.00ns INFO     cocotb.regression                  running test_generic_counter.test_down_counter (4/8)
+  5328.00ns INFO     cocotb.regression                  test_generic_counter.test_down_counter passed
+  5328.00ns INFO     cocotb.regression                  running test_generic_counter.test_johnson_counter (5/8)
+  5509.00ns INFO     cocotb.regression                  test_generic_counter.test_johnson_counter passed
+  5509.00ns INFO     cocotb.regression                  running test_generic_counter.test_mod_256 (6/8)
+  8090.00ns INFO     cocotb.regression                  test_generic_counter.test_mod_256 passed
+  8090.00ns INFO     cocotb.regression                  running test_generic_counter.test_gray_counter (7/8)
+  8131.00ns INFO     cocotb.regression                  test_generic_counter.test_gray_counter failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 218, in test_gray_counter
+                                                            assert dut.o_count.value == gray_sequence[i], f"Gray code mismatch at step {i}: expected {gray_sequence[i]}, got {dut.o_count.value}"
+                                                        AssertionError: Gray code mismatch at step 1: expected 1, got 00000000
+                                                        assert LogicArray('00000000', Range(7, 'downto', 0)) == 1
+                                                         +  where LogicArray('00000000', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+  8131.00ns INFO     cocotb.regression                  running test_generic_counter.test_enable (8/8)
+  8237.00ns INFO     cocotb.regression                  test_generic_counter.test_enable failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_generic_counter.py", line 252, in test_enable
+                                                            assert dut.o_count.value == previous_o_count, f"Expected o_count to remain {previous_o_count}, but got {dut.o_count.value}"
+                                                        AssertionError: Expected o_count to remain 00100000, but got 10000000
+                                                        assert LogicArray('10000000', Range(7, 'downto', 0)) == LogicArray('00100000', Range(7, 'downto', 0))
+                                                         +  where LogicArray('10000000', Range(7, 'downto', 0)) = LogicObject(generic_counter.o_count).value
+                                                         +    where LogicObject(generic_counter.o_count) = HierarchyObject(generic_counter).o_count
+  8237.00ns INFO     cocotb.regression                  ***************************************************************************************************
+                                                        ** TEST                                       STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***************************************************************************************************
+                                                        ** test_generic_counter.test_reset             PASS          80.00           0.00      55370.35  **
+                                                        ** test_generic_counter.test_ring_counter      PASS          76.00           0.00      78456.09  **
+                                                        ** test_generic_counter.test_up_counter        PASS        2581.00           0.02     105731.18  **
+                                                        ** test_generic_counter.test_down_counter      PASS        2591.00           0.02     108459.67  **
+                                                        ** test_generic_counter.test_johnson_counter   PASS         181.00           0.00      96721.75  **
+                                                        ** test_generic_counter.test_mod_256           PASS        2581.00           0.02     109836.63  **
+                                                        ** test_generic_counter.test_gray_counter      FAIL          41.00           0.00      60170.21  **
+                                                        ** test_generic_counter.test_enable            FAIL         106.00           0.00      85746.62  **
+                                                        ***************************************************************************************************
+                                                        ** TESTS=8 PASS=6 FAIL=2 SKIP=0                            8237.00           0.09      95577.47  **
+                                                        ***************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/generic_counter.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 2 of 8 tests.
+
+/src/test_runner.py:26: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 2 of...
+============================== 1 failed in 0.25s ===============================
+Cleaning up Docker resources...

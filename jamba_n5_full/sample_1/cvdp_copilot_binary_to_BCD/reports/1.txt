@@ -1,0 +1,77 @@
+Running harness with project name: cvdp_copilot_binary_to_bcd_1_1774919755
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner 
+-------------------------------- live log call ---------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s binary_to_bcd -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/binary_to_bcd.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1774919758
+     0.00ns INFO     cocotb.regression                  running test_binary_to_bcd.test_binary_to_bcd (1/1)
+                                                            Test binary to BCD conversion using a reference model, with predefined and random test cases 
+    10.00ns INFO     cocotb.binary_to_bcd               Binary Input: 0 | Expected BCD Output: 000000000000 | DUT BCD Output: 000000000000
+    20.00ns INFO     cocotb.regression                  test_binary_to_bcd.test_binary_to_bcd failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_binary_to_bcd.py", line 49, in test_binary_to_bcd
+                                                            assert bcd_out == expected_bcd, f"Test failed for binary {binary_value}: Expected {expected_bcd:012b}, got {bcd_out:012b}"
+                                                        AssertionError: Test failed for binary 20: Expected 000000100000, got 000000000000
+                                                        assert 0 == 32
+    20.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_binary_to_bcd.test_binary_to_bcd   FAIL          20.00           0.00      23550.28  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                          20.00           0.00       4793.22  **
+                                                        ***********************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/binary_to_bcd.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+    
+        # List from Files
+        verilog_sources = os.getenv("VERILOG_SOURCES").split()
+    
+        # Language of Top Level File
+        toplevel_lang   = os.getenv("TOPLEVEL_LANG")
+    
+        sim             = os.getenv("SIM", "icarus")
+        toplevel        = os.getenv("TOPLEVEL")
+        module          = os.getenv("MODULE")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log",
+    
+        )
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:32: SystemExit
+------------------------------ Captured log call -------------------------------
+INFO     Icarus:runner.py:468 Running command iverilog -o /code/rundir/sim_build/sim.vvp -s binary_to_bcd -g2012 -s cocotb_iverilog_dump -f /code/rundir/sim_build/cmds.f /code/rtl/binary_to_bcd.sv /code/rundir/sim_build/cocotb_iverilog_dump.v in directory /code/rundir/sim_build
+INFO     Icarus:runner.py:468 Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp -fst in directory /code/rundir/sim_build
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+============================== 1 failed in 0.17s ===============================
+Cleaning up Docker resources...

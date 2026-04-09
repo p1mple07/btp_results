@@ -1,0 +1,129 @@
+module montgomery_mult #
+(
+    parameter N = 7,
+    parameter R = 8,
+    parameter R_INVERSE = 1,
+    parameter NWIDTH = $clog2(N),
+    parameter TWIDTH = $clog2(N*R)
+)(
+    input clk ,
+    input rst_n,
+    input  wire [NWIDTH-1:0] a,b, 
+    input valid_in,  
+    output wire [NWIDTH-1:0] result ,
+    output valid_out
+);
+
+    localparam R_MOD_N  = R % N;
+    localparam TWO_NWIDTH = $clog2(2*N);
+
+    reg [NWIDTH-1:0] a_q, b_q;
+
+    wire [NWIDTH-1:0] a_redc, b_redc  ;
+    reg [NWIDTH-1:0] a_redc_q, b_redc_q  ;
+
+    wire [NWIDTH-1:0] result_d ;
+    reg [NWIDTH-1:0] result_q ;
+
+    reg valid_in_q, valid_in_q1, valid_in_q2;
+    reg valid_out_q ;
+    wire [2*NWIDTH-1:0] ar = a_q * R_MOD_N;
+    wire [2*NWIDTH-1:0] br = b_q * R_MOD_N;
+
+    wire [2*NWIDTH-1:0] a_redc_x_b_redc;
+
+    assign a_redc_x_b_redc = a_redc_q * b_redc_q;
+    assign result = result_q;
+    assign valid_out = valid_out_q;
+    always_ff @( posedge clk or negedge rst_n ) begin : valid_out_pipeline
+        if (!rst_n) begin
+            valid_in_q      <=  0;
+            valid_in_q1     <=  0;
+            valid_in_q2     <=  0;
+            valid_out_q     <=  0;
+        end else begin
+            valid_in_q      <=  valid_in;
+            valid_in_q1     <=  valid_in_q;
+            valid_in_q2     <=  valid_in_q1;
+            valid_out_q     <=  valid_in_q2;
+        end
+    end
+
+    always_ff @( posedge clk or negedge rst_n ) begin : input_registers
+        if (!rst_n) begin
+            a_q <= 0;
+            b_q <= 0;
+        end else begin
+            if(valid_in) begin
+                a_q <= a;
+                b_q <= b;
+            end
+        end
+    end
+
+    always_ff @( posedge clk or negedge rst_n ) begin : a_b_reduction_pipeline
+        if (!rst_n) begin
+            a_redc_q <= 0;
+            b_redc_q <= 0;
+        end else begin
+            a_redc_q <= a_redc;
+            b_redc_q <= b_redc;
+        end
+    end
+
+    always_ff @( posedge clk or negedge rst_n ) begin : output_register
+        if (!rst_n) begin
+            result_q <= 0;
+        end else begin
+            result_q <= result_d;
+        end
+    end
+
+    montgomery_redc #
+    (
+        .N (N),
+        .R (R),
+        .R_INVERSE(R_INVERSE)     
+    ) ar2_redc (
+        .T(ar),
+        .result(a_redc) 
+    );
+
+    montgomery_redc #
+    (
+        .N (N),
+        .R (R),
+        .R_INVERSE(R_INVERSE)     
+    ) br2_redc (
+        .T(br),
+        .result(b_redc) 
+    );
+
+    montgomery_redc #
+    (
+        .N (N),
+        .R (R),
+        .R_INVERSE(R_INVERSE)     
+    ) prod_redc (
+        .T(a_redc_x_b_redc),
+        .result(result_d) 
+    );
+
+    assign a_redc_x_b_redc = a_redc_q * b_redc_q;
+    assign result = result_q;
+    assign valid_out = valid_out_q;
+    always_ff @( posedge clk or negedge rst_n ) begin : valid_out_pipeline
+        if (!rst_n) begin
+            valid_in_q      <=  0;
+            valid_in_q1     <=  0;
+            valid_in_q2     <=  0;
+            valid_out_q     <=  0;
+        end else begin
+            valid_in_q      <=  valid_in;
+            valid_in_q1     <=  valid_in_q;
+            valid_in_q2     <=  valid_in_q1;
+            valid_out_q     <=  valid_in_q2;
+        end
+    end
+
+endmodule

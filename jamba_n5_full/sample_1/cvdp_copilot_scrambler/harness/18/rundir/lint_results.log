@@ -1,0 +1,23 @@
+%Warning-UNUSEDSIGNAL: /code/rtl/inter_block.sv:18:32: Signal is not driven, nor used: 'counter_output'
+                                                     : ... note: In instance 'inter_block'
+   18 | logic [NBW_COUNTER_OUTPUT-1:0] counter_output;  
+      |                                ^~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.027
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-BLKSEQ: /code/rtl/inter_block.sv:91:51: Blocking assignment '=' in sequential logic process
+                                               : ... Suggest using delayed assignment '<='
+   91 |             out_data_aux[0][(i+1)*CHUNK-1-:CHUNK] = out_data_intra_block_reg[i%4][((i+1)*CHUNK)-1-:CHUNK];
+      |                                                   ^
+%Warning-BLKSEQ: /code/rtl/inter_block.sv:92:51: Blocking assignment '=' in sequential logic process
+                                               : ... Suggest using delayed assignment '<='
+   92 |             out_data_aux[1][(i+1)*CHUNK-1-:CHUNK] = out_data_intra_block_reg[i%4][(((i+1)%OUT_CYCLES+1)*CHUNK)-1-:CHUNK];
+      |                                                   ^
+%Warning-BLKSEQ: /code/rtl/inter_block.sv:93:51: Blocking assignment '=' in sequential logic process
+                                               : ... Suggest using delayed assignment '<='
+   93 |             out_data_aux[2][(i+1)*CHUNK-1-:CHUNK] = out_data_intra_block_reg[i%4][(((i+2)%OUT_CYCLES+1)*CHUNK)-1-:CHUNK];
+      |                                                   ^
+%Warning-BLKSEQ: /code/rtl/inter_block.sv:94:51: Blocking assignment '=' in sequential logic process
+                                               : ... Suggest using delayed assignment '<='
+   94 |             out_data_aux[3][(i+1)*CHUNK-1-:CHUNK] = out_data_intra_block_reg[i%4][(((i+3)%OUT_CYCLES+1)*CHUNK)-1-:CHUNK];
+      |                                                   ^
+%Error: Exiting due to 5 warning(s)

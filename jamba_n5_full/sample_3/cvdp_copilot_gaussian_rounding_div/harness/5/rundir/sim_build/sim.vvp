@@ -1,0 +1,50 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x12ae590 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x12c9760 .scope module, "divider" "divider" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 18 "dividend";
+    .port_info 4 /INPUT 18 "divisor";
+    .port_info 5 /OUTPUT 18 "dv_out";
+    .port_info 6 /OUTPUT 1 "valid";
+P_0x12ae950 .param/l "TWO" 1 3 11, C4<000000010000000000>;
+P_0x12ae990 .param/l "ZERO" 1 3 12, C4<000000000000000000>;
+o0x7b0dd1b48018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x12b6630_0 .net "clk", 0 0, o0x7b0dd1b48018;  0 drivers
+o0x7b0dd1b48048 .functor BUFZ 18, c4<zzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x12d8530_0 .net "dividend", 17 0, o0x7b0dd1b48048;  0 drivers
+o0x7b0dd1b48078 .functor BUFZ 18, c4<zzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x12d8610_0 .net "divisor", 17 0, o0x7b0dd1b48078;  0 drivers
+v0x12d86d0_0 .var "dv_out", 17 0;
+o0x7b0dd1b480d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x12d87b0_0 .net "rst_n", 0 0, o0x7b0dd1b480d8;  0 drivers
+o0x7b0dd1b48108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x12d8870_0 .net "start", 0 0, o0x7b0dd1b48108;  0 drivers
+v0x12d8930_0 .var "valid", 0 0;
+S_0x12c9ad0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x12c9ad0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/divider.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x12c9760 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/divider.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

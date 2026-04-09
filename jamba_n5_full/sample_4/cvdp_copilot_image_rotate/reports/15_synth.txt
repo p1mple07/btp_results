@@ -1,0 +1,632 @@
+Running harness with project name: cvdp_copilot_image_rotate_15_1775076945
+#1 [internal] load local bake definitions
+#1 reading from stdin 726B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 1.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context:
+#4 transferring context: 2B done
+#4 DONE 0.3s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.1s done
+#5 DONE 0.2s
+
+#6 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#6 DONE 0.3s
+
+#7 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#7 CACHED
+
+#8 [3/4] RUN python3 ./get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:ea76e2c5b8e617d439411b4f2edab8835c55da248b4a07a09b87acca7a79fe9c
+#10 exporting manifest sha256:ea76e2c5b8e617d439411b4f2edab8835c55da248b4a07a09b87acca7a79fe9c 0.2s done
+#10 exporting config sha256:18fcc3788a72ce870b900aae431a60b19ad7cc1ba18fd871e30ae877520296d3
+#10 exporting config sha256:18fcc3788a72ce870b900aae431a60b19ad7cc1ba18fd871e30ae877520296d3 0.3s done
+#10 exporting attestation manifest sha256:b8f657187cbd83bf5c6ebbacb23f180fdc1ec3068ce25357732886e9dc52fa3f
+#10 exporting attestation manifest sha256:b8f657187cbd83bf5c6ebbacb23f180fdc1ec3068ce25357732886e9dc52fa3f 0.5s done
+#10 exporting manifest list sha256:337bff4019e7db98377d305924f2a5b153ead39d2c34958cb14dff6230517575
+#10 exporting manifest list sha256:337bff4019e7db98377d305924f2a5b153ead39d2c34958cb14dff6230517575 0.3s done
+#10 naming to docker.io/library/cvdp_copilot_image_rotate_15_1775076945-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_image_rotate_15_1775076945-synth:latest 0.0s done
+#10 unpacking to docker.io/library/cvdp_copilot_image_rotate_15_1775076945-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_image_rotate_15_1775076945-synth:latest 1.5s done
+#10 DONE 3.2s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/image_rotate.sv
+Parsing SystemVerilog input from `/code/rtl/image_rotate.sv' to AST representation.
+Generating RTLIL representation for module `\image_rotate'.
+/code/rtl/image_rotate.sv:71: Warning: Identifier `\OUT_Row' is implicitly declared.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \image_rotate
+
+2.2. Analyzing design hierarchy..
+Top module:  \image_rotate
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module image_rotate...
+Warning: Wire image_rotate.\valid_out is used but has no driver.
+Warning: Wire image_rotate.\OUT_Row is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [127] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [126] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [125] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [124] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [123] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [122] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [121] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [120] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [119] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [118] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [117] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [116] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [115] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [114] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [113] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [112] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [111] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [110] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [109] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [108] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [107] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [106] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [105] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [104] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [103] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [102] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [101] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [100] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [99] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [98] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [97] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [96] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [95] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [94] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [93] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [92] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [91] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [90] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [89] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [88] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [87] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [86] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [85] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [84] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [83] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [82] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [81] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [80] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [79] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [78] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [77] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [76] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [75] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [74] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [73] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [72] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [71] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [70] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [69] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [68] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [67] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [66] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [65] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [64] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [63] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [62] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [61] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [60] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [59] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [58] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [57] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [56] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [55] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [54] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [53] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [52] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [51] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [50] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [49] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [48] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [47] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [46] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [45] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [44] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [43] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [42] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [41] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [40] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [39] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [38] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [37] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [36] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [35] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [34] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [33] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [32] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [31] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [30] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [29] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [28] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [27] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [26] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [25] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [24] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [23] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [22] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [21] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [20] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [19] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [18] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [17] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [16] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [15] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [14] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [13] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [12] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [11] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [10] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [9] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [8] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [7] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [6] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [5] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [4] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [3] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [2] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [1] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg [0] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [103] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [102] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [101] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [100] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [99] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [98] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [97] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [96] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [111] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [110] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [109] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [108] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [107] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [106] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [105] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [104] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [119] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [118] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [117] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [116] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [115] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [114] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [113] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [112] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [127] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [126] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [125] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [124] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [123] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [122] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [121] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [120] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [71] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [70] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [69] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [68] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [67] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [66] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [65] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [64] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [79] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [78] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [77] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [76] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [75] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [74] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [73] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [72] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [87] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [86] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [85] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [84] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [83] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [82] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [81] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [80] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [95] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [94] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [93] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [92] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [91] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [90] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [89] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [88] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [63] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [62] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [61] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [60] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [59] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [58] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [57] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [56] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [71] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [70] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [69] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [68] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [67] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [66] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [65] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [64] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [39] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [38] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [37] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [36] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [35] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [34] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [33] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [32] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [55] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [54] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [53] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [52] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [51] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [50] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [49] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [48] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [79] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [78] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [77] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [76] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [75] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [74] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [73] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [72] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [47] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [46] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [45] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [44] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [43] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [42] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [41] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [40] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [47] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [46] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [45] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [44] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [43] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [42] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [41] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [40] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [87] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [86] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [85] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [84] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [83] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [82] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [81] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [80] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [55] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [54] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [53] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [52] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [51] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [50] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [49] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [48] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [39] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [38] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [37] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [36] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [35] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [34] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [33] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [32] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [95] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [94] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [93] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [92] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [91] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [90] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [89] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [88] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [63] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [62] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [61] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [60] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [59] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [58] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [57] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [56] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [31] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [30] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [29] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [28] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [27] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [26] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [25] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [24] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [103] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [102] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [101] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [100] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [99] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [98] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [97] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [96] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [7] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [6] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [5] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [4] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [3] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [2] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [1] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [0] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [23] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [22] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [21] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [20] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [19] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [18] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [17] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [16] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [111] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [110] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [109] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [108] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [107] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [106] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [105] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [104] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [15] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [14] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [13] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [12] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [11] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [10] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [9] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [8] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [15] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [14] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [13] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [12] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [11] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [10] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [9] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [8] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [119] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [118] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [117] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [116] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [115] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [114] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [113] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [112] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [23] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [22] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [21] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [20] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [19] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [18] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [17] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [16] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [7] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [6] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [5] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [4] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [3] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [2] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [1] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [0] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [127] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [126] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [125] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [124] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [123] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [122] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [121] is used but has no driver.
+Warning: Wire image_rotate.\padded_image_reg3 [120] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [31] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [30] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [29] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [28] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [27] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [26] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [25] is used but has no driver.
+Warning: Wire image_rotate.\transposed_image_reg [24] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [127] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [126] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [125] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [124] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [123] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [122] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [121] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [120] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [119] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [118] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [117] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [116] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [115] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [114] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [113] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [112] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [111] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [110] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [109] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [108] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [107] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [106] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [105] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [104] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [103] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [102] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [101] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [100] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [99] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [98] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [97] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [96] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [95] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [94] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [93] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [92] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [91] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [90] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [89] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [88] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [87] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [86] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [85] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [84] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [83] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [82] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [81] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [80] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [79] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [78] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [77] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [76] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [75] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [74] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [73] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [72] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [71] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [70] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [69] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [68] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [67] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [66] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [65] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [64] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [63] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [62] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [61] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [60] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [59] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [58] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [57] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [56] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [55] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [54] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [53] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [52] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [51] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [50] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [49] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [48] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [47] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [46] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [45] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [44] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [43] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [42] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [41] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [40] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [39] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [38] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [37] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [36] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [35] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [34] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [33] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [32] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [31] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [30] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [29] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [28] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [27] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [26] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [25] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [24] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [23] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [22] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [21] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [20] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [19] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [18] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [17] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [16] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [15] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [14] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [13] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [12] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [11] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [10] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [9] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [8] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [7] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [6] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [5] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [4] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [3] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [2] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [1] is used but has no driver.
+Warning: Wire image_rotate.\rotated_image_reg [0] is used but has no driver.
+
+Yosys Synthesis Log Comparison:
+{}
+True
+No upgrades in synthesis: Errors detected in the after log. Synthesis failed.
+PASSED
+
+=============================== warnings summary ===============================
+synth.py::test_yosys
+  /usr/local/lib/python3.9/dist-packages/_pytest/python.py:163: PytestReturnNotNoneWarning: Expected None, but synth.py::test_yosys returned False, which will be an error in a future version of pytest.  Did you mean to use `assert` instead of `return`?
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+========================= 1 passed, 1 warning in 0.06s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_image_rotate_15_1775076945-synth:latest
+Deleted: sha256:337bff4019e7db98377d305924f2a5b153ead39d2c34958cb14dff6230517575

@@ -1,0 +1,150 @@
+Running harness with project name: cvdp_copilot_fifo_to_axis_1_1775076622
+#1 [internal] load local bake definitions
+#1 reading from stdin 716B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 96B done
+#2 DONE 0.2s
+
+#3 [internal] load metadata for ghcr.io/hdl/sim/osvb:latest
+#3 DONE 0.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [1/2] FROM ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434
+#5 resolve ghcr.io/hdl/sim/osvb:latest@sha256:6fc999d943f1b8f8c49e7221459ae01e57afd33f7e73c3734b9a65be25e7f434 0.2s done
+#5 DONE 0.2s
+
+#6 [2/2] RUN pip install cocotb-bus==0.2.1
+#6 CACHED
+
+#7 exporting to image
+#7 exporting layers done
+#7 exporting manifest sha256:62a3fd526563a151231d91ce1c7955154f4cf19ecda9d50aa82ffce235cd9d11
+#7 exporting manifest sha256:62a3fd526563a151231d91ce1c7955154f4cf19ecda9d50aa82ffce235cd9d11 0.3s done
+#7 exporting config sha256:049f8c1f78f149d971b0db962237ee8cd4ceaff4fd8804686e222663f9e0ba5f
+#7 exporting config sha256:049f8c1f78f149d971b0db962237ee8cd4ceaff4fd8804686e222663f9e0ba5f 0.3s done
+#7 exporting attestation manifest sha256:edadf71de507d68d8b05bee15ddd8b4c9bd1da6582e994baba0e59a7ac892db6
+#7 exporting attestation manifest sha256:edadf71de507d68d8b05bee15ddd8b4c9bd1da6582e994baba0e59a7ac892db6 0.6s done
+#7 exporting manifest list sha256:6a3d23bc7d4454ae02bb2e2476340ee01edad2440a421900cb8c79315d3e46ad
+#7 exporting manifest list sha256:6a3d23bc7d4454ae02bb2e2476340ee01edad2440a421900cb8c79315d3e46ad 0.2s done
+#7 naming to docker.io/library/cvdp_copilot_fifo_to_axis_1_1775076622-direct:latest
+#7 naming to docker.io/library/cvdp_copilot_fifo_to_axis_1_1775076622-direct:latest 0.1s done
+#7 unpacking to docker.io/library/cvdp_copilot_fifo_to_axis_1_1775076622-direct:latest 0.0s done
+#7 DONE 1.8s
+
+#8 resolving provenance for metadata file
+#8 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v1.9.2 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775076629
+     0.00ns INFO     cocotb.regression                  Found test test_fifo_2_axis.test_single_data_word
+     0.00ns INFO     cocotb.regression                  running test_single_data_word (1/1)
+                                                          Sends and receives a single deterministic data word to verify DUT behavior.
+     0.00ns INFO     cocotb                             Determined DATA_WIDTH from DUT: 1 bits
+     0.00ns INFO     cocotb                             Applying reset...
+    20.00ns INFO     cocotb                             De-asserting reset...
+    20.00ns INFO     cocotb                             Waiting for DUT to stabilize after reset...
+    70.00ns INFO     cocotb                             DUT o_axi_valid is de-asserted after reset as expected.
+    70.00ns INFO     cocotb                             Test Parameters - Data Word: 0xde, User Signal: 0b1
+    70.00ns INFO     cocotb                             Sending FIFO word: data=0xde, user_signal=0001
+    70.00ns INFO     cocotb                             Set i_axi_ready to 1 to receive AXI Stream data.
+    80.00ns INFO     cocotb                             FIFO activated for reading.
+    80.00ns INFO     cocotb                             Awaiting strobe signal for data word...
+    80.00ns INFO     cocotb                             Strobe signal asserted by DUT.
+    80.00ns INFO     cocotb                             Set i_block_fifo_data to 0x0.
+    90.00ns ERROR    cocotb.Task 2.receive_axi_stream   Exception raised by this forked coroutine
+    91.00ns INFO     cocotb.regression                  test_single_data_word failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_fifo_2_axis.py", line 103, in receive_axi_stream
+                                                            data = dut.o_axi_data.value.integer
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/binary.py", line 397, in integer
+                                                            return self._convert_from(self._str)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/binary.py", line 277, in _convert_from_unsigned
+                                                            return int(x.translate(_resolve_table), 2)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/binary.py", line 109, in __missing__
+                                                            return self.resolve_x(key)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/binary.py", line 84, in resolve_error
+                                                            raise ValueError(
+                                                        ValueError: Unresolvable bit in binary string: 'x'. Set the COCOTB_RESOLVE_X environment variable to configure how special values are resolved.
+    91.00ns INFO     cocotb.regression                  ************************************************************************************************
+                                                        ** TEST                                    STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ************************************************************************************************
+                                                        ** test_fifo_2_axis.test_single_data_word   FAIL          91.00           0.00      31377.97  **
+                                                        ************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                           91.00           0.03       2887.04  **
+                                                        ************************************************************************************************
+                                                        
+INFO: Running command iverilog -o /code/rundir/sim_build/sim.vvp -D COCOTB_SIM=1 -s ping_pong_fifo_2_axi_stream -g2012 -Pping_pong_fifo_2_axi_stream.DATA_WIDTH=8 -f /code/rundir/sim_build/cmds.f /code/rtl/ping_pong_fifo_2_axi_stream.sv in directory /code/rundir/sim_build
+INFO: Running command vvp -M /usr/local/lib/python3.9/dist-packages/cocotb/libs -m libcocotbvpi_icarus /code/rundir/sim_build/sim.vvp in directory /code/rundir/sim_build
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+    def test_runner():
+        for width in test_cases:
+            os.environ["DATA_WIDTH"] = str(width)  # Override DATA_WIDTH in environment variables
+            runner = get_runner(sim)
+    
+            # Build step
+            runner.build(
+                sources=verilog_sources,
+                hdl_toplevel=toplevel,
+                parameters={"DATA_WIDTH": width},  # Pass DATA_WIDTH parameter
+                always=True,
+                clean=True,
+                waves=wave,
+                verbose=True,
+                timescale=("1ns", "1ns"),
+                log_file=f"build_{width}.log"
+            )
+    
+            # Test step
+>           runner.test(
+                hdl_toplevel=toplevel,
+                test_module=module,
+                waves=wave
+            )
+E           SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:38: SystemExit
+=============================== warnings summary ===============================
+../../src/test_runner.py:3
+  /src/test_runner.py:3: UserWarning: Python runners and associated APIs are an experimental feature and subject to change.
+    from cocotb.runner import get_runner
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 1 of...
+======================== 1 failed, 4 warnings in 0.19s =========================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_fifo_to_axis_1_1775076622-direct:latest
+Deleted: sha256:6a3d23bc7d4454ae02bb2e2476340ee01edad2440a421900cb8c79315d3e46ad

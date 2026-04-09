@@ -1,0 +1,2020 @@
+Running harness with project name: cvdp_copilot_sorter_9_1775134415
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /rundir/harness/.cache
+rootdir: /src
+collecting ... collected 17 items
+
+../../src/test_runner.py::test_runner      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134418
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      33447.40  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      41366.01  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      45543.04  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      41022.14  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      44433.41  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10876.30  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=5, N=4
+[DEBUG] Parameters: {'WIDTH': 5, 'N': 4}
+FAILED
+../../src/test_runner.py::test_gcd[4-4]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134418
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      34407.74  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      45370.62  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      45691.87  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      46348.22  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      45617.33  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      11081.02  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4, N=4
+[DEBUG] Parameters: {'WIDTH': 4, 'N': 4}
+FAILED
+../../src/test_runner.py::test_gcd[4-8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134418
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      33261.73  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      49289.23  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      49845.68  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      49522.00  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      48887.11  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      11207.60  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=8, N=4
+[DEBUG] Parameters: {'WIDTH': 8, 'N': 4}
+FAILED
+../../src/test_runner.py::test_gcd[4-12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134418
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      31435.67  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      41427.30  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      36665.33  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      41509.29  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      40922.09  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10752.00  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=12, N=4
+[DEBUG] Parameters: {'WIDTH': 12, 'N': 4}
+FAILED
+../../src/test_runner.py::test_gcd[4-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134418
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      31242.49  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      39701.98  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      39164.46  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      38838.09  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      40429.05  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10672.21  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=16, N=4
+[DEBUG] Parameters: {'WIDTH': 16, 'N': 4}
+FAILED
+../../src/test_runner.py::test_gcd[8-4]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134418
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      32583.45  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      42801.16  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      45223.87  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      45223.87  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      44765.35  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10984.29  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4, N=8
+[DEBUG] Parameters: {'WIDTH': 4, 'N': 8}
+FAILED
+../../src/test_runner.py::test_gcd[8-8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      31476.95  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      41304.91  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      42476.09  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      41674.25  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      41632.89  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10887.12  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=8, N=8
+[DEBUG] Parameters: {'WIDTH': 8, 'N': 8}
+FAILED
+../../src/test_runner.py::test_gcd[8-12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      29858.01  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      39055.06  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      37501.24  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      39127.93  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      38464.13  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10504.49  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=12, N=8
+[DEBUG] Parameters: {'WIDTH': 12, 'N': 8}
+FAILED
+../../src/test_runner.py::test_gcd[8-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      29051.46  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      36426.52  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      36858.64  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      37004.97  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      36222.05  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10461.26  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=16, N=8
+[DEBUG] Parameters: {'WIDTH': 16, 'N': 8}
+FAILED
+../../src/test_runner.py::test_gcd[12-4]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      30880.21  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      39626.96  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      41674.25  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      41715.70  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      37925.08  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10756.82  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4, N=12
+[DEBUG] Parameters: {'WIDTH': 4, 'N': 12}
+FAILED
+../../src/test_runner.py::test_gcd[12-8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      30415.55  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      42540.71  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      42326.07  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      42779.33  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      42071.35  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10930.38  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=8, N=12
+[DEBUG] Parameters: {'WIDTH': 8, 'N': 12}
+FAILED
+../../src/test_runner.py::test_gcd[12-12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      28664.30  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      36923.54  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      37703.49  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      38323.56  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      37185.41  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10532.63  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=12, N=12
+[DEBUG] Parameters: {'WIDTH': 12, 'N': 12}
+FAILED
+../../src/test_runner.py::test_gcd[12-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134419
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      26124.60  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      35115.23  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      36050.83  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      36081.84  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      33053.69  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10183.57  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=16, N=12
+[DEBUG] Parameters: {'WIDTH': 16, 'N': 12}
+FAILED
+../../src/test_runner.py::test_gcd[16-4]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134420
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      31051.67  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      41325.26  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      41736.45  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      41488.76  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      40273.78  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10802.30  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=4, N=16
+[DEBUG] Parameters: {'WIDTH': 4, 'N': 16}
+FAILED
+../../src/test_runner.py::test_gcd[16-8]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134420
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      27222.48  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      37534.80  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      38481.78  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      37890.82  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      37251.45  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10435.45  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=8, N=16
+[DEBUG] Parameters: {'WIDTH': 8, 'N': 16}
+FAILED
+../../src/test_runner.py::test_gcd[16-12]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134420
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      27924.79  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      38011.00  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      38166.64  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      38605.74  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      37350.97  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10639.50  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=12, N=16
+[DEBUG] Parameters: {'WIDTH': 12, 'N': 16}
+FAILED
+../../src/test_runner.py::test_gcd[16-16]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775134420
+     0.00ns INFO     cocotb.regression                  running test_sorting_engine.test_basic_sort (1/5)
+                                                            Test a simple random set of values and verify the DUT's sorting.
+    40.00ns INFO     cocotb.regression                  test_sorting_engine.test_basic_sort failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 92, in test_basic_sort
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    40.00ns INFO     cocotb.regression                  running test_sorting_engine.test_already_sorted (2/5)
+                                                            Test the engine with an already sorted array (ascending).
+    60.00ns INFO     cocotb.regression                  test_sorting_engine.test_already_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 139, in test_already_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    60.00ns INFO     cocotb.regression                  running test_sorting_engine.test_reverse_sorted (3/5)
+                                                            Test with reverse-sorted data to see if it sorts properly.
+    80.00ns INFO     cocotb.regression                  test_sorting_engine.test_reverse_sorted failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 174, in test_reverse_sorted
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+    80.00ns INFO     cocotb.regression                  running test_sorting_engine.test_all_equal (4/5)
+                                                            Test the engine with all elements equal.
+   100.00ns INFO     cocotb.regression                  test_sorting_engine.test_all_equal failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 209, in test_all_equal
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   100.00ns INFO     cocotb.regression                  running test_sorting_engine.test_random_cases (5/5)
+                                                            Perform multiple random test vectors to gain coverage.
+   120.00ns INFO     cocotb.regression                  test_sorting_engine.test_random_cases failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_sorting_engine.py", line 250, in test_random_cases
+                                                            if dut.done.value.to_unsigned() == 1:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic_array.py", line 379, in to_unsigned
+                                                            value = value << 1 | int(bit)
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/types/logic.py", line 243, in __int__
+                                                            raise ValueError(f"Cannot convert {self!r} to int")
+                                                        ValueError: Cannot convert Logic('X') to int
+   120.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_sorting_engine.test_basic_sort       FAIL          40.00           0.00      26660.12  **
+                                                        ** test_sorting_engine.test_already_sorted   FAIL          20.00           0.00      31302.34  **
+                                                        ** test_sorting_engine.test_reverse_sorted   FAIL          20.00           0.00      33881.37  **
+                                                        ** test_sorting_engine.test_all_equal        FAIL          20.00           0.00      34551.18  **
+                                                        ** test_sorting_engine.test_random_cases     FAIL          20.00           0.00      33027.67  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=5 PASS=0 FAIL=5 SKIP=0                           120.00           0.01      10234.51  **
+                                                        *************************************************************************************************
+                                                        
+FST info: dumpfile /code/rundir/sim_build/sorting_engine.fst opened for output.
+[DEBUG] Running simulation with WIDTH=16, N=16
+[DEBUG] Parameters: {'WIDTH': 16, 'N': 16}
+FAILED
+
+=================================== FAILURES ===================================
+_________________________________ test_runner __________________________________
+
+WIDTH = 5, N = 4
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[4-4] _________________________________
+
+WIDTH = 4, N = 4
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 4, N = 4
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[4-8] _________________________________
+
+WIDTH = 8, N = 4
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 8, N = 4
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[4-12] ________________________________
+
+WIDTH = 12, N = 4
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 12, N = 4
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[4-16] ________________________________
+
+WIDTH = 16, N = 4
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 16, N = 4
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[8-4] _________________________________
+
+WIDTH = 4, N = 8
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 4, N = 8
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[8-8] _________________________________
+
+WIDTH = 8, N = 8
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 8, N = 8
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[8-12] ________________________________
+
+WIDTH = 12, N = 8
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 12, N = 8
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[8-16] ________________________________
+
+WIDTH = 16, N = 8
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 16, N = 8
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[12-4] ________________________________
+
+WIDTH = 4, N = 12
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 4, N = 12
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[12-8] ________________________________
+
+WIDTH = 8, N = 12
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 8, N = 12
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+_______________________________ test_gcd[12-12] ________________________________
+
+WIDTH = 12, N = 12
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 12, N = 12
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+_______________________________ test_gcd[12-16] ________________________________
+
+WIDTH = 16, N = 12
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 16, N = 12
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[16-4] ________________________________
+
+WIDTH = 4, N = 16
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 4, N = 16
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+________________________________ test_gcd[16-8] ________________________________
+
+WIDTH = 8, N = 16
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 8, N = 16
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+_______________________________ test_gcd[16-12] ________________________________
+
+WIDTH = 12, N = 16
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 12, N = 16
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+_______________________________ test_gcd[16-16] ________________________________
+
+WIDTH = 16, N = 16
+
+    @pytest.mark.parametrize("WIDTH", [4,8,12,16])
+    @pytest.mark.parametrize("N", [4,8,12,16])
+    
+    def test_gcd(WIDTH,N):
+        # Run the simulation with specified parameters
+>       test_runner(WIDTH=WIDTH,N=N)
+
+/src/test_runner.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+WIDTH = 16, N = 16
+
+    def test_runner(WIDTH: int=5,N: int=4):
+    
+        parameter = {"WIDTH":WIDTH, "N":N}
+        # Debug information
+        print(f"[DEBUG] Running simulation with WIDTH={WIDTH}, N={N}")
+        print(f"[DEBUG] Parameters: {parameter}")
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+    
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            parameters=parameter,
+            timescale=("1ns", "1ps"),
+            log_file="sim.log")
+    
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=True)
+E       SystemExit: ERROR: Failed 5 of 5 tests.
+
+/src/test_runner.py:39: SystemExit
+=============================== warnings summary ===============================
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:477: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/nodeids: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429
+  /usr/local/lib/python3.9/dist-packages/_pytest/cacheprovider.py:429: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/lastfailed: [Errno 13] Permission denied: '/rundir'
+    config.cache.set("cache/lastfailed", self.lastfailed)
+
+../../usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51
+  /usr/local/lib/python3.9/dist-packages/_pytest/stepwise.py:51: PytestCacheWarning: could not create cache path /rundir/harness/.cache/v/cache/stepwise: [Errno 13] Permission denied: '/rundir'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_runner - SystemExit: ERROR: Failed 5 of...
+FAILED ../../src/test_runner.py::test_gcd[4-4] - SystemExit: ERROR: Failed 5 ...
+FAILED ../../src/test_runner.py::test_gcd[4-8] - SystemExit: ERROR: Failed 5 ...
+FAILED ../../src/test_runner.py::test_gcd[4-12] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[4-16] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[8-4] - SystemExit: ERROR: Failed 5 ...
+FAILED ../../src/test_runner.py::test_gcd[8-8] - SystemExit: ERROR: Failed 5 ...
+FAILED ../../src/test_runner.py::test_gcd[8-12] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[8-16] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[12-4] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[12-8] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[12-12] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_gcd[12-16] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_gcd[16-4] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[16-8] - SystemExit: ERROR: Failed 5...
+FAILED ../../src/test_runner.py::test_gcd[16-12] - SystemExit: ERROR: Failed ...
+FAILED ../../src/test_runner.py::test_gcd[16-16] - SystemExit: ERROR: Failed ...
+======================== 17 failed, 3 warnings in 2.81s ========================
+Cleaning up Docker resources...

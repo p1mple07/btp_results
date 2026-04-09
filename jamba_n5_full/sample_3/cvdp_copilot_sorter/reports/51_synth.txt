@@ -1,0 +1,1812 @@
+Running harness with project name: cvdp_copilot_sorter_51_1775024476
+#1 [internal] load local bake definitions
+#1 reading from stdin 702B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.synth
+#2 transferring dockerfile: 197B done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/hdl/impl/pnr:latest
+#3 DONE 1.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.2s
+
+#5 [1/4] FROM ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96
+#5 resolve ghcr.io/hdl/impl/pnr:latest@sha256:b00f49b9d534ed8d2186699c7f0f88178480d4500927b31176e33f52a413df96 0.2s done
+#5 DONE 0.3s
+
+#6 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#6 DONE 0.5s
+
+#7 [2/4] ADD https://bootstrap.pypa.io/get-pip.py get-pip.py
+#7 CACHED
+
+#8 [3/4] RUN python3 ./get-pip.py
+#8 CACHED
+
+#9 [4/4] RUN python3 -m pip install pytest==8.3.2
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:944ce1bbaace1780d30f6b333623594df8e36e58a7fa992b931221924c5ae6d4
+#10 exporting manifest sha256:944ce1bbaace1780d30f6b333623594df8e36e58a7fa992b931221924c5ae6d4 0.2s done
+#10 exporting config sha256:83d0585d32df1015f53cc5b15e970c513ef13fa1390d2b90deb06b15d60f2341
+#10 exporting config sha256:83d0585d32df1015f53cc5b15e970c513ef13fa1390d2b90deb06b15d60f2341 0.3s done
+#10 exporting attestation manifest sha256:8fbf8a0f585473736d769fa8fa4ad5bfc953475b615b28bd3836835cc73906fd
+#10 exporting attestation manifest sha256:8fbf8a0f585473736d769fa8fa4ad5bfc953475b615b28bd3836835cc73906fd 0.5s done
+#10 exporting manifest list sha256:449b1a0ece17d83099948ece2dda1b1cb7794f4ecc18d99a8cf48ec1edb70727
+#10 exporting manifest list sha256:449b1a0ece17d83099948ece2dda1b1cb7794f4ecc18d99a8cf48ec1edb70727 0.3s done
+#10 naming to docker.io/library/cvdp_copilot_sorter_51_1775024476-synth:latest
+#10 naming to docker.io/library/cvdp_copilot_sorter_51_1775024476-synth:latest 0.1s done
+#10 unpacking to docker.io/library/cvdp_copilot_sorter_51_1775024476-synth:latest
+#10 unpacking to docker.io/library/cvdp_copilot_sorter_51_1775024476-synth:latest 1.4s done
+#10 DONE 3.2s
+
+#11 resolving provenance for metadata file
+#11 DONE 0.0s
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/synth.py::test_yosys 
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+
+
+-- Executing script file `/src/synth.tcl' --
+
+1. Executing Verilog-2005 frontend: /code/rtl/sorting_engine.sv
+Parsing SystemVerilog input from `/code/rtl/sorting_engine.sv' to AST representation.
+Generating RTLIL representation for module `\sorting_engine'.
+Warning: Replacing memory \array with list of registers. See /code/rtl/sorting_engine.sv:45
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \sorting_engine
+
+2.2. Analyzing design hierarchy..
+Top module:  \sorting_engine
+Removed 0 unused modules.
+
+3. Executing CHECK pass (checking for obvious problems).
+Checking module sorting_engine...
+Found and reported 0 problems.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed 1 dead cases from process $proc$/code/rtl/sorting_engine.sv:0$65 in module sorting_engine.
+Marked 1 switch rules as full_case in process $proc$/code/rtl/sorting_engine.sv:0$65 in module sorting_engine.
+Removed 1 dead cases from process $proc$/code/rtl/sorting_engine.sv:0$62 in module sorting_engine.
+Marked 1 switch rules as full_case in process $proc$/code/rtl/sorting_engine.sv:0$62 in module sorting_engine.
+Marked 7 switch rules as full_case in process $proc$/code/rtl/sorting_engine.sv:73$33 in module sorting_engine.
+Marked 6 switch rules as full_case in process $proc$/code/rtl/sorting_engine.sv:35$13 in module sorting_engine.
+Removed a total of 2 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 14 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~14 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$65'.
+     1/1: $1$mem2reg_rd$\array$/code/rtl/sorting_engine.sv:32$8_DATA[7:0]$67
+Creating decoders for process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$62'.
+     1/1: $1$mem2reg_rd$\array$/code/rtl/sorting_engine.sv:31$7_DATA[7:0]$64
+Creating decoders for process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+     1/37: $1\out_data[63:0] [63:56]
+     2/37: $1\out_data[63:0] [55:48]
+     3/37: $1\out_data[63:0] [47:40]
+     4/37: $1\out_data[63:0] [39:32]
+     5/37: $1\out_data[63:0] [31:24]
+     6/37: $1\out_data[63:0] [23:16]
+     7/37: $1\out_data[63:0] [15:8]
+     8/37: $1\out_data[63:0] [7:0]
+     9/37: $3$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_DATA[7:0]$57
+    10/37: $3$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_ADDR[2:0]$54
+    11/37: $3$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_DATA[7:0]$55
+    12/37: $3$fordecl_block$3.k[31:0]$52
+    13/37: $2$fordecl_block$3.k[31:0]$46
+    14/37: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_DATA[7:0]$51
+    15/37: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_ADDR[2:0]$50
+    16/37: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_DATA[7:0]$49
+    17/37: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_ADDR[2:0]$48
+    18/37: $2$fordecl_block$5.m[31:0]$47
+    19/37: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_DATA[7:0]$45
+    20/37: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_ADDR[2:0]$44
+    21/37: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_DATA[7:0]$43
+    22/37: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_ADDR[2:0]$42
+    23/37: $1$fordecl_block$5.m[31:0]$41
+    24/37: $1$fordecl_block$3.k[31:0]$40
+    25/37: $0\state[1:0]
+    26/37: $1\array[7][7:0]
+    27/37: $1\array[6][7:0]
+    28/37: $1\array[5][7:0]
+    29/37: $1\array[4][7:0]
+    30/37: $1\array[3][7:0]
+    31/37: $1\array[2][7:0]
+    32/37: $1\array[1][7:0]
+    33/37: $1\array[0][7:0]
+    34/37: $1\j[31:0]
+    35/37: $1\i[31:0]
+    36/37: $3$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_ADDR[2:0]$56
+    37/37: $1\done[0:0]
+Creating decoders for process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+     1/30: $0\out_data[63:0] [63:56]
+     2/30: $0\out_data[63:0] [55:48]
+     3/30: $0\out_data[63:0] [47:40]
+     4/30: $0\out_data[63:0] [39:32]
+     5/30: $0\out_data[63:0] [31:24]
+     6/30: $0\out_data[63:0] [23:16]
+     7/30: $0\out_data[63:0] [15:8]
+     8/30: $0\out_data[63:0] [7:0]
+     9/30: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:46$10_DATA[7:0]$28
+    10/30: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:45$9_ADDR[2:0]$25
+    11/30: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:45$9_DATA[7:0]$26
+    12/30: $2\next_state[1:0]
+    13/30: $1\next_state[1:0]
+    14/30: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:46$10_DATA[7:0]$23
+    15/30: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:46$10_ADDR[2:0]$22
+    16/30: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:45$9_DATA[7:0]$21
+    17/30: $1$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:45$9_ADDR[2:0]$20
+    18/30: $1$fordecl_block$1.m[31:0]$19
+    19/30: $0\array[7][7:0]
+    20/30: $0\array[6][7:0]
+    21/30: $0\array[5][7:0]
+    22/30: $0\array[4][7:0]
+    23/30: $0\array[3][7:0]
+    24/30: $0\array[2][7:0]
+    25/30: $0\array[1][7:0]
+    26/30: $0\array[0][7:0]
+    27/30: $0\j[31:0]
+    28/30: $0\i[31:0]
+    29/30: $2$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:46$10_ADDR[2:0]$27
+    30/30: $0\done[0:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\sorting_engine.$mem2reg_rd$\array$/code/rtl/sorting_engine.sv:32$8_DATA' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$65'.
+No latch inferred for signal `\sorting_engine.$mem2reg_rd$\array$/code/rtl/sorting_engine.sv:31$7_DATA' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$62'.
+No latch inferred for signal `\sorting_engine.\next_state' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+No latch inferred for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:45$9_ADDR' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+No latch inferred for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:45$9_DATA' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+No latch inferred for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:46$10_ADDR' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+No latch inferred for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:46$10_DATA' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+Latch inferred for signal `\sorting_engine.\done' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$618
+Latch inferred for signal `\sorting_engine.\out_data [7:0]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$629
+Latch inferred for signal `\sorting_engine.\out_data [15:8]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$640
+Latch inferred for signal `\sorting_engine.\out_data [23:16]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$651
+Latch inferred for signal `\sorting_engine.\out_data [31:24]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$662
+Latch inferred for signal `\sorting_engine.\out_data [39:32]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$673
+Latch inferred for signal `\sorting_engine.\out_data [47:40]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$684
+Latch inferred for signal `\sorting_engine.\out_data [55:48]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$695
+Latch inferred for signal `\sorting_engine.\out_data [63:56]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$706
+Latch inferred for signal `\sorting_engine.\i' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$717
+Latch inferred for signal `\sorting_engine.\j' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$740
+Latch inferred for signal `\sorting_engine.$fordecl_block$1.m' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$751
+Latch inferred for signal `\sorting_engine.\array[0]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$762
+Latch inferred for signal `\sorting_engine.\array[1]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$805
+Latch inferred for signal `\sorting_engine.\array[2]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$842
+Latch inferred for signal `\sorting_engine.\array[3]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$879
+Latch inferred for signal `\sorting_engine.\array[4]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$916
+Latch inferred for signal `\sorting_engine.\array[5]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$953
+Latch inferred for signal `\sorting_engine.\array[6]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$990
+Latch inferred for signal `\sorting_engine.\array[7]' from process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13': $auto$proc_dlatch.cc:427:proc_dlatch$1027
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\sorting_engine.\done' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1064' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\out_data' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1067' with positive edge clock.
+Creating register for signal `\sorting_engine.\state' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1068' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\i' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1069' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.\j' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1070' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$fordecl_block$3.k' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1073' with positive edge clock.
+Creating register for signal `\sorting_engine.$fordecl_block$5.m' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1076' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[0]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1079' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[1]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1082' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[2]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1085' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[3]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1088' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[4]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1091' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[5]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1094' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[6]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1097' with positive edge clock.
+Creating register for signal `\sorting_engine.\array[7]' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $dff cell `$procdff$1100' with positive edge clock.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1101' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:98$11_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1102' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_ADDR' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1103' with positive edge clock and positive level reset.
+Creating register for signal `\sorting_engine.$mem2reg_wr$\array$/code/rtl/sorting_engine.sv:99$12_DATA' using process `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+  created $adff cell `$procdff$1104' with positive edge clock and positive level reset.
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$65'.
+Removing empty process `sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$65'.
+Found and cleaned up 1 empty switch in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$62'.
+Removing empty process `sorting_engine.$proc$/code/rtl/sorting_engine.sv:0$62'.
+Found and cleaned up 6 empty switches in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+Removing empty process `sorting_engine.$proc$/code/rtl/sorting_engine.sv:73$33'.
+Found and cleaned up 6 empty switches in `\sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+Removing empty process `sorting_engine.$proc$/code/rtl/sorting_engine.sv:35$13'.
+Cleaned up 14 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~213 debug messages>
+
+5. Executing OPT pass (performing simple optimizations).
+
+5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~387 debug messages>
+Removed a total of 129 cells.
+
+5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$445.
+    dead port 2/2 on $mux $procmux$445.
+    dead port 1/2 on $mux $procmux$441.
+    dead port 2/2 on $mux $procmux$441.
+    dead port 1/2 on $mux $procmux$437.
+    dead port 2/2 on $mux $procmux$437.
+    dead port 1/2 on $mux $procmux$433.
+    dead port 2/2 on $mux $procmux$433.
+    dead port 2/2 on $mux $procmux$424.
+    dead port 1/2 on $mux $procmux$416.
+    dead port 2/2 on $mux $procmux$416.
+    dead port 1/2 on $mux $procmux$414.
+    dead port 2/2 on $mux $procmux$414.
+    dead port 1/2 on $mux $procmux$409.
+    dead port 2/2 on $mux $procmux$409.
+    dead port 1/2 on $mux $procmux$407.
+    dead port 2/2 on $mux $procmux$407.
+    dead port 1/2 on $mux $procmux$402.
+    dead port 2/2 on $mux $procmux$402.
+    dead port 1/2 on $mux $procmux$400.
+    dead port 2/2 on $mux $procmux$400.
+    dead port 1/2 on $mux $procmux$367.
+    dead port 2/2 on $mux $procmux$367.
+    dead port 1/2 on $mux $procmux$365.
+    dead port 2/2 on $mux $procmux$365.
+    dead port 1/2 on $mux $procmux$613.
+    dead port 2/2 on $mux $procmux$613.
+    dead port 1/2 on $mux $procmux$611.
+    dead port 2/2 on $mux $procmux$611.
+    dead port 1/2 on $mux $procmux$159.
+    dead port 2/2 on $mux $procmux$159.
+    dead port 1/2 on $mux $procmux$155.
+    dead port 2/2 on $mux $procmux$155.
+    dead port 1/2 on $mux $procmux$151.
+    dead port 2/2 on $mux $procmux$151.
+    dead port 1/2 on $mux $procmux$147.
+    dead port 2/2 on $mux $procmux$147.
+    dead port 2/2 on $mux $procmux$138.
+    dead port 1/2 on $mux $procmux$130.
+    dead port 2/2 on $mux $procmux$130.
+    dead port 1/2 on $mux $procmux$128.
+    dead port 2/2 on $mux $procmux$128.
+    dead port 1/2 on $mux $procmux$123.
+    dead port 2/2 on $mux $procmux$123.
+    dead port 1/2 on $mux $procmux$121.
+    dead port 2/2 on $mux $procmux$121.
+    dead port 1/2 on $mux $procmux$116.
+    dead port 2/2 on $mux $procmux$116.
+    dead port 1/2 on $mux $procmux$114.
+    dead port 2/2 on $mux $procmux$114.
+Removed 50 multiplexer ports.
+<suppressed ~26 debug messages>
+
+5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+    New ctrl vector for $pmux cell $procmux$427: { $procmux$430_CMP $auto$opt_reduce.cc:134:opt_pmux$1106 }
+  Optimizing cells in module \sorting_engine.
+Performed a total of 1 changes.
+
+5.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+5.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$1068 ($adff) from module sorting_engine (D = $procmux$427_Y, Q = \state).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[7], Q = \out_data [63:56]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[6], Q = \out_data [55:48]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[5], Q = \out_data [47:40]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[4], Q = \out_data [39:32]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[3], Q = \out_data [31:24]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[2], Q = \out_data [23:16]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[1], Q = \out_data [15:8]).
+Adding EN signal on $procdff$1067 ($dff) from module sorting_engine (D = \array[0], Q = \out_data [7:0]).
+Adding EN signal on $procdff$1064 ($adff) from module sorting_engine (D = $procmux$370_Y, Q = \done).
+Adding EN signal on $procdff$1082 ($dff) from module sorting_engine (D = $procmux$305_Y, Q = \array[1]).
+Adding EN signal on $procdff$1079 ($dff) from module sorting_engine (D = $procmux$334_Y, Q = \array[0]).
+Adding EN signal on $procdff$1076 ($dff) from module sorting_engine (D = 8, Q = $fordecl_block$5.m).
+Adding EN signal on $procdff$1100 ($dff) from module sorting_engine (D = $procmux$173_Y, Q = \array[7]).
+Adding EN signal on $procdff$1097 ($dff) from module sorting_engine (D = $procmux$190_Y, Q = \array[6]).
+Adding EN signal on $procdff$1073 ($dff) from module sorting_engine (D = $3$fordecl_block$3.k[31:0]$52, Q = $fordecl_block$3.k).
+Adding EN signal on $procdff$1070 ($adff) from module sorting_engine (D = $procmux$345_Y, Q = \j).
+Adding EN signal on $procdff$1069 ($adff) from module sorting_engine (D = $procmux$356_Y, Q = \i).
+Adding EN signal on $procdff$1094 ($dff) from module sorting_engine (D = $procmux$209_Y, Q = \array[5]).
+Adding EN signal on $procdff$1091 ($dff) from module sorting_engine (D = $procmux$230_Y, Q = \array[4]).
+Adding EN signal on $procdff$1088 ($dff) from module sorting_engine (D = $procmux$253_Y, Q = \array[3]).
+Adding EN signal on $procdff$1085 ($dff) from module sorting_engine (D = $procmux$278_Y, Q = \array[2]).
+Setting constant 1-bit at position 0 on $auto$proc_dlatch.cc:427:proc_dlatch$618 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 0 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 1 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 2 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 1-bit at position 3 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 4 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 5 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 6 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 7 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 8 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 9 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 10 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 11 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 12 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 13 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 14 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 15 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 16 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 17 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 18 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 19 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 20 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 21 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 22 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 23 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 24 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 25 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 26 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 27 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 28 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 29 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 30 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 0-bit at position 31 on $auto$proc_dlatch.cc:427:proc_dlatch$751 ($dlatch) from module sorting_engine.
+Setting constant 1-bit at position 0 on $procdff$1101 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 1 on $procdff$1101 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 2 on $procdff$1101 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 0 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 1 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 2 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 3 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 4 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 5 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 6 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 1-bit at position 7 on $procdff$1102 ($adff) from module sorting_engine.
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 1 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 2 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 1-bit at position 3 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 4 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 5 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 6 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 7 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 8 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 9 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 10 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 11 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 12 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 13 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 14 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 15 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 16 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 17 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 18 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 19 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 20 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 21 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 22 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 23 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 24 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 25 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 26 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 27 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 28 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 29 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 30 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+Setting constant 0-bit at position 31 on $auto$ff.cc:266:slice$1183 ($dffe) from module sorting_engine.
+
+5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Warning: Driver-driver conflict for \done between cell $auto$ff.cc:266:slice$1154.Q and constant 1'1 in sorting_engine: Resolved using constant.
+Removed 53 unused cells and 492 unused wires.
+<suppressed ~55 debug messages>
+
+5.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~10 debug messages>
+
+5.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+5.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+5.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~138 debug messages>
+Removed a total of 46 cells.
+
+5.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 0 unused cells and 46 unused wires.
+<suppressed ~1 debug messages>
+
+5.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+5.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+5.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+5.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+5.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+5.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+5.23. Finished OPT passes. (There is nothing left to do.)
+
+6. Executing FSM pass (extract and optimize FSM).
+
+6.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+7. Executing OPT pass (performing simple optimizations).
+
+7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+7.9. Finished OPT passes. (There is nothing left to do.)
+
+8. Executing MEMORY pass.
+
+8.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+8.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+8.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+8.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+8.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+8.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+8.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+8.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+8.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+8.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+9. Executing OPT pass (performing simple optimizations).
+
+9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~21 debug messages>
+
+9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+9.9. Finished OPT passes. (There is nothing left to do.)
+
+10. Executing TECHMAP pass (map to technology primitives).
+
+10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+10.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $reduce_and.
+Running "alumacc" on wrapper $extern:wrap:$gt:A_SIGNED=0:A_WIDTH=8:B_SIGNED=0:B_WIDTH=8:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$gt:A_SIGNED=0:A_WIDTH=8:B_SIGNED=0:B_WIDTH=8:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$gt:A_SIGNED=0:A_WIDTH=8:B_SIGNED=0:B_WIDTH=8:Y_WIDTH=1:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $ne.
+Running "alumacc" on wrapper $extern:wrap:$add:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Using template $extern:wrap:$add:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47 for cells of type $extern:wrap:$add:A_SIGNED=1:A_WIDTH=32:B_SIGNED=1:B_WIDTH=32:Y_WIDTH=32:394426c56d1a028ba8fdd5469b163e04011def47.
+Using extmapper simplemap for cells of type $dffe.
+Using template $paramod$72f7795a18b8bd21d2def9f98cbb7d0e4ff65a7f\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$fc16b9f758000d363d24f130038bd99b46b4fa1b\_90_pmux for cells of type $pmux.
+Using template $paramod$8fabc56b80a569262acfc42757a02ca0b8e91278\_90_pmux for cells of type $pmux.
+Using template $paramod$521ce43182eecb9f60c72393a788160d2c356bf5\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $dlatch.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $and.
+Using template $paramod$2653f68ddb8eab7b1907b4a20767b72a824a7a36\_90_alu for cells of type $alu.
+Using template $paramod$a1bc51c02ce12ac21eb18988e83292af48ed7d72\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~1004 debug messages>
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~768 debug messages>
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~330 debug messages>
+Removed a total of 110 cells.
+
+11.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+11.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+11.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 22 unused cells and 791 unused wires.
+<suppressed ~23 debug messages>
+
+11.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+11.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+11.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+11.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+11.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+11.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+11.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+11.16. Finished OPT passes. (There is nothing left to do.)
+
+12. Executing SYNTH pass.
+
+12.1. Executing HIERARCHY pass (managing design hierarchy).
+
+12.1.1. Analyzing design hierarchy..
+Top module:  \sorting_engine
+
+12.1.2. Analyzing design hierarchy..
+Top module:  \sorting_engine
+Removed 0 unused modules.
+
+12.2. Executing PROC pass (convert processes to netlists).
+
+12.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+12.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+12.2.4. Executing PROC_INIT pass (extract init attributes).
+
+12.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+12.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+12.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+12.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+12.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+12.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+12.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+12.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.3. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.5. Executing CHECK pass (checking for obvious problems).
+Checking module sorting_engine...
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2574 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2659 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2573 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2658 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2572 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2657 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2571 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2656 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2570 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2655 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2569 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2654 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2568 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2653 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[7] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2567 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2652 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2550 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2699 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2549 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2698 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2548 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2697 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2547 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2696 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2546 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2695 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2545 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2694 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2544 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2693 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[6] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2543 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2692 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2533 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2619 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2532 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2618 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2531 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2617 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2530 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2616 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2529 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2615 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2528 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2614 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2527 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2613 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[5] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2526 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2612 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2516 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2691 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2515 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2690 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2514 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2689 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2513 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2688 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2512 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2687 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2511 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2686 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2510 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2685 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[4] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2509 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2684 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2499 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2683 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2498 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2682 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2497 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2681 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2496 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2680 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2495 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2679 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2494 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2678 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2493 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2677 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[3] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2492 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2676 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2482 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2675 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2481 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2674 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2480 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2673 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2479 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2672 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2478 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2671 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2477 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2670 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2476 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2669 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[2] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2475 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2668 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2464 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2603 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2463 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2602 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2462 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2601 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2461 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2600 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2460 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2599 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2459 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2598 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2458 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2597 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[1] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2457 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2596 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2446 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2667 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2445 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2666 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2444 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2665 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2443 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2664 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2442 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2663 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2441 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2662 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2440 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2661 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\array[0] [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2439 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2660 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\j [31]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2424 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2651 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [30]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2423 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2650 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [29]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2422 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2649 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [28]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2421 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2648 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [27]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2420 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2647 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [26]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2419 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2646 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [25]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2418 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2645 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [24]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2417 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2644 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [23]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2416 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2643 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [22]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2415 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2642 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [21]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2414 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2641 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [20]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2413 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2640 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [19]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2412 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2639 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [18]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2411 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2638 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [17]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2410 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2637 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [16]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2409 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2636 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [15]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2408 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2635 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [14]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2407 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2634 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [13]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2406 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2633 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [12]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2405 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2632 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [11]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2404 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2631 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [10]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2403 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2630 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [9]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2402 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2629 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [8]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2401 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2628 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2400 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2627 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2399 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2626 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2398 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2625 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2397 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2624 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2396 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2623 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2395 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2622 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2394 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2621 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\j [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2393 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2620 ($_DFFE_PP0P_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [63]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2392 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2611 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [62]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2391 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2610 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [61]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2390 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2609 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [60]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2389 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2608 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [59]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2388 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2607 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [58]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2387 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2606 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [57]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2386 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2605 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [56]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2385 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2604 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [15]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2328 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2352 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [14]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2327 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2351 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [13]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2326 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2350 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [12]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2325 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2349 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [11]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2324 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2348 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [10]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2323 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2347 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [9]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2322 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2346 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [8]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2321 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2345 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [7]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2320 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2384 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [6]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2319 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2383 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [5]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2318 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2382 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [4]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2317 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2381 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [3]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2316 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2380 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [2]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2315 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2379 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [1]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2314 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2378 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [0]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2313 ($_DLATCH_N_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2377 ($_DFFE_PP_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [55]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2302 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2376 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [54]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2301 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2375 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [53]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2300 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2374 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [52]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2299 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2373 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [51]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2298 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2372 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [50]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2297 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2371 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [49]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2296 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2370 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [48]:
+    port Q[0] of cell $auto$ff.cc:266:slice$2295 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2369 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [39]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1998 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2360 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [38]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1997 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2359 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [37]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1996 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2358 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [36]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1995 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2357 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [35]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1994 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2356 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [34]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1993 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2355 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [33]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1992 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2354 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [32]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1991 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2353 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [47]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1967 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2368 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [46]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1966 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2367 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [45]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1965 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2366 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [44]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1964 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2365 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [43]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1963 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2364 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [42]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1962 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2363 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [41]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1961 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2362 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [40]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1960 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2361 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [23]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1505 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2336 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [22]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1504 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2335 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [21]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1503 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2334 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [20]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1502 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2333 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [19]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1501 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2332 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [18]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1500 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2331 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [17]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1499 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2330 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [16]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1498 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2329 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [31]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1479 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2344 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [30]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1478 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2343 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [29]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1477 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2342 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [28]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1476 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2341 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [27]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1475 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2340 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [26]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1474 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2339 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [25]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1473 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2338 ($_DLATCH_N_)
+Warning: multiple conflicting drivers for sorting_engine.\out_data [24]:
+    port Q[0] of cell $auto$ff.cc:266:slice$1472 ($_DFFE_PP_)
+    port Q[0] of cell $auto$ff.cc:266:slice$2337 ($_DLATCH_N_)
+Found and reported 160 problems.
+
+12.6. Executing OPT pass (performing simple optimizations).
+
+12.6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.6.9. Finished OPT passes. (There is nothing left to do.)
+
+12.7. Executing FSM pass (extract and optimize FSM).
+
+12.7.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+12.7.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+12.7.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.7.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+12.7.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+12.7.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+12.7.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+12.8. Executing OPT pass (performing simple optimizations).
+
+12.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.8.9. Finished OPT passes. (There is nothing left to do.)
+
+12.9. Executing WREDUCE pass (reducing word size of cells).
+
+12.10. Executing PEEPOPT pass (run peephole optimizers).
+
+12.11. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.12. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module sorting_engine:
+  created 0 $alu and 0 $macc cells.
+
+12.13. Executing SHARE pass (SAT-based resource sharing).
+
+12.14. Executing OPT pass (performing simple optimizations).
+
+12.14.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.14.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.14.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.14.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.14.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.14.9. Finished OPT passes. (There is nothing left to do.)
+
+12.15. Executing MEMORY pass.
+
+12.15.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+12.15.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+12.15.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+12.15.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+12.15.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+12.15.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.15.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+12.15.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+12.15.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.15.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+12.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.17. Executing OPT pass (performing simple optimizations).
+
+12.17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~374 debug messages>
+
+12.17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~192 debug messages>
+Removed a total of 64 cells.
+
+12.17.3. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 0 on $auto$ff.cc:266:slice$2275 ($_DFFE_PP0P_) from module sorting_engine.
+
+12.17.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 14 unused cells and 44 unused wires.
+<suppressed ~15 debug messages>
+
+12.17.5. Rerunning OPT passes. (Removed registers in this run.)
+
+12.17.6. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~52 debug messages>
+
+12.17.7. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+12.17.8. Executing OPT_DFF pass (perform DFF optimizations).
+Handling never-active EN on $auto$ff.cc:266:slice$1965 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1960 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1477 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1474 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1964 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1473 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1505 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1963 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1498 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1476 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1472 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1479 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1962 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1961 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1504 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1503 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1502 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1499 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1478 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1500 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1501 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1475 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2611 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2610 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2609 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2608 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2607 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2606 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2605 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2604 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Removing never-active async load on $auto$ff.cc:266:slice$2392 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2391 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2390 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2389 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2388 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2387 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2386 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2385 ($_DLATCH_N_) from module sorting_engine.
+Handling never-active EN on $auto$ff.cc:266:slice$2384 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2383 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2382 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2381 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2380 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2379 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2378 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2377 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Removing never-active async load on $auto$ff.cc:266:slice$2376 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2375 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2374 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2373 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2372 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2371 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2370 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2369 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2368 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2367 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2366 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2365 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2364 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2363 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2362 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2361 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2360 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2359 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2358 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2357 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2356 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2355 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2354 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2353 ($_DLATCH_N_) from module sorting_engine.
+Handling never-active EN on $auto$ff.cc:266:slice$2352 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2351 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2350 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2349 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2348 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2347 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2346 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2345 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Removing never-active async load on $auto$ff.cc:266:slice$2344 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2343 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2342 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2341 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2340 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2339 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2338 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2337 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2336 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2335 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2334 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2333 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2332 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2331 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2330 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2329 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2328 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2327 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2326 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2325 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2324 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2323 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2322 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2321 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2320 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2319 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2318 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2317 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2316 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2315 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2314 ($_DLATCH_N_) from module sorting_engine.
+Removing never-active async load on $auto$ff.cc:266:slice$2313 ($_DLATCH_N_) from module sorting_engine.
+Handling never-active EN on $auto$ff.cc:266:slice$2302 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2301 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2300 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2299 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2298 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2297 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2296 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$2295 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1998 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1997 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1996 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1995 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1994 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1993 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1992 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1991 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1967 ($_DFFE_PP_) from module sorting_engine (removing D path).
+Handling never-active EN on $auto$ff.cc:266:slice$1966 ($_DFFE_PP_) from module sorting_engine (removing D path).
+
+12.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+Removed 1047 unused cells and 248 unused wires.
+<suppressed ~1059 debug messages>
+
+12.17.10. Rerunning OPT passes. (Removed registers in this run.)
+
+12.17.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+<suppressed ~2 debug messages>
+
+12.17.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.17.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.17.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.17.15. Finished fast OPT passes.
+
+12.18. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+12.19. Executing OPT pass (performing simple optimizations).
+
+12.19.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.19.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.19.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \sorting_engine..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+12.19.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \sorting_engine.
+Performed a total of 0 changes.
+
+12.19.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.19.6. Executing OPT_SHARE pass.
+
+12.19.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.19.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.19.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.19.10. Finished OPT passes. (There is nothing left to do.)
+
+12.20. Executing TECHMAP pass (map to technology primitives).
+
+12.20.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/local/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+12.20.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+12.21. Executing OPT pass (performing simple optimizations).
+
+12.21.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.21.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.21.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.21.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.21.5. Finished fast OPT passes.
+
+12.22. Executing ABC pass (technology mapping using ABC).
+
+12.22.1. Extracting gate netlist of module `\sorting_engine' to `<abc-temp-dir>/input.blif'..
+Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
+Don't call ABC as there is nothing to map.
+Removing temp directory.
+
+12.23. Executing OPT pass (performing simple optimizations).
+
+12.23.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module sorting_engine.
+
+12.23.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\sorting_engine'.
+Removed a total of 0 cells.
+
+12.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+12.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \sorting_engine..
+
+12.23.5. Finished fast OPT passes.
+
+12.24. Executing HIERARCHY pass (managing design hierarchy).
+
+12.24.1. Analyzing design hierarchy..
+Top module:  \sorting_engine
+
+12.24.2. Analyzing design hierarchy..
+Top module:  \sorting_engine
+Removed 0 unused modules.
+
+12.25. Printing statistics.
+
+=== sorting_engine ===
+
+   Number of wires:                  8
+   Number of wire bits:            136
+   Number of public wires:           8
+   Number of public wire bits:     136
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  0
+
+12.26. Executing CHECK pass (checking for obvious problems).
+Checking module sorting_engine...
+Found and reported 0 problems.
+
+13. Executing Verilog backend.
+
+13.1. Executing BMUXMAP pass.
+
+13.2. Executing DEMUXMAP pass.
+Dumping module `\sorting_engine'.
+
+Warnings: 162 unique messages, 162 total
+End of script. Logfile hash: 1799e831db, CPU: user 0.54s system 0.00s, MEM: 22.88 MB peak
+Yosys 0.36+42 (git sha1 70d35314d, clang 11.0.1-2 -fPIC -Os)
+Time spent: 38% 31x opt_expr (0 sec), 16% 27x opt_clean (0 sec), ...
+
+Yosys Synthesis Log Comparison:
+{'Number of wires': 8, 'Number of memories': 0, 'Number of processes': 0, 'Number of cells': 0}
+False
+wires: 846 -> 8 (Improved by 838, Reduction: 99.05% meets threshold 28%) -- PASS
+cells: 1143 -> 0 (Improved by 1143, Reduction: 100.00% meets threshold 31%) -- PASS
+PASSED
+
+============================== 1 passed in 0.55s ===============================
+Cleaning up Docker resources...
+Untagged: cvdp_copilot_sorter_51_1775024476-synth:latest
+Deleted: sha256:449b1a0ece17d83099948ece2dda1b1cb7794f4ecc18d99a8cf48ec1edb70727

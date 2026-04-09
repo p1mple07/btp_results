@@ -1,0 +1,78 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x2321890 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x230c960 .scope module, "perceptron_gates" "perceptron_gates" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst_n";
+    .port_info 2 /INPUT 4 "x1";
+    .port_info 3 /INPUT 4 "x2";
+    .port_info 4 /INPUT 2 "learning_rate";
+    .port_info 5 /INPUT 4 "threshold";
+    .port_info 6 /INPUT 2 "gate_select";
+    .port_info 7 /OUTPUT 4 "percep_w1";
+    .port_info 8 /OUTPUT 4 "percep_w2";
+    .port_info 9 /OUTPUT 4 "percep_bias";
+    .port_info 10 /OUTPUT 4 "present_addr";
+    .port_info 11 /OUTPUT 1 "stop";
+    .port_info 12 /OUTPUT 3 "input_index";
+    .port_info 13 /OUTPUT 4 "y_in";
+    .port_info 14 /OUTPUT 4 "y";
+    .port_info 15 /OUTPUT 4 "prev_percep_wt_1";
+    .port_info 16 /OUTPUT 4 "prev_percep_wt_2";
+    .port_info 17 /OUTPUT 4 "prev_percep_bias";
+    .port_info 18 /OUTPUT 4 "prev_percep_wt_1_prev";
+    .port_info 19 /OUTPUT 4 "prev_percep_wt_2_prev";
+    .port_info 20 /OUTPUT 4 "prev_percep_bias_prev";
+o0x7525d91bc018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2322260_0 .net "clk", 0 0, o0x7525d91bc018;  0 drivers
+o0x7525d91bc048 .functor BUFZ 2, c4<zz>; HiZ drive
+v0x2347590_0 .net "gate_select", 1 0, o0x7525d91bc048;  0 drivers
+v0x2347670_0 .var "input_index", 2 0;
+o0x7525d91bc0a8 .functor BUFZ 2, c4<zz>; HiZ drive
+v0x2347730_0 .net "learning_rate", 1 0, o0x7525d91bc0a8;  0 drivers
+v0x2347810_0 .var "percep_bias", 3 0;
+v0x2347940_0 .var "percep_w1", 3 0;
+v0x2347a20_0 .var "percep_w2", 3 0;
+v0x2347b00_0 .var "present_addr", 3 0;
+v0x2347be0_0 .var "prev_percep_bias", 3 0;
+v0x2347cc0_0 .var "prev_percep_bias_prev", 3 0;
+v0x2347da0_0 .var "prev_percep_wt_1", 3 0;
+v0x2347e80_0 .var "prev_percep_wt_1_prev", 3 0;
+v0x2347f60_0 .var "prev_percep_wt_2", 3 0;
+v0x2348040_0 .var "prev_percep_wt_2_prev", 3 0;
+o0x7525d91bc2b8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x2348120_0 .net "rst_n", 0 0, o0x7525d91bc2b8;  0 drivers
+v0x23481e0_0 .var "stop", 0 0;
+o0x7525d91bc318 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x23482a0_0 .net "threshold", 3 0, o0x7525d91bc318;  0 drivers
+o0x7525d91bc348 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x2348490_0 .net "x1", 3 0, o0x7525d91bc348;  0 drivers
+o0x7525d91bc378 .functor BUFZ 4, c4<zzzz>; HiZ drive
+v0x2348570_0 .net "x2", 3 0, o0x7525d91bc378;  0 drivers
+v0x2348650_0 .var "y", 3 0;
+v0x2348730_0 .var "y_in", 3 0;
+S_0x23220b0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x23220b0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/perceptron_gates.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x230c960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/perceptron_gates.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

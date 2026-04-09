@@ -1,0 +1,69 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x9249b0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x924b40 .scope module, "lfsr_8bit" "lfsr_8bit" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 8 "seed";
+    .port_info 3 /OUTPUT 8 "lfsr_out";
+o0x70fdf0fa0018 .functor BUFZ 1, c4<z>; HiZ drive
+v0x938a00_0 .net "clk", 0 0, o0x70fdf0fa0018;  0 drivers
+v0x95b010_0 .var "lfsr_out", 7 0;
+o0x70fdf0fa0078 .functor BUFZ 1, c4<z>; HiZ drive
+v0x95b0f0_0 .net "rst", 0 0, o0x70fdf0fa0078;  0 drivers
+o0x70fdf0fa00a8 .functor BUFZ 8, c4<zzzzzzzz>; HiZ drive
+v0x95b190_0 .net "seed", 7 0, o0x70fdf0fa00a8;  0 drivers
+E_0x949df0 .event posedge, v0x95b0f0_0, v0x938a00_0;
+S_0x924cd0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x924b40;
+T_0 ;
+    %wait E_0x949df0;
+    %load/vec4 v0x95b0f0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 1, 0, 8;
+    %assign/vec4 v0x95b010_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x95b010_0;
+    %parti/s 7, 0, 2;
+    %load/vec4 v0x95b010_0;
+    %parti/s 1, 7, 4;
+    %load/vec4 v0x95b010_0;
+    %parti/s 1, 5, 4;
+    %xor;
+    %load/vec4 v0x95b010_0;
+    %parti/s 1, 4, 4;
+    %xor;
+    %load/vec4 v0x95b010_0;
+    %parti/s 1, 3, 3;
+    %xor;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x95b010_0, 0;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x924cd0;
+T_1 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/lfsr_8bit.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x924b40 {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/lfsr_8bit.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

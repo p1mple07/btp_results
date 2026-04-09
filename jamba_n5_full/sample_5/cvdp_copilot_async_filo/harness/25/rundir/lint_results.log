@@ -1,0 +1,43 @@
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:38:11: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's VARREF 'r_ptr_1' generates 1 bits.
+                                                   : ... note: In instance 'async_filo'
+   38 |     w_ptr <= r_ptr_1;
+      |           ^~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.027
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:51:15: Operator ASSIGNDLY expects 5 bits on the Assign RHS, but Assign RHS's VARREF 'w_count_next_bin' generates 4 bits.
+                                                   : ... note: In instance 'async_filo'
+   51 |     w_full_f1 <= w_count_next_bin;
+      |               ^~
+%Warning-WIDTHTRUNC: /code/rtl/async_filo.sv:150:27: Operator ASSIGNDLY expects 1 bits on the Assign RHS, but Assign RHS's CONST '?32?sh2' generates 32 or 2 bits.
+                                                   : ... note: In instance 'async_filo'
+  150 |       default:  w_full_d1 <= 2;
+      |                           ^~
+%Warning-WIDTHEXPAND: /code/rtl/async_filo.sv:147:5: Operator CASE expects 5 bits on the Case expression, but Case expression's VARREF 'w_ptr' generates 4 bits.
+                                                   : ... note: In instance 'async_filo'
+  147 |     case (w_ptr)
+      |     ^~~~
+%Error-PROCASSWIRE: /code/rtl/async_filo.sv:59:26: Procedural assignment to wire, perhaps intended var (IEEE 1800-2023 6.5): 'w_addr'
+                                                 : ... note: In instance 'async_filo'
+   59 |     if (push && !w_full) w_addr = w_addr + 1;
+      |                          ^~~~~~
+%Error-PROCASSWIRE: /code/rtl/async_filo.sv:92:26: Procedural assignment to wire, perhaps intended var (IEEE 1800-2023 6.5): 'w_addr'
+                                                 : ... note: In instance 'async_filo'
+   92 |     if (push && !w_full) w_addr = w_addr + 1;
+      |                          ^~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/async_filo.sv:32:9: Signal is not used: 'w_full_d1'
+                                                   : ... note: In instance 'async_filo'
+   32 |   logic w_full_d1;
+      |         ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/async_filo.sv:34:24: Signal is not used: 'w_ptr_b1'
+                                                    : ... note: In instance 'async_filo'
+   34 |   logic [ADDR_WIDTH:0] w_ptr_b1;
+      |                        ^~~~~~~~
+%Warning-UNDRIVEN: /code/rtl/async_filo.sv:36:9: Signal is not driven: 'r_ptr_1'
+                                               : ... note: In instance 'async_filo'
+   36 |   logic r_ptr_1;
+      |         ^~~~~~~
+%Warning-UNUSEDSIGNAL: /code/rtl/async_filo.sv:49:26: Signal is not used: 'w_full_f1'
+                                                    : ... note: In instance 'async_filo'
+   49 |   logic [ADDR_WIDTH+1:0] w_full_f1;
+      |                          ^~~~~~~~~
+%Error: Exiting due to 2 error(s), 8 warning(s)

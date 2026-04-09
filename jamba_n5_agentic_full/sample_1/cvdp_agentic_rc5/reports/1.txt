@@ -1,0 +1,66 @@
+Running harness with project name: cvdp_agentic_rc5_1_1775412118
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_rc5_enc_16bit_run      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775412121
+     0.00ns INFO     cocotb.regression                  running test_rc5_enc_16bit.test_rc5_enc_16bit (1/1)
+                                                            Test the rc5_enc_16bit encryption module
+    10.00ns INFO     cocotb.regression                  test_rc5_enc_16bit.test_rc5_enc_16bit failed
+                                                        Traceback (most recent call last):
+                                                          File "/src/test_rc5_enc_16bit.py", line 58, in test_rc5_enc_16bit
+                                                            while dut.enc_done.value == 0:
+                                                          File "/usr/local/lib/python3.9/dist-packages/cocotb/handle.py", line 450, in __getattr__
+                                                            raise AttributeError(str(e)) from None
+                                                        AttributeError: 'rc5_enc_16bit contains no child object named enc_done'
+    10.00ns INFO     cocotb.regression                  ***********************************************************************************************
+                                                        ** TEST                                   STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ***********************************************************************************************
+                                                        ** test_rc5_enc_16bit.test_rc5_enc_16bit   FAIL          10.00           0.00      16817.58  **
+                                                        ***********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                          10.00           0.00       2301.78  **
+                                                        ***********************************************************************************************
+                                                        
+VCD info: dumpfile /code/rundir/sim_build/rc5_enc_16bit.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+____________________________ test_rc5_enc_16bit_run ____________________________
+
+    @pytest.mark.tb
+    def test_rc5_enc_16bit_run():
+    
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            always=True,
+            clean=True,
+            waves=True,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+>       runner.test(
+            hdl_toplevel=toplevel,
+            test_module=module,
+        )
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:26: SystemExit
+=============================== warnings summary ===============================
+../../src/test_runner.py:12
+  /src/test_runner.py:12: PytestUnknownMarkWarning: Unknown pytest.mark.tb - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.tb
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_rc5_enc_16bit_run - SystemExit: ERROR: ...
+========================= 1 failed, 1 warning in 0.18s =========================
+Cleaning up Docker resources...

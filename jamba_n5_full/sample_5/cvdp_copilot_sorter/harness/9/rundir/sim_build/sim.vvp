@@ -1,0 +1,66 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0xf90870 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0xf79960 .scope module, "sorting_engine" "sorting_engine" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "rst";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 256 "in_data";
+    .port_info 4 /OUTPUT 1 "done";
+    .port_info 5 /OUTPUT 256 "out_data";
+P_0xf79af0 .param/l "DONE" 1 3 15, C4<11>;
+P_0xf79b30 .param/l "IDLE" 1 3 12, C4<00>;
+P_0xf79b70 .param/l "LOAD" 1 3 13, C4<01>;
+P_0xf79bb0 .param/l "N" 0 3 2, +C4<00000000000000000000000000010000>;
+P_0xf79bf0 .param/l "SORT" 1 3 14, C4<10>;
+P_0xf79c30 .param/l "WIDTH" 0 3 3, +C4<00000000000000000000000000010000>;
+L_0x7147b84b0018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+L_0xfb6310 .functor XNOR 1, L_0xfb6210, L_0x7147b84b0018, C4<0>, C4<0>;
+v0xf91270_0 .net *"_ivl_1", 0 0, L_0xfb6210;  1 drivers
+v0xfb5630_0 .net *"_ivl_10", 31 0, L_0xfc6470;  1 drivers
+v0xfb5710_0 .net/2u *"_ivl_2", 0 0, L_0x7147b84b0018;  1 drivers
+v0xfb5800_0 .net *"_ivl_4", 0 0, L_0xfb6310;  1 drivers
+L_0x7147b84b0060 .functor BUFT 1, C4<00000000000000000000000000001000>, C4<0>, C4<0>, C4<0>;
+v0xfb58c0_0 .net/2s *"_ivl_6", 31 0, L_0x7147b84b0060;  1 drivers
+L_0x7147b84b00a8 .functor BUFT 1, C4<00000000000000000000000000000111>, C4<0>, C4<0>, C4<0>;
+v0xfb59f0_0 .net/2s *"_ivl_8", 31 0, L_0x7147b84b00a8;  1 drivers
+o0x7147b84f9138 .functor BUFZ 1, c4<z>; HiZ drive
+v0xfb5ad0_0 .net "clk", 0 0, o0x7147b84f9138;  0 drivers
+v0xfb5b90_0 .var "done", 0 0;
+o0x7147b84f9198 .functor BUFZ 256, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0xfb5c50_0 .net "in_data", 255 0, o0x7147b84f9198;  0 drivers
+v0xfb5d30_0 .var "out_data", 255 0;
+v0xfb5e10_0 .net "pairs_in_this_pass", 3 0, L_0xfc6630;  1 drivers
+v0xfb5ef0_0 .var "pass_cnt", 4 0;
+o0x7147b84f9258 .functor BUFZ 1, c4<z>; HiZ drive
+v0xfb5fd0_0 .net "rst", 0 0, o0x7147b84f9258;  0 drivers
+o0x7147b84f9288 .functor BUFZ 1, c4<z>; HiZ drive
+v0xfb6090_0 .net "start", 0 0, o0x7147b84f9288;  0 drivers
+L_0xfb6210 .part v0xfb5ef0_0, 0, 1;
+L_0xfc6470 .functor MUXZ 32, L_0x7147b84b00a8, L_0x7147b84b0060, L_0xfb6310, C4<>;
+L_0xfc6630 .part L_0xfc6470, 0, 4;
+S_0xf910c0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0xf910c0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/sorting_engine.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0xf79960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sorting_engine.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

@@ -1,0 +1,281 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x150d420 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x150d5b0 .scope module, "cvdp_copilot_register_file_2R1W" "cvdp_copilot_register_file_2R1W" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "din";
+    .port_info 1 /INPUT 5 "wad1";
+    .port_info 2 /INPUT 5 "rad1";
+    .port_info 3 /INPUT 5 "rad2";
+    .port_info 4 /INPUT 1 "wen1";
+    .port_info 5 /INPUT 1 "ren1";
+    .port_info 6 /INPUT 1 "ren2";
+    .port_info 7 /INPUT 1 "clk";
+    .port_info 8 /INPUT 1 "resetn";
+    .port_info 9 /OUTPUT 32 "dout1";
+    .port_info 10 /OUTPUT 32 "dout2";
+    .port_info 11 /OUTPUT 1 "collision";
+P_0x1508360 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000100000>;
+o0x733c756dc3d8 .functor BUFZ 1, c4<z>; HiZ drive
+o0x733c756dc2b8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x15096e0 .functor OR 1, o0x733c756dc3d8, o0x733c756dc2b8, C4<0>, C4<0>;
+o0x733c756dc2e8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x150af50 .functor OR 1, L_0x15096e0, o0x733c756dc2e8, C4<0>, C4<0>;
+o0x733c756dc0a8 .functor BUFZ 1, c4<z>; HiZ drive
+L_0x151a080 .functor AND 1, o0x733c756dc0a8, v0x153ba30_0, C4<1>, C4<1>;
+v0x15097f0_0 .net *"_ivl_0", 0 0, L_0x15096e0;  1 drivers
+v0x1509890_0 .var "bist_done", 0 0;
+v0x150a440_0 .var "bist_fail", 0 0;
+v0x150a4e0_0 .net "clk", 0 0, o0x733c756dc0a8;  0 drivers
+v0x150b060_0 .net "clk_en", 0 0, L_0x150af50;  1 drivers
+v0x150b100_0 .var "collision", 0 0;
+o0x733c756dc138 .functor BUFZ 32, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x153b790_0 .net "din", 31 0, o0x733c756dc138;  0 drivers
+v0x153b870_0 .var "dout1", 31 0;
+v0x153b950_0 .var "dout2", 31 0;
+v0x153ba30_0 .var "en_latch", 0 0;
+v0x153baf0_0 .net "gated_clk", 0 0, L_0x151a080;  1 drivers
+v0x153bbb0_0 .var/i "i", 31 0;
+o0x733c756dc258 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x153bc90_0 .net "rad1", 4 0, o0x733c756dc258;  0 drivers
+o0x733c756dc288 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x153bd70_0 .net "rad2", 4 0, o0x733c756dc288;  0 drivers
+v0x153be50_0 .net "ren1", 0 0, o0x733c756dc2b8;  0 drivers
+v0x153bf10_0 .net "ren2", 0 0, o0x733c756dc2e8;  0 drivers
+o0x733c756dc318 .functor BUFZ 1, c4<z>; HiZ drive
+v0x153bfd0_0 .net "resetn", 0 0, o0x733c756dc318;  0 drivers
+v0x153c1a0 .array "rf_mem", 31 0, 31 0;
+v0x153c260_0 .var "rf_valid", 31 0;
+o0x733c756dc378 .functor BUFZ 1, c4<z>; HiZ drive
+v0x153c340_0 .net "test_mode", 0 0, o0x733c756dc378;  0 drivers
+o0x733c756dc3a8 .functor BUFZ 5, c4<zzzzz>; HiZ drive
+v0x153c400_0 .net "wad1", 4 0, o0x733c756dc3a8;  0 drivers
+v0x153c4e0_0 .net "wen1", 0 0, o0x733c756dc3d8;  0 drivers
+E_0x151a270/0 .event negedge, v0x153bfd0_0;
+E_0x151a270/1 .event posedge, v0x153baf0_0;
+E_0x151a270 .event/or E_0x151a270/0, E_0x151a270/1;
+E_0x1517be0 .event anyedge, v0x150b060_0, v0x150a4e0_0;
+S_0x1525390 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -12;
+    .scope S_0x150d5b0;
+T_0 ;
+    %wait E_0x1517be0;
+    %load/vec4 v0x150a4e0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %load/vec4 v0x150b060_0;
+    %assign/vec4 v0x153ba30_0, 0;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x150d5b0;
+T_1 ;
+    %wait E_0x151a270;
+    %load/vec4 v0x153bfd0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x153bbb0_0, 0, 32;
+T_1.2 ; Top of for-loop
+    %load/vec4 v0x153bbb0_0;
+    %cmpi/s 32, 0, 32;
+	  %jmp/0xz T_1.3, 5;
+    %pushi/vec4 0, 0, 32;
+    %ix/getv/s 3, v0x153bbb0_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x153c1a0, 0, 4;
+T_1.4 ; for-loop step statement
+    %load/vec4 v0x153bbb0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x153bbb0_0, 0, 32;
+    %jmp T_1.2;
+T_1.3 ; for-loop exit label
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x153c260_0, 0;
+    %jmp T_1.1;
+T_1.0 ;
+    %load/vec4 v0x153c4e0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.5, 8;
+    %load/vec4 v0x153b790_0;
+    %load/vec4 v0x153c400_0;
+    %pad/u 7;
+    %ix/vec4 3;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x153c1a0, 0, 4;
+    %pushi/vec4 1, 0, 1;
+    %ix/load 5, 0, 0;
+    %ix/getv 4, v0x153c400_0;
+    %assign/vec4/off/d v0x153c260_0, 4, 5;
+T_1.5 ;
+T_1.1 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x150d5b0;
+T_2 ;
+    %wait E_0x151a270;
+    %load/vec4 v0x153bfd0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x153b870_0, 0;
+    %jmp T_2.1;
+T_2.0 ;
+    %load/vec4 v0x153be50_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.2, 8;
+    %load/vec4 v0x153c260_0;
+    %load/vec4 v0x153bc90_0;
+    %part/u 1;
+    %flag_set/vec4 8;
+    %jmp/0 T_2.4, 8;
+    %load/vec4 v0x153bc90_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0x153c1a0, 4;
+    %jmp/1 T_2.5, 8;
+T_2.4 ; End of true expr.
+    %pushi/vec4 0, 0, 32;
+    %jmp/0 T_2.5, 8;
+ ; End of false expr.
+    %blend;
+T_2.5;
+    %assign/vec4 v0x153b870_0, 0;
+    %jmp T_2.3;
+T_2.2 ;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x153b870_0, 0;
+T_2.3 ;
+T_2.1 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x150d5b0;
+T_3 ;
+    %wait E_0x151a270;
+    %load/vec4 v0x153bfd0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x153b950_0, 0;
+    %jmp T_3.1;
+T_3.0 ;
+    %load/vec4 v0x153bf10_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_3.2, 8;
+    %load/vec4 v0x153c260_0;
+    %load/vec4 v0x153bd70_0;
+    %part/u 1;
+    %flag_set/vec4 8;
+    %jmp/0 T_3.4, 8;
+    %load/vec4 v0x153bd70_0;
+    %pad/u 7;
+    %ix/vec4 4;
+    %load/vec4a v0x153c1a0, 4;
+    %jmp/1 T_3.5, 8;
+T_3.4 ; End of true expr.
+    %pushi/vec4 0, 0, 32;
+    %jmp/0 T_3.5, 8;
+ ; End of false expr.
+    %blend;
+T_3.5;
+    %assign/vec4 v0x153b950_0, 0;
+    %jmp T_3.3;
+T_3.2 ;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x153b950_0, 0;
+T_3.3 ;
+T_3.1 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_0x150d5b0;
+T_4 ;
+    %wait E_0x151a270;
+    %load/vec4 v0x153bfd0_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_4.0, 8;
+    %jmp T_4.1;
+T_4.0 ;
+    %load/vec4 v0x153c340_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_4.2, 8;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x153bbb0_0, 0, 32;
+T_4.4 ; Top of for-loop
+    %load/vec4 v0x153bbb0_0;
+    %cmpi/s 32, 0, 32;
+	  %jmp/0xz T_4.5, 5;
+    %pushi/vec4 0, 0, 32;
+    %ix/getv/s 3, v0x153bbb0_0;
+    %ix/load 4, 0, 0; Constant delay
+    %assign/vec4/a/d v0x153c1a0, 0, 4;
+T_4.6 ; for-loop step statement
+    %load/vec4 v0x153bbb0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x153bbb0_0, 0, 32;
+    %jmp T_4.4;
+T_4.5 ; for-loop exit label
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x153bbb0_0, 0, 32;
+T_4.7 ; Top of for-loop
+    %load/vec4 v0x153bbb0_0;
+    %cmpi/s 32, 0, 32;
+	  %jmp/0xz T_4.8, 5;
+    %ix/getv/s 4, v0x153bbb0_0;
+    %load/vec4a v0x153c1a0, 4;
+    %store/vec4 v0x153b870_0, 0, 32;
+    %ix/getv/s 4, v0x153bbb0_0;
+    %load/vec4a v0x153c1a0, 4;
+    %store/vec4 v0x153b950_0, 0, 32;
+    %load/vec4 v0x153b870_0;
+    %cmpi/ne 0, 0, 32;
+    %jmp/1 T_4.12, 4;
+    %flag_mov 8, 4;
+    %load/vec4 v0x153b950_0;
+    %cmpi/ne 0, 0, 32;
+    %flag_or 4, 8;
+T_4.12;
+    %jmp/0xz  T_4.10, 4;
+    %pushi/vec4 1, 0, 1;
+    %assign/vec4 v0x150a440_0, 0;
+    %jmp T_4.11;
+T_4.10 ;
+    %pushi/vec4 0, 0, 1;
+    %assign/vec4 v0x150a440_0, 0;
+T_4.11 ;
+T_4.9 ; for-loop step statement
+    %load/vec4 v0x153bbb0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x153bbb0_0, 0, 32;
+    %jmp T_4.7;
+T_4.8 ; for-loop exit label
+T_4.2 ;
+T_4.1 ;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x1525390;
+T_5 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/cvdp_copilot_register_file_2R1W.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x150d5b0 {0 0 0};
+    %end;
+    .thread T_5;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/cvdp_copilot_register_file_2R1W.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

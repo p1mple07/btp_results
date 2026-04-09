@@ -1,0 +1,103 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1499ed0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x149a060 .scope module, "sgd_linear_regression" "sgd_linear_regression" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 21 "x_in";
+    .port_info 3 /INPUT 21 "y_true";
+    .port_info 4 /OUTPUT 21 "w";
+    .port_info 5 /OUTPUT 21 "b";
+P_0x149a1f0 .param/l "DATA_WIDTH" 0 3 2, +C4<00000000000000000000000000010101>;
+P_0x149a230 .param/l "LEARNING_RATE" 0 3 3, +C4<00000000000000000000000000000010>;
+P_0x149a270 .param/l "NBW_DELTA" 1 3 15, +C4<00000000000000000000000000000000000000000000000000000000000001000100>;
+P_0x149a2b0 .param/l "NBW_ERROR" 1 3 14, +C4<000000000000000000000000000000000000000000000000000000000000101100>;
+P_0x149a2f0 .param/l "NBW_PRED" 1 3 13, +C4<00000000000000000000000000000000000000000000000000000000000101011>;
+v0x149a740_0 .net/s *"_ivl_0", 43 0, L_0x14bfc30;  1 drivers
+v0x14beca0_0 .net/s *"_ivl_11", 67 0, L_0x14d00e0;  1 drivers
+v0x14bed80_0 .net/s *"_ivl_12", 67 0, L_0x14d0220;  1 drivers
+v0x14bee40_0 .net/s *"_ivl_16", 67 0, L_0x14d0440;  1 drivers
+L_0x74ccc11a2060 .functor BUFT 1, C4<00000000000000000000000000000000000000000000000000000000000000000010>, C4<0>, C4<0>, C4<0>;
+v0x14bef20_0 .net/2s *"_ivl_18", 67 0, L_0x74ccc11a2060;  1 drivers
+v0x14bf050_0 .net/s *"_ivl_2", 43 0, L_0x14bfcd0;  1 drivers
+v0x14bf130_0 .net/s *"_ivl_6", 67 0, L_0x14bff60;  1 drivers
+L_0x74ccc11a2018 .functor BUFT 1, C4<00000000000000000000000000000000000000000000000000000000000000000010>, C4<0>, C4<0>, C4<0>;
+v0x14bf210_0 .net/2s *"_ivl_8", 67 0, L_0x74ccc11a2018;  1 drivers
+v0x14bf2f0_0 .var/s "b", 20 0;
+o0x74ccc11eb1c8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x14bf3d0_0 .net "clk", 0 0, o0x74ccc11eb1c8;  0 drivers
+v0x14bf490_0 .net/s "delta_b", 67 0, L_0x14d0530;  1 drivers
+v0x14bf570_0 .net/s "delta_w", 67 0, L_0x14d0300;  1 drivers
+v0x14bf650_0 .net/s "error", 43 0, L_0x14bfdd0;  1 drivers
+o0x74ccc11eb288 .functor BUFZ 1, c4<z>; HiZ drive
+v0x14bf730_0 .net "reset", 0 0, o0x74ccc11eb288;  0 drivers
+v0x14bf7f0_0 .var/s "w", 20 0;
+o0x74ccc11eb2e8 .functor BUFZ 21, c4<zzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x14bf8d0_0 .net/s "x_in", 20 0, o0x74ccc11eb2e8;  0 drivers
+v0x14bf9b0_0 .var/s "y_pred", 42 0;
+o0x74ccc11eb348 .functor BUFZ 21, c4<zzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x14bfa90_0 .net/s "y_true", 20 0, o0x74ccc11eb348;  0 drivers
+E_0x14a75c0 .event posedge, v0x14bf3d0_0;
+E_0x14a8120 .event anyedge, v0x14bf7f0_0, v0x14bf8d0_0, v0x14bf2f0_0;
+L_0x14bfc30 .extend/s 44, o0x74ccc11eb348;
+L_0x14bfcd0 .extend/s 44, v0x14bf9b0_0;
+L_0x14bfdd0 .arith/sub 44, L_0x14bfc30, L_0x14bfcd0;
+L_0x14bff60 .extend/s 68, L_0x14bfdd0;
+L_0x14d00e0 .arith/mult 68, L_0x14bff60, L_0x74ccc11a2018;
+L_0x14d0220 .extend/s 68, o0x74ccc11eb2e8;
+L_0x14d0300 .arith/mult 68, L_0x14d00e0, L_0x14d0220;
+L_0x14d0440 .extend/s 68, L_0x14bfdd0;
+L_0x14d0530 .arith/mult 68, L_0x14d0440, L_0x74ccc11a2060;
+    .scope S_0x149a060;
+T_0 ;
+Ewait_0 .event/or E_0x14a8120, E_0x0;
+    %wait Ewait_0;
+    %load/vec4 v0x14bf7f0_0;
+    %pad/s 43;
+    %load/vec4 v0x14bf8d0_0;
+    %pad/s 43;
+    %mul;
+    %load/vec4 v0x14bf2f0_0;
+    %pad/s 43;
+    %add;
+    %store/vec4 v0x14bf9b0_0, 0, 43;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x149a060;
+T_1 ;
+    %wait E_0x14a75c0;
+    %load/vec4 v0x14bf730_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %load/vec4 v0x14bf7f0_0;
+    %pad/s 68;
+    %load/vec4 v0x14bf570_0;
+    %add;
+    %pad/s 21;
+    %assign/vec4 v0x14bf7f0_0, 0;
+    %load/vec4 v0x14bf2f0_0;
+    %pad/s 68;
+    %load/vec4 v0x14bf490_0;
+    %add;
+    %pad/s 21;
+    %assign/vec4 v0x14bf2f0_0, 0;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/sgd_linear_regression.sv";

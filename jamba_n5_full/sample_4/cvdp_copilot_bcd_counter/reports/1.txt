@@ -1,0 +1,70 @@
+Running harness with project name: cvdp_copilot_bcd_counter_1_1775075914
+============================= test session starts ==============================
+platform linux -- Python 3.9.2, pytest-8.3.2, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: /code/rundir/.cache
+rootdir: /src
+collecting ... collected 1 item
+
+../../src/test_runner.py::test_areg_param[0]      -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:79   in set_program_name_in_venv        Did not detect Python virtual environment. Using system-wide Python interpreter
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+8d6c1a63 from /usr/local/lib/python3.9/dist-packages/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775075917
+     0.00ns INFO     cocotb.regression                  running test_bcd_counter.test_bcd_counter (1/1)
+                                                            Test the BCD counter simulating a 24-hour clock with a 1 Hz frequency.
+Midnight transition: Hours = 00000000, Minutes = 00000000, Seconds = 00000000
+Post-midnight check: Hours = 00000000, Minutes = 00000000, Seconds = 00000000
+123011000000000.00ns INFO     cocotb.regression                  test_bcd_counter.test_bcd_counter failed
+                                                                 Traceback (most recent call last):
+                                                                   File "/src/test_bcd_counter.py", line 54, in test_bcd_counter
+                                                                     assert int(dut.ms_hr) == 1 and int(dut.ls_hr) == 0, "Counter incorrect for hours after reset"
+                                                                 AssertionError: Counter incorrect for hours after reset
+                                                                 assert (0 == 1)
+                                                                  +  where 0 = int(LogicObject(bcd_counter.ms_hr))
+                                                                  +    where LogicObject(bcd_counter.ms_hr) = HierarchyObject(bcd_counter).ms_hr
+123011000000000.00ns INFO     cocotb.regression                  *******************************************************************************************
+                                                                 ** TEST                               STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                                 *******************************************************************************************
+                                                                 ** test_bcd_counter.test_bcd_counter   FAIL   123011000000000.00           8.77   14026911059668.84  **
+                                                                 *******************************************************************************************
+                                                                 ** TESTS=1 PASS=0 FAIL=1 SKIP=0               123011000000000.00           8.77   14020708907641.85  **
+                                                                 *******************************************************************************************
+                                                                 
+FST info: dumpfile /code/rundir/sim_build/bcd_counter.fst opened for output.
+FAILED
+
+=================================== FAILURES ===================================
+______________________________ test_areg_param[0] ______________________________
+
+test = 0
+
+    @pytest.mark.parametrize("test", range(1))
+    def test_areg_param(test):
+>           runner()
+
+/src/test_runner.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+plusargs = [], parameter = {}
+
+    def runner(plusargs=[], parameter={}):
+        runner = get_runner(sim)
+        runner.build(
+            sources=verilog_sources,
+            hdl_toplevel=toplevel,
+            # Arguments
+            parameters=parameter,
+            always=True,
+            clean=True,
+            waves=wave,
+            verbose=True,
+            timescale=("1ns", "1ns"),
+            log_file="sim.log")
+>       runner.test(hdl_toplevel=toplevel, test_module=module, waves=wave, plusargs=plusargs)
+E       SystemExit: ERROR: Failed 1 of 1 tests.
+
+/src/test_runner.py:24: SystemExit
+=========================== short test summary info ============================
+FAILED ../../src/test_runner.py::test_areg_param[0] - SystemExit: ERROR: Fail...
+============================== 1 failed in 8.95s ===============================
+Cleaning up Docker resources...

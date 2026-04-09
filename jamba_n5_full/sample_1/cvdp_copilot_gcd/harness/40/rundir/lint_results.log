@@ -1,0 +1,61 @@
+%Error: /code/rtl/gcd_top.sv:1:8: syntax error, unexpected and, expecting IDENTIFIER or TYPE-IDENTIFIER or randomize
+    1 | module and its submodules. The user wants a LINT code review focusing on unused signals, incorrect signal widths, assigning to input/const variables.
+      |        ^~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:15:40: Unsupported: Verilog 2001-config reserved word not implemented: 'instance'
+   15 | In the always_comb block for the first instance of gcd_3_ip (the top-level gcd_3_ip), they compute gcd_result, product, gcd_done, product_ready. Then they use those in the sequential logic.
+      |                                        ^~~~~~~~
+                    ... For error description see https://verilator.org/warn/UNSUPPORTED?v=5.027
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:15:156: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   15 | In the always_comb block for the first instance of gcd_3_ip (the top-level gcd_3_ip), they compute gcd_result, product, gcd_done, product_ready. Then they use those in the sequential logic.
+      |                                                                                                                                                            ^~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:17:117: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   17 | But in the main lcm_3_ip module, after instantiating gcd_inst and gcd_top, they have outputs OUT, done. But do they use any internal signals? They might not use them.
+      |                                                                                                                     ^~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:17:158: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   17 | But in the main lcm_3_ip module, after instantiating gcd_inst and gcd_top, they have outputs OUT, done. But do they use any internal signals? They might not use them.
+      |                                                                                                                                                              ^~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:19:94: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   19 | Also, inside the lcm_3_ip module, there is an always_ff block for the sequential logic. They use the internal signals of the gcd_3_ip instance. But those signals are not used elsewhere in the code. So they might be unused.
+      |                                                                                              ^~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:19:135: Unsupported: Verilog 2001-config reserved word not implemented: 'instance'
+   19 | Also, inside the lcm_3_ip module, there is an always_ff block for the sequential logic. They use the internal signals of the gcd_3_ip instance. But those signals are not used elsewhere in the code. So they might be unused.
+      |                                                                                                                                       ^~~~~~~~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:21:135: Unsupported: Verilog 2001-config reserved word not implemented: 'instance'
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:21:193: Unsupported: Verilog 2001-config reserved word not implemented: 'instance'
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:21:255: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:21:282: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:21:363: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:27:61: Unsupported: Verilog 2001-config reserved word not implemented: 'use'
+   27 |    - gcd_result (output of gcd_3_ip). But lcm_3_ip does not use gcd_result. So it's unused.
+      |                                                             ^~~
+%Error: /code/rtl/gcd_top.sv:45:97: Illegal character in decimal constant: b
+   45 | But maybe in some assignments we have wrong widths? For example, the controlpath_state might be 2'd but we might have mis-specified.
+      |                                                                                                 ^~~~~
+%Error: /code/rtl/gcd_top.sv:53:1: syntax error, unexpected IDENTIFIER
+   53 | Then inside the module, the signals:
+      | ^~~~
+%Error: /code/rtl/gcd_top.sv:63:4: syntax error, unexpected IDENTIFIER
+   63 |    But WIDTH is 4, so 2*WIDTH-1 = 7. So gcd_result is 7 bits. That seems okay.
+      |    ^~~
+%Error: /code/rtl/gcd_top.sv:75:136: syntax error, unexpected IDENTIFIER
+   75 |    Then gcd_3_ip receives these ints. But the gcd_inst expects WIDTH=2*WIDTH. Wait, the gcd_inst has parameter WIDTH=2*WIDTH? Actually in the gcd_inst instantiation:
+      |                                                                                                                                        ^~
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:81:90: Unsupported: Verilog 2001-config reserved word not implemented: 'instance'
+   81 |    So WIDTH is 4, so WIDTH=8. That means the gcd_inst expects 8-bit output. The gcd_3_ip instance is inside lcm_3_ip, but the gcd_inst is used for computing gcd of A, B, C. But the gcd_inst is defined with WIDTH=2*WIDTH=8. So the gcd_inst expects 8-bit outputs. The gcd_result is 7-bit, but that might be okay.
+      |                                                                                          ^~~~~~~~
+%Error: /code/rtl/gcd_top.sv:141:23: syntax error, unexpected '.', expecting IDENTIFIER or randomize
+  141 |    module lcm_3_ip #( ... )( ... );
+      |                       ^
+%Error-UNSUPPORTED: /code/rtl/gcd_top.sv:143:36: Unsupported: Verilog 2001-config reserved word not implemented: 'instance'
+  143 | Then inside it, it uses a gcd_3_ip instance for each of the three GCD computations. Let's check the code again.
+      |                                    ^~~~~~~~
+%Error: /code/rtl/gcd_top.sv:147:23: syntax error, unexpected '.', expecting IDENTIFIER or randomize
+  147 |    module lcm_3_ip #( ... )(
+      |                       ^
+%Error: /code/rtl/gcd_top.sv:155:23: syntax error, unexpected '.', expecting IDENTIFIER or randomize
+  155 |    module lcm_3_ip #( ... )(
+      |                       ^
+%Error: /code/rtl/gcd_top.sv:167:4: syntax error, unexpected always_comb
+  167 |    always_comb begin
+      |    ^~~~~~~~~~~
+%Error: Exiting due to 23 error(s)

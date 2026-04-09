@@ -1,0 +1,47 @@
+#! /usr/local/bin/vvp
+:ivl_version "13.0 (devel)" "(s20221226-533-g676b36e45)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "/usr/local/lib/ivl/system.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
+:vpi_module "/usr/local/lib/ivl/va_math.vpi";
+:vpi_module "/usr/local/lib/ivl/v2009.vpi";
+S_0x1878900 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -9;
+S_0x1865960 .scope module, "hill_cipher" "hill_cipher" 3 1;
+ .timescale -9 -9;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 1 "start";
+    .port_info 3 /INPUT 15 "plaintext";
+    .port_info 4 /INPUT 45 "key";
+    .port_info 5 /OUTPUT 15 "ciphertext";
+o0x7520c1a56018 .functor BUFZ 15, c4<zzzzzzzzzzzzzzz>; HiZ drive
+v0x1865d50_0 .net "ciphertext", 14 0, o0x7520c1a56018;  0 drivers
+o0x7520c1a56048 .functor BUFZ 1, c4<z>; HiZ drive
+v0x189a6d0_0 .net "clk", 0 0, o0x7520c1a56048;  0 drivers
+o0x7520c1a56078 .functor BUFZ 45, c4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; HiZ drive
+v0x189a790_0 .net "key", 44 0, o0x7520c1a56078;  0 drivers
+o0x7520c1a560a8 .functor BUFZ 15, c4<zzzzzzzzzzzzzzz>; HiZ drive
+v0x189a850_0 .net "plaintext", 14 0, o0x7520c1a560a8;  0 drivers
+o0x7520c1a560d8 .functor BUFZ 1, c4<z>; HiZ drive
+v0x189a930_0 .net "reset", 0 0, o0x7520c1a560d8;  0 drivers
+o0x7520c1a56108 .functor BUFZ 1, c4<z>; HiZ drive
+v0x189aa40_0 .net "start", 0 0, o0x7520c1a56108;  0 drivers
+S_0x1865bc0 .scope module, "cocotb_iverilog_dump" "cocotb_iverilog_dump" 4 1;
+ .timescale -9 -9;
+    .scope S_0x1865bc0;
+T_0 ;
+    %vpi_call/w 4 3 "$dumpfile", "/code/rundir/sim_build/hill_cipher.fst" {0 0 0};
+    %vpi_call/w 4 4 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x1865960 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/code/rtl/hill_cipher.sv";
+    "/code/rundir/sim_build/cocotb_iverilog_dump.v";

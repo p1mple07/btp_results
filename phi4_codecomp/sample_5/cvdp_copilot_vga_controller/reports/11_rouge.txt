@@ -1,0 +1,23 @@
+Reference:
+```
+    H_PULSE_STATE: begin
+        h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+        hsync_reg <= LOW;
+        h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+    end
+```
+
+
+Response:
+The horizontal sync pulse is driven LOW in the H_PULSE_STATE block of the always_ff process. During this state, the code assigns hsync_reg = LOW. Here is the relevant block:
+
+                H_PULSE_STATE: begin
+                    h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+                    hsync_reg <= LOW;
+                    h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+                end
+
+This block ensures that the HSYNC signal is driven LOW during the horizontal pulse period.
+
+
+Score : 0.9333333333333333

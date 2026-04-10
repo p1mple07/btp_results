@@ -1,0 +1,15 @@
+sort = $urandom_range(0, 1);
+
+for (i = 0; i < ARRAY_SIZE; i=i+1) begin
+    random_data[i*DATA_WIDTH +: DATA_WIDTH] = $urandom_range(0, 2**(DATA_WIDTH)-1);
+end
+
+if (sort) begin
+    sort_array(random_data, data_in);
+end else begin
+    data_in = random_data;
+end
+
+// Test Case 3
+key_to_search = data_in[(ARRAY_SIZE-1)*DATA_WIDTH +: DATA_WIDTH]; 
+run_test("Test case 3", key_to_search, data_in);

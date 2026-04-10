@@ -1,0 +1,10 @@
+Reference:
+If `POLY_TAP` exceeds `POLY_LENGTH`, the module attempts to access a shift register bit `prbs[i][POLY_TAP]` that doesn't exist since `prbs[i]` is only `POLY_LENGTH` bits long. The module does not include parameter checks to prevent this, so it cannot check if `POLY_TAP` is less than or equal to `POLY_LENGTH` or greater than it. This will lead to undefined output at `data_out`.
+
+
+Response:
+If POLY_TAP is set to a value greater than POLY_LENGTH, the design does not include any checks to ensure that the tap value is within the valid range, which can lead to a compile-time or synthesis error. The code directly accesses prbs[i][POLY_TAP] without verifying that POLY_TAP is within the bounds of the shift register, resulting in an attempt to access an invalid bit position. Consequently, the PRBS generator or checker may produce unpredictable or incorrect outputs due to the undefined behavior.
+
+
+LLM Score (0-1) : 0.9
+Reasoning: The candidate response correctly identifies that there are no bounds checks, explains the out-of-range access of prbs[i][POLY_TAP], and notes the resulting undefined or unpredictable output, matching the reference’s core points. It introduces a minor extra detail about compile-time or synthesis errors not mentioned in the reference, but overall conveys the same meaning and completeness.

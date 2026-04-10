@@ -1,0 +1,47 @@
+Reference:
+```systemverilog
+            IDLE: begin
+                if (start)
+                    next_state = COMPUTE;
+                else
+                    next_state = IDLE;
+            end
+```
+```systemverilog
+                COMPUTE: begin
+                    result1 <= compute1;
+                    result2 <= compute2;
+                end
+                DONE: begin
+                    done <= 1;
+                end
+                default: begin
+                    result1 <= 0;
+                    result2 <= 0;
+                    done    <= 0;
+                end
+```
+
+
+Response:
+always_comb begin
+    case (current_state)
+        IDLE: begin
+            if (start)
+                next_state = COMPUTE;
+            else
+                next_state = IDLE;
+        end
+        COMPUTE: begin
+            next_state = DONE;
+        end
+        DONE: begin
+            next_state = IDLE;
+        end
+        default: next_state = IDLE;
+    endcase
+end
+
+
+
+Score : 0.40625

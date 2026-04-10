@@ -1,0 +1,10 @@
+Reference:
+In the `IDLE` state, the FSM examines `call_requests_internal` to identify the highest (`max_request`) and lowest (`min_request`) active requests relative to `current_floor_reg`. If there are active requests above the current floor (i.e., `max_request > current_floor_reg`), the FSM transitions to the `MOVING_UP` state to address upward requests. Conversely, if there are active requests below the current floor (i.e., `min_request < current_floor_reg`), the FSM transitions to the `MOVING_DOWN` state. This prioritization logic ensures that the elevator moves toward the closest cluster of active requests in the most logical direction, optimizing efficiency and avoiding unnecessary reversals.
+
+
+Response:
+In the IDLE state, the FSM evaluates the highest (max_request) and lowest (min_request) active floor requests relative to the current floor. It then compares the current floor with these values, transitioning to MOVING_UP if max_request is above the current floor and to MOVING_DOWN if min_request is below the current floor. This approach ensures that the elevator always moves toward the nearest pending request, optimizing travel time and efficiency. By committing to a single direction based on the relative positions of the requests, the logic prevents unnecessary direction changes and maintains a consistent, efficient service pattern.
+
+
+LLM Score (0-1) : 1.0
+Reasoning: The candidate response accurately restates the logic from the reference: in IDLE, compare max_request and min_request to current_floor, transition to MOVING_UP or MOVING_DOWN accordingly, and ensure efficiency by moving in one direction to avoid reversals. It covers all key points in four sentences, matching the reference in content, correctness, and style.

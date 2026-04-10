@@ -1,0 +1,32 @@
+Reference:
+```systemverilog
+    assign next_dbi_data_out = { ({8{dbi_bits[4]}} ^ dat4 ), ({8{dbi_bits[3]}} ^ dat3 ), ({8{dbi_bits[2]}} ^ dat2) , ({8{dbi_bits[1]}} ^ dat1) ,
+                                 ({8{dbi_bits[0]}} ^ dat0)  };
+```
+
+```systemverilog
+always @(posedge clk or negedge rst_n)
+  begin: dbi_data_out_register
+    if (!rst_n)
+      begin
+        dbi_data_out <= 45'h0;
+      end
+    else if (!dbi_enable)
+      begin
+        dbi_data_out <= {5'b0_0000,data_in};        //latching input as output
+      end
+   else
+      begin
+        dbi_data_out <= {dbi_bits,next_dbi_data_out}; //latching encoded input
+      end
+  end 
+```
+
+
+Response:
+{"response": "assign next_dbi_data_out = { ({8{dbi_bits[4]}} ^ dat4 ), ({8{dbi_bits[3]}} ^ dat3 ), ({8{dbi_bits[2]}} ^ dat2) , ({8{dbi_bits[1]}} ^ dat1) ,\n                                 ({8{dbi_bits[0]}} ^ dat0)  };"} 
+
+{"response": "always @(posedge clk or negedge rst_n)\n  begin: dbi_data_out_register\n    if (!rst_n)\n      begin\n        dbi_data_out <= 45'h0;\n      end\n    else if (!dbi_enable)\n      begin\n        dbi_data_out <= {5'b0_0000,data_in};        //latching input as output\n      end\n   else\n      begin\n        dbi_data_out <= {dbi_bits,next_dbi_data_out}; //latching encoded input\n      end\n  end "}
+
+
+Score : 0.46808510638297873

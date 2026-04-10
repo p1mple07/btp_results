@@ -1,0 +1,18 @@
+
+always_comb begin
+    case (current_state)
+        IDLE: begin
+            if (start)
+                next_state = COMPUTE;
+            else
+                next_state = IDLE;
+        end
+        COMPUTE: begin
+            next_state = DONE;
+        end
+        DONE: begin
+            next_state = IDLE;
+        end
+        default: next_state = IDLE;
+    endcase
+end

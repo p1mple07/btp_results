@@ -1,0 +1,31 @@
+Reference:
+```
+if (a_oe) begin
+   a_rdata     <= mem[a_addr];
+end
+if (a_we) begin
+   mem[a_addr] <= a_wdata;
+end
+```
+
+
+Response:
+The always_ff block for Port A is responsible for ensuring that the read operation takes precedence when both read and write are enabled. In this block, if both a_oe (read enable) and a_we (write enable) are high, the read operation (a_rdata <= mem[a_addr]) is executed first, capturing the current memory value before the write operation (mem[a_addr] <= a_wdata) occurs. This is implemented as follows:
+
+always_ff @(posedge clk) begin
+    if (ce) begin
+        if (a_oe) begin
+            a_rdata <= mem[a_addr];
+        end
+        if (a_we) begin
+            mem[a_addr] <= a_wdata;
+        end
+    end else begin
+        a_rdata <= 'b0;
+    end
+end
+
+Thus, when both read and write are enabled, the read operation is performed first, ensuring that the previously stored data appears on the output while the write is being executed.
+
+
+Score : 0.1101293872704153

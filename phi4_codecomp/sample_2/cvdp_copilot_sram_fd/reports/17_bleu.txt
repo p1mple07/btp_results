@@ -1,0 +1,28 @@
+Reference:
+```
+if (a_oe) begin
+   a_rdata     <= mem[a_addr];
+end
+if (a_we) begin
+   mem[a_addr] <= a_wdata;
+end
+```
+
+
+Response:
+    // Channel A operations
+    always_ff @(posedge clk) begin
+        if (ce) begin
+            if (a_oe) begin
+                a_rdata     <= mem[a_addr];
+            end
+            if (a_we) begin
+                mem[a_addr] <= a_wdata;
+            end
+        end else begin
+            a_rdata         <= 'b0;
+        end
+    end
+
+
+Score : 0.41514875026728054

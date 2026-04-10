@@ -1,0 +1,59 @@
+Reference:
+```
+
+        // Define the base address and the range for randomization
+        base_address = 32'h8000_0000; // Original base address
+
+        for (int i = 0; i < 10; i++) begin
+
+            outport_rvalid_i = 1'b1;
+            outport_rdata_i = 32'hFFFF_0000 + (i * 32'h0000_000F);
+            outport_rresp_i = 2'b11;
+            outport_peripheral0_rvalid_i = 1'b1;
+            outport_peripheral0_rdata_i = 32'h1111_0000 + (i * 32'h0000_000F);
+            outport_peripheral0_rresp_i = 2'b10;
+
+            inport_araddr_i = base_address + (i - 5) * 32'h00000010;
+            inport_arvalid_i = 1;
+
+            #10;
+            if (inport_araddr_i >= 32'h8000_0000 ) begin
+                assert(inport_arvalid_i == outport_peripheral0_arvalid_o) else $error("Wrong arvalid");
+                assert(inport_araddr_i == outport_peripheral0_araddr_o) else $error("Wrong araddr");
+            end
+            else begin
+                assert(inport_arvalid_i == outport_arvalid_o) else $error("Wrong arvalid");
+                assert(inport_araddr_i == outport_araddr_o) else $error("Wrong araddr");
+            end
+            $display("[%0t] Iteration: %0d, inport_rvalid_o: %h, inport_rdata_o: %h, inport_rresp_o: %b", $time, i, inport_rvalid_o, inport_rdata_o, inport_rresp_o);
+        end
+
+```
+
+
+Response:
+for (int i = 0; i < 10; i++) begin
+    outport_rvalid_i = 1'b1;
+    outport_rdata_i = 32'hFFFF_0000 + (i * 32'h0000_000F);
+    outport_rresp_i = 2'b11;
+    outport_peripheral0_rvalid_i = 1'b1;
+    outport_peripheral0_rdata_i = 32'h1111_0000 + (i * 32'h0000_000F);
+    outport_peripheral0_rresp_i = 2'b10;
+    
+    inport_araddr_i = base_address + (i - 5) * 32'h00000010;
+    inport_arvalid_i = 1;
+    
+    #10;
+    if (inport_araddr_i >= 32'h8000_0000 ) begin
+        assert(inport_arvalid_i == outport_peripheral0_arvalid_o) else $error("Wrong arvalid");
+        assert(inport_araddr_i == outport_peripheral0_araddr_o) else $error("Wrong araddr");
+    end
+    else begin
+        assert(inport_arvalid_i == outport_arvalid_o) else $error("Wrong arvalid");
+        assert(inport_araddr_i == outport_araddr_o) else $error("Wrong araddr");
+    end
+    $display("[%0t] Iteration: %0d, inport_rvalid_o: %h, inport_rdata_o: %h, inport_rresp_o: %b", $time, i, inport_rvalid_o, inport_rdata_o, inport_rresp_o);
+end
+
+
+Score : 0.8237587665136007

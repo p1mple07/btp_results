@@ -1,0 +1,113 @@
+Reference:
+```systemverilog
+task apply_strobe_divider_with_out_ready;
+    input integer latency;
+    input integer cycles;
+    input integer deassert_at;
+    integer k;
+    begin
+        for (k = 0; k < cycles; k = k + 1) begin
+            @(posedge (latency == 0 ? Clk_0 : Clk_1));
+            if (k == deassert_at) begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 0; 
+                end else begin
+                    Out_Ready_1 <= 0; 
+                end
+            end else begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 1; 
+                end else begin
+                    Out_Ready_1 <= 1; 
+                end
+            end
+
+            // Toggle In_Valid
+            if (k % 2 == 0) begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 1;
+                end else begin
+                    In_Valid_1 <= 1;
+                end
+            end else begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 0;
+                end else begin
+                    In_Valid_1 <= 0;
+                end
+            end
+        end
+    end
+endtask
+```
+
+```systemverilog
+always @(posedge Clk_1) begin
+    if (Out_Valid_1 && !Out_Ready_1) begin
+        $display("Latency=1 Backpressure: Out_Valid held high at Time=%t", $time);
+    end
+end
+```
+
+
+Response:
+    // Task to Apply Strobe Divider with Out_Ready Deassertion
+    // Parameters:
+    //   latency: 0 or 1
+    //   cycles: number of clock cycles to apply
+    //   deassert_at: cycle number to deassert Out_Ready
+    task apply_strobe_divider_with_out_ready;
+        input integer latency;
+        input integer cycles;
+        input integer deassert_at;
+        integer k;
+        begin
+            for (k = 0; k < cycles; k = k + 1) begin
+                @(posedge (latency == 0 ? Clk_0 : Clk_1));
+
+                // Apply In_Valid (toggle every cycle)
+                if (k % 2 == 0) begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 1;
+                    end else begin
+                        In_Valid_1 <= 1;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 0;
+                    end else begin
+                        In_Valid_1 <= 0;
+                    end
+                end
+
+                // Deassert Out_Ready at specified cycle
+                if (k == deassert_at) begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 0;
+                    end else begin
+                        Out_Ready_1 <= 0;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 1;
+                    end else begin
+                        Out_Ready_1 <= 1;
+                    end
+                end
+            end
+        end
+    endtask
+
+    // Test Cases for Out_Ready Deassertion (Backpressure)
+    // Latency=0
+    $display("\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===");
+    In_Ratio_0 = 3;
+    apply_strobe_divider_with_out_ready(0, 10, 5);
+
+    // Latency=1
+    $display("\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===");
+    In_Ratio_1 = 3;
+    apply_strobe_divider_with_out_ready(1, 10, 5);
+
+
+Score : 0.5938546257990373

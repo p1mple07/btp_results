@@ -1,0 +1,24 @@
+1. Data Handling in the FILO:
+
+if (pop && !empty) begin
+  if (feedthrough_valid) begin
+    data_out <= feedthrough_data;
+    feedthrough_valid <= 0;
+  end else begin
+    top <= top - 1;
+    data_out <= memory[top-1];
+  end
+end
+
+2. Feedthrough Mechanism and State Management:
+
+if (push && pop && empty) begin
+  data_out <= data_in;
+  feedthrough_data <= data_in;
+  feedthrough_valid <= 1;
+end
+
+if (feedthrough_valid) begin
+  data_out <= feedthrough_data;
+  feedthrough_valid <= 0;
+end

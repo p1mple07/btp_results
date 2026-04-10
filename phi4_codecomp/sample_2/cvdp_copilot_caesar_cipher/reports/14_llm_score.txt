@@ -1,0 +1,10 @@
+Reference:
+The `display_result` task processes phrases and keys in reverse order to match how hardware stores data, with the most significant byte (MSB) first. This ensures the testbench displays and verifies the data in the same way it is handled inside the RTL module `caesar_cipher`.
+
+
+Response:
+The display_result task processes phrases and keys in reverse order because the RTL module extracts characters starting from the end of the input vector, meaning that the first processed character corresponds to the least significant byte. Reversing the order in the display function ensures that the output is presented in the natural left-to-right order as originally intended, aligning with how the design interprets the input data.
+
+
+LLM Score (0-1) : 0.8
+Reasoning: The candidate correctly identifies that reversing is tied to byte-significance and RTL extraction order, and that the display must realign the output to match the design’s interpretation. However, it shifts the emphasis from matching hardware storage order (MSB-first verification) to restoring a ‘natural’ left-to-right order for readability, which slightly diverges from the reference’s focus on ensuring the testbench mirrors the RTL’s internal data handling.

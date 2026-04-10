@@ -1,0 +1,62 @@
+Reference:
+```verilog
+repeat (10) begin
+    reg [7:0] rand_dividend;
+    reg [7:0] rand_divisor;
+    rand_dividend = $random % 256;           // 0 to 255
+    rand_divisor  = ($random % 255) + 1;     // 1 to 255 (avoiding zero)
+
+    // Perform the random test
+    perform_test(rand_dividend, rand_divisor);
+end
+```
+
+```verilog
+task perform_test;
+    input [7:0] dividend_in;
+    input [7:0] divisor_in;
+    reg [7:0] expected_quotient;
+    reg [7:0] expected_remainder;
+begin
+    @(negedge clk);
+    dividend = dividend_in;
+    divisor = divisor_in;
+    start = 1;
+    #10;
+    start = 0;
+
+    wait (done);
+
+    if (divisor_in != 0) begin
+        expected_quotient = dividend_in / divisor_in;
+        expected_remainder = dividend_in % divisor_in;
+    end else begin
+        expected_quotient = 8'hFF;  // Divide-by-zero indication
+        expected_remainder = 8'hFF;
+    end
+
+    if (quotient !== expected_quotient || remainder !== expected_remainder) begin
+        $display("** Test FAILED **");
+    end else begin
+        $display("** Test PASSED **");
+    end
+end
+endtask
+``` 
+
+
+Response:
+```json
+{
+  "response": "        // Random Test Cases\n        $display(\\\"\\nStarting Random Test Cases...\\n\\\");\n        repeat (10) begin\n            // Generate random dividend and divisor\n            reg [7:0] rand_dividend;\n            reg [7:0] rand_divisor;\n            rand_dividend = $random % 256;           // 0 to 255\n            rand_divisor  = ($random % 255) + 1;     // 1 to 255 (avoiding zero)\n\n            // Perform the random test\n            perform_test(rand_dividend, rand_divisor);\n        end"
+}
+```
+
+```json
+{
+  "response": "        // Compute expected values\n        if (divisor_in != 0) begin\n            expected_quotient = dividend_in / divisor_in;\n            expected_remainder = dividend_in % divisor_in;\n        end else begin\n            expected_quotient = 8'hFF;  // Indicate error for divide by zero\n            expected_remainder = 8'hFF;\n        end\n\n        // Check results and Print\n        $display(\\\"Test Case: Dividend = %d, Divisor = %d\\\", dividend_in, divisor_in);\n        $display(\\\"Expected Quotient = %d, Expected Remainder = %d\\\", expected_quotient, expected_remainder);\n        $display(\\\"Received Quotient = %d, Received Remainder = %d\\\", quotient, remainder);\n\n        if (quotient !== expected_quotient || remainder !== expected_remainder) begin\n            $display(\\\"** Test FAILED **\\\\n\\\");\n        end else begin\n            $display(\\\"** Test PASSED **\\\\n\\\");\n        end"
+}
+```
+
+
+Score : 0.3756425166870347

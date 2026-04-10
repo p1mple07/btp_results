@@ -1,0 +1,50 @@
+Reference:
+```systemverilog
+    task model_system();
+        logic signed [OUT_WIDTH-1:0] mapped_I [0:N-1];
+        logic signed [OUT_WIDTH-1:0] mapped_Q [0:N-1];
+        logic signed [OUT_WIDTH:0] interp_I [0:N/2-1];
+        logic signed [OUT_WIDTH:0] interp_Q [0:N/2-1];
+
+        // Map symbols
+        for (int i = 0; i < N; i++) begin
+            case (test_symbols[i][3:2])
+                2'b00: mapped_I[i] = -3;
+                2'b01: mapped_I[i] = -1;
+                2'b10: mapped_I[i] = 1;
+                2'b11: mapped_I[i] = 3;
+            endcase
+            case (test_symbols[i][1:0])
+                2'b00: mapped_Q[i] = -3;
+                2'b01: mapped_Q[i] = -1;
+                2'b10: mapped_Q[i] = 1;
+                2'b11: mapped_Q[i] = 3;
+            endcase
+        end
+
+        // Interpolate
+        for (int i = 0; i < N/2; i++) begin
+            interp_I[i] = (mapped_I[2*i] + mapped_I[2*i+1]) >>> 1;
+            interp_Q[i] = (mapped_Q[2*i] + mapped_Q[2*i+1]) >>> 1;
+        end
+
+        // Build output
+        for (int i = 0; i < N/2; i++) begin
+            model_I[i*3]     = mapped_I[2*i];
+            model_I[i*3 + 1] = interp_I[i];
+            model_I[i*3 + 2] = mapped_I[2*i+1];
+
+            model_Q[i*3]     = mapped_Q[2*i];
+            model_Q[i*3 + 1] = interp_Q[i];
+            model_Q[i*3 + 2] = mapped_Q[2*i+1];
+        end
+    endtask
+
+```
+
+
+Response:
+The Golden Model is implemented in the task model_system() within the testbench. This task maps the binary input symbols to their corresponding in-phase and quadrature outputs, computes the interpolated values between pairs of symbols, and builds the expected output arrays (model_I and model_Q) that serve as the reference model for verification.
+
+
+Score : 0.009174311926605505

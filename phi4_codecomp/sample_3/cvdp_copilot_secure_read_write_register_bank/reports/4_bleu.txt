@@ -1,0 +1,46 @@
+Reference:
+```verilog
+p_STATE_LOCKED: begin    
+    if ((i_addr == 0) && (i_data_in == p_unlock_code_0) && (!i_read_write_enable)) begin
+        r_unlock_state <= p_STATE_UNLOCK_STEP1; 
+    end
+end
+p_STATE_UNLOCK_STEP1: begin
+    if ((i_addr == 1) && (i_data_in == p_unlock_code_1) && (!i_read_write_enable)) begin
+        r_unlock_state <= p_STATE_UNLOCKED; 
+    end 
+    else begin
+        r_unlock_state <= p_STATE_LOCKED;
+    end
+end
+```
+
+
+
+Response:
+always @(posedge i_capture_pulse or negedge i_rst_n) begin
+    if (!i_rst_n) begin
+        r_unlock_state <= p_STATE_LOCKED;
+    end else begin
+        case (r_unlock_state)
+            p_STATE_LOCKED: begin
+                if ((i_addr == 0) && (i_data_in == p_unlock_code_0) && (!i_read_write_enable)) begin
+                    r_unlock_state <= p_STATE_UNLOCK_STEP1; 
+                end
+            end
+
+            p_STATE_UNLOCK_STEP1: begin
+                if ((i_addr == 1) && (i_data_in == p_unlock_code_1) && (!i_read_write_enable)) begin
+                    r_unlock_state <= p_STATE_UNLOCKED; 
+                end 
+                else begin
+                    r_unlock_state <= p_STATE_LOCKED;
+                end
+            end
+            // ... remaining FSM logic ...
+        endcase
+    end
+end
+
+
+Score : 0.6058115817927808

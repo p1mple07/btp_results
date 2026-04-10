@@ -1,0 +1,313 @@
+Reference:
+```systemverilog
+always @(posedge clk)
+begin
+  if (resetn == 1'b0)                                           //synchronous reset.
+  begin
+    count <= RATIO - 1;                                         //resetting count register.
+    valid <= 1'b0;                                              //resetting internal valid signal.
+  end
+  else
+  begin
+    if (s_valid == 1'b1 && s_ready == 1'b1)                     //checking for slave valid and ready.
+      valid <= 1'b1;
+    else if (count == 'h0 && m_ready == 1'b1 && m_valid == 1'b1)//resetting valid  if count is zero.
+      valid <= 1'b0;
+
+    if (m_ready == 1'b1 && m_valid == 1'b1)                     //block to update counter.
+    begin
+      if (count == 'h00)
+        count <= 2 - 1;
+      else
+        count <= count - 1'b1;                                  //reducing counter.
+    end
+  end
+end
+```
+
+```systemverilog
+always @(posedge clk)                                           
+begin
+  if (s_ready == 1'b1 && s_valid == 1'b1)                       //registering slave data.
+    data <= s_data;
+  else if (m_ready == 1'b1 && m_valid == 1'b1)
+    begin
+      if (BIG_ENDIAN == 1)
+        data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH] <= data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0];                        //left shifting slave data in BIG ENDIAN format
+      else
+        data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0] <= data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH];                        //Right shifting slave data in LITTLE ENDIAN format
+    end
+
+end
+
+assign s_ready = ~valid || (m_ready && count == 'h0);           //generating slave ready.
+assign m_valid = valid;                                         //generating master valid
+assign m_data = BIG_ENDIAN == 1 ?                               //passing master data
+       data[SLAVE_DATA_WIDTH-1:SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH] :
+       data[MASTER_DATA_WIDTH-1:0];
+
+```
+
+
+
+Response:
+<think>We are Phi. The user gave a long prompt and then asked: "From the given `axis_resize.sv` module, identify the RTL code blocks that implement the following: Split the larger slave data into multiple master transactions. A single slave transaction is divided into multiple transactions for the master to complete the operation. This is achieved using a counter and a shift operation. The counter is used to generate a valid signal for the master when the count is not equal to zero, and the shift operation is used to transmit the most significant `MASTER_DATA_WIDTH `bits(equal to the width of the master bus) first, followed by the next least significant `MASTER_DATA_WIDTH `bits."
+
+We need to respond using the format: { "response": "<your answer here>" }.
+
+We are told: "Provide your response using the format: { "response": "<your answer here>" }."
+
+So answer should be a JSON with key "response" and the answer in a string.
+
+We need to find the relevant RTL code blocks from the given RTL code snippet.
+
+Let's examine the code. We are given the code snippet in the file rtl/axis_resize.sv. The code snippet is the module axis_resize. The code is quite long. We need to identify the code blocks that implement "Split the larger slave data into multiple master transactions." It says: "A single slave transaction is divided into multiple transactions for the master to complete the operation. This is achieved using a counter and a shift operation. The counter is used to generate a valid signal for the master when the count is not equal to zero, and the shift operation is used to transmit the most significant MASTER_DATA_WIDTH bits (equal to the width of the master bus) first, followed by the next least significant MASTER_DATA_WIDTH bits."
+
+We need to pick the code block that corresponds to that.
+
+I see there are two if blocks in the generate block: one for "if (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH)" and one for "else" (which is when SLAVE_DATA_WIDTH > MASTER_DATA_WIDTH) I think.
+
+The question specifically says "Split the larger slave data into multiple master transactions" which likely is implemented in the "if (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH)" branch. Because in that branch, the slave data width is smaller than the master data width. But then the question says "transmit the most significant MASTER_DATA_WIDTH bits first, followed by the next least significant MASTER_DATA_WIDTH bits." Wait, but the text says "the most significant MASTER_DATA_WIDTH bits" but the code in that branch: "if (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH)" then we have a counter, and a shift operation. It says:
+
+if (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH) begin
+
+We have:
+
+reg [MASTER_DATA_WIDTH-1:0] data;
+reg [clog2(RATIO)-1:0] count;
+reg valid;
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0) begin
+    count <= RATIO - 1;
+    valid <= 1'b0;
+  end else begin
+    if (count == 'h00 && s_ready == 1'b1 && s_valid == 1'b1)
+      valid <= 1'b1;
+    else if (m_ready == 1'b1)
+      valid <= 1'b0; 
+
+    if (s_ready == 1'b1 && s_valid == 1'b1) begin
+      if (count == 'h00)
+        count <= RATIO - 1;
+      else
+        count <= count - 1'b1;
+    end
+  end
+end
+
+always @(posedge clk)
+begin
+  if (s_ready == 1'b1 && s_valid == 1'b1)
+    if (BIG_ENDIAN == 1) begin
+      data <= {data[MASTER_DATA_WIDTH-SLAVE_DATA_WIDTH-1:0], s_data};
+    end else begin
+      data <= {s_data, data[MASTER_DATA_WIDTH-1:SLAVE_DATA_WIDTH]};
+    end
+end
+
+assign s_ready = ~valid || m_ready;
+assign m_valid = valid;
+assign m_data = data;
+
+end
+
+This block implements the splitting of the larger slave data into multiple master transactions when the slave data width is smaller than the master data width. The counter is "count" and the valid signal is "valid" which is generated when count != 0. And the shift operation is performed in the always block that does the shifting of data. The shift operation: if BIG_ENDIAN is 1, then data <= {data[MASTER_DATA_WIDTH-SLAVE_DATA_WIDTH-1:0], s_data}; else data <= {s_data, data[MASTER_DATA_WIDTH-1:SLAVE_DATA_WIDTH]}. This corresponds to shifting the data.
+
+Now, the question says "transmit the most significant MASTER_DATA_WIDTH bits first" but in the above code, we are shifting either left or right. Let's check: if BIG_ENDIAN is 1, then data <= {data[MASTER_DATA_WIDTH-SLAVE_DATA_WIDTH-1:0], s_data}; if BIG_ENDIAN is 0 then data <= {s_data, data[MASTER_DATA_WIDTH-1:SLAVE_DATA_WIDTH]}. The comment says: "left shifting slave data in BIG ENDIAN format" and "right shifting slave data in LITTLE ENDIAN format". So this corresponds to the code block that implements the splitting of the larger slave data into multiple master transactions.
+
+But wait: The question says "split the larger slave data into multiple master transactions" but then it says "transmit the most significant MASTER_DATA_WIDTH bits first". But in the code, in the first branch, SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH, the master bus is wider than the slave bus, so the slave data is repeated multiple times to fill the master bus. But the description "transmit the most significant MASTER_DATA_WIDTH bits" doesn't exactly match the description because if SLAVE_DATA_WIDTH is smaller than MASTER_DATA_WIDTH, then the slave data is replicated across the master data bus? Let me check the code: It says "if (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH) begin" then we have a reg [MASTER_DATA_WIDTH-1:0] data; and then we have a counter and a shift operation. The counter is used to generate valid signal. And the shift operation: if (BIG_ENDIAN == 1) then data <= {data[MASTER_DATA_WIDTH-SLAVE_DATA_WIDTH-1:0], s_data}; else data <= {s_data, data[MASTER_DATA_WIDTH-1:SLAVE_DATA_WIDTH]}; The shifting operation is essentially concatenating the new s_data into the data register. But the question says "transmit the most significant MASTER_DATA_WIDTH bits first", but here the code is not exactly doing that. It is more like accumulating data from s_data and then outputting it as m_data. However, the description "Split the larger slave data into multiple master transactions" might refer to the else branch, which is when SLAVE_DATA_WIDTH > MASTER_DATA_WIDTH. Let's check the else branch: 
+
+else 
+begin
+reg [SLAVE_DATA_WIDTH-1:0] data;
+reg [clog2(RATIO)-1:0] count;
+reg valid;
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0)
+  begin
+    count <= RATIO - 1;
+    valid <= 1'b0;
+  end else
+  begin
+    if (s_valid == 1'b1 && s_ready == 1'b1)
+      valid <= 1'b1;
+    else if (count == 'h0 && m_ready == 1'b1 && m_valid == 1'b1)
+      valid <= 1'b0;
+
+    if (m_ready == 1'b1 && m_valid == 1'b1)
+    begin
+      if (count == 'h00)
+        count <= 2 - 1;
+      else
+        count <= count - 1'b1;
+    end
+  end
+end
+
+always @(posedge clk)
+begin
+  if (s_ready == 1'b1 && s_valid == 1'b1)
+    data <= s_data;
+  else if (m_ready == 1'b1 && m_valid == 1'b1)
+  begin
+    if (BIG_ENDIAN == 1)
+      data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH] <= data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0];
+    else
+      data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0] <= data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH];
+  end
+end
+
+assign s_ready = ~valid || (m_ready && count == 'h0);
+assign m_valid = valid;
+assign m_data = BIG_ENDIAN == 1 ? data[SLAVE_DATA_WIDTH-1:SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH] : data[MASTER_DATA_WIDTH-1:0];
+
+end
+
+In this branch, the slave data is larger than the master data. So a single slave transaction is split into multiple master transactions. And the code uses a counter and a shift operation to extract the most significant MASTER_DATA_WIDTH bits first, then the next ones. The shifting operation is: if (BIG_ENDIAN == 1) then data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH] <= data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0]; else data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0] <= data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH]; And then the m_data assignment: m_data = BIG_ENDIAN == 1 ? data[SLAVE_DATA_WIDTH-1:SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH] : data[MASTER_DATA_WIDTH-1:0]. That is the block that implements splitting the larger slave data into multiple master transactions.
+
+The question text says: "Split the larger slave data into multiple master transactions" and then "transmit the most significant MASTER_DATA_WIDTH bits first, followed by the next least significant MASTER_DATA_WIDTH bits." That description matches the else branch (SLAVE_DATA_WIDTH > MASTER_DATA_WIDTH) because that's when the slave data is larger than the master data width. The counter is used to generate valid signal for the master when count is not equal to zero, and the shift operation is used to transmit the most significant MASTER_DATA_WIDTH bits first.
+
+Let's re-read the question: "From the given `axis_resize.sv` module, identify the RTL code blocks that implement the following: Split the larger slave data into multiple master transactions. A single slave transaction is divided into multiple transactions for the master to complete the operation. This is achieved using a counter and a shift operation. The counter is used to generate a valid signal for the master when the count is not equal to zero, and the shift operation is used to transmit the most significant MASTER_DATA_WIDTH bits (equal to the width of the master bus) first, followed by the next least significant MASTER_DATA_WIDTH bits."
+
+So the code block that corresponds to this is the else branch of the generate block, i.e.:
+
+else 
+begin
+reg [SLAVE_DATA_WIDTH-1:0] data;
+reg [clog2(RATIO)-1:0] count;
+reg valid;
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0)
+  begin
+    count <= RATIO - 1;
+    valid <= 1'b0;
+  end
+  else
+  begin
+    if (s_valid == 1'b1 && s_ready == 1'b1)
+      valid <= 1'b1;
+    else if (count == 'h0 && m_ready == 1'b1 && m_valid == 1'b1)
+      valid <= 1'b0;
+
+    if (m_ready == 1'b1 && m_valid == 1'b1)
+    begin
+      if (count == 'h00)
+        count <= 2 - 1;
+      else
+        count <= count - 1'b1;
+    end
+  end
+end
+
+always @(posedge clk)
+begin
+  if (s_ready == 1'b1 && s_valid == 1'b1)
+    data <= s_data;
+  else if (m_ready == 1'b1 && m_valid == 1'b1)
+  begin
+    if (BIG_ENDIAN == 1)
+      data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH] <= data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0];
+    else
+      data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0] <= data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH];
+  end
+end
+
+assign s_ready = ~valid || (m_ready && count == 'h0);
+assign m_valid = valid;
+assign m_data = BIG_ENDIAN == 1 ? data[SLAVE_DATA_WIDTH-1:SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH] : data[MASTER_DATA_WIDTH-1:0];
+
+end
+
+Yes, this block implements the splitting of a larger slave transaction into multiple master transactions. It uses a counter (the reg count) and a shift operation (the shifting inside the always block that uses data[...] <= data[...]). And the m_data assignment uses the most significant bits first, depending on the endianness.
+
+Thus our answer: "The RTL code blocks implementing the splitting of larger slave data into multiple master transactions are found in the 'else' branch of the generate block, starting from 'else begin' to the corresponding 'end' that handles the case when SLAVE_DATA_WIDTH > MASTER_DATA_WIDTH. The key blocks include the always block that manages the counter and valid signal, and the always block that performs the shift operation, followed by the assignment of m_data that extracts the most significant MASTER_DATA_WIDTH bits first."
+
+We need to output the answer in a JSON object with key "response". The answer should be a JSON string with double quotes.
+
+I must include verbatim quotes from the specification if context is RTL code snippet. But the instructions said: "You are solving an 'RTL Correspondence' problem. To solve this problem correctly, you should only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet or verbatim RTL source code (if the context is specification) that corresponds to the specification snippet."
+
+Wait, the instructions: "Provide the response in one of the following JSON schemas: 
+{ "code": [{ "<name>" : "<code>"}] } or { "response": "<response>" }."
+
+We are asked "Provide your response using the format: { "response": "<your answer here>" }". So our answer should be in JSON with key "response" and string value.
+
+The answer should be a JSON string with the answer.
+
+I must include the RTL code block verbatim? The instruction says: "only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet or verbatim RTL source code (if the context is specification) that corresponds to the specification snippet." But here, the request is: "From the given `axis_resize.sv` module, identify the RTL code blocks that implement the following:" So we need to pick the code blocks that implement the splitting of larger slave data into multiple master transactions.
+
+I must choose the correct code block. The description "transmit the most significant MASTER_DATA_WIDTH bits first" is in the else branch. Let's check the code: In the else branch, the shifting is done as:
+
+if (BIG_ENDIAN == 1)
+      data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH] <= data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0];
+else
+      data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0] <= data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH];
+
+That is the shift operation that extracts the most significant bits first.
+
+The counter code block is:
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0)
+  begin
+    count <= RATIO - 1;
+    valid <= 1'b0;
+  end
+  else
+  begin
+    if (s_valid == 1'b1 && s_ready == 1'b1)
+      valid <= 1'b1;
+    else if (count == 'h0 && m_ready == 1'b1 && m_valid == 1'b1)
+      valid <= 1'b0;
+
+    if (m_ready == 1'b1 && m_valid == 1'b1)
+    begin
+      if (count == 'h00)
+        count <= 2 - 1;
+      else
+        count <= count - 1'b1;
+    end
+  end
+end
+
+That is the block that uses the counter to generate the valid signal.
+
+Thus answer: The RTL code block in the "else" branch of the generate block (i.e., when SLAVE_DATA_WIDTH > MASTER_DATA_WIDTH) implements splitting the larger slave data into multiple master transactions. It uses a counter (variable "count") and a shift operation (in the always block that shifts data bits) to extract the most significant MASTER_DATA_WIDTH bits first. It also assigns the valid signal (m_valid) accordingly.
+
+I must produce the answer as a JSON object with "response" key.
+
+I need to provide the answer in JSON format.
+
+I'll produce a JSON object with key "response" and a string that contains the answer.
+
+I'll produce the answer in a JSON object with "response": "The RTL code blocks implementing the splitting of larger slave data into multiple master transactions are found in the 'else' branch of the generate block. In particular, the always block starting at 'always @(posedge clk)' that handles the counter and valid signal, and the always block that performs the shift operation on the data register. The counter (variable 'count') is used to generate the master valid signal when count is nonzero, and the shift operation, which shifts either the most significant bits (in BIG_ENDIAN mode) or the least significant bits (in LITTLE_ENDIAN mode), extracts the MASTER_DATA_WIDTH bits from the larger slave data. The assignment of m_data further selects the appropriate bits to be transmitted to the master interface."
+
+I need to include the verbatim quotes? The instructions say: "only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet". But the request is to "identify the RTL code blocks". So I should output the code blocks verbatim? But the instructions say "only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet" but the question says "identify the RTL code blocks that implement the following". It might be acceptable to provide the code blocks as a verbatim quote.
+
+But the instructions say: "if the context is RTL, then only respond with a verbatim quote from the specification that corresponds to the RTL code snippet". So I must output the code snippet that implements the splitting of larger slave data into multiple master transactions.
+
+So I can output the code block that is in the else branch. Let me check: "Split the larger slave data into multiple master transactions" is in the else branch, i.e., when SLAVE_DATA_WIDTH > MASTER_DATA_WIDTH.
+
+Thus I'll produce the code block:
+
+```
+else 
+begin
+reg [SLAVE_DATA_WIDTH-1:0] data;
+reg [clog2(RATIO)-1:0] count;
+reg valid;
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0)
+  begin
+    count <= RATIO - 1;
+
+
+Score : 0.060615338227332886

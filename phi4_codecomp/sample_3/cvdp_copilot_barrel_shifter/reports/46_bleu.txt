@@ -1,0 +1,41 @@
+Reference:
+```verilog
+data_in = 16'b1010_1111_0000_1100;
+shift_bits = 4;
+mode = 2'b00;
+left_right = 1; 
+expected = 16'b1111_0000_1100_0000;
+#10;
+
+$display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Logical), left_right = %b", data_in, shift_bits, mode, left_right);
+$display("Expected: %b, Actual: %b", expected, data_out);
+if (data_out === expected)
+    $display("Result: PASS\n");
+else
+    $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+```
+
+```verilog
+data_in = 16'b1010_1111_0000_1100;
+shift_bits = 4;
+mode = 2'b11;
+mask = 16'b1111_0000_1111_0000;
+left_right = 0;  
+expected = 16'b0000_0000_1111_0000;t
+#10;
+
+$display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Masked), left_right = %b, mask = %b", data_in, shift_bits, mode, left_right, mask);
+$display("Expected: %b, Actual: %b", expected, data_out);
+if (data_out === expected)
+    $display("Result: PASS\n");
+else
+    $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+```
+
+
+Response:
+{  
+  "response": "Logical Shift Testbench Component:\n```\ndata_in = 16'b1010_1111_0000_1100;\nshift_bits = 4;\nmode = 2'b00;\nleft_right = 1;\nexpected = 16'b1111_0000_1100_0000;\n#10;\n$display(\"Inputs: data_in = %b, shift_bits = %d, mode = %b (Logical), left_right = %b\", data_in, shift_bits, mode, left_right);\n$display(\"Expected: %b, Actual: %b\", expected, data_out);\nif (data_out === expected)\n    $display(\"Result: PASS\\n\");\nelse\n    $display(\"Result: FAIL (Expected: %b, Got: %b)\\n\", expected, data_out);\n```\n\nMasked Shift Testbench Component:\n```\nmode = 2'b11;\nmask = 16'b1111_0000_1111_0000;\nleft_right = 0;\nexpected = 16'b0000_0000_1111_0000;\n#10;\n$display(\"Inputs: data_in = %b, shift_bits = %d, mode = %b (Masked), left_right = %b, mask = %b\", data_in, shift_bits, mode, left_right, mask);\n$display(\"Expected: %b, Actual: %b\", expected, data_out);\nif (data_out === expected)\n    $display(\"Result: PASS\\n\");\nelse\n    $display(\"Result: FAIL (Expected: %b, Got: %b)\\n\", expected, data_out);\n```\n"
+
+
+Score : 0.40977048728118975

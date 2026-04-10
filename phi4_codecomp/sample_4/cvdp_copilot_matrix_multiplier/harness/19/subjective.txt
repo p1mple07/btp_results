@@ -1,0 +1,7 @@
+always_ff @(posedge clk)
+  if (srst)
+    add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+gv3)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= '0;
+  else if (valid_out_reg[0])
+    add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+gv3)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= mult_stage[((((gv1*COL_B)+gv2)*MODIFIED_COL_A)+(2*gv3))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] + mult_stage[((((gv1*COL_B)+gv2)*MODIFIED_COL_A)+((2*gv3)+1))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH];
+  else if ((HALF_MODIFIED_COL_A > 1) && (gv3 < (HALF_MODIFIED_COL_A/2)))
+    add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+gv3)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+(2*gv3))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] + add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+((2*gv3)+1))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH];

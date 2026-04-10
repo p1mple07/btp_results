@@ -1,0 +1,17 @@
+Reference:
+##### **4.3 Reference Sequence Detector Logic Using Shift Register**
+- The reference logic uses a shift register to store the last `Length` bits of the input sequence. This shift register is updated on every clock cycle by shifting in the current input bit and discarding the oldest bit.
+- The shift register ensures that the reference logic always has the most recent `Length` bits of the input sequence, which are then compared with the informed sequence.
+
+##### **9.1 Reference Sequence Detection pulse**
+- For each test case, the expected output is calculated based on the reference sequence detection logic. The logic works as follows:
+  - The reference logic compares the contents of the shift register with the informed sequence.
+  - If a match is found, the reference logic asserts a signal indicating that the sequence has been detected.
+
+
+
+Response:
+The testbench specification document explains this in Section 4.3, 'Reference Sequence Detector Logic Using Shift Register'. In that section, it describes how the testbench maintains a sliding window of the input stream by using a shift register that holds the most recent 'Length' bits of the input. Each clock cycle, the shift register is updated by shifting in the current bit and discarding the oldest one. The reference logic then compares the contents of this sliding window (the shift register) with the informed sequence (01001110) to validate whether the sequence has been detected. This mechanism is directly implemented in the provided code snippet, where the first always block updates the shift register and the second always_comb block performs the comparison to set the reference detection flag.
+
+
+Score : 0.3660359564482642

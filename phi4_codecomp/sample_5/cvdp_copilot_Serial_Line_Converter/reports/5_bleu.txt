@@ -1,0 +1,40 @@
+Reference:
+```
+    always @(posedge clk or negedge reset_n) begin
+        if (!reset_n) begin
+            expected_out = 0;
+        end else begin
+            case (mode)
+                3'b000: expected_out = serial_in; // NRZ
+                3'b001: expected_out = serial_in & tb_clk_pulse; // RZ
+                3'b010: expected_out = serial_in ^ tb_prev_serial_in; // Differential
+                3'b011: expected_out = ~serial_in; // Inverted NRZ
+                3'b100: expected_out = tb_alt_invert_state ? ~serial_in : serial_in; // Alternate Inversion
+                3'b101: expected_out = tb_parity_out ^ serial_in; // Parity-Added
+                3'b110: expected_out = serial_in ^ tb_counter[0]; // Scrambled NRZ
+                3'b111: expected_out = serial_in & ~tb_prev_serial_in; // Edge-Triggered NRZ
+                default: expected_out = 0;
+            endcase
+        end
+    end
+```
+    
+ 
+```
+    function void check_output(input logic expected, input string feature, input integer iteration);
+        if (serial_out !== expected) begin
+            $display("ERROR: %s failed in iteration %d. Expected: %b, Got: %b at time %t", 
+                     feature, iteration, expected, serial_out, $time);
+        end else begin
+            $display("PASS: %s passed in iteration %d at time %t", 
+                     feature, iteration, $time);
+        end
+    endfunction
+```
+
+
+Response:
+The first block is the always block that calculates the expected output value. In this block, based on the current mode (using a case statement), the testbench computes the expected value for serial_out from serial_in and internal signals (such as tb_clk_pulse, tb_prev_serial_in, tb_alt_invert_state, tb_parity_out, and tb_counter). The second block is the function check_output, which takes the computed expected value, the corresponding feature name, and the iteration number, and then compares it with the actual serial_out from the DUT. It logs a PASS message if they match or an ERROR message with details (expected value, actual value, mode, iteration, and simulation time) if they do not.
+
+
+Score : 2.955406104594297e-155

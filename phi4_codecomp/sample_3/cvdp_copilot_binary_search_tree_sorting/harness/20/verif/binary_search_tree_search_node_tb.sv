@@ -1,0 +1,353 @@
+module tb_search_binary_search_tree;
+
+    parameter DATA_WIDTH = 8;
+    parameter ARRAY_SIZE = 7;
+
+    // Inputs
+    reg clk;
+    reg reset;
+    reg start;
+    reg [DATA_WIDTH-1:0] search_key;
+    reg [$clog2(ARRAY_SIZE):0] root;
+    reg [ARRAY_SIZE*DATA_WIDTH-1:0] keys;
+    reg [ARRAY_SIZE*($clog2(ARRAY_SIZE)+1)-1:0] left_child;
+    reg [ARRAY_SIZE*($clog2(ARRAY_SIZE)+1)-1:0] right_child;
+
+    // Outputs
+    wire [$clog2(ARRAY_SIZE):0] key_position;
+    wire complete_found;
+    wire done;
+    reg done_bst;
+    reg start_bst;
+
+
+    // Instantiate the search_binary_search_tree module
+    search_binary_search_tree #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .ARRAY_SIZE(ARRAY_SIZE)
+    ) dut (
+        .clk(clk),
+        .reset(reset),
+        .start(start),
+        .search_key(search_key),
+        .root(root),
+        .keys(keys),
+        .left_child(left_child),
+        .right_child(right_child),
+        .key_position(key_position),
+        .complete_found(complete_found)
+    );
+
+    // Instantiate the BST_SUB_TREE module to generate BST
+    reg [ARRAY_SIZE*DATA_WIDTH-1:0] data_in;
+    reg [ARRAY_SIZE*DATA_WIDTH-1:0] random_data;
+
+    BST_SUB_TREE #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .ARRAY_SIZE(ARRAY_SIZE)
+    ) bst_generator (
+        .clk(clk),
+        .reset(reset),
+        .data_in(data_in),
+        .start(start_bst),
+        .keys(keys),
+        .left_child(left_child),
+        .right_child(right_child),
+        .done(done_bst)
+    );
+
+    // Clock generation
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk; // Clock period of 10 units
+    end
+
+    // Reset generation
+    initial begin
+        reset = 1;
+        #20 reset = 0;
+    end
+
+     // Sort Array 
+    task sort_array;
+        input reg [ARRAY_SIZE*DATA_WIDTH-1:0] input_array;
+        output reg [ARRAY_SIZE*DATA_WIDTH-1:0] sorted_array;
+        integer i, j;
+        reg [DATA_WIDTH-1:0] temp;
+        begin
+            sorted_array = input_array;
+            for (i = 0; i < ARRAY_SIZE; i++) begin
+                for (j = i + 1; j < ARRAY_SIZE; j++) begin
+                    if (sorted_array[i*DATA_WIDTH +: DATA_WIDTH] > sorted_array[j*DATA_WIDTH +: DATA_WIDTH]) begin
+                        temp = sorted_array[i*DATA_WIDTH +: DATA_WIDTH];
+                        sorted_array[i*DATA_WIDTH +: DATA_WIDTH] = sorted_array[j*DATA_WIDTH +: DATA_WIDTH];
+                        sorted_array[j*DATA_WIDTH +: DATA_WIDTH] = temp;
+                    end
+                end
+            end
+        end
+    endtask
+
+    // Task to sort the keys and determine the reference position
+    task sort_and_find_position;
+        input [ARRAY_SIZE*DATA_WIDTH-1:0] input_keys;
+        input [DATA_WIDTH-1:0] search_value;
+        output integer position;
+        reg [DATA_WIDTH-1:0] sorted_keys [ARRAY_SIZE-1:0];
+        reg [DATA_WIDTH-1:0] temp;
+        integer i, j;
+        begin
+            // Unpack and sort keys
+            for (i = 0; i < ARRAY_SIZE; i = i + 1) begin
+                sorted_keys[i] = input_keys[i*DATA_WIDTH +: DATA_WIDTH];
+            end
+
+            for (i = 0; i < ARRAY_SIZE; i = i + 1) begin
+                for (j = i + 1; j < ARRAY_SIZE; j = j + 1) begin
+                    if (sorted_keys[i] > sorted_keys[j]) begin
+                        temp = sorted_keys[i];
+                        sorted_keys[i] = sorted_keys[j];
+                        sorted_keys[j] = temp;
+                    end
+                end
+            end
+
+            // Find the position of the search key
+            position = -1;
+            for (i = 0; i < ARRAY_SIZE; i = i + 1) begin
+                if (sorted_keys[i] == search_value) begin
+                    position = i;
+                    break;
+                end
+            end
+        end
+    endtask
+
+    // Test Procedure
+    task run_test;
+        input string test_name;
+        input reg [DATA_WIDTH-1:0] key_input;
+        input reg [ARRAY_SIZE*DATA_WIDTH-1:0] keys;
+
+        integer i;
+        int ref_position;
+
+        begin
+
+            repeat(3) @(posedge clk);
+
+            $display("Running Test: %s", test_name);
+
+            // Assign the key
+            search_key = key_input; 
+
+            // Start the searching of the node
+            start = 1;
+            @(posedge clk);
+            start = 0;
+
+            wait(complete_found);
+
+            // For debugging
+            $display("Found", complete_found);
+            
+            $display("key_position", key_position);
+
+            // Reference model
+            sort_and_find_position(keys, search_key, ref_position);
+
+            if (complete_found && key_position == ref_position)
+                $display("%s Passed: key %d found at position %0d", test_name, search_key, ref_position);
+            else
+                $display("%s Failed: key %d not found as expected.", test_name, search_key );
+
+        end
+
+    endtask
+
+    // Test procedure
+    initial begin
+        int i;
+        int random_index;
+        reg sort;
+        reg [DATA_WIDTH-1:0] key_to_search;
+        root = 0;
+        
+        #100;
+
+        sort = $urandom_range(0, 1);
+
+        for (i = 0; i < ARRAY_SIZE; i=i+1) begin
+            random_data[i*DATA_WIDTH +: DATA_WIDTH] = $urandom_range(0, 2**(DATA_WIDTH)-1);  
+        end
+
+        if (sort) begin
+            sort_array(random_data, data_in);
+        end else begin
+            data_in = random_data;
+        end
+
+        // start the BST 
+        start_bst <= 1;
+        @(posedge clk);
+        start_bst <= 0;
+
+        // wait for BST to be completed
+        @(posedge done_bst);
+        @(posedge clk);
+    
+        // Test case 1          
+        random_index = $urandom_range(0, ARRAY_SIZE-1);
+        key_to_search = data_in[random_index*DATA_WIDTH +: DATA_WIDTH]; 
+        run_test("Test case 1", key_to_search, data_in);
+
+        // Test Case 2 
+        key_to_search = data_in[0*DATA_WIDTH +: DATA_WIDTH]; 
+        run_test("Test case 2", key_to_search, data_in);
+
+        // Test Case 3
+        key_to_search = data_in[(ARRAY_SIZE-1)*DATA_WIDTH +: DATA_WIDTH]; 
+        run_test("Test case 3", key_to_search, data_in);
+
+        #20;
+
+
+        $finish;
+    end
+
+    // Dump waveforms for analysis
+    initial begin
+        $dumpfile("test.vcd");
+        $dumpvars(0, tb_search_binary_search_tree);
+    end
+
+endmodule
+
+
+// BST_SUB_TREE Module: Constructs a binary search tree from the input array
+module BST_SUB_TREE #(
+    parameter DATA_WIDTH = 32,
+    parameter ARRAY_SIZE = 15
+
+) (
+    input clk,
+    input reset,
+    input [ARRAY_SIZE*DATA_WIDTH-1:0] data_in, // Input array for constructing BST
+    input reg start,
+    output reg [ARRAY_SIZE*DATA_WIDTH-1:0] keys, // Node keys in the BST
+    output reg [ARRAY_SIZE*($clog2(ARRAY_SIZE)+1)-1:0] left_child, // Left child pointers
+    output reg [ARRAY_SIZE*($clog2(ARRAY_SIZE)+1)-1:0] right_child, // Right child pointers
+    output reg done // Done signal
+    
+);
+    // BST representation
+    reg [ARRAY_SIZE*DATA_WIDTH-1:0] data_in_copy;
+
+    // FSM states
+    parameter IDLE = 3'b000, INIT = 3'b001, INSERT = 3'b010, TRAVERSE = 3'b011, COMPLETE = 3'b100;
+
+    reg [2:0] state;
+    reg [$clog2(ARRAY_SIZE):0] current_node;
+    reg [$clog2(ARRAY_SIZE):0] next_free_node;
+    reg [$clog2(ARRAY_SIZE):0] input_index;
+    reg [DATA_WIDTH-1:0] temp_data;
+    reg [$clog2(ARRAY_SIZE):0] root; // Root node pointer
+
+    integer i;
+
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            // Reset logic
+            state <= IDLE;
+            root <= {($clog2(ARRAY_SIZE)+1){1'b1}}; // Null pointer
+            next_free_node <= 0;
+            input_index <= 0;
+            done <= 0;
+
+            // Clear tree arrays
+            for (i = 0; i < ARRAY_SIZE; i = i + 1) begin
+                root <= {($clog2(ARRAY_SIZE)+1){1'b1}}; // Null pointer
+                keys[i*DATA_WIDTH +: DATA_WIDTH] <= 0;
+                left_child[i*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] <= {($clog2(ARRAY_SIZE)+1){1'b1}}; // Null pointer
+                right_child[i*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] <= {($clog2(ARRAY_SIZE)+1){1'b1}}; // Null pointer
+            end
+
+        end else begin
+            case (state)
+                IDLE: begin
+                    done <= 0;
+                    root <= {($clog2(ARRAY_SIZE)+1){1'b1}}; ; // Null pointer
+                    next_free_node <= 0;
+                    if (start) begin
+                        for (i = 0; i < ARRAY_SIZE+1; i = i + 1) begin
+                            keys[i*DATA_WIDTH +: DATA_WIDTH] <= 0;
+                            left_child[i*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] <= {($clog2(ARRAY_SIZE)+1){1'b1}}; 
+                            right_child[i*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] <= {($clog2(ARRAY_SIZE)+1){1'b1}};
+                        end
+                        // Load input data into input array
+                        state <= INIT;
+                        data_in_copy <= data_in;
+                    end
+                end
+
+                INIT: begin
+                    if (input_index < ARRAY_SIZE) begin
+                        temp_data <= data_in_copy[input_index*DATA_WIDTH +: DATA_WIDTH]; 
+                        input_index <= input_index + 1;
+                        state <= INSERT;
+                    end else begin
+                        state <= COMPLETE;
+                    end
+                end
+
+                INSERT: begin
+                    if (root == {($clog2(ARRAY_SIZE)+1){1'b1}}) begin
+                        // Tree is empty, insert at root
+                        root <= next_free_node;
+                        keys[next_free_node*DATA_WIDTH +: DATA_WIDTH] <= temp_data;
+                        next_free_node <= next_free_node + 1; 
+                        state <= INIT;
+                    end else begin
+                        // Traverse the tree to find the correct position
+                        current_node <= root; 
+                        state <= TRAVERSE;
+                    end
+                end
+
+                TRAVERSE: begin      
+                    if ((temp_data < keys[current_node*DATA_WIDTH +: DATA_WIDTH]) || (temp_data == keys[current_node*DATA_WIDTH +: DATA_WIDTH])) begin
+                        if (left_child[current_node*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] == {($clog2(ARRAY_SIZE)+1){1'b1}}) begin 
+                            left_child[current_node*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] <= next_free_node; 
+                            keys[next_free_node*DATA_WIDTH +: DATA_WIDTH] <= temp_data;
+                            next_free_node <= next_free_node + 1;
+                            state <= INIT;
+                        end else begin
+                            current_node <= left_child[current_node*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)]; 
+                        end
+                    end else begin
+                        if (right_child[current_node*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] == {($clog2(ARRAY_SIZE)+1){1'b1}}) begin 
+                            right_child[current_node*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)] <= next_free_node; 
+                            keys[next_free_node*DATA_WIDTH +: DATA_WIDTH] <= temp_data; 
+                            next_free_node <= next_free_node + 1;
+                            state <= INIT;
+                        end else begin
+                            current_node <= right_child[current_node*($clog2(ARRAY_SIZE)+1) +: ($clog2(ARRAY_SIZE)+1)]; 
+                        end
+                    end
+                end
+
+               COMPLETE: begin
+                    // Tree construction complete
+                    state <= IDLE;
+                    done <= 1;
+                end
+
+                default: begin
+                    state <= IDLE; // Default behavior for top-level FSM
+                end
+
+            endcase
+        end
+    end
+endmodule

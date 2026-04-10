@@ -1,0 +1,60 @@
+Reference:
+```systemverilog
+   typedef struct packed {
+      logic signed [NBW_OUT_DATA-1:0] expected_re;
+      logic signed [NBW_OUT_DATA-1:0] expected_im;
+   } expected_outputs_t;
+
+   function automatic expected_outputs_t calculate_expected_outputs(
+      input signed [NBW_IN_DATA-1:0]  data_re,
+      input signed [NBW_IN_DATA-1:0]  data_im,
+      input signed [NBW_COS-1:0]      cos_val,
+      input signed [NBW_COS-1:0]      sin_val
+   );
+      logic signed [NBW_MULT-1:0] data_a;
+      logic signed [NBW_MULT-1:0] data_b;
+      logic signed [NBW_MULT-1:0] data_c;
+      logic signed [NBW_MULT-1:0] data_d;
+
+      data_a = cos_val * data_re;
+      data_b = sin_val * data_im;
+      data_c = sin_val * data_re;
+      data_d = cos_val * data_im;
+
+      calculate_expected_outputs.expected_re = data_a - data_b;
+      calculate_expected_outputs.expected_im = data_c + data_d;
+   endfunction
+```
+
+
+Response:
+The golden model in the tb_phase_rotation testbench is implemented in the function calculate_expected_outputs. This function computes the expected outputs for the DUT using the formulas:
+
+expected_re = (i_cos * i_data_re) - (i_sin * i_data_im)
+expected_im = (i_sin * i_data_re) + (i_cos * i_data_im)
+
+Below is the corresponding code snippet:
+
+function automatic expected_outputs_t calculate_expected_outputs(
+   input signed [NBW_IN_DATA-1:0]  data_re,
+   input signed [NBW_IN_DATA-1:0]  data_im,
+   input signed [NBW_COS-1:0]      cos_val,
+   input signed [NBW_COS-1:0]      sin_val
+);
+   logic signed [NBW_MULT-1:0] data_a;
+   logic signed [NBW_MULT-1:0] data_b;
+   logic signed [NBW_MULT-1:0] data_c;
+   logic signed [NBW_MULT-1:0] data_d;
+
+   data_a = cos_val * data_re;
+   data_b = sin_val * data_im;
+   data_c = sin_val * data_re;
+   data_d = cos_val * data_im;
+
+   calculate_expected_outputs.expected_re = data_a - data_b;
+   calculate_expected_outputs.expected_im = data_c + data_d;
+endfunction
+
+
+
+Score : 0.5793885818641726

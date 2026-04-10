@@ -1,0 +1,513 @@
+module load_store_unit (
+    input  logic                 clk,
+    input  logic                 rst_n,
+
+    // EX stage interface
+    input  logic                 ex_if_req_i,           // LSU request
+    input  logic                 ex_if_we_i,            // Write enable: 0 (load), 1 (store)
+    input  logic     [ 1:0]      ex_if_type_i,          // Data type: 0x2 (word), 0x1 (halfword), 0x0 (byte)
+    input  logic     [31:0]      ex_if_wdata_i,         // Data to write to memory
+    input  logic     [31:0]      ex_if_addr_base_i,     // Base address
+    input  logic     [31:0]      ex_if_addr_offset_i,   // Offset address
+    input  logic                 ex_if_extend_mode_i,
+    output logic                 ex_if_ready_o    ,
+
+    
+    // Writeback stage interface
+    output logic     [31:0]      wb_if_rdata_o,         // Requested data
+    output logic                 wb_if_rvalid_o,        // Requested data valid
+
+    // Data memory (DMEM) interface
+    output logic                 dmem_req_o,
+    input  logic                 dmem_gnt_i,
+    output logic     [31:0]      dmem_req_addr_o,
+    output logic                 dmem_req_we_o,
+    output logic     [ 3:0]      dmem_req_be_o,
+    output logic     [31:0]      dmem_req_wdata_o,
+    input  logic     [31:0]      dmem_rsp_rdata_i,
+    input  logic                 dmem_rvalid_i
+    );
+  
+  typedef enum logic [4:0] {
+        IDLE,    
+        MISALIGNED_WR,
+        MISALIGNED_WR_1,  
+        MISALIGNED_RD ,
+        MISALIGNED_RD_GNT,
+        MISALIGNED_RD_GNT_1, 
+        MISALIGNED_RD_1,
+        ALIGNED_RD_GNT,
+        ALIGNED_RD,
+        ALIGNED_WR,
+        ALIGNED_WB,
+        MISALIGNED_WB
+        } state_t;
+  state_t state, next_state ;
+  // Internal signals
+  logic ex_req_fire;
+  logic we_q;
+  logic [31:0] data_addr_int, addr_0, addr_1, word_addr, next_word_addr, addr_0_q, addr_1_q ;
+  logic  two_transactions;
+  logic [3:0] be_0, be_1, be_0_q, be_1_q ;
+
+  
+
+  logic [31:0] wdata_q;
+
+  logic wb_rsp_valid;
+
+  logic [1:0] rdata_offset_q ;
+  logic [31:0] rdata_w_ext , rdata_h_ext, rdata_b_ext, data_rdata_ext, dmem_rsp_data, rdata_0_q, rdata_1_q ;
+  logic [1:0] data_type_q ;
+  logic data_sign_ext_q ;
+
+  always_comb begin
+    data_addr_int = ex_if_addr_base_i + ex_if_addr_offset_i;
+    word_addr = {data_addr_int[31:2], 2'b00} ;
+    next_word_addr = word_addr + 3'b100 ;
+  end
+
+  assign ex_req_fire = ex_if_req_i && ex_if_ready_o ;
+
+  always_comb begin : address_bmem_alignment
+    addr_0 = '0 ;
+    be_0 = 4'b0000;
+    addr_1 = '0 ;
+    be_1 = 4'b0000;
+    two_transactions = 1'b0 ; 
+    case (ex_if_type_i)  
+      2'b00: begin  
+          addr_0 = word_addr ;
+          case (data_addr_int[1:0])
+            2'b00:   be_0 = 4'b0001;
+            2'b01:   be_0 = 4'b0010;
+            2'b10:   be_0 = 4'b0100;
+            2'b11:   be_0 = 4'b1000;
+            default: be_0 = 4'b0000;
+          endcase
+      end
+
+      2'b01: begin  
+          case (data_addr_int[1:0])
+            2'b00: begin
+              addr_0 = word_addr ; 
+              be_0 = 4'b0011;
+            end
+            2'b01: begin
+              addr_0 = word_addr ;
+              be_0 = 4'b0110;
+            end
+            2'b10: begin
+              addr_0 = word_addr ;
+              be_0 = 4'b1100;
+            end
+            2'b11: begin
+              two_transactions = 1'b1 ; 
+              addr_0 = word_addr ;
+              be_0 = 4'b1000;
+              addr_1 = next_word_addr ;
+              be_1 = 4'b0001;
+            end
+          endcase
+      end
+
+      2'b10: begin  
+          case (data_addr_int[1:0])
+            2'b00: begin
+              addr_0 = word_addr ;
+              be_0 = 4'b1111;
+            end   
+            2'b01: begin
+              two_transactions = 1'b1 ;
+              addr_0 = word_addr ;
+              be_0 = 4'b1110;
+              addr_1 = next_word_addr ;
+              be_1 = 4'b0001;
+            end
+            2'b10: begin
+              two_transactions = 1'b1 ;
+              addr_0 = word_addr ;
+              be_0 = 4'b1100;
+
+              addr_1 = next_word_addr ;
+              be_1 = 4'b0011;
+            end
+            2'b11: begin
+              two_transactions = 1'b1 ;
+              addr_0 = word_addr ;
+              be_0 = 4'b1000;
+              addr_1 = next_word_addr ;
+              be_1 = 4'b0111;
+            end
+          endcase
+      end
+      default: begin
+        addr_0 = '0 ;
+        be_0 = 4'b0000;
+        addr_1 = '0 ;
+        be_1 = 4'b0000;
+        two_transactions = 1'b0 ;
+      end
+       
+    endcase
+  end
+
+  always_comb begin : state_transition
+    case(state)
+      IDLE: begin // Note req only checked if idle (ready)
+        if (ex_if_req_i) begin
+          if (ex_if_we_i && two_transactions) begin
+            next_state = MISALIGNED_WR ;
+          end 
+          else if (!ex_if_we_i && two_transactions) begin 
+            next_state = MISALIGNED_RD ;
+          end 
+          else if (ex_if_we_i && !two_transactions)  begin
+            next_state = ALIGNED_WR ;
+          end 
+          else next_state = ALIGNED_RD ;
+        end else begin
+          next_state = IDLE ;
+        end
+      end
+      MISALIGNED_WR: begin
+        if (dmem_gnt_i) begin
+          next_state = MISALIGNED_WR_1 ; 
+        end else begin
+          next_state = MISALIGNED_WR ;
+        end
+      end
+      MISALIGNED_WR_1: begin
+        if (dmem_gnt_i) begin
+          next_state = IDLE ; 
+        end else begin
+          next_state = MISALIGNED_WR_1 ;
+        end
+      end
+      
+      MISALIGNED_RD: begin
+        if (dmem_gnt_i) begin
+          next_state = MISALIGNED_RD_GNT ; 
+        end else begin
+          next_state = MISALIGNED_RD ;
+        end
+      end
+
+      MISALIGNED_RD_GNT: begin
+        if (dmem_rvalid_i) begin
+          next_state = MISALIGNED_RD_1 ; 
+        end else begin
+          next_state = MISALIGNED_RD_GNT ;
+        end
+      end
+
+      MISALIGNED_RD_1: begin
+        if (dmem_gnt_i) begin
+          next_state = MISALIGNED_RD_GNT_1 ; 
+        end else begin
+          next_state = MISALIGNED_RD_1 ;
+        end
+      end
+
+      MISALIGNED_RD_GNT_1: begin
+        if (dmem_rvalid_i) begin
+          next_state = MISALIGNED_WB ; 
+        end else begin
+          next_state = MISALIGNED_RD_GNT_1 ;
+        end
+      end
+
+      MISALIGNED_WB: begin
+        next_state = IDLE ;
+      end
+
+      ALIGNED_WR: begin
+        if (dmem_gnt_i) begin
+          next_state = IDLE ; 
+        end else begin
+          next_state = ALIGNED_WR ;
+        end
+      end
+      ALIGNED_RD : begin
+        if (dmem_gnt_i) begin
+          next_state = ALIGNED_RD_GNT ; 
+        end else begin
+          next_state = ALIGNED_RD ;
+        end
+      end
+      ALIGNED_RD_GNT: begin
+        if (dmem_rvalid_i) begin
+          next_state = ALIGNED_WB ; 
+        end else begin
+          next_state = ALIGNED_RD_GNT ;
+        end
+      end
+      
+      ALIGNED_WB: begin
+        next_state = IDLE ;
+      end
+      
+      default: begin
+        next_state = IDLE ;
+      end
+    endcase
+  end
+  always_comb begin : output_logic
+    case(state)
+      IDLE: begin
+        ex_if_ready_o     = 1'b1 ;
+        dmem_req_o        = '0 ;
+        dmem_req_addr_o   = '0 ;
+        dmem_req_we_o     = '0 ;
+        dmem_req_be_o     = '0 ;
+        dmem_req_wdata_o  = '0 ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+      MISALIGNED_WR: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b1 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ; 
+        wb_rsp_valid      = 1'b0 ;
+      end
+      MISALIGNED_WR_1: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b1 ;
+        dmem_req_addr_o   = addr_1_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_1_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+      
+      MISALIGNED_RD: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b1 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+
+      MISALIGNED_RD_GNT: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b0 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+
+      MISALIGNED_RD_1: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b1 ;
+        dmem_req_addr_o   = addr_1_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_1_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+
+      MISALIGNED_RD_GNT_1: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b0 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+
+      MISALIGNED_WB: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b0 ;
+        dmem_req_addr_o   = '0 ;
+        dmem_req_we_o     = '0 ; 
+        dmem_req_be_o     = '0 ; 
+        dmem_req_wdata_o  = '0 ;
+        dmem_rsp_data     = rdata_0_q | rdata_1_q ;
+        wb_rsp_valid      = 1'b1 ; 
+      end
+      ALIGNED_WR: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b1 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+      ALIGNED_RD : begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b1 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+      ALIGNED_RD_GNT: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b0 ;
+        dmem_req_addr_o   = addr_0_q ;
+        dmem_req_we_o     = we_q ; 
+        dmem_req_be_o     = be_0_q ; 
+        dmem_req_wdata_o  = wdata_q ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+
+      ALIGNED_WB: begin
+        ex_if_ready_o     = 1'b0 ;
+        dmem_req_o        = 1'b0 ;
+        dmem_req_addr_o   = '0 ;
+        dmem_req_we_o     = '0 ; 
+        dmem_req_be_o     = '0 ; 
+        dmem_req_wdata_o  = '0 ;
+        dmem_rsp_data     = rdata_0_q ;
+        wb_rsp_valid      = 1'b1 ;
+      end
+      default: begin
+        ex_if_ready_o     = 1'b1 ;
+        dmem_req_o        = '0 ;
+        dmem_req_addr_o   = '0 ;
+        dmem_req_we_o     = '0 ;
+        dmem_req_be_o     = '0 ;
+        dmem_req_wdata_o  = '0 ;
+        dmem_rsp_data = '0 ;
+        wb_rsp_valid      = 1'b0 ;
+      end
+    endcase
+  end
+  
+  always_ff @( posedge clk or negedge rst_n ) begin : FSM
+    if (!rst_n) begin
+      state <= IDLE;
+    end else begin
+      state <= next_state;
+    end  
+  end
+  
+    
+  always_ff @(posedge clk or negedge rst_n) begin : ex_req_reg
+    if (!rst_n) begin
+      we_q <= '0 ;
+      addr_0_q <= '0 ; 
+      be_0_q <= '0 ;
+      addr_1_q <= '0 ;
+      be_1_q <= '0 ;
+      wdata_q <= '0 ;
+      data_type_q <= '0 ;
+      rdata_offset_q <= '0 ;
+      data_sign_ext_q <= '0 ;
+      
+    end else if (ex_req_fire) begin
+      we_q <= ex_if_we_i ;
+      addr_0_q <= addr_0; 
+      be_0_q <= be_0;
+      addr_1_q <= addr_1;
+      be_1_q <= be_1;
+      wdata_q <= ex_if_wdata_i ;
+      data_type_q <= ex_if_type_i ;
+      rdata_offset_q <= data_addr_int[1:0] ;
+      data_sign_ext_q <= ex_if_extend_mode_i ;
+    end 
+  end
+
+always_comb begin : w_ext
+    case (rdata_offset_q)
+      2'b00: rdata_w_ext = dmem_rsp_data[31:0];
+      2'b01: rdata_w_ext = {dmem_rsp_data[7:0], dmem_rsp_data[31:8]};
+      2'b10: rdata_w_ext = {dmem_rsp_data[15:0], dmem_rsp_data[31:16]};
+      2'b11: rdata_w_ext = {dmem_rsp_data[23:0], dmem_rsp_data[31:24]};
+      default: rdata_w_ext = dmem_rsp_data ;
+    endcase
+  end
+
+  always_comb begin : h_ext
+    case (rdata_offset_q)
+      2'b00: begin
+        if (data_sign_ext_q) rdata_h_ext ={{16{dmem_rsp_data[15]}}, dmem_rsp_data[15:0]};
+        else rdata_h_ext =  {16'h0000, dmem_rsp_data[15:0]};
+      end
+
+      2'b01: begin
+        if (data_sign_ext_q) rdata_h_ext ={{16{dmem_rsp_data[23]}}, dmem_rsp_data[23:8]};
+        else rdata_h_ext =  {16'h0000, dmem_rsp_data[23:8]};
+      end
+      2'b10: begin
+        if (data_sign_ext_q) rdata_h_ext ={{16{dmem_rsp_data[31]}}, dmem_rsp_data[31:16]};
+        else rdata_h_ext =  {16'h0000, dmem_rsp_data[31:16]};
+      end
+      2'b11: begin
+        if (data_sign_ext_q) rdata_h_ext ={{16{dmem_rsp_data[7]}}, dmem_rsp_data[7:0] , dmem_rsp_data[31:24] };
+        else rdata_h_ext =  {16'h0000, dmem_rsp_data[7:0], dmem_rsp_data[31:24] };
+      end
+      
+      default: begin
+        rdata_h_ext = dmem_rsp_data ;  
+      end
+    endcase  
+  end
+  
+  always_comb begin : b_ext
+    case (rdata_offset_q)
+      2'b00: begin
+        if (data_sign_ext_q) rdata_b_ext  = {{24{dmem_rsp_data[7]}}, dmem_rsp_data[7:0]}; 
+        else rdata_b_ext = {24'h00_0000, dmem_rsp_data[7:0]};
+      end
+
+      2'b01: begin
+        if (data_sign_ext_q) rdata_b_ext  = {{24{dmem_rsp_data[15]}}, dmem_rsp_data[15:8]}; 
+        else rdata_b_ext = {24'h00_0000, dmem_rsp_data[15:8]};
+      end
+
+      2'b10: begin
+        if (data_sign_ext_q) rdata_b_ext  = {{24{dmem_rsp_data[23]}}, dmem_rsp_data[23:16]}; 
+        else rdata_b_ext = {24'h00_0000, dmem_rsp_data[23:16]};
+      end
+
+      2'b11: begin
+        if (data_sign_ext_q) rdata_b_ext  = {{24{dmem_rsp_data[31]}}, dmem_rsp_data[31:24]}; 
+        else rdata_b_ext = {24'h00_0000, dmem_rsp_data[31:24]};
+      end
+    endcase  
+  end
+
+  always_comb begin : rdata_ext
+    case (data_type_q)
+      2'b00:        data_rdata_ext = rdata_b_ext ;
+      2'b01:        data_rdata_ext = rdata_h_ext;
+      2'b10:        data_rdata_ext = rdata_w_ext;
+      default:      data_rdata_ext = 32'b0;
+    endcase  
+  end
+
+  always_ff @(posedge clk or negedge rst_n) begin :dmem_reg
+    if (!rst_n) begin
+      rdata_0_q   <= 32'b0;
+      rdata_1_q   <=  32'b0;
+    end else if (dmem_rvalid_i) begin
+      rdata_0_q  <= dmem_rsp_rdata_i;
+      rdata_1_q  <= rdata_0_q;
+    end
+  end
+
+
+  assign wb_if_rdata_o =  data_rdata_ext;
+  assign wb_if_rvalid_o = wb_rsp_valid;
+
+endmodule

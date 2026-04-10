@@ -1,0 +1,212 @@
+<think>We are given a test plan snippet that is for test case TC_04. The test case is "Out_Ready deassertion (backpressure)". The expected result is "Out_Valid held high until Out_Ready = 1". We are given the testbench code from file verif/tb_strobe_divider.sv. We are asked: "Provide me one answer for this request: The test plan for the strobe_divider module specifies the following test case: ... Provide the relevant testbench snippets that validate the strobe_divider module's behavior under backpressure when the Out_Ready signal is de-asserted." We need to provide the snippet that corresponds to that test case.
+
+Looking at the testbench code, we see that the test plan snippet in docs/Test_plan.md includes test case TC_04: "Out_Ready deassertion (backpressure)" for latency both. The test plan snippet is in the table:
+| TC_04             | Out_Ready deassertion (backpressure)                         | Both          | Out_Valid held high until Out_Ready = 1.   |
+
+The testbench code in file verif/tb_strobe_divider.sv contains two tasks: apply_strobe_divider_with_out_ready for both latency=0 and latency=1. And test case TC_11 and TC_12 are "Out_Ready Deassertion (Latency=0)" and "Out_Ready Deassertion (Latency=1)" respectively. Let's check the code:
+
+We see:
+// Test Case 11: Out_Ready Deassertion for Latency=0
+$display("\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===");
+In_Ratio_0 = 3;
+apply_strobe_divider_with_out_ready(0, 10, 5);
+
+// Test Case 12: Out_Ready Deassertion for Latency=1
+$display("\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===");
+In_Ratio_1 = 3;
+apply_strobe_divider_with_out_ready(1, 10, 5);
+
+So the relevant testbench snippets are these two tasks calls. But the question says: "Provide the relevant testbench snippets that validate the strobe_divider module’s behavior under backpressure when the Out_Ready signal is de-asserted." The expected result is "Out_Valid held high until Out_Ready = 1". So the snippet that corresponds to that test case is the two tasks: apply_strobe_divider_with_out_ready tasks for latency 0 and latency 1. But the question says "corresponding testbench code" and "the test plan snippet" for test case TC_04. However, TC_04 is described as "Out_Ready deassertion (backpressure)" with expected result "Out_Valid held high until Out_Ready = 1". And in the testbench code, we see two tasks: apply_strobe_divider_with_out_ready. They are not exactly the same as the description in the test plan snippet because the test plan snippet says "Both" latency. But the testbench code includes two tasks: one for latency=0 and one for latency=1. So we need to provide both snippets. But the question says "Provide the relevant testbench snippets" - I suspect we should output the snippet that covers both latencies. But the question says "The test plan for the strobe_divider module specifies the following test case: ... Provide the relevant testbench snippets." So we can provide two separate snippets: one for latency 0 and one for latency 1. But the test plan says "Both", so we need to include both snippets. But the instructions say "Provide the relevant testbench snippets" that validate the behavior under backpressure when the Out_Ready signal is deasserted. The tasks "apply_strobe_divider_with_out_ready" in the testbench code are used for that. They are:
+
+Task apply_strobe_divider_with_out_ready:
+```
+task apply_strobe_divider_with_out_ready;
+    input integer latency;
+    input integer cycles;
+    input integer deassert_at;
+    integer k;
+    begin
+        for (k = 0; k < cycles; k = k + 1) begin
+            @(posedge (latency == 0 ? Clk_0 : Clk_1));
+
+            // Apply In_Valid (toggle every cycle)
+            if (k % 2 == 0) begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 1;
+                end else begin
+                    In_Valid_1 <= 1;
+                end
+            end else begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 0;
+                end else begin
+                    In_Valid_1 <= 0;
+                end
+            end
+
+            // Deassert Out_Ready at specified cycle
+            if (k == deassert_at) begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 0;
+                end else begin
+                    Out_Ready_1 <= 0;
+                end
+            end else begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 1;
+                end else begin
+                    Out_Ready_1 <= 1;
+                end
+            end
+        end
+    end
+endtask
+```
+
+Also, in the apply_test_cases task, we see the calls:
+```
+            // Test Case 11: Out_Ready Deassertion for Latency=0
+            $display("\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===");
+            In_Ratio_0 = 3;
+            apply_strobe_divider_with_out_ready(0, 10, 5);
+
+            // Test Case 12: Out_Ready Deassertion for Latency=1
+            $display("\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===");
+            In_Ratio_1 = 3;
+            apply_strobe_divider_with_out_ready(1, 10, 5);
+```
+
+So the relevant snippet is the definition of the task apply_strobe_divider_with_out_ready and the calls to it in the apply_test_cases task. The expected result is that Out_Valid is held high until Out_Ready is asserted. The testbench monitors the outputs via monitors and pass/fail counters. The testbench code includes always blocks that check for Out_Valid and Out_Ready conditions. But the specific snippet that validates the backpressure condition is in the always blocks for latency=0 and latency=1. Let's check them:
+
+For latency=0:
+```
+always @(posedge Clk_0) begin
+    if (Rst_0) begin
+        count_valid_0 <= 0;
+        reset_wait_0 <= 1; // Skip checks immediately after reset
+    end else begin
+        if (reset_wait_0) begin
+            reset_wait_0 <= 0; // Skip one cycle after reset
+        end else begin
+            if (In_Valid_0) begin
+                count_valid_0 <= count_valid_0 + 1;
+                if (count_valid_0 >= In_Ratio_0) begin
+                    if (Out_Valid_0) begin
+                        pass_count = pass_count + 1;
+                    end else begin
+                        fail_count = fail_count + 1;
+                        $display("ERROR: Latency=0 | Time=%0t | Out_Valid_0 expected HIGH but was LOW", $time);
+                    end
+                    count_valid_0 <= 0;
+                end
+            end
+        end
+    end
+end
+```
+This block is for latency=0. It doesn't directly check backpressure. For latency=1, there is:
+```
+always @(posedge Clk_1) begin
+    if (Rst_1) begin
+        count_valid_1        <= 0;
+        expected_out_valid_1 <= 0;
+        reset_wait_1         <= 1; // Skip checks immediately after reset
+    end else begin
+        if (reset_wait_1) begin
+            reset_wait_1 <= 0; // Skip one cycle after reset
+        end else begin
+            if (In_Valid_1) begin
+                count_valid_1 <= count_valid_1 + 1;
+                if (count_valid_1 >= In_Ratio_1) begin
+                    expected_out_valid_1 <= 1;
+                    count_valid_1 <= 0;
+                end
+            end
+
+            if (expected_out_valid_1) begin
+                if (Out_Valid_1 && Out_Ready_1) begin
+                    pass_count = pass_count + 1;
+                    expected_out_valid_1 <= 0;
+                end else if (!Out_Ready_1) begin
+                    // Wait until Out_Ready_1 is high again
+                    expected_out_valid_1 <= 1;
+                end else begin
+                    fail_count = fail_count + 1;
+                    $display("ERROR: Latency=1 | Time=%0t | Out_Valid_1 expected HIGH and Out_Ready_1 HIGH but was LOW", $time);
+                    expected_out_valid_1 <= 0;
+                end
+            end
+        end
+    end
+end
+```
+This block checks that if Out_Ready_1 is not high, then the expected_out_valid_1 remains set, meaning that Out_Valid is held high. That is the behavior under backpressure. So the relevant snippet for backpressure is the task "apply_strobe_divider_with_out_ready" and the always block for latency=1. But the question says "Provide the relevant testbench snippets that validate the strobe_divider module's behavior under backpressure when the Out_Ready signal is de-asserted." So I think we should provide the snippet of the task "apply_strobe_divider_with_out_ready" and the always block for latency=1 that checks for backpressure. But the test plan snippet is "TC_04" and expected result "Out_Valid held high until Out_Ready = 1." That is more likely the always block for latency=1, because it includes the check "if (expected_out_valid_1)" then if (Out_Valid_1 && Out_Ready_1) then pass, else if (!Out_Ready_1) then wait, else fail. So the relevant snippet is the always block for latency=1. But the test plan says "Both" latencies. But the testbench code includes separate test cases for latency 0 and latency 1. But then the test case TC_04 in the test plan is "Both", so the testbench should cover both. The testbench code includes two tasks: apply_strobe_divider_with_out_ready for latency 0 and 1. So I think I should output both tasks calls and the tasks definitions. But the question says "Provide the relevant testbench snippets", and the format should be JSON with keys "response": "<your answer here>". And the answer must be in JSON format.
+
+We need to output a JSON with key "response" and value being a string that contains the relevant testbench code snippets. And it should be in JSON format with double quotes around keys and values. And we need to escape quotes and newlines properly.
+
+Let's check the instructions: "Provide the response in one of the following JSON schemas: { "code": [{ "<name>" : "<code>"}] } or { "response": "<response>" }." And the response should be in JSON format, including double-quotes around keys and values, and proper escaping of quotes within values, and escaping of newlines.
+
+I'll output: { "response": "<your answer here>" }.
+
+We need to provide the relevant testbench code snippet that corresponds to test case TC_04.
+
+I'll produce a JSON object with key "response" and value as a string that includes the relevant code snippet. The snippet will include the task apply_strobe_divider_with_out_ready and the always block for latency=1. But the test plan snippet says "Both", so I need to include both tasks calls for latency=0 and latency=1. But the test plan snippet is for test case TC_04. In the testbench code, there are two tasks calls: one for latency=0 and one for latency=1. So I can output both.
+
+I can output the snippet as:
+```
+/* Test Case 11: Out_Ready Deassertion for Latency=0 */
+$display("\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===");
+In_Ratio_0 = 3;
+apply_strobe_divider_with_out_ready(0, 10, 5);
+
+/* Test Case 12: Out_Ready Deassertion for Latency=1 */
+$display("\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===");
+In_Ratio_1 = 3;
+apply_strobe_divider_with_out_ready(1, 10, 5);
+```
+And also include the task definition of apply_strobe_divider_with_out_ready. But maybe it's enough to show the tasks that validate the backpressure condition. The always block for latency=1 is also relevant:
+```
+always @(posedge Clk_1) begin
+    if (Rst_1) begin
+        count_valid_1        <= 0;
+        expected_out_valid_1 <= 0;
+        reset_wait_1         <= 1; // Skip checks immediately after reset
+    end else begin
+        if (reset_wait_1) begin
+            reset_wait_1 <= 0; // Skip one cycle after reset
+        end else begin
+            if (In_Valid_1) begin
+                count_valid_1 <= count_valid_1 + 1;
+                if (count_valid_1 >= In_Ratio_1) begin
+                    expected_out_valid_1 <= 1;
+                    count_valid_1 <= 0;
+                end
+            end
+
+            if (expected_out_valid_1) begin
+                if (Out_Valid_1 && Out_Ready_1) begin
+                    pass_count = pass_count + 1;
+                    expected_out_valid_1 <= 0;
+                end else if (!Out_Ready_1) begin
+                    // Wait until Out_Ready_1 is high again
+                    expected_out_valid_1 <= 1;
+                end else begin
+                    fail_count = fail_count + 1;
+                    $display("ERROR: Latency=1 | Time=%0t | Out_Valid_1 expected HIGH and Out_Ready_1 HIGH but was LOW", $time);
+                    expected_out_valid_1 <= 0;
+                end
+            end
+        end
+    end
+end
+```
+This always block is the one that ensures that Out_Valid is held high until Out_Ready becomes 1. The testbench code for latency=0 does not explicitly check backpressure. The testbench code for latency=1 does check that if Out_Ready is low, then it waits until Out_Ready becomes high again. So that's the relevant snippet.
+
+Thus, I can output a JSON object with key "response" and a string that includes both the task apply_strobe_divider_with_out_ready definition and the always block for latency=1. But the question says "Provide the relevant testbench snippets" so I can output multiple snippets separated by some marker. But the instructions require a single JSON object with key "response" and a string value.
+
+I can output a JSON with key "response" and the value is a string that includes the code snippet. The code snippet should be properly escaped.
+
+I'll produce a JSON object like:
+
+{
+  "response": "/* Test Case 11: Out_Ready Deassertion for Latency=0 */\n$display(\"\\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===\");\nIn_Ratio_0 = 3;\napply_strobe_divider_with_out_ready(0, 10, 5);\n\n/* Test Case 12: Out_Ready Deassertion for Latency=1 */\n$display(\"\\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===\");\nIn_Ratio_1 = 3;\napply_strobe_divider_with_out_ready(1, 10, 5);\n\n// Task to Apply Strobe Divider with Out_Ready Deassertion\n// Parameters:\n//   latency: 0 or 1\n//   cycles: number of clock cycles to apply\n//   deassert_at: cycle number to deassert Out_Ready\n\ttask apply_strobe_divider_with_out_ready;\n\t    input integer latency;\n\t    input integer cycles;\n\t    input integer deassert_at;\n\t    integer k;\n\t    begin\n\t        for (k = 0; k < cycles; k = k + 1) begin\n\t            @(posedge (latency == 0 ? Clk_0 : Clk_1));\n\n\t            // Apply In_Valid (toggle every cycle)\n\t            if (k % 2 == 0) begin\n\t                if (latency == 0) begin\n\t                    In_Valid_0 <= 1;\n\t                end else begin\n\t                    In_Valid_1 <= 1;\n\t                end\n\t            end else begin\n\t                if (latency == 0) begin\n\t                    In_Valid_0 <= 0;\n\t                end else begin\n\t                    In_Valid_1 <= 0;\n\t                end\n\t            end\n\n\t            // Deassert Out_Ready at specified cycle\n\t            if (k == deassert_at) begin\n\t                if (latency == 0) begin\n\t                    Out_Ready_0 <= 0;\n\t                end else begin\n\t                    Out_Ready_1 <= 0;\n\t                end\n\t            end else begin\n\t                if (latency == 0) begin\n\t                    Out_Ready_0 <= 1;\n\t                end else begin\n\t                    Out_Ready_1 <= 1;\n\t                end\n\t            end\n\t        end\n\t    end\n\tendtask\n\n// Always block to handle Latency=1 pass/fail checks (backpressure validation)\nalways @(posedge Clk_1) begin\n    if (Rst_1) begin\n        count_valid_1        <= 0;\n        expected_out_valid_1 <= 0;\n        reset_wait_1         <= 1; // Skip checks immediately after reset\n    end else begin\n        if (reset_wait_1) begin\n            reset_wait_1 <= 0; // Skip one cycle after reset\n        end else begin\n            if (In_Valid_1) begin\n                count_valid_1 <= count_valid_1 + 1;\n                if (count_valid_1 >= In_Ratio_1) begin\n                    expected_out_valid_1 <= 1;\n                    count_valid_1 <= 0;\n                end\n            end\n\n            if (expected_out_valid_1) begin\n                if (Out_Valid_1 &&

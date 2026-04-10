@@ -1,0 +1,31 @@
+Reference:
+```verilog
+    bit [MSHR_ADDR_WIDTH-1:0] allocated_ids[$];
+```
+```verilog 
+            allocated_ids.delete(); // Delete all entries
+```
+```verilog
+            allocated_ids.push_back(allocate_id);
+```
+
+```verilog
+                finalize_id = allocated_ids[queue_idx];
+```
+
+```verilog
+                allocated_ids.delete(queue_idx);
+```
+
+```verilog
+                random_index = $urandom_range(0, allocated_ids.size() - 1);
+                finalize_request(hit_random.hit, random_index);
+```
+
+
+Response:
+{ 
+  "response": "1. In the task allocate_request, the line\n   allocated_ids.push_back(allocate_id);\n   ensures that every time an allocation is made the resulting allocate_id is recorded in the allocated_ids vector.\n\n2. In the task finalize_request, the line\n   finalize_id = allocated_ids[queue_idx];\n   guarantees that the finalize request uses an id that was previously pushed into allocated_ids.\n\n3. Still inside finalize_request, the line\n   allocated_ids.delete(queue_idx);\n   removes the allocated id from the vector after finalization so that it cannot be deallocated again.\n\n4. In the random_stim_gen loop, the call\n   allocate_request(req);\n   causes a new allocation to
+
+
+Score : 0.016936993022519234

@@ -1,0 +1,21 @@
+Reference:
+```
+    H_PULSE_STATE: begin
+        h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+        hsync_reg <= LOW;
+        h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+    end
+```
+
+
+Response:
+The horizontal sync pulse is implemented in the H_PULSE_STATE of the horizontal state machine. In this state, the HSYNC signal (hsync_reg) is driven LOW. The relevant block is:
+
+H_PULSE_STATE: begin
+    h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+    hsync_reg <= LOW;
+    h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+end
+
+
+Score : 0.9333333333333333

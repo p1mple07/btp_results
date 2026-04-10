@@ -1,0 +1,10 @@
+Reference:
+The `compute_expected` task iterates through the input vector `num_i` to detect the most significant set bit and generate a corresponding one-hot encoded value (`exp_oh_local`). It then converts this one-hot encoding to a binary exponent (`exp_bin_local`) using a priority-based approach, ensuring that only the highest set bit is considered. Using the computed exponent, the task extracts the 12-bit mantissa starting from the most significant set bit, aligning with the specification. This process guarantees that the testbench can dynamically generate correct reference values for `mantissa_o` and `exponent_o`, enabling accurate output comparison for inputs with multiple set bits.
+
+
+Response:
+The compute_expected task begins by scanning the high-order bits of the input vector to locate the first set bit, which it then uses to create a one‐hot encoded representation of the exponent. It converts this one‐hot encoding to a binary value by iterating over the bits and assigning the corresponding index, adding one to the result if any bit is set to match the RTL logic. For the mantissa, the task computes the starting bit position based on the computed exponent and extracts the subsequent 12 bits from the input vector when the one‐hot encoding is active, or simply uses the lower 12 bits if no set bit is found. This systematic computation of expected exponent and mantissa values enables the testbench to accurately compare the UUT outputs with the expected results, thereby verifying the correct behavior of the compression_engine module when the input vector contains multiple set bits.
+
+
+LLM Score (0-1) : 0.95
+Reasoning: The candidate response closely mirrors the reference by describing the MSB scan and one-hot encoding, conversion to a binary exponent, extraction of the 12-bit mantissa based on that exponent, and the final comparison step. It maintains the four-sentence structure and covers all key aspects. The added detail about adding one for RTL logic and a fallback for no set bit does not conflict with the reference and can be seen as implementation nuance rather than a deviation from the required explanation.

@@ -1,0 +1,10 @@
+Reference:
+The state machine ensures that any new events triggered by changes in select_a_i, select_b_i, or select_c_i are ignored after a transaction starts by latching the selected address and data (sel_addr and sel_data) in the IDLE state and transitioning to the SETUP state. Once in the SETUP or ACCESS state, the design does not revisit the IDLE state to evaluate new input signals until the transaction completes, either when apb_pready_i is asserted or the timeout occurs. This sequential progression through states prevents re-evaluation of select signals during an ongoing transaction, ensuring that only the initially latched event is processed.
+
+
+Response:
+The state machine only initiates a transaction when in the IDLE state by latching the address and data from the select signals and transitioning to the SETUP state. Once in the SETUP or ACCESS states, the next state logic ignores any changes in the select signals, ensuring that the ongoing transaction is not interrupted. Only after the transaction is completed and the state returns to IDLE does the design resume monitoring the select signals, thereby preventing events triggered during a previous transaction from being captured.
+
+
+LLM Score (0-1) : 1.0
+Reasoning: The candidate response accurately captures all key points from the reference: latching select signals in IDLE, ignoring changes in SETUP/ACCESS, and only resuming monitoring after returning to IDLE. It is concise, correct, and in three sentences as required.

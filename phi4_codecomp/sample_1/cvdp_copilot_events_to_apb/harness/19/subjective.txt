@@ -1,0 +1,213 @@
+<think>We are given a specification and a request. The question: "From the given `apb_controller` module, identify the RTL code blocks responsible for managing the event queue used in the design to ensure the storage and processing of simultaneous events based on priority, specifically when handling an event triggered by input C. Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below.(Exclude signal initialization, procedural block declarations, or irrelevant surrounding code)
+
+Operations:
+- Store the event status until it can be added to the queue.
+- Add event C to the queue to be processed after other high-priority inputs have been completed.
+- After completing previous high-priority transactions, identify that event C in the queue is the next to be processed.
+- Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed.
+
+We are to provide answer using the format: { "response": "<your answer here>" }.
+
+We need to extract code lines from the provided RTL code snippet from apb_controller.sv. Let's analyze the code snippet. The code snippet is a verilog code of module apb_controller, and we need to find code blocks that correspond to the operations listed.
+
+We are told: "From the given apb_controller module, identify the RTL code blocks responsible for managing the event queue used in the design to ensure the storage and processing of simultaneous events based on priority, specifically when handling an event triggered by input C. Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below."
+
+Operations:
+1. "Store the event status until it can be added to the queue."
+2. "Add event C to the queue to be processed after other high-priority inputs have been completed."
+3. "After completing previous high-priority transactions, identify that event C in the queue is the next to be processed."
+4. "Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed."
+
+We are given the code snippet. We need to find code lines that are responsible for these operations. Let's analyze the code:
+
+The code is in SystemVerilog. We see signals: "event_list", "event_sel", "event_sel_ff", "select_a_pulse", "select_b_pulse", "select_c_pulse". The code lines in the always_ff block, the always block for next_state, etc.
+
+Let's look for code lines that mention event C. "event C" is represented by the signals: select_c_i, select_c_pulse, event_list bit 2? Actually, event_list is 3 bits. The bit positions: event_list[0] for event A, event_list[1] for event B, event_list[2] for event C. And event_sel is also a 3-bit signal. So event C is represented by bit 2 (3'b100). So we need to find code lines that check conditions for event C.
+
+Looking at the always_ff @(posedge clk or negedge reset_n) block, there is a block:
+
+if (current_state == IDLE) begin
+   event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                 (select_b_pulse ? 3'b010 : 3'b000) |
+                 (select_c_pulse ? 3'b100 : 3'b000); 
+end else if (next_state == IDLE) begin
+   select_a_pulse <= (event_sel[0]) ? 1'b0 : select_a_pulse;
+   select_b_pulse <= (event_sel[1]) ? 1'b0 : select_b_pulse;
+   select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+   event_list   <= event_list & ~event_sel; 
+end
+
+So in this block, the line "select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;" is used to store the event status for event C. And then later, when next_state == IDLE, we have: "select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;". So that's "deassert the latched trigger signal for the event" and "clear the event from the queue after it has been processed" (for event C). So these lines correspond to operation 4: "Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed." But we must check if it is specifically for event C. The code uses event_sel[2] for event C. So yes.
+
+Also, "Add event C to the queue to be processed after other high-priority inputs have been completed." This is likely in the always block that sets next_state and event_sel. In the always @(*) block, there is a case statement for current_state. In IDLE, it does:
+
+case (current_state)
+    IDLE: begin
+         if (event_list[0]) begin
+             next_state = SETUP;
+             event_sel  = 3'b001;
+         end else if (event_list[1]) begin
+             next_state = SETUP;
+             event_sel  = 3'b010;
+         end else if (event_list[2]) begin
+             next_state = SETUP;
+             event_sel  = 3'b100;
+         end else begin
+             next_state = IDLE;
+             event_sel  = 3'b000;
+         end
+    end
+    ...
+
+So the third condition in the if chain is: else if (event_list[2]) begin next_state = SETUP; event_sel = 3'b100; end. That means that if event_list bit for event C is set, then event C is queued. That is "Add event C to the queue to be processed after other high-priority inputs have been completed" because if event A or event B are not present, then event C is processed. But careful: The question says "Add event C to the queue to be processed after other high-priority inputs have been completed." But in the code, event_list is updated in the IDLE state. But also, in the always_ff block, when next_state == IDLE, we do event_list <= event_list & ~event_sel; which clears the event that was processed. So that's the "clear the event from the queue after it has been processed" part.
+
+Now the code lines that check conditions and update values for event C:
+- Storing the event status: "select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;" appears in always_ff block, inside the else branch of if (!reset_n) then. So that line is responsible for storing event status until it can be added to the queue. But then the question says "Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below." So we need to provide the code lines that check conditions and update values for event C.
+
+Let's list them:
+
+Operation 1: "Store the event status until it can be added to the queue." 
+This corresponds to: 
+select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;
+
+Operation 2: "Add event C to the queue to be processed after other high-priority inputs have been completed." 
+This corresponds to the line in the always block:
+else if (event_list[2]) begin
+    next_state = SETUP;
+    event_sel  = 3'b100;
+end
+
+Operation 3: "After completing previous high-priority transactions, identify that event C in the queue is the next to be processed." 
+This is also in the always block in IDLE case, where the check "else if (event_list[2]) begin next_state = SETUP; event_sel = 3'b100; end" is used. So operation 3 is the same as operation 2. But maybe we need to include it as a separate code block? But the question says "Provide only the code lines responsible for checking the conditions and updating the values" so I think we include that line once.
+
+Operation 4: "Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed." 
+That corresponds to:
+select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;
+event_list   <= event_list & ~event_sel;
+
+But wait, we need to be careful: The code block in always_ff block:
+
+always_ff @(posedge clk or negedge reset_n) begin
+    if (!reset_n) begin
+         current_state <= IDLE;
+         event_list    <= 3'b000; 
+         event_sel_ff  <= 3'b000; 
+         select_a_pulse <= 1'b0;  
+         select_b_pulse <= 1'b0; 
+         select_c_pulse <= 1'b0;             
+    end else begin
+         select_a_pulse <= (select_a_i) ? 1'b1 : select_a_pulse;
+         select_b_pulse <= (select_b_i) ? 1'b1 : select_b_pulse;
+         select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;      
+         event_sel_ff   <= event_sel;              
+         current_state  <= next_state;
+         if (current_state == IDLE) begin
+            event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                          (select_b_pulse ? 3'b010 : 3'b000) |
+                          (select_c_pulse ? 3'b100 : 3'b000); 
+         end else if (next_state == IDLE) begin
+            select_a_pulse <= (event_sel[0]) ? 1'b0 : select_a_pulse;
+            select_b_pulse <= (event_sel[1]) ? 1'b0 : select_b_pulse;
+            select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+            event_list   <= event_list & ~event_sel; 
+         end            
+    end
+end
+
+So the lines that are relevant to event C are:
+- In the "else if (next_state == IDLE)" block: "select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;"
+- In the same block: "event_list   <= event_list & ~event_sel;"
+- And in the always block for current_state: "else if (event_list[2]) begin next_state = SETUP; event_sel = 3'b100; end"
+
+But the question says "specifically when handling an event triggered by input C". So we need to filter out lines that are specific to event C. So we need to include the line that stores event status for event C:
+"select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;"
+Also, the code line that adds event C to the queue in the always block:
+"else if (event_list[2]) begin
+    next_state = SETUP;
+    event_sel  = 3'b100;
+end"
+
+And the code lines that clear event C from the queue after processing:
+"select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;" and "event_list   <= event_list & ~event_sel;"
+
+But note: The second always_ff block is a full block that includes all events. The question says "provide only the code lines responsible for checking the conditions and updating the values" So we need to provide the code lines that are only relevant to event C. But also note that "select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;" is part of the block that handles all events. But we need to provide the lines that are specifically for event C.
+
+The question says "specifically when handling an event triggered by input C." So we need to filter out lines that are only for event C. Let's identify the lines that mention event C. The relevant ones are:
+
+- In the always_ff block: "select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;" is the line that latches the input for event C.
+- In the always block for next_state: "else if (event_list[2]) begin next_state = SETUP; event_sel  = 3'b100; end" is the line that checks if event C is in the queue and then sets next_state and event_sel accordingly.
+- In the same always_ff block, in the next_state==IDLE branch, there is "select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;" which clears the latched trigger for event C.
+- Also in the same branch, "event_list   <= event_list & ~event_sel;" clears the event from the queue. But that line clears all events that have been processed, not just event C. But since event_sel is event C (3'b100) when event C is processed, then event_list & ~event_sel will clear event C. So that's the line for clearing event C from the queue.
+
+The question says "Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below." The operations mentioned are:
+1. Store the event status until it can be added to the queue. (select_c_pulse update)
+2. Add event C to the queue to be processed after other high-priority inputs have been completed. (the always block that sets next_state = SETUP and event_sel = 3'b100)
+3. After completing previous high-priority transactions, identify that event C in the queue is the next to be processed. (Again, the same as operation 2, I think. But it might be the same line.)
+4. Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed. (the select_c_pulse update in next_state==IDLE branch and event_list update)
+
+Thus, our answer should include these code lines. But we need to be careful: The answer must be in JSON format with key "response" and value a string that is a verbatim quote from the specification or RTL code snippet. The instructions: "Provide the response in one of the following JSON schemas: 
+{ "code": [{ "<name>" : "<code>"}] } or { "response": "<response>" }." 
+We need to provide answer using the format: { "response": "<your answer here>" }.
+
+So our answer should be a JSON object with key "response" and value as a string that includes the code lines, with proper escaping of quotes and newlines. The question says "Provide your response using the format: { "response": "<your answer here>" }".
+
+We need to include only the code lines that are responsible for checking the conditions and updating the values for event C. We need to include the following lines:
+
+Line 1: "select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;" (this is from the always_ff block, not inside an if statement for reset, but in the else branch)
+
+Line 2: "else if (event_list[2]) begin" and the following two lines: "next_state = SETUP;" and "event_sel  = 3'b100;" then "end". But careful: The question says "Provide only the code lines responsible for checking the conditions and updating the values". So we need to include only the lines that check event_list[2] and update next_state and event_sel. But we need to include the "else if (event_list[2]) begin" line and the two assignment lines inside it.
+
+Line 3: In the always_ff block, in the "else if (next_state == IDLE)" branch, there is: "select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;" and then "event_list   <= event_list & ~event_sel;". But note that the "event_list   <= event_list & ~event_sel;" line is not event C specific because event_sel can be any event. But if event_sel is event C, then event_list bit for event C is cleared. But the question says "specifically when handling an event triggered by input C", so we include the line that clears the event C pulse: "select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;". And then we include "event_list   <= event_list & ~event_sel;" if we want to clear the event from the queue. But maybe we include both lines because they are part of the same block that clears the event.
+
+However, the question says "provide only the code lines responsible for checking the conditions and updating the values". So we include these lines as separate items.
+
+Let's check the code snippet and locate the exact lines. The code snippet is provided as a verbatim quote from the specification. We need to extract the lines exactly as they appear in the file. We must include only the code lines that correspond to the operations mentioned. We need to check if there are any additional lines that are not relevant.
+
+Let's go through the code snippet:
+
+The file rtl/apb_controller.sv is given. It starts with:
+
+module apb_controller(
+   ...
+);
+
+// State definitions
+typedef enum logic [1:0] {
+   IDLE,   
+   SETUP,  
+   ACCESS
+} state_t; 
+
+logic [3:0]  count;
+logic [2:0]  event_sel; 
+logic [2:0]  event_sel_ff; 
+logic [2:0]  event_list;    
+state_t      current_state, next_state;
+logic [31:0] sel_addr_next, sel_data_next;  
+logic [31:0] sel_addr, sel_data;          
+logic select_a_pulse, select_b_pulse, select_c_pulse;
+
+assign apb_psel_o    = (current_state == SETUP || current_state == ACCESS) ? 1'b1 : 1'b0;
+assign apb_penable_o = (current_state == ACCESS) ? 1'b1 : 1'b0;
+assign apb_pwrite_o  = (current_state == SETUP || current_state == ACCESS) ? 1'b1 : 1'b0;
+assign apb_paddr_o   = (current_state == SETUP || current_state == ACCESS) ? sel_addr : 32'b0;
+assign apb_pwdata_o  = (current_state == SETUP || current_state == ACCESS) ? sel_data : 32'b0;
+
+always_ff @(posedge clk or negedge reset_n) begin
+    if (!reset_n) begin
+        current_state <= IDLE;
+        event_list    <= 3'b000; 
+        event_sel_ff    <= 3'b000; 
+        select_a_pulse  <= 1'b0;  
+        select_b_pulse  <= 1'b0; 
+        select_c_pulse  <= 1'b0;             
+    end else begin
+        select_a_pulse <= (select_a_i) ? 1'b1 : select_a_pulse;
+        select_b_pulse <= (select_b_i) ? 1'b1 : select_b_pulse;
+        select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;      
+        event_sel_ff   <= event_sel;              
+        current_state  <= next_state;
+        if (current_state == IDLE) begin
+           event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                         (select_b_pulse ? 3'b010 : 3'b000) |
+                         (select

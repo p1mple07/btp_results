@@ -1,0 +1,30 @@
+Reference:
+```verilog
+    case (ex_if_type_i)  
+```
+```
+      2'b01: begin  
+          case (data_addr_int[1:0])
+            2'b00:   dmem_be = 4'b0011;
+            2'b10:   dmem_be = 4'b1100;
+            default: begin
+                dmem_be = 4'b0000;
+                misaligned_addr = 1'b1;
+            end
+          endcase
+      end 
+```
+
+```verilog
+assign ex_req_fire = ex_if_req_i && !busy_q && !misaligned_addr;
+```
+
+
+Response:
+
+2'b01: begin
+    case (data_addr_int[1:0])
+
+
+
+Score : 0.1111111111111111

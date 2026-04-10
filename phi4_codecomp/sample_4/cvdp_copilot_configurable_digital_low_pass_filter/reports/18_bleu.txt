@@ -1,0 +1,55 @@
+Reference:
+### 3. Delta Updates
+The weight (`delta_w`) and bias (`delta_b`) updates are computed based on the error and the learning rate:
+```math
+\Delta w = \text{LEARNING\_RATE} \cdot \text{error} \cdot x_{\text{in}}
+```
+```math
+\Delta b = \text{LEARNING\_RATE} \cdot \text{error}
+```
+
+These updates are calculated combinationally.
+
+### 4. Weight and Bias Updates
+The weight (`w`) and bias (`b`) registers are updated sequentially at the rising edge of the clock (`clk`), and can be reset asynchronously using the `reset` signal:
+```math
+w \leftarrow w + \Delta w
+```
+```math
+b \leftarrow b + \Delta b
+```
+
+If the `reset` signal is asserted, both `w` and `b` are reset to `0`.
+
+
+Response:
+Section 1: Delta Updates
+
+The weight (delta_w) and bias (delta_b) updates are computed based on the error and the learning rate. The specification states:
+
+"3. Delta Updates
+
+The weight (delta_w) and bias (delta_b) updates are computed based on the error and the learning rate:
+
+Delta w = LEARNING_RATE * error * x_in
+
+Delta b = LEARNING_RATE * error
+
+These updates are calculated combinationally."
+
+Section 2: Weight and Bias Updates
+
+The weight (w) and bias (b) registers are updated sequentially at the rising edge of the clock (clk), and can be reset asynchronously using the reset signal. The specification states:
+
+"4. Weight and Bias Updates
+
+The weight (w) and bias (b) registers are updated sequentially at the rising edge of the clock (clk), and can be reset asynchronously using the reset signal:
+
+w <- w + delta_w
+
+b <- b + delta_b
+
+If the reset signal is asserted, both w and b are reset to 0."
+
+
+Score : 0.3790712527517176

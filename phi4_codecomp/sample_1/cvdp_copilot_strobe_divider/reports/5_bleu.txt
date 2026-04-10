@@ -1,0 +1,306 @@
+Reference:
+```systemverilog
+task apply_strobe_divider_with_out_ready;
+    input integer latency;
+    input integer cycles;
+    input integer deassert_at;
+    integer k;
+    begin
+        for (k = 0; k < cycles; k = k + 1) begin
+            @(posedge (latency == 0 ? Clk_0 : Clk_1));
+            if (k == deassert_at) begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 0; 
+                end else begin
+                    Out_Ready_1 <= 0; 
+                end
+            end else begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 1; 
+                end else begin
+                    Out_Ready_1 <= 1; 
+                end
+            end
+
+            // Toggle In_Valid
+            if (k % 2 == 0) begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 1;
+                end else begin
+                    In_Valid_1 <= 1;
+                end
+            end else begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 0;
+                end else begin
+                    In_Valid_1 <= 0;
+                end
+            end
+        end
+    end
+endtask
+```
+
+```systemverilog
+always @(posedge Clk_1) begin
+    if (Out_Valid_1 && !Out_Ready_1) begin
+        $display("Latency=1 Backpressure: Out_Valid held high at Time=%t", $time);
+    end
+end
+```
+
+
+Response:
+<think>We are asked: "Provide me one answer for this request: The test plan for the strobe_divider module specifies the following test case:  
+
+| **Test Case ID** | **Description**                                       | **Latency_g** | **Expected Result**                              |  
+|-------------------|-------------------------------------------------------|---------------|-------------------------------------------------|  
+| **TC_04**         | `Out_Ready` deassertion (backpressure).              | Both          | `Out_Valid` held high until `Out_Ready = 1`.   |  
+
+Locate the corresponding testbench code that validates the strobe_divider module’s behavior under backpressure when the Out_Ready signal is de-asserted. Provide the relevant testbench snippets.
+
+The answer should be in JSON format. The response should be in JSON format, with the JSON keys "response": "<your answer here>" as per the instructions. The answer must be in one JSON object, and the answer should be the relevant testbench snippet.
+
+Let's examine the testbench code for verif/tb_strobe_divider.sv. The test plan test case TC_04 is "Out_Ready deassertion (backpressure)". We have two tasks: apply_strobe_divider_with_out_ready is used in the test cases for TC_11 and TC_12. But wait, check the testbench code: We see tasks:
+
+- apply_strobe_divider_with_out_ready is used in test case 11 and test case 12, but test case 11 is "Out_Ready Deassertion (Latency=0)" and test case 12 is "Out_Ready Deassertion (Latency=1)". The test plan snippet TC_04 is "Out_Ready deassertion (backpressure)" with expected result: "Out_Valid held high until Out_Ready = 1". So the corresponding testbench code snippet is the code inside tasks apply_strobe_divider_with_out_ready, which is used in test case 11 and 12. However, check test plan: The test plan table row for TC_04 says "Out_Ready deassertion (backpressure)" and expected result "Out_Valid held high until Out_Ready = 1". But the testbench code that checks that is inside the always block that monitors the outputs for latency 1 maybe? Let's re-read the testbench code to see what exactly is checking backpressure.
+
+In the testbench code, we have two always blocks that check outputs:
+
+For latency=0, we have always block @(posedge Clk_0) that increments count_valid_0 and then checks if Out_Valid_0 is high when expected. But for backpressure, the test plan expects that Out_Valid is held high until Out_Ready becomes 1. The testbench code that specifically deals with backpressure is the tasks apply_strobe_divider_with_out_ready. Let's check that code.
+
+The task apply_strobe_divider_with_out_ready is defined as:
+
+```
+    // Task to Apply Strobe Divider with Out_Ready Deassertion
+    // Parameters:
+    //   latency: 0 or 1
+    //   cycles: number of clock cycles to apply
+    //   deassert_at: cycle number to deassert Out_Ready
+    task apply_strobe_divider_with_out_ready;
+        input integer latency;
+        input integer cycles;
+        input integer deassert_at;
+        integer k;
+        begin
+            for (k = 0; k < cycles; k = k + 1) begin
+                @(posedge (latency == 0 ? Clk_0 : Clk_1));
+
+                // Apply In_Valid (toggle every cycle)
+                if (k % 2 == 0) begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 1;
+                    end else begin
+                        In_Valid_1 <= 1;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 0;
+                    end else begin
+                        In_Valid_1 <= 0;
+                    end
+                end
+
+                // Deassert Out_Ready at specified cycle
+                if (k == deassert_at) begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 0;
+                    end else begin
+                        Out_Ready_1 <= 0;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 1;
+                    end else begin
+                        Out_Ready_1 <= 1;
+                    end
+                end
+            end
+        end
+    endtask
+```
+
+This is the testbench snippet that deals with backpressure. It toggles In_Valid, and at a specific cycle (deassert_at) it deasserts Out_Ready. The expected behavior is that the DUT should hold Out_Valid high until Out_Ready is high again. But the testbench code does not explicitly check that condition. It is probably assumed that the DUT will hold Out_Valid high until Out_Ready is high. But the testbench code itself is not checking that explicitly. However, the testbench code is the one that applies backpressure test. But the question: "Provide the relevant testbench snippets." So I need to output the relevant snippet that applies backpressure. That snippet is the tasks apply_strobe_divider_with_out_ready. But also in the test plan, we have two test cases for backpressure: TC_11 and TC_12. So the answer should include both test cases (for latency=0 and latency=1) from the testbench code. But the question says: "Locate the corresponding testbench code that validates the strobe_divider module’s behavior under backpressure when the Out_Ready signal is de-asserted." So which code snippet in the testbench file does that? The tasks apply_strobe_divider_with_out_ready are used to simulate backpressure. They are defined in the file and used in test cases 11 and 12.
+
+But the question: "Provide the relevant testbench snippets." So I should output the snippet starting from the definition of the tasks apply_strobe_divider_with_out_ready, and also the invocations in test case 11 and 12. The testbench code includes the following tasks:
+
+```
+    // Task to Apply Strobe Divider with Out_Ready Deassertion
+    // Parameters:
+    //   latency: 0 or 1
+    //   cycles: number of clock cycles to apply
+    //   deassert_at: cycle number to deassert Out_Ready
+    task apply_strobe_divider_with_out_ready;
+        input integer latency;
+        input integer cycles;
+        input integer deassert_at;
+        integer k;
+        begin
+            for (k = 0; k < cycles; k = k + 1) begin
+                @(posedge (latency == 0 ? Clk_0 : Clk_1));
+
+                // Apply In_Valid (toggle every cycle)
+                if (k % 2 == 0) begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 1;
+                    end else begin
+                        In_Valid_1 <= 1;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 0;
+                    end else begin
+                        In_Valid_1 <= 0;
+                    end
+                end
+
+                // Deassert Out_Ready at specified cycle
+                if (k == deassert_at) begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 0;
+                    end else begin
+                        Out_Ready_1 <= 0;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 1;
+                    end else begin
+                        Out_Ready_1 <= 1;
+                    end
+                end
+            end
+        end
+    endtask
+```
+
+Also, test cases for backpressure are invoked as:
+
+```
+            // Test Case 11: Out_Ready Deassertion for Latency=0
+            $display("\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===");
+            In_Ratio_0 = 3;
+            apply_strobe_divider_with_out_ready(0, 10, 5);
+
+            // Test Case 12: Out_Ready Deassertion for Latency=1
+            $display("\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===");
+            In_Ratio_1 = 3;
+            apply_strobe_divider_with_out_ready(1, 10, 5);
+```
+
+The question explicitly mentions: "The test plan for the strobe_divider module specifies the following test case: ... TC_04 ... Out_Ready deassertion (backpressure) ... expected result: Out_Valid held high until Out_Ready = 1."
+
+The testbench code snippet that corresponds to that test case is the one for backpressure. However, note that in the test plan, TC_04 is listed as "Out_Ready deassertion (backpressure)" with expected result "Out_Valid held high until Out_Ready = 1". But the testbench code includes two tasks: apply_strobe_divider_with_out_ready. But the test plan table provided in the docs/Test_plan.md file shows TC_04 with "Out_Ready deassertion (backpressure)" and expected result "Out_Valid held high until Out_Ready = 1". But in the testbench code, the tasks for backpressure are test case 11 and 12. So it's possible that the test plan is slightly different from the testbench code. But anyway, we need to provide the relevant testbench snippet.
+
+Thus, the answer should be a JSON object with key "response" and the value being the relevant testbench snippet. The response should include the snippet of code that is used to simulate the backpressure scenario. That snippet is the task apply_strobe_divider_with_out_ready. Possibly also include the invocations in test cases 11 and 12.
+
+Let's check the snippet in the testbench code that is used for backpressure. It is the task apply_strobe_divider_with_out_ready. I will extract the code from the testbench code:
+
+```
+    // Task to Apply Strobe Divider with Out_Ready Deassertion
+    // Parameters:
+    //   latency: 0 or 1
+    //   cycles: number of clock cycles to apply
+    //   deassert_at: cycle number to deassert Out_Ready
+    task apply_strobe_divider_with_out_ready;
+        input integer latency;
+        input integer cycles;
+        input integer deassert_at;
+        integer k;
+        begin
+            for (k = 0; k < cycles; k = k + 1) begin
+                @(posedge (latency == 0 ? Clk_0 : Clk_1));
+
+                // Apply In_Valid (toggle every cycle)
+                if (k % 2 == 0) begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 1;
+                    end else begin
+                        In_Valid_1 <= 1;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        In_Valid_0 <= 0;
+                    end else begin
+                        In_Valid_1 <= 0;
+                    end
+                end
+
+                // Deassert Out_Ready at specified cycle
+                if (k == deassert_at) begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 0;
+                    end else begin
+                        Out_Ready_1 <= 0;
+                    end
+                end else begin
+                    if (latency == 0) begin
+                        Out_Ready_0 <= 1;
+                    end else begin
+                        Out_Ready_1 <= 1;
+                    end
+                end
+            end
+        end
+    endtask
+```
+
+Also include the test case invocations:
+
+```
+            // Test Case 11: Out_Ready Deassertion for Latency=0
+            $display("\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===");
+            In_Ratio_0 = 3;
+            apply_strobe_divider_with_out_ready(0, 10, 5);
+
+            // Test Case 12: Out_Ready Deassertion for Latency=1
+            $display("\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===");
+            In_Ratio_1 = 3;
+            apply_strobe_divider_with_out_ready(1, 10, 5);
+```
+
+But note: The test plan snippet provided in the question is TC_04. But in the testbench code, the corresponding tasks are labeled as test case 11 and 12. However, the expected result is "Out_Valid held high until Out_Ready = 1", which is indeed what the backpressure test is supposed to verify. The testbench code doesn't explicitly check that condition, but the simulation should reflect that behavior. The snippet we output should include the task definition and its invocation. 
+
+I must output the answer in JSON format with key "response" and value as the testbench snippet. The answer must be in JSON format with double quotes around keys and values, and proper escaping of quotes and newlines. The answer should be in one JSON object.
+
+I can output something like:
+
+{
+  "response": "Here is the relevant testbench snippet that validates backpressure: ... code snippet ..."
+}
+
+I must include the code snippet text as a string with proper escaping of newlines. The code snippet is SystemVerilog code. I must include newlines as "\n". I must include double quotes properly.
+
+I can output something like:
+
+{
+  "response": "<the code snippet>"
+}
+
+I must include the code snippet exactly as it appears in the testbench file. I must include the task apply_strobe_divider_with_out_ready and maybe the test case invocations for backpressure. But the question says: "Provide the relevant testbench snippets." So I'll include both the task definition and the invocations.
+
+I must check the instructions: "Provide your response using the format: { "response": "<your answer here>" }". So the answer must be a JSON object with key "response" and value is a string containing the testbench snippet.
+
+I must produce a JSON object with key "response" and the code snippet as a string. I must ensure that newlines are properly escaped (like \n) and quotes are escaped. Also must include the code snippet with proper indentation.
+
+I can produce the snippet as a multi-line string with \n. I'll produce a JSON object with key "response" and then the string value. I'll produce something like:
+
+{
+  "response": "/* Relevant testbench snippet for backpressure (TC_04) */\n\n// Task to Apply Strobe Divider with Out_Ready Deassertion\n// Parameters:\n//   latency: 0 or 1\n//   cycles: number of clock cycles to apply\n//   deassert_at: cycle number to deassert Out_Ready\n task apply_strobe_divider_with_out_ready;\n    input integer latency;\n    input integer cycles;\n    input integer deassert_at;\n    integer k;\n    begin\n        for (k = 0; k < cycles; k = k + 1) begin\n            @(posedge (latency == 0 ? Clk_0 : Clk_1));\n\n            // Apply In_Valid (toggle every cycle)\n            if (k % 2 == 0) begin\n                if (latency == 0) begin\n                    In_Valid_0 <= 1;\n                end else begin\n                    In_Valid_1 <= 1;\n                end\n            end else begin\n                if (latency == 0) begin\n                    In_Valid_0 <= 0;\n                end else begin\n                    In_Valid_1 <= 0;\n                end\n            end\n\n            // Deassert Out_Ready at specified cycle\n            if (k == deassert_at) begin\n                if (latency == 0) begin\n                    Out_Ready_0 <= 0;\n                end else begin\n                    Out_Ready_1 <= 0;\n                end\n            end else begin\n                if (latency == 0) begin\n                    Out_Ready_0 <= 1;\n                end else begin\n                    Out_Ready_1 <= 1;\n                end\n            end\n        end\n    end\nendtask\n\n// Test Case 11: Out_Ready Deassertion for Latency=0\n$display(\"\\n=== Test Case 11: Out_Ready Deassertion (Latency=0) ===\");\nIn_Ratio_0 = 3;\napply_strobe_divider_with_out_ready(0, 10, 5);\n\n// Test Case 12: Out_Ready Deassertion for Latency=1\n$display(\"\\n=== Test Case 12: Out_Ready Deassertion (Latency=1) ===\");\nIn_Ratio_1 = 3;\napply_strobe_divider_with_out_ready(1, 10, 5);"
+}
+
+I must produce a JSON object with a key "response" and a string containing the snippet. The string must have proper escaping. I must check that I use double quotes for keys and values. I must check that newlines are escaped with \n. Also I must check that any quotes inside the string are escaped with \". I must check that the code snippet is verbatim from the testbench code.
+
+I can include the snippet as is, but I must ensure that the newlines are escaped properly. I'll produce a JSON object with a single key "response" and the string value.
+
+I'll produce a JSON object that looks like:
+{
+  "response": "<the code snippet>"
+}
+
+I'll produce the code snippet as a string. I'll produce a JSON object with the following content:
+
+{
+  "response": "/* Relevant testbench snippet for backpressure (TC_04) */\n\n// Task to Apply Strobe Divider with Out_Ready Deassertion\n// Parameters:\n//   latency: 0 or 1\n//   cycles: number of clock cycles to apply\n//   deassert_at: cycle number to deassert Out_Ready\n task apply_strobe_divider_with_out_ready;\n    input integer latency;\n    input integer cycles;\n    input integer deassert_at;\n    integer k;\n    begin\n        for (k = 0; k < cycles; k = k + 1) begin\n            @(posedge (latency == 0 ? Clk_0 : Clk_1));\n\n            // Apply In_Valid (toggle every cycle)\n            if (k % 2 == 0) begin\n                if (latency == 0) begin\n                    In_Valid_0 <= 1;\n                end else begin\n                    In_Valid_1 <= 1;\n                end\n            end else begin\n                if (latency == 0) begin\n                    In_Valid_0
+
+
+Score : 0.05796581761580887

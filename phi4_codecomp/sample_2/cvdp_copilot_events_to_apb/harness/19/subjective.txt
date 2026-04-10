@@ -1,0 +1,240 @@
+<think>We are asked: "From the given `apb_controller` module, identify the RTL code blocks responsible for managing the event queue used in the design to ensure the storage and processing of simultaneous events based on priority, specifically when handling an event triggered by input C. Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below.(Exclude signal initialization, procedural block declarations, or irrelevant surrounding code)
+
+Operations:
+- Store the event status until it can be added to the queue.
+- Add event C to the queue to be processed after other high-priority inputs have been completed.
+- After completing previous high-priority transactions, identify that event C in the queue is the next to be processed.
+- Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed.
+
+We need to find code lines that do these operations. Let's re-read the code.
+
+The code is in a module called apb_controller. We have multiple always_ff blocks and always blocks.
+
+Let's try to identify code blocks that manage event queue. The code uses signals:
+- event_list: 3-bit register, updated in always_ff block when state = IDLE.
+- event_sel: 3-bit register updated in always block.
+- event_sel_ff: latched version of event_sel.
+- select_a_pulse, select_b_pulse, select_c_pulse: these are latched signals for events.
+- In the always_ff block (the first one), when state = IDLE, event_list is updated with:
+```
+event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+              (select_b_pulse ? 3'b010 : 3'b000) |
+              (select_c_pulse ? 3'b100 : 3'b000);
+```
+This is storing the event status. It is storing the event status until it can be added to the queue.
+- Next, in the always block that is combinational (always @(*) block that determines next_state and event_sel) there is a case statement for state IDLE:
+```
+            IDLE: begin
+                if (event_list[0]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b001;
+                end else if (event_list[1]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b010;
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end else begin
+                   next_state = IDLE;
+                   event_sel  = 3'b000;
+                end
+            end
+```
+This block is used to check the event queue and pick the next event to be processed. Specifically, if event_list[2] (which corresponds to event C) is set, then next_state becomes SETUP and event_sel is 3'b100. That means event C is added to the queue after high-priority events. But wait, "store the event status until it can be added to the queue" - that is the first always_ff block that sets event_list. But we are asked to provide only code lines responsible for checking the conditions and updating the values responsible for operations mentioned below. So we need to provide code lines that are specifically for event C handling. Let's check: The operations are:
+1. Store the event status until it can be added to the queue.
+2. Add event C to the queue to be processed after other high-priority inputs have been completed.
+3. After completing previous high-priority transactions, identify that event C in the queue is the next to be processed.
+4. Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed.
+
+We must pick code lines that do these things.
+
+Let's see. For event C, the code uses select_c_pulse, event_list, event_sel, etc.
+
+I see in always_ff block:
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+            end 
+```
+This line stores the event status for event C. It is: (select_c_pulse ? 3'b100 : 3'b000). So that's part of "store the event status until it can be added to the queue".
+
+Then in the combinational block (always @(*) begin ...):
+```
+            IDLE: begin
+                if (event_list[0]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b001;
+                end else if (event_list[1]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b010;
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end else begin
+                   next_state = IDLE;
+                   event_sel  = 3'b000;
+                end
+            end
+```
+This is used to check the event queue and decide the next event. Specifically, for event C, it checks if event_list[2] is set, then next_state = SETUP and event_sel = 3'b100. So that is "add event C to the queue to be processed after other high-priority inputs have been completed" and "After completing previous high-priority transactions, identify that event C in the queue is the next to be processed."
+
+Then after processing, in the always_ff block that is the second always_ff block (the one with reset and state transitions), there is:
+```
+            else if (next_state == IDLE) begin
+               select_a_pulse <= (event_sel[0]) ? 1'b0 : select_a_pulse;
+               select_b_pulse <= (event_sel[1]) ? 1'b0 : select_b_pulse;
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+            end            
+```
+Specifically, for event C, the line is:
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+```
+This deasserts the latched trigger signal for event C after it has been processed. And the event_list update is:
+```
+               event_list   <= event_list & ~event_sel; 
+```
+This clears the event from the queue. So that's the code that clears the event.
+
+So the code lines are:
+- In always_ff block for storing event status: "event_list <= (select_a_pulse ? 3'b001 : 3'b000) | (select_b_pulse ? 3'b010 : 3'b000) | (select_c_pulse ? 3'b100 : 3'b000);"
+- In combinational always block: "else if (event_list[2]) begin next_state = SETUP; event_sel = 3'b100; end" (or similar)
+- In always_ff block that resets events: "select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;" and "event_list <= event_list & ~event_sel;"
+
+We have to provide the code lines that correspond to these operations. But instructions: "Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below." So we need to include only the lines that are relevant. We should not include signal initialization or procedural block declarations.
+
+We need to provide the answer in JSON format with "response": "<your answer here>" and the answer should be in one JSON object with a key "response" and value string containing our answer. The answer should be a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet or verbatim RTL source code (if the context is specification) that corresponds to the specification snippet. But instructions say: "You are solving an 'RTL Correspondence' problem. To solve this problem correctly, you should only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet or verbatim RTL source code (if the context is specification) that corresponds to the specification snippet."
+
+Wait, instructions: "You are solving an 'RTL Correspondence' problem. To solve this problem correctly, you should only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet or verbatim RTL source code (if the context is specification) that corresponds to the specification snippet." But in our case, the context is RTL code snippet. So we need to provide a verbatim quote from the specification? Wait, let's re-read instructions: "You are solving an 'RTL Correspondence' problem. To solve this problem correctly, you should only respond with a verbatim quote from the specification (if the context is RTL) that corresponds to the RTL code snippet or verbatim RTL source code (if the context is specification) that corresponds to the specification snippet."
+
+I think that means that if we are asked about a snippet from RTL code, we need to provide the corresponding snippet from the specification if available. But in our case, we are asked to provide code lines from the RTL module that correspond to the operations. So we need to provide the lines from the RTL code that correspond to these operations. And our answer should be in JSON format with either a "code" key or a "response" key. The instructions says "Provide your response using the format: { "response": "<your answer here>" }".
+
+So I'll output a JSON object with key "response" and then include the code lines in quotes.
+
+I must include only the code lines that are responsible for:
+- Storing event status until added to queue.
+- Add event C to the queue after other high-priority events.
+- After previous high-priority transactions, identify that event C in the queue is the next to be processed.
+- Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed.
+
+So which code lines are these? Let's find them.
+
+We have multiple always blocks.
+
+1. Storing event status: In the always_ff block that handles the IDLE state:
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+```
+That's one code snippet. But note that we want only the lines for event C? The question says "specifically when handling an event triggered by input C." So we need to include the line for event C in event_list update, which is "(select_c_pulse ? 3'b100 : 3'b000)". But maybe we need the whole line because it's the one that stores the event status. But instructions: "Provide only the code lines responsible for checking the conditions and updating the values responsible for the operations mentioned below." So I should include only the part that is relevant for event C. But I think the instructions want the code lines that check event_list[2] and update event_sel to 3'b100. And then the code that clears event C from event_list and resets select_c_pulse. Let's check the combinational always block that does state transition:
+```
+            IDLE: begin
+                if (event_list[0]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b001;
+                end else if (event_list[1]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b010;
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end else begin
+                   next_state = IDLE;
+                   event_sel  = 3'b000;
+                end
+            end
+```
+We want the part for event C. That is:
+```
+                else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+This line is used to add event C to the queue. And then the code that deasserts the latched trigger signal and clears the event is in the always_ff block:
+```
+            else if (next_state == IDLE) begin
+               select_a_pulse <= (event_sel[0]) ? 1'b0 : select_a_pulse;
+               select_b_pulse <= (event_sel[1]) ? 1'b0 : select_b_pulse;
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+Specifically, for event C, we have:
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+We might also include the line that assigns sel_addr_next and sel_data_next in the always block that uses event_sel:
+```
+                    3'b100: begin                      
+                       sel_addr_next = addr_c_i; 
+                       sel_data_next = data_c_i; 
+                    end
+```
+But instructions mention "store the event status until it can be added to the queue", "add event C to the queue", "after completing previous high-priority transactions, identify that event C in the queue is the next to be processed", "deassert the latched trigger signal for the event and clear the event from the queue after it has been processed." So which blocks correspond to these operations? Let's map:
+- "Store the event status until it can be added to the queue" - that is the always_ff block that sets event_list when state is IDLE. But we want only the part for event C: "(select_c_pulse ? 3'b100 : 3'b000)".
+- "Add event C to the queue to be processed after other high-priority inputs have been completed." - That is in the combinational always block under state IDLE: "else if (event_list[2]) begin next_state = SETUP; event_sel = 3'b100; end". But also the case for event C in the always block that assigns sel_addr_next and sel_data_next. But the question says "specifically when handling an event triggered by input C." So we need the lines that check if event_list[2] is set, then set event_sel to 3'b100. So that is the line in the always block:
+```
+                else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+- "After completing previous high-priority transactions, identify that event C in the queue is the next to be processed." This is also in the same always block: "else if (event_list[2]) begin next_state = SETUP; event_sel = 3'b100; end" because that is the condition that if event_list[2] is set, then event C is chosen.
+- "Deassert the latched trigger signal for the event and clear the event from the queue after it has been processed." That is in the always_ff block after next_state becomes IDLE:
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+Thus, the answer should include these code lines:
+- The line in the always_ff block for IDLE state that stores event status:
+   event_list <= (select_a_pulse ? 3'b001 : 3'b000) | (select_b_pulse ? 3'b010 : 3'b000) | (select_c_pulse ? 3'b100 : 3'b000);
+   But we might only include the part for event C? But the instruction "Provide only the code lines responsible for ..." might mean that we include only the parts that are relevant to event C. But it's ambiguous if we need to include the entire line or just the relevant part. But I think we should include the entire line, because it's the only code that stores event status. But the question says "store the event status until it can be added to the queue" so that line is responsible for that.
+- The line in the always block for IDLE that selects event C:
+   else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+- The line in the always_ff block that resets events when next_state is IDLE:
+   select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;
+   event_list   <= event_list & ~event_sel;
+
+I need to output the answer in JSON format with key "response" and value being a string containing the code lines. I must include proper escaping of quotes and newlines. The answer should be in one JSON object with key "response".
+
+I need to include the code lines verbatim. The code lines should be provided in quotes as text with proper escaping of newlines. Possibly using \n for newlines.
+
+Let me re-read the instruction: "Provide your response using the format: { "response": "<your answer here>" }". So I'll output a JSON object with "response" key.
+
+I must include the code lines as text with proper escaping.
+
+I'll include the following code lines:
+
+Line 1: (the line that stores event status in always_ff block)
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+```
+But maybe we should only include the part for event C? But instructions say "only the code lines responsible for checking the conditions and updating the values" so maybe we can include the entire line since it's the only line that updates event_list with event C. But then also include the lines for event C in the combinational block:
+```
+            else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+And then include the lines in the always_ff block that deasserts select_c_pulse and clears event_list:
+```
+            else if (next_state == IDLE) begin
+               select_a_pulse <= (event_sel[0]) ? 1'b0 : select_a_pulse;
+               select_b_pulse <= (event_sel[1]) ? 1'b0 : select_b_pulse;
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+But note that the code for select_a_pulse and select_b_pulse are also in this block, but we only want for event C. But instructions say "specifically when handling an event triggered by input C". So we want only the code lines that are relevant to event C. But in the always_ff block, we have multiple lines. We want the lines that check event_list[2] and update select_c_pulse and event_list. But the always_ff block is:
+```

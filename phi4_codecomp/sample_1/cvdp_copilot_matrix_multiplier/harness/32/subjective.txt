@@ -1,0 +1,8 @@
+
+always_ff @(posedge clk)
+  if (srst)
+    valid_in <= '0;
+  else if (give_input_reg && (valid_in_cnt != NUM_SAMPLES))
+    valid_in <= FULL_THROUGHPUT ? 1 : $urandom_range(0,1);
+  else
+    valid_in <= '0;

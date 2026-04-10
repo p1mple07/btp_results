@@ -1,0 +1,62 @@
+Reference:
+```verilog
+// Calculate expected tens and units digits
+available_tens = expected_available_spaces / 10;
+available_units = expected_available_spaces % 10;
+count_tens = expected_count_car / 10;
+count_units = expected_count_car % 10;
+
+// Check seven-segment values for available spaces
+if (seven_seg_display_available_tens !== seven_segment_encoding(available_tens)) begin
+    $display("ERROR: Seven-segment available_tens mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(available_tens), seven_seg_display_available_tens);
+end
+if (seven_seg_display_available_units !== seven_segment_encoding(available_units)) begin
+    $display("ERROR: Seven-segment available_units mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(available_units), seven_seg_display_available_units);
+end
+
+// Check seven-segment values for count cars
+if (seven_seg_display_count_tens !== seven_segment_encoding(count_tens)) begin
+    $display("ERROR: Seven-segment count_tens mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(count_tens), seven_seg_display_count_tens);
+end
+if (seven_seg_display_count_units !== seven_segment_encoding(count_units)) begin
+    $display("ERROR: Seven-segment count_units mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(count_units), seven_seg_display_count_units);
+end
+
+
+Response:
+The block of code that calculates and verifies the expected values for the seven-segment displays is located in the task check_outputs. It performs the following steps:
+
+1. It calculates the tens and units digits of expected_available_spaces and expected_count_car using division (/) and modulus (%) operations.
+2. It encodes these digits with the seven_segment_encoding function.
+3. It compares the encoded values with the DUT outputs (seven_seg_display_available_tens, seven_seg_display_available_units, seven_seg_display_count_tens, and seven_seg_display_count_units).
+4. If there is any mismatch, detailed error messages are printed.
+
+Here is the verbatim code snippet:
+
+available_tens = expected_available_spaces / 10;
+available_units = expected_available_spaces % 10;
+count_tens = expected_count_car / 10;
+count_units = expected_count_car % 10;
+
+if (seven_seg_display_available_tens !== seven_segment_encoding(available_tens)) begin
+    $display("ERROR: Seven-segment available_tens mismatch! Expected: %b, Got: %b", seven_segment_encoding(available_tens), seven_seg_display_available_tens);
+end
+if (seven_seg_display_available_units !== seven_segment_encoding(available_units)) begin
+    $display("ERROR: Seven-segment available_units mismatch! Expected: %b, Got: %b", seven_segment_encoding(available_units), seven_seg_display_available_units);
+end
+
+if (seven_seg_display_count_tens !== seven_segment_encoding(count_tens)) begin
+    $display("ERROR: Seven-segment count_tens mismatch! Expected: %b, Got: %b", seven_segment_encoding(count_tens), seven_seg_display_count_tens);
+end
+if (seven_seg_display_count_units !== seven_segment_encoding(count_units)) begin
+    $display("ERROR: Seven-segment count_units mismatch! Expected: %b, Got: %b", seven_segment_encoding(count_units), seven_seg_display_count_units);
+end
+
+This block ensures that the seven-segment display outputs match the expected encoded values derived from the available_spaces and count_car.
+
+
+Score : 0.47420219829490967

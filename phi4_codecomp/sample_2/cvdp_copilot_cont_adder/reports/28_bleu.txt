@@ -1,0 +1,43 @@
+Reference:
+```verilog
+sum_accum <= sum_accum + weighted_input;
+if (sum_ready_reg) begin
+    sum_out   <= sum_accum + weighted_input;
+    sum_ready <= 1;
+end else begin
+    sum_ready <= 0;
+    sum_out   <= 0;
+end
+avg_out <= 0;
+```
+
+```verilog
+if (ACCUM_MODE == 1) begin
+    sum_accum    <= sum_accum + weighted_input;
+    sample_count <= sample_count + 1;
+    if (sum_ready_reg) begin
+        sum_out      <= sum_accum + weighted_input;
+        avg_out      <= (sum_accum + weighted_input) / window_size;
+        sum_ready    <= 1;
+        sum_accum    <= 0;
+        sample_count <= 0;
+    end else begin
+        sum_ready <= 0;
+        sum_out   <= 0;
+        avg_out   <= 0;
+    end
+end
+```
+
+
+Response:
+{
+  "response": "else begin  \n    sum_accum <= sum_accum + weighted_input; \n    if (sum_ready_reg) begin \n        sum_out   <= sum_accum + weighted_input; \n        sum_ready <= 1; \n    end else begin \n        sum_ready <= 0; \n        sum_out   <= 0; \n    end \n    avg_out <= 0; \nend"
+}
+
+{
+  "response": "if (ACCUM_MODE == 1) begin  \n    sum_accum    <= sum_accum + weighted_input; \n    sample_count <= sample_count + 1; \n    if (sum_ready_reg) begin \n        sum_out      <= sum_accum + weighted_input; \n        avg_out      <= (sum_accum + weighted_input) / window_size; \n        sum_ready    <= 1; \n        sum_accum    <= 0; \n        sample_count <= 0; \n    end else begin \n        sum_ready <= 0; \n        sum_out   <= 0; \n        avg_out   <= 0; \n    end \nend"
+}
+
+
+Score : 0.6002527912477863

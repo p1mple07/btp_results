@@ -1,0 +1,10 @@
+Reference:
+The 12-bit immediate extracted from `instr` value of 32'h6C2183E3 is 12'b0111_0110_0011. From this immediate, we can infer that the sign-bit [i.e. `instr[12]]` is 0, which indicates that the offset is a positive value. Thus the given branch instruction will be `not taken` as branch instructions with positive offset are predicted to be `not-taken` based on static branch prediction algorithm
+
+
+Response:
+The BEQ instruction’s immediate field is positive, meaning its sign bit is 0, so the branch predictor will not predict it as taken. The predictor logic checks the sign bit of the immediate to decide whether a branch should be taken. Since the offset is positive, the branch is not predicted to be taken.
+
+
+LLM Score (0-1) : 0.9
+Reasoning: The candidate response correctly identifies that the immediate’s sign bit is 0 (positive offset) and explains that, under a static not-taken branch prediction policy, positive-offset branches are predicted not taken. It conveys the same reasoning as the reference in three sentences. The only minor omission is the explicit extraction of the 12-bit immediate value, but that detail was not strictly required by the original question’s focus on why the branch is not taken.

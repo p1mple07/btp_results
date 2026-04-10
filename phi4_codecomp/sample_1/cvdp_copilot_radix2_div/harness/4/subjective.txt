@@ -1,0 +1,11 @@
+```json
+{
+  "response": "        // Random Test Cases\n        $display(\\\"\\nStarting Random Test Cases...\\n\\\");\n        repeat (10) begin\n            // Generate random dividend and divisor\n            reg [7:0] rand_dividend;\n            reg [7:0] rand_divisor;\n            rand_dividend = $random % 256;           // 0 to 255\n            rand_divisor  = ($random % 255) + 1;     // 1 to 255 (avoiding zero)\n\n            // Perform the random test\n            perform_test(rand_dividend, rand_divisor);\n        end"
+}
+```
+
+```json
+{
+  "response": "        // Compute expected values\n        if (divisor_in != 0) begin\n            expected_quotient = dividend_in / divisor_in;\n            expected_remainder = dividend_in % divisor_in;\n        end else begin\n            expected_quotient = 8'hFF;  // Indicate error for divide by zero\n            expected_remainder = 8'hFF;\n        end\n\n        // Check results and Print\n        $display(\\\"Test Case: Dividend = %d, Divisor = %d\\\", dividend_in, divisor_in);\n        $display(\\\"Expected Quotient = %d, Expected Remainder = %d\\\", expected_quotient, expected_remainder);\n        $display(\\\"Received Quotient = %d, Received Remainder = %d\\\", quotient, remainder);\n\n        if (quotient !== expected_quotient || remainder !== expected_remainder) begin\n            $display(\\\"** Test FAILED **\\\\n\\\");\n        end else begin\n            $display(\\\"** Test PASSED **\\\\n\\\");\n        end"
+}
+```

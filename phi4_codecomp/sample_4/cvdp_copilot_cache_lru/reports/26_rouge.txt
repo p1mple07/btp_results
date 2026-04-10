@@ -1,0 +1,47 @@
+Reference:
+```sv
+            $display("- Miss replaces the least frequently used, least way in order...");
+            @(negedge clock);
+            index = 1;
+            target_way = 0;
+            other_way_1 = 1;
+            other_way_2 = 2;
+            way_select = other_way_2;
+            hit = 0;
+            access = 1;
+
+            // Set initial frequencies
+            dut.frequency[index][(target_way * COUNTERW) +: COUNTERW] = COUNTERW'(0);
+            dut.frequency[index][(other_way_1 * COUNTERW) +: COUNTERW] = COUNTERW'(MAX_FREQUENCY);
+            dut.frequency[index][(other_way_2 * COUNTERW) +: COUNTERW] = COUNTERW'(0);
+            for (int i = 3; i < NWAYS; i++) begin
+                dut.frequency[index][(i * COUNTERW) +: COUNTERW] = COUNTERW'($urandom_range(1, MAX_FREQUENCY));
+            end
+            assert (dut.way_replace == target_way)
+            else begin
+                error = 1;
+                $error("Miss Test Failed: way_replace != %0d", target_way);
+            end
+
+            @(negedge clock);
+            access = 0;
+
+            assert (dut.frequency[index][(target_way * COUNTERW) +: COUNTERW] == COUNTERW'(1))
+            else begin
+                error = 1;
+                $error("Miss Test Failed: the frequency counter of replaced way was not initialized to 1");
+            end
+
+            assert (dut.way_replace == other_way_2)
+            else begin
+                error = 1;
+                $error("Miss Test Failed: way_replace != %0d", other_way_2);
+            end
+```
+
+
+Response:
+{ "response": "task run_miss_behavior_test;\n    begin\n        integer error;\n        error = 0;\n\n        $display(\"Running Miss Behavior Test...\");\n        apply_reset();\n\n        $display(\"- Miss replaces the least frequently used, least way in order...\");\n        @(negedge clock);\n        index = 1;\n        target_way = 0;\n        other_way_1 = 1;\n        other_way_2 = 2;\n        way_select = other_way_2;\n        hit = 0;\n        access = 1;\n\n        // Set initial frequencies\n        dut.frequency[index][(target_way * COUNTERW) +: COUNTERW] = COUNTERW'(0);\n        dut.frequency[index][(other_way_1 * COUNTERW) +: COUNTERW] = COUNTERW'(MAX_FREQUENCY);\n        dut.frequency[index][(other_way_2 * COUNTERW) +: COUNTERW] = COUNTERW'(0);\n        for (int i = 3; i < NWAYS; i++) begin\n            dut.frequency[index][(i * COUNTERW) +: COUNTERW] = COUNTERW'($urandom_range(1, MAX_FREQUENCY));\n        end\n        assert (dut.way_replace == target_way)\n        else begin\n            error = 1;\n            $error(\"Miss Test Failed: way_replace != %0d\", target_way);\n        end\n\n        @(negedge clock);\n        access = 0;\n\n        assert (dut.frequency[index][(target_way * COUNTERW) +: COUNTERW] == COUNTERW'(1))\n        else begin\n            error = 1;\n            $error(\"Miss Test Failed: the frequency counter of replaced way was not initialized to 1\");\n        end\n\n        assert (dut
+
+
+Score : 0.3392857142857143

@@ -1,0 +1,7 @@
+The code implements the functionality by splitting the larger slave data into multiple master transactions using a counter and shift operations.
+
+Inside the `else` block:
+1. A counter (`count`) is initialized to `RATIO - 1` (where `RATIO = SLAVE_DATA_WIDTH / MASTER_DATA_WIDTH`).
+2. The `data` register holds the portioned slave data.
+3. On each clock cycle, the `data` register is updated by shifting the slave data either left (for big-endian) or right (for little-endian).
+4. The `valid` signal is generated when `count` becomes zero after processing all portions of the data.

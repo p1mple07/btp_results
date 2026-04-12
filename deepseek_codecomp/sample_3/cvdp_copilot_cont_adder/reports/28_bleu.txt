@@ -1,0 +1,51 @@
+Reference:
+```verilog
+sum_accum <= sum_accum + weighted_input;
+if (sum_ready_reg) begin
+    sum_out   <= sum_accum + weighted_input;
+    sum_ready <= 1;
+end else begin
+    sum_ready <= 0;
+    sum_out   <= 0;
+end
+avg_out <= 0;
+```
+
+```verilog
+if (ACCUM_MODE == 1) begin
+    sum_accum    <= sum_accum + weighted_input;
+    sample_count <= sample_count + 1;
+    if (sum_ready_reg) begin
+        sum_out      <= sum_accum + weighted_input;
+        avg_out      <= (sum_accum + weighted_input) / window_size;
+        sum_ready    <= 1;
+        sum_accum    <= 0;
+        sample_count <= 0;
+    end else begin
+        sum_ready <= 0;
+        sum_out   <= 0;
+        avg_out   <= 0;
+    end
+end
+```
+
+
+Response:
+Okay, I need to figure out how to identify the blocks of RTL code in the provided module based on the ACCUM_MODE parameter. Let's start by understanding what ACCUM_MODE does in the code.
+
+Looking at the module, there are two main parts: one for ACCUM_MODE == 0 and another for ACCUM_MODE == 1. When ACCUM_MODE is 0, it seems like we're just accumulating the sum every time data is valid without any additional conditions. So, the calculations for sum and average happen every clock cycle as long as data is valid.
+
+For ACCUM_MODE == 1, the behavior changes. It waits until a certain number of samples (window_size) have been accumulated before updating the sum and average. This means inside the else block under ACCUM_MODE == 1, there's a condition checking if (sample_count + 1) >= window_size. If true, it calculates sum_out and avg_out, resets the accumulators, and sets sum_ready to 1. Otherwise, it keeps the accumulators updated but doesn't update the outputs yet.
+
+So, I'll extract the code blocks accordingly. For ACCUM_MODE != 1, everything happens immediately upon data being valid. For ACCUM_MODE == 1, it only updates after waiting through all the samples.
+
+
+json
+{
+    "response": [
+        "In the default accumulation mode (when ACCUM_MODE != 1), the sum is calculated as follows:\n\nmodule continuous_adder #(\n    parameter DATA_WIDTH = 32,\n    parameter signed THRESHOLD_VALUE_1 = 50,\n    parameter signed THRESHOLD_VALUE_2 = 100,\n    parameter SIGNED_INPUTS = 1,\n    parameter ACCUM_MODE = 0,\n    parameter WEIGHT = 1\n) (\n    input  logic                        clk,\n    input  logic                        reset,\n    input  logic signed [DATA_WIDTH-1:0] data_in,\n    input  logic                        data_valid,\n    input  logic [15:0]                  window_size,\n    output logic signed [DATA_WIDTH-1:0] sum_out,\n    output logic signed [DATA_WIDTH-1:0] avg_out,\n    output logic                         threshold_1,\n    output logic                         threshold_2,\n    output logic                         sum_ready\n);\n\n    // Sequential Registers\n    logic signed [DATA_WIDTH-1:0] sum_accum;\n    logic [15:0]                  sample_count;\n\n    // Combinational Signals\n    logic signed [DATA_WIDTH-1:0] weighted_input;\n    logic signed [DATA_WIDTH-1:0] new_sum;\n    logic                         threshold_1_comb;\n    logic                         threshold_2_comb;\n    logic                         sum_ready_reg;\n\n    always_comb begin\n        sum_ready_reg = 0;\n        weighted_input = data_in * WEIGHT;\n        new_sum = sum_accum + weighted_input;\n\n        threshold_1_comb = (new_sum >= THRESHOLD_VALUE_1) || (new_sum <= -THRESHOLD_VALUE_1);\n        threshold_2_comb = (new_sum >= THRESHOLD_VALUE_2) || (new_sum <= -THRESHOLD_VALUE_2);\n\n        if (data_valid) begin\n            if (ACCUM_MODE == 0) begin\n                if (threshold_1_comb || threshold_2_comb) begin\n                    sum_ready_reg = 1;\n                end else begin\n                    sum_ready_reg = 0;\n                end\n            end else begin\n                sum_ready_reg = 0;\n            end\n        end else begin\n            sum_ready_reg = 0;\n        end\n    end\n\n    always_ff @(posedge clk or posedge reset) begin\n        if (reset) begin\n            sum_accum     <= 0;\n            sample_count  <= 0;\n            sum_ready     <= 0;\n            sum_out       <= 0;\n            avg_out       <= 0;\n            threshold_1   <= 0;\n            threshold_2   <= 0;\n        end else if (data_valid) begin\n            threshold_1 <= threshold_1_comb;\n            threshold_2 <= threshold_2_comb;\n\n            if (ACCUM_MODE == 0) begin\n                sum_accum    <= sum_accum + weighted_input;\n                sample_count <= sample_count + 1;\n                if (sum_ready_reg) begin\n                    sum_out      <= sum_accum + weighted_input;\n                    avg_out      <= (sum_accum + weighted_input) / window_size;\n                    sum_ready    <= 1;\n                    sum_accum    <= 0;\n                    sample_count <= 0;\n                end else begin\n                    sum_ready <= 0;\n                    sum_out   <= 0;\n                    avg_out   <= 0;\n                end\n            end else begin\n                sum_accum <= sum_accum + weighted_input;\n                if (sum_ready_reg) begin\n                    sum_out   <= sum_accum + weighted_input;\n                    sum_ready <= 1;\n                end else begin\n                    sum_ready <= 0;\n                    sum_out   <= 0;\n                end\n                avg_out <= 0;\n            end\n        end else begin\n            sum_ready <= 0;\n        end\n    end\n}\n",
+        "In the ACCUM_MODE == 1 case, the sum and average are calculated as follows:\n\nmodule continuous_adder #(\n    parameter DATA_WIDTH = 32,\n    parameter signed THRESHOLD_VALUE_1 = 50,\n    parameter signed THRESHOLD_VALUE_2 = 100,\n    parameter SIGNED_INPUTS = 1,\n    parameter ACCUM_MODE = 1,\n    parameter WEIGHT = 1\n) (\n    input  logic                        clk,\n    input  logic                        reset,\n    input  logic signed [DATA_WIDTH-1:0] data_in,\n    input  logic                        data_valid,\n    input  logic [15:0]                  window_size,\n    output logic signed [DATA_WIDTH-1:0] sum_out,\n    output logic signed [DATA_WIDTH-1:0] avg_out,\n    output logic                         threshold_1,\n    output logic                         threshold_2,\n    output logic                         sum_ready\n);\n\n    // Sequential Registers\n    logic signed [DATA_WIDTH-1:0] sum_accum;\n    logic [15:0]                  sample_count;\n\n    // Combinational Signals\n    logic signed [DATA_WIDTH-1:0] weighted_input;\n    logic signed [DATA_WIDTH-1:0] new_sum;\n    logic                         threshold_1_comb;\n    logic                         threshold_2_comb;\n    logic                         sum_ready_reg;\n\n    always_comb begin\n        sum_ready_reg = 0;\n        weighted_input = data_in * WEIGHT;\n        new_sum = sum_accum + weighted_input;\n\n        threshold_1_comb = (new_sum >= THRESHOLD_VALUE_1) || (new_sum <= -THRESHOLD_VALUE_1);\n        threshold_2_comb = (new_sum >= THRESHOLD_VALUE_2) || (new_sum <= -THRESHOLD_VALUE_2);\n\n        if (data_valid) begin\n            if (ACCUM_MODE == 1) begin\n                if ((sample_count + 1) >= window_size) begin\n                    sum_ready_reg = 1;\n                end else begin\n                    sum_ready_reg = 0;\n                end\n            end else begin\n                sum_ready_reg = 0;\n            end\n        end else begin\n            sum_ready_reg = 0;\n        end\n    end\n\n    always_ff @(posedge clk or posedge reset) begin\n        if (reset) begin\n            sum_accum     <= 0;\n            sample_count  <= 0;\n            sum_ready     <= 0;\n            sum_out       <= 0;\n            avg_out       <= 0;\n            threshold_1   <= 0;\n            threshold_2   <= 0;\n        end else if (data_valid) begin\n            threshold_1 <= threshold_1_comb;\n            threshold_2 <= threshold_2_comb;\n\n            if (ACCUM_MODE == 1) begin\n                if ((sample_count + 1) >= window_size) begin\n                    sum_out      <= sum_accum + weighted_input;\n                    avg_out      <= (sum_accum + weighted_input) / window_size;\n                    sum_ready    <= 1;\n                    sum_accum    <= 0;\n                    sample_count <= 0;\n                end else begin\n                    sum_ready <= 0;\n                    sum_out   <= 0;\n                    avg_out   <= 0;\n                end\n            end else begin\n                sum_accum <= sum_accum + weighted_input;\n                if (sum_ready_reg) begin\n                    sum_out   <= sum_accum + weighted_input;\n                    sum_ready <= 1;\n                end else begin\n                    sum_ready <= 0;\n                    sum_out   <= 0;\n                end\n                avg_out <= 0;\n            end\n        end else begin\n            sum_ready <= 0;\n        end\n    end\n}\n"
+}
+
+
+Score : 0.05783067909973851

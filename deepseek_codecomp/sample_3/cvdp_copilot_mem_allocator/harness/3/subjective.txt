@@ -1,0 +1,3 @@
+If both `release_en` and `acquire_en` are asserted simultaneously:
+1. If `release_addr` equals `acquire_addr`, the write operation for freeing the slot (`release_addr`) occurs first, followed by attempting to reserve the same slot. This may result in the slot being marked as both free and reserved, potentially causing a conflict.
+2. If `release_addr` does not equal `acquire_addr`, both operations attempt to update their respective free slots concurrently, which could lead to conflicting state changes in the `free_slots` register.

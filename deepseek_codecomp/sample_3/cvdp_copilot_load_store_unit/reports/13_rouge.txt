@@ -1,0 +1,58 @@
+Reference:
+```verilog
+            2'b11: begin
+              two_transactions = 1'b1 ; 
+              addr_0 = word_addr ;
+              be_0 = 4'b1000;
+              addr_1 = next_word_addr ;
+              be_1 = 4'b0001;
+            end
+```
+
+```verilog
+    end else if (dmem_rvalid_i) begin
+      rdata_0_q  <= dmem_rsp_rdata_i;
+      rdata_1_q  <= rdata_0_q;
+    end
+```
+
+```verilog 
+        dmem_rsp_data     = rdata_0_q | rdata_1_q ;
+```
+
+```verilog
+      2'b11: begin
+        if (data_sign_ext_q) rdata_h_ext ={{16{dmem_rsp_data[7]}}, dmem_rsp_data[7:0] , dmem_rsp_data[31:24] };
+        else rdata_h_ext =  {16'h0000, dmem_rsp_data[7:0], dmem_rsp_data[31:24] };
+      end
+```
+
+
+Response:
+{
+  "response": [
+    {
+      "code": "module load_store_unit (\n"
+      "    input  logic kinase,\n"
+      "    input  logic* ext_type_i,\n"
+      "    input  logic* ex_if_req_i,           // LSU request\n",
+      "    input  logic* ex_if_we_i,            // LSU request\n"
+      "    input  logic* ex_if_stage_i,          // LSU request\n"
+      "    input  logic* ex_if_extend_mode_i,\n"
+      "    output logic kinase_out,\n"
+      "    output logic* ex_if_ready_o,        // RS stage interface\n"
+      "    output logic* ex_if_rvalid_o,       // RS stage interface\n"
+      "    output logic* ex_if_rdata_o,        // RS stage interface\n"
+      "    output logic* ex_if rsp_rvalid_o,   // RS stage interface\n"
+      "    output logic* ex_if_wr_rvalid_i,     // Writable data\n"
+      "    output logic* ex_if_wr_rvalid_i,     // Writable data\n"
+      "    output logic* ex_if_wr_we_i,         // Writable data\n"
+      "    output logic* ex_if extending_i,     // Writable data\n"
+      "    output logic* ex_if extend_mode_i     // Writable data\n"
+      ");\n"
+    }
+  ]
+}
+
+
+Score : 0.0

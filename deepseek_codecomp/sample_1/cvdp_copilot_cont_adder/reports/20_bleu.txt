@@ -1,0 +1,61 @@
+Reference:
+        if (SIGNED_INPUTS) begin
+            test_add_sequence(-30, -40, 20, 150,-30, -40, 20, 150);
+            check_output(THRESHOLD_VALUE);
+            $display("Test Case 4 (negative inputs) passed.");
+        end
+
+
+Response:
+{
+    "response": {
+        "tb_continuous_adder": [
+            "module tb_continuous_adder;",
+            "// Testbench parameters",
+            "parameter DATA_WIDTH = 32;",
+            "parameter THRESHOLD_VALUE = 200;",
+            "parameter SIGNED_INPUTS = 1;  // 1 for signed inputs, 0 for unsigned inputs",
+            "\n",
+            "// Testbench signals",
+            "logic                       _clk;          // Clock signal",
+            "logic                       _reset;        // Reset signal",
+            "logic signed [DATA_WIDTH-1:0] data_in;     // Input data",
+            "logic                       	data_valid;   // Data valid signal",
+            "logic signed [DATA_WIDTH-1:0] sum_out;     // Accumulated sum output",
+            "logic                       	sum_ready;    // Signal indicating sum is output and accumulator is reset",
+            "\n",
+            "// Clock generation: 10ns period (50MHz)",
+            "always #5 clk = ~clk;",
+            "\n",
+            "// Instantiate the continuous_adder module (Unit Under Test - UUT)",
+            "continuous_adder #(\n    .DATA_WIDTH(DATA_WIDTH),\n    .SIGNED_INPUTS(SIGNED_INPUTS),\n    .THRESHOLD_VALUE(THRESHOLD_VALUE)\n) uut (\n    .clk        (clk),\n    .reset      (reset),\n    .data_in    (data_in),\n    .data_valid (data_valid),\n    .sum_out    (sum_out),\n    .sum_ready  (sum_ready)\n);\n",
+            "\n",
+            "// Test procedure",
+            "initial begin\n                // Waveform dumping\n                $dumpfile(\"waveform.vcd");  // Create the dump file\n                $dumpvars(0, tb_continuous_adder);  // Dump all variables\n",
+                "\n",
+                "$display(\"Starting the testbench...\")",
+                "\n",
+                "// Initialize signals",
+                "clk = 0;\n",
+                "reset = 1;  // Apply reset initially\n",
+                "data_in = 0;\n",
+                "data_valid = 0;",
+                "\n",
+                "// Apply reset and release it",
+                "#10 reset = 0;";
+                "#10 reset = 1;";
+                "#10 reset = 0;",
+                "\n",
+                "// Test Case 4: "
+                "if (SIGNED_INPUTS) begin",
+                "    test_add_sequence(-30, -40, 20, 150,-30, -40, 20, 150);",
+                "    check_output(THRESHOLD_VALUE);\n",
+                "$display(\"Test Case 4 (negative inputs) passed.\");",
+                "end"
+            ]
+        }
+    }
+}
+
+
+Score : 0.04393844142747041

@@ -1,0 +1,11 @@
+The read/write logic is implemented in two always blocks:
+
+1. During `p_STATE_UNLOCKED`:
+
+- Reads to addresses 0 or 1 return 0
+- Writes are allowed to all addresses
+
+2. During `p_STATE_LOCKED` or `p_STATE_UNLOCK_STEP1`:
+
+- All reads return 0
+- Only writes to addresses 0 or 1 are allowed

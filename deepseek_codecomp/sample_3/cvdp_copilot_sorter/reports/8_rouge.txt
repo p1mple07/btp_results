@@ -1,0 +1,63 @@
+Reference:
+```verilog
+                    if ((l_addr <= left_end) && (r_addr <= right_end)) begin
+                        if (left_val <= right_val) begin
+                            tmp_merge[merge_idx] <= left_val;
+                            left_idx <= left_idx + 1;
+                        end else begin
+                            tmp_merge[merge_idx] <= right_val;
+                            right_idx <= right_idx + 1;
+                        end
+                        merge_idx <= merge_idx + 1;
+                    end
+```
+
+```verilog
+                        for (k = 0; k < N; k = k + 1) begin
+                            if ( (k < merge_idx) &&
+                                 (k < (subarray_size << 1)) &&
+                                 ((base_idx + k) < N) )
+                            begin
+                                data_mem[base_idx + k] <= tmp_merge[k];
+                            end
+                        end
+```
+
+
+Response:
+localinteger left_idx, right_idx;
+
+integer left_end, right_end;
+
+left_end  = base_idx + subarray_size - 1;
+if (left_end >= N) left_end = N - 1;
+
+right_end = base_idx + (subarray_size << 1) - 1;
+if (right_end >= N) right_end = N - 1;
+
+l_addr = base_idx + left_idx;
+r_addr = base_idx + subarray_size + right_idx;
+
+if ((l_addr <= left_end) && (l_addr < N)) 
+    left_val = data_mem[l_addr];
+else 
+    left_val = {WIDTH{1'b1}};
+
+if ((r_addr <= right_end) && (r_addr < N)) 
+    right_val = data_mem[r_addr];
+else 
+    right_val = {WIDTH{1'b1}};
+
+if ((l_addr <= left_end) && (r_addr <= right_end)) begin
+    if (left_val <= right_val) begin
+        tmp_merge[merge_idx] <= left_val;
+        left_idx <= left_idx + 1;
+    end else begin
+        tmp_merge[merge_idx] <= right_val;
+        right_idx <= right_idx + 1;
+    end
+    merge_idx <= merge_idx + 1;
+end
+
+
+Score : 0.4716981132075472

@@ -1,0 +1,13 @@
+Reference:
+``` 
+expected_gcd = compute_gcd(a_in, b_in, c_in);
+
+expected_gcd = expected_gcd & ((1 << WIDTH) - 1);
+```
+
+
+Response:
+// Task to perform a test case   task automatic test_case(      input integer a_in,      input integer b_in,      input integer c_in   );      integer expected_gcd;      integer start_time, end_time, latency;      begin         @(negedge clk);         A <= a_in;         B <= b_in;         C <= c_in;         go <= 1;         @(posedge clk);         @(posedge clk);         go <= 0;         start_time = $time;         wait (done == 1);         end_time = $time;         latency = (end_time - start_time) / 10;          @(posedge clk);         go <= 0;         expected_gcd = compute_gcd(a_in, b_in, c_in);         expected_gcd = expected_gcd & ((1 << WIDTH) - 1); // Add masking         expected_gcd = expected_gcd & ((1 << WIDTH) - 1); // Add masking         if (OUT !== expected_gcd) begin
+
+
+Score : 1.0

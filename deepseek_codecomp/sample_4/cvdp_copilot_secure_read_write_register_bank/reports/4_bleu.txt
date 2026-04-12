@@ -1,0 +1,35 @@
+Reference:
+```verilog
+p_STATE_LOCKED: begin    
+    if ((i_addr == 0) && (i_data_in == p_unlock_code_0) && (!i_read_write_enable)) begin
+        r_unlock_state <= p_STATE_UNLOCK_STEP1; 
+    end
+end
+p_STATE_UNLOCK_STEP1: begin
+    if ((i_addr == 1) && (i_data_in == p_unlock_code_1) && (!i_read_write_enable)) begin
+        r_unlock_state <= p_STATE_UNLOCKED; 
+    end 
+    else begin
+        r_unlock_state <= p_STATE_LOCKED;
+    end
+end
+```
+
+
+
+Response:
+{
+  "response": "always @(posedge i_capture_pulse) begin\n"
+             "    if (r_unlock_state == p_STATE_UNLOCKED) begin\n"
+             "        if (i_read_write_enable) begin\n"
+             "            if (i_addr == 0 || i_addr == 1) begin\n"
+             "                o_data_out <= 0;\n"
+             "            end else begin\n"
+             "                o_data_out <= r_register_bank[i_addr]; \n"
+             "            end\n"
+             "        end else begin\n"
+             "            r_register_bank[i_addr] <= i_data_in; \n            o_data_out <= 0; \n        end\n    end else begin\n        if (i_read_write_enable) begin\n            o_data_out <= 0; \n        end else begin\n            if (i_addr == 0 || i_addr == 1) begin\n                r_register_bank[i_addr] <= i_data_in;\n            end\n            o_data_out <= 0; \n        end\n    end\nendmodule\n"
+}
+
+
+Score : 0.0625978857295168

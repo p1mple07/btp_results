@@ -1,0 +1,5 @@
+When both `release_en` and `acquire_en` are asserted simultaneously:
+
+- If `release_addr` and `acquire_addr` are the same, the system attempts to free and allocate the same slot, resulting in conflicting state changes. This may lead to an invalid state where the slot is neither properly released nor allocated.
+
+- If `release_addr` and `acquire_addr` are different, the system frees one slot and allocates another, potentially increasing the total number of free slots by one, which is inconsistent with normal operation.

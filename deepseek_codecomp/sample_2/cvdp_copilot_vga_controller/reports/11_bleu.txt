@@ -1,0 +1,15 @@
+Reference:
+```
+    H_PULSE_STATE: begin
+        h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+        hsync_reg <= LOW;
+        h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+    end
+```
+
+
+Response:
+In the `vga_controller` module, the horizontal synchronization logic (`hsync`) is implemented in the `always_ff` block where `hsync_reg <= LOW;` is assigned during the `H_BACK_STATE` transition.
+
+
+Score : 2.6459819274006467e-155

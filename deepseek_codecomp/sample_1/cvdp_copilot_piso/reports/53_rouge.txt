@@ -1,0 +1,30 @@
+Reference:
+```verilog
+always@(*) begin
+    if(done == 1) begin
+        if(SHIFT_RIGHT == 1) begin
+            for(i = 0; i < DATA_WIDTH; i = i + 1) begin
+                expected_parallel_out[i] = data_in[DATA_WIDTH - 1 - i]; 
+                expecetd_b2g_out = parallel_out ^ (parallel_out >> 1);
+            end
+        end
+    end
+end
+```
+
+
+Response:
+{
+    "response": "The code block implementing the computation of `expected_parallel_out` and `expecetd_b2g_out` when `SHIFT_RIGHT` is HIGH is:\n\n"
+    "$display(\"Time = %0t MATCHED :: CHECKER PASS, DATA_WIDTH = %h,SHIFT_RIGHT = %b,data_in = %h, expected_parallel_out =%h, parallel_out = %h,expecetd_b2g_out = %h,b2g_output = %h\", $time,DATA_WIDTH,SHIFT_RIGHT,data_in,expected_parallel_out, parallel_out,expecetd_b2g_out,b2g_output);\n"
+    "$display(\"------------------------------------------------------------------------------------------\");\n",
+    \"always @(posedge clk) begin\n    if(done) begin\n        if ((parallel_out == expected_parallel_out) &&(b2g_output == expecetd_b2g_out)) begin\n            $display(\"Time = %0t MATCHED :: CHECKER PASS, DATA_WIDTH = %h,SHIFT_RIGHT = %b,data_in = %h, expected_parallel_out =%h, parallel_out = %h,expecetd_b2g_out = %h,b2g_output = %h\", $time,DATA_WIDTH,SHIFT_RIGHT,data_in,expected_parallel_out, parallel_out,expecetd_b2g_out,b2g_output);\n            $display(\"------------------------------------------------------------------------------------------\");\n        end else begin\n            $display(\"Time = %0t MIS_MATCHED :: CHECKER FAIL, DATA_WIDTH = %h,SHIFT_RIGHT = %b,data_in = %h,expected_parallel_out = %h, parallel_out = %h,expecetd_b2g_out = %h,b2g_output = %h\", $time,DATA_WIDTH,SHIFT_RIGHT,data_in,expected_parallel_out, parallel_out,expecetd_b2g_out,b2g_output);\n            $display(\"------------------------------------------------------------------------------------------\");\n        end\n    end\nend",
+    \"always @(*) begin\n        if(done == 1) begin\n            if(SHIFT_RIGHT == 1) begin\n                for(i = 0; i< DATA_WIDTH; i = i+1) begin\n                    expected_parallel_out[i] = data_in[DATA_WIDTH-1-i]; \n                expecetd_b2g_out = parallel_out ^(parallel_out >> 1);\n                end
+            end else begin\n            expected_parallel_out = data_in;\n            expecetd_b2g_out = parallel_out ^(parallel_out >> 1);\n            end\n        end\n    end",
+    \"task piso_check();\nbegin\n    @(posedge clk);                             
+        piso_load <= 1'b1;                  \n        @(posedge clk);\n        piso_load <= 1'b0;                  \n        for (i = 0; i < DATA_WIDTH; i = i + 1)\n        begin \n            @(posedge clk);\n            piso_shift_en <= 1'b1;           
+        end\n        @(posedge clk);  \n        piso_shift_en <= 1'b0;  \n        @(posedge clk);\""
+}
+
+
+Score : 0.35714285714285715

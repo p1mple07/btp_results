@@ -1,0 +1,53 @@
+Reference:
+```
+            select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse; 
+```
+
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+            end 
+```
+
+```
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+
+
+Response:
+In the provided code, the event queue management involves several key sections:
+
+1. During IDLE state, the event list is populated based on select pulses:
+
+\n\n    event_list <= event_list & ~event_sel; 
+\n\n2. When in ACCESS state, the system processes events based on priority, prioritizing event C when available:
+
+\n\n    case (event_sel)
+        3'b100: begin    
+            sel_addr_next = addr_c_i; 
+            sel_data_next = data_c_i; 
+        end
+\n\n3. After processing a high-priority transaction, the system identifies event C as the next in line:
+
+\n\n    else if (event_sel == 3'b100) begin
+        apb_pwrite_o = 1;
+        apb_pwdata_o = data_c_i;
+    end
+\n\n4. Finally, the event is cleared from the queue once processed:
+
+\n\n    apb_pwrite_o = 0;
+    apb_pwdata_o = 0;
+
+
+
+Score : 0.11428571428571428

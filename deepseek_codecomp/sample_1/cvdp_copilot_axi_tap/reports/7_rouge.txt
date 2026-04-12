@@ -1,0 +1,73 @@
+Reference:
+```
+    repeat (100) begin
+        fork
+            write_transaction(32'h8000_1000, 32'hA5A5A5A5, 4'hF, 2'b00);
+            read_transaction(32'h4000_2000);
+        join
+    end
+```
+```
+
+    task automatic write_transaction(input [ADDR_WIDTH-1:0] addr, input [DATA_WIDTH-1:0] data, input [3:0] wstrb, input [1:0] expected_resp);
+    inport_awvalid_i = 1;
+    inport_awaddr_i = addr;
+    inport_wvalid_i = 1;
+    inport_wdata_i = data;
+    inport_wstrb_i = wstrb;
+    expected_resp = 2'b11;
+
+    outport_peripheral0_bvalid_i = 1;
+    outport_peripheral0_bresp_i = expected_resp;
+    outport_bvalid_i = 1;
+    outport_bresp_i = expected_resp;
+
+    #10
+    $display("[%0t] inport_bresp_o", $time, inport_bresp_o);
+
+    assert(inport_bresp_o == expected_resp) else $error("Write Response Mismatch!");
+
+    outport_peripheral0_bvalid_i = 0;
+    endtask
+
+    task automatic read_transaction(input [ADDR_WIDTH-1:0] addr);
+        logic [1:0] expected_resp;
+        logic [31:0] expected_data;
+
+        outport_peripheral0_rvalid_i = 1'b1;
+        outport_peripheral0_rdata_i = 32'h12345678;
+        outport_peripheral0_rresp_i = 2'b11;
+        outport_rvalid_i = 1'b1;
+        outport_rdata_i = 32'h87654321;
+        outport_rresp_i = 2'b10;
+        #20
+        inport_arvalid_i = 1;
+        inport_araddr_i = addr;
+
+        if (addr >= 32'h8000_0000 ) begin
+            expected_data = outport_peripheral0_rdata_i;
+            expected_resp = outport_peripheral0_rresp_i;
+        end
+        else begin
+            expected_data = outport_rdata_i;
+            expected_resp = outport_rresp_i;
+        end
+
+        #10
+        $display("[%0t] addr %h  ", $time, inport_araddr_i);
+        $display("[%0t] inport_rdata_o %h,inport_rresp_o %h,inport_rvalid_o %h ", $time, inport_rdata_o, inport_rresp_o ,inport_rvalid_o);
+        $display("[%0t] expected_data %h,expected_resp %h ", $time, expected_data,expected_resp);
+        assert(inport_rdata_o == expected_data) else $error("Read Data Mismatch!");
+        assert(inport_rresp_o == expected_resp) else $error("Read Response Mismatch!");
+        
+        outport_rvalid_i = 0;
+    endtask
+
+```
+
+
+Response:
+The two key blocks are the write_transaction and read_transaction tasks which handle AXI4-Lite transaction routing and verification.
+
+
+Score : 0.0

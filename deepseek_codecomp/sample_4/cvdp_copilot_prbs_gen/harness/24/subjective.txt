@@ -1,0 +1,9 @@
+always_ff @ (posedge clk) begin
+   if(rst) begin
+      prbs_reg <= {POLY_LENGTH{1'b1}};
+      data_out <= {WIDTH{1'b1}};
+   end else begin
+      prbs_reg <= prbs[WIDTH];
+      data_out <= prbs_xor_b;
+   end
+end

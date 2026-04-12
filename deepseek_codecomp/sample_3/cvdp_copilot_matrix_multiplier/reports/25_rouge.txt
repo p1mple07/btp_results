@@ -1,0 +1,32 @@
+Reference:
+```
+  task ref_mat(
+    input  logic [ROW_A*COL_A*INPUT_DATA_WIDTH-1:0] mat_a,
+    input  logic [ROW_B*COL_B*INPUT_DATA_WIDTH-1:0] mat_b,
+    output logic [ROW_A*COL_B*OUTPUT_DATA_WIDTH-1:0] ref_out
+  );
+    logic [INPUT_DATA_WIDTH-1:0] a_val, b_val;
+    logic [OUTPUT_DATA_WIDTH-1:0] partial_sum;
+
+    begin
+      for (int i = 0; i < ROW_A; i++) begin
+        for (int j = 0; j < COL_B; j++) begin
+          partial_sum = 0;
+          for (int k = 0; k < COL_A; k++) begin
+            a_val = mat_a[((i * COL_A) + k) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];
+            b_val = mat_b[((k * COL_B) + j) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];
+            partial_sum = partial_sum + (a_val * b_val);
+          end
+          ref_out[((i * COL_B) + j) * OUTPUT_DATA_WIDTH +: OUTPUT_DATA_WIDTH] = partial_sum;
+        end
+      end
+    end
+  endtask
+```
+
+
+Response:
+{ "code": "\n// task ref_mat(\n// input logic [ROW_A*COL_A*INPUT_DATA_WIDTH-1:0] mat_a,\n// input logic [ROW_B*COL_B*INPUT_DATA_WIDTH-1:0] mat_b,\n// output logic [ROW_A*COL_B*OUTPUT_DATA_WIDTH-1:0] ref_out\n);\n// logic [INPUT_DATA_WIDTH-1:0] a_val, b_val;\n// logic [OUTPUT_DATA_WIDTH-1:0] partial_sum;\n\n// begin\nfor (int i = 0; i < ROW_A; i++) begin\n  for (int j = 0; j < COL_B; j++) begin\n    partial_sum = 0;\n    for (int k = 0; k < COL_A; k++) begin\n      a_val = mat_a[((i * COL_A) + k) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];\n      b_val = mat_b[((k * COL_B) + j) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];\n      partial_sum = partial_sum + (a_val * b_val);\n    end\n    ref_out[((i * COL_B) + j) * OUTPUT_DATA_WIDTH +: OUTPUT_DATA_WIDTH] = partial_sum;\n  end\nend\n\n// end " }
+
+
+Score : 0.47297297297297297

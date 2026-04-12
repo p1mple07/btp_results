@@ -1,0 +1,56 @@
+Reference:
+```systemverilog
+       always_comb begin
+               // Map MSBs (Most Significant Bits) to I (real component)
+               case (symbol[3:2])
+                   2'b00: mapped_symbol_I[i] = -3; // MSBs 00 -> I = -3
+                   2'b01: mapped_symbol_I[i] = -1; // MSBs 01 -> I = -1
+                   2'b10: mapped_symbol_I[i] =  1; // MSBs 10 -> I =  1
+                   2'b11: mapped_symbol_I[i] =  3; // MSBs 11 -> I =  3
+               endcase
+
+               // Map LSBs (Least Significant Bits) to Q (imaginary component)
+               case (symbol[1:0])
+                   2'b00: mapped_symbol_Q[i] = -3; // LSBs 00 -> Q = -3
+                   2'b01: mapped_symbol_Q[i] = -1; // LSBs 01 -> Q = -1
+                   2'b10: mapped_symbol_Q[i] =  1; // LSBs 10 -> Q =  1
+                   2'b11: mapped_symbol_Q[i] =  3; // LSBs 11 -> Q =  3
+               endcase
+           end
+       end
+```
+```systemverilog
+            interp_symbol_I[i] = (mapped_symbol_I[2*i] + mapped_symbol_I[2*i+1]) >>> 1;
+            interp_symbol_Q[i] = (mapped_symbol_Q[2*i] + mapped_symbol_Q[2*i+1]) >>> 1;
+```
+
+
+Response:
+Okay, so I'm trying to figure out how to extract the RTL code blocks from the given Verilog file that implement the symbol mapping and interpolation functions described in the overview.
+
+First, I'll look at the overall structure of the provided code. The module is called qam16_mapper_interpolated and it has parameters N=4, IN_WIDTH=4, and OUT_WIDTH=3. The inputs are a bit vector 'bits' and outputs are two signed vectors 'I' and 'Q'. 
+
+From the problem statement, the functionality involves two main steps: symbol mapping and then interpolation. Symbol mapping takes the MSBs for the real part (I) and LSBs for the imaginary part (Q). Each of these mappings translates specific 2-bit combinations into corresponding values (-3, -1, 1, 3). 
+
+Interpolation seems to take pairs of consecutive symbols (like 2i and 2i+1) and averages their mapped values to produce smoother transitions between symbols. This is done by adding the two mapped values and shifting right by 1, effectively dividing by 2.
+
+Looking at the code, I see several sections where mappings are happening. Specifically, there's a loop over i from 0 to N-1 where they're extracting 'symbol' from 'bits' and then assigning mapped_symbol_I and mapped_symbol_Q based on their respective cases. That looks like the symbol mapping part because it's directly converting certain bit patterns into predefined values.
+
+Then, after mapping, there's another loop that calculates interp_symbol_I and interp_symbol_Q by taking the average of two consecutive mapped symbols. This clearly fits the interpolation part since it's averaging neighboring mapped values to get the interpolated ones.
+
+So, I need to isolate these two code blocks. The first block will handle the mapping of MSBs and LSBs into I and Q respectively. The second block will perform the interpolation using those mapped values.
+
+I also notice that the rest of the code deals with assigning these mapped and interpolated values back into the output vectors I and Q. But according to the problem statement, we only need the blocks that implement the functionalities, not necessarily every line related to output assignment.
+
+Therefore, the key parts are:
+
+1. The loops where mapped_symbol_I and mapped_symbol_Q are assigned based on the cases. These correspond to the symbol mapping functionality.
+2. The loops where interp_symbol_I and interp_symbol_Q are calculated by averaging the mapped values. These correspond to the interpolation functionality.
+
+I should make sure to present each functionality as a separate code block, maintaining the same indentation and syntax as the original code but encapsulating just the relevant lines.
+
+
+{"response": "{ \"code\": [\"// Map MSBs (Most Significant Bits) to I (real component)\n logic signed [OUT_WIDTH-1:0] mapped_symbol_I [0:N-1];\n logic signed [OUT_WIDTH-1:0] mapped_symbol_Q [0:N-1];\n\n// Map LSBs (Least Significant Bits) to Q (imaginary component)\n\nalways_comb begin\n     case (symbol[3:2])\n         2'b00: mapped_symbol_I[i] = -3; // MSBs 00 -> I = -3\n         2'b01: mapped_symbol_I[i] = -1; // MSBs 01 -> I = -1\n         2'b10: mapped_symbol_I[i] =  1; // MSBs 10 -> I =  1\n         2'b11: mapped_symbol_I[i] =  3; // MSBs 11 -> I =  3\n     endcase\n\n     case (symbol[1:0])\n         2'b00: mapped_symbol_Q[i] = -3; // LSBs 00 -> Q = -3\n         2'b01: mapped_symbol_Q[i] = -1; // LSBs 01 -> Q = -1\n         2'b10: mapped_symbol_Q[i] =  1; // LSBs 10 -> Q =  1\n         2'b11: mapped_symbol_Q[i] =  3; // LSBs 11 -> Q =  3\n     endcase\n\\n\\n\"],\n\"// Map MSBs (Most Significant Bits) to I (real component)\n logic signed [OUT_WIDTH-1:0] mapped_symbol_I [0:N-1];\n logic signed [OUT_WIDTH-1:0] mapped_symbol_Q [0:N-1];\n\n// Map LSBs (Least Significant Bits) to Q (imaginary component)\n\nalways_comb begin\n     case (symbol[3:2])\n         2'b00: mapped_symbol_I[i] = -3; // MSBs 00 -> I = -3\n         2'b01: mapped_symbol_I[i] = -1; // MSBs 01 -> I = -1\n         2'b10: mapped_symbol_I[i] =  1; // MSBs 10 -> I =  1\n         2'b11: mapped_symbol_I[i] =  3; // MSBs 11 -> I =  3\n     endcase\n\n     case (symbol[1:0])\n         2'b00: mapped_symbol_Q[i] = -3; // LSBs 00 -> Q = -3\n         2'b01: mapped_symbol_Q[i] = -1; // LSBs 01 -> Q = -1\n         2'b10: mapped_symbol_Q[i] =  1; // LSBs 10 -> Q =  1\n         2'b11: mapped_symbol_Q[i] =  3; // LSBs 11 -> Q =  3\n     endcase\n\\n\\n\"],\n\"// Perform interpolation calculations\nalways_comb begin\n     for (int i = 0; i < N/2; i++) begin\n         interp_symbol_I[i] = (mapped_symbol_I[2*i] + mapped_symbol_I[2*i+1]) >>> 1;\n         interp_symbol_Q[i] = (mapped_symbol_Q[2*i] + mapped_symbol_Q[2*i+1]) >>> 1;\n     end\n\\n\\n\"]}
+
+
+Score : 0.5161290322580645

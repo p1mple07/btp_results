@@ -1,0 +1,11 @@
+always@(*) begin
+    if(shift_right) begin
+        for(i = 0; i< DATA_WIDTH; i = i+1) begin
+            expected_parallel_out[i] = data_in[DATA_WIDTH-1-i]; 
+        end
+        expecetd_b2g_out = parallel_out ^(parallel_out >> 1);
+    end else begin
+        expected_parallel_out = data_in;
+        expecetd_b2g_out = parallel_out ^(parallel_out >> 1);
+    end
+end

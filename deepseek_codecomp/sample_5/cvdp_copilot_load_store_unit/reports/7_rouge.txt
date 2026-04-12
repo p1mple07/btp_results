@@ -1,0 +1,32 @@
+Reference:
+```verilog
+    case (ex_if_type_i)  
+```
+```
+      2'b01: begin  
+          case (data_addr_int[1:0])
+            2'b00:   dmem_be = 4'b0011;
+            2'b10:   dmem_be = 4'b1100;
+            default: begin
+                dmem_be = 4'b0000;
+                misaligned_addr = 1'b1;
+            end
+          endcase
+      end 
+```
+
+```verilog
+assign ex_req_fire = ex_if_req_i && !busy_q && !misaligned_addr;
+```
+
+
+Response:
+In the provided code, misaligned halfword accesses are detected and handled in the following section:
+
+- When `ex_if_type_i` is `2'b01`, indicating a halfword access,
+- And `data_addr_int[1:0]` does not equal `2'b00` (i.e., the address is not aligned),
+- The corresponding code path sets `dmem_be` to a value indicating misalignment and updates `misaligned_addr` to `1'b1`.
+
+
+
+Score : 0.0

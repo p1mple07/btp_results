@@ -1,0 +1,61 @@
+Reference:
+```
+            select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse; 
+```
+
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+            end 
+```
+
+```
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+
+
+Response:
+{
+  "response": "In the apb_controller module, the event C is added to the queue when the current_state is IDLE and event_sel is 3'b100. This is handled in the case statement:\n\n" +
+  "always @(*) begin\n" +
+  "    case (current_state)\n" +
+  "        IDLE: begin\n" +
+  "            if (event_list[2]) begin\n" +
+  "                next_state = SETUP;\n" +
+  "                event_sel = 3'b100;\n" +
+  "            end else if (event_list[1]) begin\n" +
+  "                next_state = SETUP;\n" +
+  "                event_sel = 3'b100;\n" +
+  "            end else if (event_list[0]) begin\n" +
+  "                next_state = ACCESS;\n" +
+  "                event_sel = 3'b001;\n" +
+  "            end else begin\n" +
+  "                next_state = IDLE;\n" +
+  "                event_sel = 3'b000;\n" +
+  "            end\n" +
+  "        ACCESS: begin\n" +
+  "            if (apb_pready_i || count == 15) begin\n" +
+  "                next_state = IDLE;\n" +
+  "            end    \n" +
+  "        default: begin\n" +
+  "            next_state = IDLE; \n" +
+  "            event_sel  = 3'b000;                 
+" +
+  "\n" +
+  "Additionally, the event C is stored until it can be added to the queue when sel_addr_next and sel_data_next are set based on event_sel being 3'b100.\n" +
+  "\n" +
+  "These code blocks manage the addition of event C to the queue and its subsequent processing."
+}
+
+
+Score : 0.03982515314667636

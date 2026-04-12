@@ -1,0 +1,54 @@
+Reference:
+```
+ce      = 1;
+a_we    = 0;
+a_oe    = 1;
+b_we    = 1;
+b_oe    = 0;
+a_addr  = $random();
+b_addr  = a_addr;
+b_wdata = $random();
+```
+```
+ce      = 1;
+a_we    = 1;
+a_oe    = 0;
+b_we    = 0;
+b_oe    = 1;
+a_addr  = $random();
+b_addr  = $random();
+a_wdata = $random();
+while(a_addr == b_addr) begin
+    b_addr  = $random();
+end
+```
+
+
+Response:
+{
+  "response": [
+    {
+      "@posedge clk; "
+      "@posedge clk; "
+      "RAM[a_addr] = a_wdata; "
+      "if (DUT.mem[a_addr] !== a_wdata) { "
+      " display(\"Error: Write operation failed on Port A. Addr=%h, Expected=%h, Actual=%h\", a_addr, a_wdata, DUT.mem[a_addr]); "
+      "} else { "
+      " display(\"Write operation successful on Port A. Addr=%h, Data=%h\", a_addr, a_wdata); "
+      "}"
+    },
+    {
+      "@posedge clk; "
+      "@posedge clk; "
+      "RAM[b_addr] = b_wdata; "
+      "if (DUT.mem[b_addr] !== b_wdata) { "
+      " display(\"Error: Write operation failed on Port B. Addr=%h, Expected=%h, Actual=%h\", b_addr, b_wdata, DUT.mem[b_addr]); "
+      "} else { "
+      " display(\"Write operation successful on Port B. Addr=%h, Data=%h\", b_addr, b_wdata); "
+      "}"
+    }
+  ]
+}
+
+
+Score : 2.0586976273766193e-155

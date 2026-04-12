@@ -1,0 +1,58 @@
+Reference:
+```verilog
+repeat (10) begin
+    reg [7:0] rand_dividend;
+    reg [7:0] rand_divisor;
+    rand_dividend = $random % 256;           // 0 to 255
+    rand_divisor  = ($random % 255) + 1;     // 1 to 255 (avoiding zero)
+
+    // Perform the random test
+    perform_test(rand_dividend, rand_divisor);
+end
+```
+
+```verilog
+task perform_test;
+    input [7:0] dividend_in;
+    input [7:0] divisor_in;
+    reg [7:0] expected_quotient;
+    reg [7:0] expected_remainder;
+begin
+    @(negedge clk);
+    dividend = dividend_in;
+    divisor = divisor_in;
+    start = 1;
+    #10;
+    start = 0;
+
+    wait (done);
+
+    if (divisor_in != 0) begin
+        expected_quotient = dividend_in / divisor_in;
+        expected_remainder = dividend_in % divisor_in;
+    end else begin
+        expected_quotient = 8'hFF;  // Divide-by-zero indication
+        expected_remainder = 8'hFF;
+    end
+
+    if (quotient !== expected_quotient || remainder !== expected_remainder) begin
+        $display("** Test FAILED **");
+    end else begin
+        $display("** Test PASSED **");
+    end
+end
+endtask
+``` 
+
+
+Response:
+The randomized testing section of the testbench verifies the correctness of the radix2_div module. Here's how it works:
+
+1. Generates random 8-bit values for dividend and divisor while ensuring divisor ≠ 0.
+2. Applies these values to the radix2_div module by connecting the appropriate signals.
+3. Waits for the division operation to complete (i.e., when done becomes 1).
+4. Computes expected quotient and remainder using dividend / divisor and dividend % divisor respectively.
+5. Compares actual quotient and remainder with expected values and reports pass/fail results.
+
+
+Score : 0.0

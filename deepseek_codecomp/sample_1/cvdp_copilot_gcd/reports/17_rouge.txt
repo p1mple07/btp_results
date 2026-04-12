@@ -1,0 +1,66 @@
+Reference:
+``` 
+expected_gcd = compute_gcd(a_in, b_in, c_in);
+
+expected_gcd = expected_gcd & ((1 << WIDTH) - 1);
+```
+
+
+Response:
+// Function to compute GCD
+function automatic integer compute_gcd(input integer x, input integer y, input integer z);
+    integer temp_gcd_1;
+    begin
+        temp_gcd_1 = gcd(x, y);
+        compute_gcd = gcd(temp_gcd_1, z);
+    end
+    // Nullify extra bits beyond WIDTH
+    compute_gcd = compute_gcd & ((1 << WIDTH) - 1);
+endfunction
+
+// Task to perform a test case
+task automatic test_case(
+   input integer a_in,
+   input integer b_in,
+   input integer c_in
+);
+    integer expected_gcd;
+    integer start_time, end_time, latency, extra_bits_nullified;
+    begin
+         @(negedge clk);
+         A <= a_in;
+         B <= b_in;
+         C <= c_in;
+         go <= 1;
+         @(posedge clk);
+         @(posedge clk);
+         go <= 0;
+
+         start_time = $time;
+
+         wait (done == 1);
+
+         end_time = $time;
+
+         latency = (end_time - start_time) / 10; 
+
+         @(posedge clk);
+         go <= 0;
+
+         expected_gcd = compute_gcd(a_in, b_in, c_in);
+         // Ensure we're only testing within WIDTH bits by masking
+         extra_bits_nullified = expected_gcd & ((1 << WIDTH) - 1);
+         expected_gcd = extra_bits_nullified;
+
+         expected_gcd = expected_gcd & ((1 << WIDTH) - 1);
+
+         if (OUT !== expected_gcd) begin
+            $display("Test FAILED for inputs A=%0d, B=%0d, C=%0d: Expected GCD=%0d, Got=%0d at time %0t", a_in, b_in, c_in, expected_gcd, OUT, $time);
+         end else begin
+            $display("Test PASSED for inputs A=%0d, B=%0d, C=%0d: GCD=%0d, Latency=%0d cycles", a_in, b_in, c_in, expected_gcd, latency);
+         end
+      end
+   endtask
+
+
+Score : 1.0

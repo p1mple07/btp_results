@@ -1,0 +1,50 @@
+Reference:
+```verilog
+    case (ex_if_type_i)  
+```
+```
+      2'b01: begin  
+          case (data_addr_int[1:0])
+            2'b00:   dmem_be = 4'b0011;
+            2'b10:   dmem_be = 4'b1100;
+            default: begin
+                dmem_be = 4'b0000;
+                misaligned_addr = 1'b1;
+            end
+          endcase
+      end 
+```
+
+```verilog
+assign ex_req_fire = ex_if_req_i && !busy_q && !misaligned_addr;
+```
+
+
+Response:
+Within the given RTL code, misaligned halfword accesses are detected and discarded in the following section:
+
+1. The address calculation is performed:
+
+assign data_addr_int = ex_if_addr_base_i + ex_if_addr_offset_i;
+
+2. The address validity is checked in the following combinational logic:
+
+always_comb begin
+  case (data_addr_int[1:0])
+    2'b00:   dmem_be = 4'b0001;
+    2'b01:   dmem_be = 4'b0010;
+    2'b10:   dmem_be = 4'b0100;
+    2'b11:   dmem_be = 4'b1000;
+    default: dmem_be = 4'b0000;
+  endcase
+
+3. The request is discarded and misaligned address flag is set:
+
+  case (rdata_offset_q)
+    2'b00: rdata_w_ext = dmem_RSP_rdata_i[31:0];
+    default: rdata_w_ext = '0;
+  endcase
+
+
+
+Score : 0.2222222222222222

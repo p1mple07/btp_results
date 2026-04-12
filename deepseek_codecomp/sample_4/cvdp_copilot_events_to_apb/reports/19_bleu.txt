@@ -1,0 +1,35 @@
+Reference:
+```
+            select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse; 
+```
+
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+            end 
+```
+
+```
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+
+
+Response:
+{
+  "response": "In the provided apb_controller module, the event queue management is handled in the following code blocks:\n\n1. Initialization of event_list in the always @(*) block:\n\n\tcase (current_state)\n\t\tIDLE: begin\n\t\t\tif (event_list[0]) begin\n\t\t\t\tnext_state = SETUP;\n\t\t\t.event_sel = 3'b001;\n\t\t\tend else if (event_list[1]) begin\n\t\t\t\tnext_state = SETUP;\n\t\t\t.event_sel = 3'b010;\n\t\t\tend else if (event_list[2]) begin\n\t\t\t\tnext_state = SETUP;\n\t\t\t.event_sel = 3'b100;\n\t\t\tend else begin\n\t\t\t\tnext_state = IDLE;\n\t\t\t.event_sel = 3'b000;\n\t\t\tend\n\t\tend"
+\n\n2. Event selection and queue addition in the case statement:\n\n\tcase (current_state)\n\t\tIDLE: begin\n\t\t\tif (event_list[0]) begin\n\t\t\t\tnext_state = SETUP;\n\t\t\t.event_sel = 3'b001;\n\t\t\tend else if (event_list[1]) begin\n\t\t\t\tnext_state = SETUP;\n\t\t\t.event_sel = 3'b010;\n\t\t\tend else if (event_list[2]) begin\n\t\t\t\tnext_state = SETUP;\n\t\t\t.event_sel = 3'b100;\n\t\t\tend else begin\n\t\t\t\tnext_state = IDLE;\n\t\t\t.event_sel = 3'b000;\n\t\t\tend\n\t\tend"
+\n\n3. Processing event C and clearing it from the queue:\n\n\tcase (event_sel)\n\t\t3'b100: begin\n\t\t\t sel_addr_next = addr_c_i; \n\t\t\t sel_data_next = data_c_i; \n\t\t\tevent_list   <= event_list & ~event_sel; \n\t\tend"
+"}
+
+
+Score : 0.061039187529873

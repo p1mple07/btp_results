@@ -1,0 +1,20 @@
+Reference:
+```
+if (sum_accum + data_in >= THRESHOLD_VALUE || sum_accum + data_in <= -1*THRESHOLD_VALUE) begin
+   sum_out   <= sum_accum + data_in;
+   sum_ready <= 1'b1;
+   sum_accum <= {DATA_WIDTH{1'b0}};
+end
+```
+
+
+Response:
+Within the `always` block, during the `else` section of the `if (data_valid)` statement, the sum_accum is reset to zero whenever the sum crosses the threshold value.
+
+Here is the relevant code:
+
+- In line 35: `sum_ready <= 1'b1;`
+- Line 36: `sum_accum <= {DATA_WIDTH{1'b0}};`
+
+
+Score : 3.894991415418709e-155

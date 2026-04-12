@@ -1,0 +1,140 @@
+
+
+module axis_resize #(
+
+  parameter BIG_ENDIAN = 0,
+  parameter MASTER_DATA_WIDTH = 8,
+  parameter SLAVE_DATA_WIDTH = 16) (
+
+
+  input                                           clk,          //Global clock signal: Signals are sampled on the rising edge of clk
+  input                                           resetn,       //The global reset signal: resetn is synchronous active-LOW reset.
+
+  input                                           s_valid,      //The s_axis_valid signal indicates that the slave is driving a valid transfer.
+  output                                          s_ready,      //The s_axis_ready indicates that the slave can accept a transfer in the current cycle.
+  input       [SLAVE_DATA_WIDTH-1:0]  s_data,                                   //The s_axis_data is the primary payload data from slave.
+
+  output                                          m_valid,      //The m_axis_valid indicates that the master is driving a valid transfer.
+  input                                           m_ready,      //The m_axis_ready indicates that the slave can accept a transfer in the current cycle.
+  output     [MASTER_DATA_WIDTH-1:0] m_data                                      //The m_axis_data is the primary payload data to master.
+);
+
+localparam RATIO = (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH) ?     //Local parameter to store the ratio of width.
+                      MASTER_DATA_WIDTH / SLAVE_DATA_WIDTH :
+                      SLAVE_DATA_WIDTH / MASTER_DATA_WIDTH;
+
+
+function integer clog2;                                         //function to calculate the width of count register.
+  input integer value;
+  begin
+    value = value-1;
+  for (clog2=0; value>0; clog2=clog2+1)
+    value = value>>1;
+  end
+endfunction
+
+generate if (SLAVE_DATA_WIDTH == MASTER_DATA_WIDTH)
+begin
+
+assign m_valid = s_valid;                                                                //generating master valid
+assign s_ready = m_ready;                                                                //generating slave ready
+assign m_data = s_data;                                                                  //passing slave data to master
+
+end
+else if (SLAVE_DATA_WIDTH < MASTER_DATA_WIDTH) begin
+
+reg [MASTER_DATA_WIDTH-1:0] data;
+reg [clog2(RATIO)-1:0] count;
+reg valid;
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0) begin                                                               //synchronous reset 
+    count <= RATIO - 1;
+    valid <= 1'b0;
+  end else begin
+    if (count == 'h00 && s_ready == 1'b1 && s_valid == 1'b1)
+      valid <= 1'b1;                                                                      //generating valid signal
+    else if (m_ready == 1'b1)
+      valid <= 1'b0; 
+
+    if (s_ready == 1'b1 && s_valid == 1'b1) begin                                         //block to update counter
+      if (count == 'h00)
+        count <= RATIO - 1;
+      else
+        count <= count - 1'b1;                                                            //reducing counter.
+    end
+  end
+end
+
+always @(posedge clk)
+begin
+  if (s_ready == 1'b1 && s_valid == 1'b1)
+    if (BIG_ENDIAN == 1) begin
+      data <= {data[MASTER_DATA_WIDTH-SLAVE_DATA_WIDTH-1:0], s_data};                      //left shifting slave data in BIG ENDIAN format
+    end else begin
+      data <= {s_data, data[MASTER_DATA_WIDTH-1:SLAVE_DATA_WIDTH]};                        //Right shifting slave data in LITTLE ENDIAN format
+    end
+end
+
+assign s_ready = ~valid || m_ready;                             //generating slave ready.
+assign m_valid = valid;                                         //generating master valid
+assign m_data = data;                                           //passing master data
+
+end
+
+else 
+begin
+reg [SLAVE_DATA_WIDTH-1:0] data;                                //register to hold slave data.
+reg [clog2(RATIO)-1:0] count;                                   //count register.
+reg valid;                                                      //internal valid signal.
+
+
+always @(posedge clk)
+begin
+  if (resetn == 1'b0)                                           //synchronous reset.
+  begin
+    count <= RATIO - 1;                                         //resetting count register.
+    valid <= 1'b0;                                              //resetting internal valid signal.
+  end
+  else
+  begin
+    if (s_valid == 1'b1 && s_ready == 1'b1)                     //checking for slave valid and ready.
+      valid <= 1'b1;
+    else if (count == 'h0 && m_ready == 1'b1 && m_valid == 1'b1)//resetting valid  if count is zero.
+      valid <= 1'b0;
+
+    if (m_ready == 1'b1 && m_valid == 1'b1)                     //block to update counter.
+    begin
+      if (count == 'h00)
+        count <= 2 - 1;
+      else
+        count <= count - 1'b1;                                  //reducing counter.
+    end
+  end
+end
+
+always @(posedge clk)                                           
+begin
+  if (s_ready == 1'b1 && s_valid == 1'b1)                       //registering slave data.
+    data <= s_data;
+  else if (m_ready == 1'b1 && m_valid == 1'b1)
+    begin
+      if (BIG_ENDIAN == 1)
+        data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH] <= data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0];                        //left shifting slave data in BIG ENDIAN format
+      else
+        data[SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH-1:0] <= data[SLAVE_DATA_WIDTH-1:MASTER_DATA_WIDTH];                        //Right shifting slave data in LITTLE ENDIAN format
+    end
+
+end
+
+assign s_ready = ~valid || (m_ready && count == 'h0);           //generating slave ready.
+assign m_valid = valid;                                         //generating master valid
+assign m_data = BIG_ENDIAN == 1 ?                               //passing master data
+       data[SLAVE_DATA_WIDTH-1:SLAVE_DATA_WIDTH-MASTER_DATA_WIDTH] :
+       data[MASTER_DATA_WIDTH-1:0];
+
+end
+endgenerate
+
+endmodule

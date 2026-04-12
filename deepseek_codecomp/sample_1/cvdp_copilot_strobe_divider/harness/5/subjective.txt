@@ -1,0 +1,31 @@
+{
+    "response": {
+        "testbench_code": "
+        // Test Case 4: Out_Ready deassertion (backpressure).
+        // Description: Reset during operation and observe valid pulse behavior.
+        $display("\n=== Test Case 4: Out_Ready Deassertion (Backpressure) ===");
+        In_Ratio_0 = 5;
+        apply_strobe_divider_with_out_ready(0, 5, 10);
+
+        // Wait for the system to stabilize after reset
+        $finish;
+        $finish;
+        $finish;
+
+        // Check that Out_Ready goes high before asserting
+        $display("After reset, Out_Ready should remain high until Out_Ready=1");
+        while (!Out_Ready_0) begin
+            $tick();
+        end
+
+        // Assert that Out_Valid remains high during stabilization
+        $display("During stabilization phase, Out_Valid should stay high");
+        while (Out_Valid_0) begin
+            $tick();
+        end
+
+        // Verify that after Out_Ready=1, Out_Valid can transition freely
+        $display("Once Out_Ready=1, Out_Valid should behave normally");
+        apply_strobe_divider(0, 100, 1, -1, 0);
+    }"
+}

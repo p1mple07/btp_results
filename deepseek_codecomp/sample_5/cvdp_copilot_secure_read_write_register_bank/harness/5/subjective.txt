@@ -1,0 +1,44 @@
+The code blocks that implement the specified functionality are:
+
+1. During `p_STATE_UNLOCKED`:
+
+always @(posedge i_capture_pulse) begin
+    if (r_unlock_state == p_STATE_UNLOCKED) begin
+        if (i_read_write_enable) begin
+            if (i_addr == 0 || i_addr == 1) begin
+                o_data_out <= 0;
+            end else begin
+                o_data_out <= r_register_bank[i_addr]; 
+            end
+        end else begin
+            r_register_bank[i_addr] <= i_data_in; 
+            o_data_out <= 0; 
+        end
+    end else begin
+        if (i_read_write_enable) begin
+            o_data_out <= 0; 
+        end else begin
+            if (i_addr == 0 || i_addr == 1) begin
+                r_register_bank[i_addr] <= i_data_in;
+            end
+            o_data_out <= 0; 
+        end
+    end
+end
+
+2. During `p_STATE_LOCKED` or `p_STATE_UNLOCK_STEP1`:
+
+always @(posedge i_capture_pulse) begin
+    if (r_unlock_state == p_STATE_UNLOCKED) begin
+        ... (same as above)
+    end else begin
+        if (i_read_write_enable) begin
+            o_data_out <= 0; 
+        end else begin
+            if (i_addr == 0 || i_addr == 1) begin
+                r_register_bank[i_addr] <= i_data_in;
+            end
+            o_data_out <= 0; 
+        end
+    end
+end

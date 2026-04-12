@@ -1,0 +1,112 @@
+Reference:
+```verilog
+sum_accum <= sum_accum + weighted_input;
+if (sum_ready_reg) begin
+    sum_out   <= sum_accum + weighted_input;
+    sum_ready <= 1;
+end else begin
+    sum_ready <= 0;
+    sum_out   <= 0;
+end
+avg_out <= 0;
+```
+
+```verilog
+if (ACCUM_MODE == 1) begin
+    sum_accum    <= sum_accum + weighted_input;
+    sample_count <= sample_count + 1;
+    if (sum_ready_reg) begin
+        sum_out      <= sum_accum + weighted_input;
+        avg_out      <= (sum_accum + weighted_input) / window_size;
+        sum_ready    <= 1;
+        sum_accum    <= 0;
+        sample_count <= 0;
+    end else begin
+        sum_ready <= 0;
+        sum_out   <= 0;
+        avg_out   <= 0;
+    end
+end
+```
+
+
+Response:
+{
+    "response": [
+        {
+            "name": "default accumulation",
+            "code": """
+            always_comb begin
+                sum_ready_reg = 0;
+                weighted_input = data_in * WEIGHT;
+                new_sum = sum_accum + weighted_input;
+
+                threshold_1_comb = (new_sum >= THRESHOLD_VALUE_1) || (new_sum <= -THRESHOLD_VALUE_1);
+                threshold_2_comb = (new_sum >= THRESHOLD_VALUE_2) || (new_sum <= -THRESHOLD_VALUE_2);
+
+                if (data_valid) begin
+                    if (ACCUM_MODE == 0) begin
+                        if (threshold_1_comb || threshold_2_comb) begin
+                            sum_ready_reg = 1;
+                        end else begin
+                            sum_ready_reg = 0;
+                        end
+                    end else if (ACCUM_MODE == 1) begin
+                        sum_ready_reg = 0;
+                    end
+                end else begin
+                    sum_ready_reg = 0;
+                end
+            end"""
+        },
+        {
+            "name": "ACCUM_MODE == 1",
+            "code": """
+            always_ff @(posedge clk or posedge reset) begin
+                if (reset) begin
+                    sum_accum     <= 0;
+                    sample_count  <= 0;
+                    sum_ready     <= 0;
+                    sum_out       <= 0;
+                    avg_out       <= 0;
+                    threshold_1   <= 0;
+                    threshold_2   <= 0;
+                end else if (data_valid) begin
+                    threshold_1 <= threshold_1_comb;
+                    threshold_2 <= threshold_2_comb;
+
+                    if (ACCUM_MODE == 1) begin  
+                        sum_accum    <= sum_accum + weighted_input;
+                        sample_count <= sample_count + 1;
+                        if (sum_ready_reg) begin
+                            sum_out      <= sum_accum + weighted_input;
+                            avg_out      <= (sum_accum + weighted_input) / window_size;
+                            sum_ready    <= 1;
+                            sum_accum    <= 0;
+                            sample_count <= 0;
+                        end else begin
+                            sum_ready <= 0;
+                            sum_out   <= 0;
+                            avg_out   <= 0;
+                        end
+                    end else begin  
+                        sum_accum <= sum_accum + weighted_input;
+                        if (sum_ready_reg) begin
+                            sum_out   <= sum_accum + weighted_input;
+                            sum_ready <= 1;
+                        end else begin
+                            sum_ready <= 0;
+                            sum_out   <= 0;
+                        end
+                        avg_out <= 0; 
+                    end
+                end else begin
+                    sum_ready <= 0;
+                end
+            end"""
+        }
+    ]
+}
+
+
+Score : 0.35291511610046444

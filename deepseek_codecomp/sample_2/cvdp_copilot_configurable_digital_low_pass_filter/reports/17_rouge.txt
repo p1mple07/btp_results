@@ -1,0 +1,57 @@
+Reference:
+```systemverilog
+            IDLE: begin
+                if (start)
+                    next_state = COMPUTE;
+                else
+                    next_state = IDLE;
+            end
+```
+```systemverilog
+                COMPUTE: begin
+                    result1 <= compute1;
+                    result2 <= compute2;
+                end
+                DONE: begin
+                    done <= 1;
+                end
+                default: begin
+                    result1 <= 0;
+                    result2 <= 0;
+                    done    <= 0;
+                end
+```
+
+
+Response:
+{
+  "response": [
+    "always_ff @(posedge clk or posedge reset) begin\n"
+    "    if (reset)\n"
+    "        current_state <= IDLE;\n"
+    "    else\n"
+    "        current_state <= next_state;\n"
+    "end",
+    "\n"
+    "// FSM Output Logic\n    always_ff @(posedgeclk or posedge reset) begin\n"
+    "        if (reset) begin\n"
+    "            result1 <= 0;\n"
+    "            result2 <= 0;\n"
+    "            done <= 0;\n        end else begin\n"
+    "            case (current_state)\n"
+    "                COMPUTE: begin\n"
+    "                    result1 <= compute1;\n"
+    "                    result2 <= compute2;\n                end\n"
+    "                DONE: begin\n"
+    "                    done <= 1;\n                end\n                default: begin\n"
+    "                    result1 <= 0;\n"
+    "                    result2 <= 0;\n"
+    "                    done <= 0;\n                end
+            endcase
+        end\n"
+    "    end"
+  ]
+}
+
+
+Score : 0.0

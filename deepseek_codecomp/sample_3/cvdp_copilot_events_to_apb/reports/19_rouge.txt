@@ -1,0 +1,54 @@
+Reference:
+```
+            select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse; 
+```
+
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+            end 
+```
+
+```
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+
+
+Response:
+The code blocks responsible include:
+
+- The section where `select_c_pulse` is assigned: 
+
+    `select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse;`
+
+- The section where `next_state` is updated based on `event_sel`: 
+
+    `case (current_state)
+        IDLE: begin
+            if (event_list[0]) begin
+               next_state = SETUP;
+               event_sel  = 3'b001;
+            end else if (event_list[1]) begin
+               next_state = SETUP;
+               event_sel  = 3'b010;
+            end else if (event_list[2]) begin
+               next_state = SETUP;
+               event_sel  = 3'b100;
+            end else begin
+               next_state = IDLE;
+               event_sel  = 3'b000;
+            end
+        end
+
+
+Score : 0.45714285714285713

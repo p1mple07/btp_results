@@ -1,0 +1,10 @@
+Reference:
+The `call_requests_internal` register is updated by performing a bitwise OR operation with the external `call_requests`, ensuring that all newly received requests are logged. When the elevator services a floor, the corresponding bit in `call_requests_internal[current_floor_reg]` is cleared, marking that request as completed. This clearing prevents the elevator from stopping at the same floor repeatedly if `call_requests` remains high for that floor. During movement states (`MOVING_UP` and `MOVING_DOWN`), `call_requests_internal` is continuously evaluated to determine the next target floor. In the `IDLE` state, it helps the FSM decide the direction of movement based on the relative positions of `max_request` and `min_request`. This approach ensures that all valid requests are processed efficiently, without duplication, and prioritizes new requests dynamically, even if they arrive mid-operation.
+
+
+Response:
+In the elevator control system, `call_requests_internal` is used to maintain a record of active floor requests. When the elevator is idle, it copies incoming `call_requests` into `call_requests_internal`. While moving, new requests are added without overwriting existing ones due to bitwise OR operation. When servicing a request, the corresponding bit in `call_requests_internal` is cleared. This ensures that each floor request is processed exactly once. During both movement and idle states, efficient handling occurs as the system continuously checks `call_requests_internal` for pending requests.
+
+
+LLM Score (0-1) : 0.6
+Reasoning: The candidate correctly describes using a bitwise OR to integrate new requests, clearing bits when servicing floors, and preventing duplicate stops, and it notes continuous checking for efficiency. However, it misplaces when OR’ing occurs (only mentioning ‘while moving’ rather than always), omits how the FSM uses `call_requests_internal` to select the next target during MOVING_UP/DOWN, fails to explain idle‐state direction decisions based on min/max requests, and only provides one generic sentence about efficiency instead of two that distinguish movement and idle states.

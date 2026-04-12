@@ -1,0 +1,37 @@
+Reference:
+```
+            always_ff @(posedge clk)
+              if (srst)
+                add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+gv3)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= '0; 
+              else if (valid_out_reg[0])
+                add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+gv3)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= mult_stage[((((gv1*COL_B)+gv2)*MODIFIED_COL_A)+(2*gv3))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] + mult_stage[((((gv1*COL_B)+gv2)*MODIFIED_COL_A)+((2*gv3)+1))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH];
+              else if ((HALF_MODIFIED_COL_A > 1) && (gv3 < (HALF_MODIFIED_COL_A/2)))
+                add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+gv3)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+(2*gv3))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] + add_stage[((((gv1*COL_B)+gv2)*HALF_MODIFIED_COL_A)+((2*gv3)+1))*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH];
+```
+
+
+Response:
+always @(posedge clk)
+  if (half_modified_col_a > 0)
+    for (gv1 = 0; gv1 < row_a; gv1++)
+      for (gv2 = 0; gv2 < col_b; gv2++)
+        for (gv3 = 0; gv3 < halved_col_a; gv3++)
+          always_ff @posedge(clk)
+            if (srst)
+              add_stage[(((((gv1*col_b)+gv2)*halved_col_a)+gv3)*output_data_width:+output_data_width)] <= '0;
+            else if (valid_out_reg[0])
+              add_stage[(((((gv1*col_b)+gv2)*halved_col_a)+gv3)*output_data_width:+output_data_width)] <= mult_stage[(((((gv1*col_b)+gv2)*modified_col_a)+(2*gv3))*output_data_width:+output_data_width] + mult_stage[(((((gv1*col_b)+gv2)*modified_col_a)+((2*gv3)+1))*output_data_width:+output_data_width];
+            else if ((halved_col_a > 1) && (gv3 < (halved_col_a / 2)))
+              add_stage[(((((gv1*col_b)+gv2)*halved_col_a)+gv3)*output_data_width:+output_data_width)] <= add_stage[(((((gv1*col_b)+gv2)*halved_col_a)+(2*gv3))*output_data_width:+output_data_width] + add_stage[(((((gv1*col_b)+gv2)*halved_col_a)+((2*gv3)+1))*output_data_width:+output_data_width];
+  else
+    for (gv1 = 0; gv1 < row_a; gv1++)
+      for (gv2 = 0; gv2 < col_b; gv2++)
+        for (gv3 = 0; gv3 < modified_col_a; gv3++)
+          always_ff @posedge(clk)
+            if (srst)
+              matrix_c[((gv1*col_b)+gv2)*output_data_width:+output_data_width] <= '0;
+            else if (valid_out_reg[clog2(col_a)])
+              matrix_c[((gv1*col_b)+gv2)*output_data_width:+output_data_width] <= mult_stage[(((((gv1*col_b)+gv2)*modified_col_a)+0)*output_data_width:+output_data_width];
+
+
+Score : 0.47619047619047616

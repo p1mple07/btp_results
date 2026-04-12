@@ -1,0 +1,31 @@
+Reference:
+```verilog
+if (input_char >= "A" && input_char <= "Z") begin
+    output_char = ((input_char - "A" + key) % 26) + "A";
+end
+```
+
+
+Response:
+module caesar_cipher(
+    input wire [7:0] input_char,
+    input wire [3:0] key,
+    output reg [7:0] output_char
+);
+
+always @(*) begin
+    if (input_char >= "A" && input_char <= "Z") begin
+        output_char = ((input_char - "A" + key) % 26) + "A";
+    end
+    else if (input_char >= "a" && input_char <= "z") begin
+        output_char = ((input_char - "a" + key) % 26) + "a";
+    end
+    else begin
+        output_char = input_char;
+    end
+end
+
+endmodule
+
+
+Score : 0.29918901466491665

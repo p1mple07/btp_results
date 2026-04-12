@@ -1,0 +1,10 @@
+Reference:
+When subtracting a non-zero B from zero (A = 0), the testbench checks if the intermediate result is negative as it cannot be directly represented in BCD format. To correctly represent this negative result, the testbench adds the maximum N digit BCD value (based on the number of digits) to the negative intermediate value, effectively converting it into its ten's complement representation in BCD and sets the expected_carry_out (borrow) to 0. This approach allows the testbench to verify that the design handles negative results by producing the correct BCD representation and borrow-out signal.
+
+
+Response:
+The test bench handles negative intermediate values by adding the max_value to the result, converting it to a positive equivalent in BCD, ensuring proper wrapping and validation.
+
+
+LLM Score (0-1) : 0.3
+Reasoning: The candidate response correctly notes that the test bench adds the maximum BCD value to a negative intermediate to obtain a positive equivalent, reflecting the ten’s complement approach. However, it omits mention of detecting the negative result, specifying the N-digit BCD maximum, and setting the borrow/expected_carry_out signal to 0—key details in the reference solution.

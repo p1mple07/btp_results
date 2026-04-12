@@ -1,0 +1,10 @@
+Reference:
+The `compute_expected` task iterates through the input vector `num_i` to detect the most significant set bit and generate a corresponding one-hot encoded value (`exp_oh_local`). It then converts this one-hot encoding to a binary exponent (`exp_bin_local`) using a priority-based approach, ensuring that only the highest set bit is considered. Using the computed exponent, the task extracts the 12-bit mantissa starting from the most significant set bit, aligning with the specification. This process guarantees that the testbench can dynamically generate correct reference values for `mantissa_o` and `exponent_o`, enabling accurate output comparison for inputs with multiple set bits.
+
+
+Response:
+The testbench verifies the compression_engine module by computing expected outputs using the compute_expected task. When num_i has multiple set bits, compute_expected identifies the highest bit to determine the exponent, then extracts the corresponding mantissa. This ensures accurate comparison between actual and expected results, verifying the module's functionality across various inputs.
+
+
+LLM Score (0-1) : 0.45
+Reasoning: The candidate response captures the high‐level idea—identifying the highest set bit to derive the exponent and extracting a mantissa for output comparison—but omits key implementation details such as the one-hot encoding step, priority-based conversion to a binary exponent, and the fixed 12-bit mantissa alignment. It also uses only three sentences instead of the requested four, resulting in incomplete coverage of the reference solution.

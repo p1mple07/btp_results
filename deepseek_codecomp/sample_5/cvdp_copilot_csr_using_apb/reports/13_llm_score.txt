@@ -1,0 +1,10 @@
+Reference:
+When a write operation is attempted on the `ISR_REG` within the `csr_apb_interface` module, the module detects the write to a write-protected register by comparing the `paddr` signal with the `ISR_REG` address and asserting the `write_protected` signal. In response, it asserts the `pslverr` signal to indicate a protocol error, and the write operation is ignored without modifying the `ISR_REG` or any internal registers.
+
+
+Response:
+When a write operation is attempted on the ISR_REG (Interrupt Status Register), the module detects the write attempt through the `write_protected` signal, which becomes active when `paddr` matches `ISR_REG`. In response, it sets `pslverr` to indicate an error, processes the write data into internal storage registers such as `overflow_is`, `sign_is`, `parity_is`, and `zero_is`, and transitions to the appropriate state to handle the write properly.
+
+
+LLM Score (0-1) : 0.15
+Reasoning: The candidate correctly describes detection via paddr matching and asserting write_protected and pslverr, but incorrectly states that the write data is processed into internal registers and transitions states rather than being ignored. This contradicts the reference’s key point that the write is discarded, so the response is largely incorrect.

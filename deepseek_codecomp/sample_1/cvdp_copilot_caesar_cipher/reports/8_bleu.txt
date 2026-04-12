@@ -1,0 +1,23 @@
+Reference:
+```verilog
+phrase1[0] = "h"; phrase1[1] = "e"; phrase1[2] = "l"; phrase1[3] = "l"; phrase1[4] = "o";
+key = 4'b0011; 
+$display("Test case 1");
+for (i = 0; i < PHRASE1_LEN; i = i + 1) begin
+    input_char = phrase1[i];
+    #10;
+    output_phrase[i] = output_char;
+end
+$write("Output: ");
+for (i = 0; i < PHRASE1_LEN; i = i + 1) begin
+    $write("%c", output_phrase[i]);
+end
+```
+
+
+Response:
+{ "response": "module caesar_cipher_tb;\n    reg [7:0] input_char;       // Input character (ASCII)\n    reg [3:0] key;              // Shift key (4-bit)\n    wire [7:0] output_char;     // Output character (shifted)\n    integer i;\n\n    parameter PHRASE1_LEN = 5;\n    parameter PHRASE2_LEN = 5;\n    parameter PHRASE3_LEN = 6;\n    reg [7:0] phrase1 [0:PHRASE1_LEN-1];  \n    reg [7:0] phrase2 [0:PHRASE2_LEN-1];  \n    reg [7:0] phrase3 [0:PHRASE3_LEN-1];  \n    reg [7:0] output_phrase [0:31];       // Temporary storage for the output phrase\n\n    caesar_cipher uut (\n        .input_char(input_char),\n        .key(key),\n        .output_char(output_char)\n    );\n\n    initial begin\n        phrase1[0] = "h"; phrase1[1] = "e"; phrase1[2] = "l"; phrase1[3] = "l"; phrase1[4] = "o";\n        key = 4'b0011; \n        $display("Test case 1");\n        for (i = 0; i < PHRASE1_LEN; i = i + 1) begin\n            input_char = phrase1[i];\n            #10;\n            output_phrase[i] = output_char;\n        end\n        $write("Output: ");\n        for (i = 0; i < PHRASE1_LEN; i = i + 1) begin\n            $write("%c", output_phrase[i]);\n        end\n        $display("");\n    end\nendmodule"
+}
+
+
+Score : 0.3252484016824613

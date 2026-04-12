@@ -1,0 +1,63 @@
+Reference:
+```
+ce      = 1;
+a_we    = 0;
+a_oe    = 1;
+b_we    = 1;
+b_oe    = 0;
+a_addr  = $random();
+b_addr  = a_addr;
+b_wdata = $random();
+```
+```
+ce      = 1;
+a_we    = 1;
+a_oe    = 0;
+b_we    = 0;
+b_oe    = 1;
+a_addr  = $random();
+b_addr  = $random();
+a_wdata = $random();
+while(a_addr == b_addr) begin
+    b_addr  = $random();
+end
+```
+
+
+Response:
+// Scenario 1: Parallel access where one port writes and the other port reads on the same address
+test_3();
+   begin
+      // Code related to same address parallel access
+      a_we    = 1;
+      a_oe    = 0;
+      a_addr  = $random();
+      b_we    = 1;
+      b_addr  = $random();
+      while(a_addr == b_addr) {
+         b_addr  = $random();
+      }
+      if ($isunknown(DUT.mem[b_addr])) {
+         RAM[b_addr] = $random();
+         DUT.mem[b_addr] = RAM[b_addr];
+      }
+      
+      // Further code for testing same address parallel access
+   endtask
+
+// Scenario 2: Parallel access where one port writes and the other port reads on different addresses
+test_4();
+   begin
+      a_we    = 1;
+      a_oe    = 1;
+      a_addr  = $random();
+      b_addr  = $random(); 
+      // Ensure different addresses
+      while(a_addr == b_addr) {
+         b_addr = $random();
+      }
+      // Further code for testing different addresses
+   endtask
+
+
+Score : 0.26847151495499494

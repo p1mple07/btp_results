@@ -1,0 +1,14 @@
+always_comb begin
+    delta_w = LEARNING_RATE * error * x_in;
+    delta_b = LEARNING_RATE * error;
+end
+
+always_ff @(posedge clk or posedge reset) begin
+    if (reset) begin
+        w <= 0;
+        b <= 0;
+    end else begin
+        w <= w + delta_w;
+        b <= b + delta_b;
+    end
+end

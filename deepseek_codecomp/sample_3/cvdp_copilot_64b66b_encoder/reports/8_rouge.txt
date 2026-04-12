@@ -1,0 +1,72 @@
+Reference:
+```verilog
+$display("Test Case 1");
+apply_test_vector(64'hA5A5A5A5A5A5A5A5, 8'b00000000);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b01, 64'hA5A5A5A5A5A5A5A5});
+```
+
+```verilog
+$display("Test Case 4");
+apply_test_vector(64'h123456789ABCDEF0, 8'b10000001);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+```
+
+```verilog
+$display("Test Case 6");
+apply_test_vector(64'h55555555AAAAAAAA, 8'b01010101);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+```
+
+
+Response:
+// The testbench includes multiple test cases with different control patterns.
+// We focus on the sections where the encoder is tested under various control configurations.
+
+// Initial setup and test case definitions remain unchanged.
+$display("Starting Test...");
+rst_in = 0;
+encoder_data_in = 64'b0;
+encoder_control_in = 8'b0;
+
+// Test Case 1: No additional control symbols applied.
+apply_test_vector(64'hA5A5A5A5A5A5A5A5, 8'b00000000);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b01, 64'hA5A5A5A5A5A5A5A5});
+
+// Test Case 2: Apply a different value but same control pattern.
+apply_test_vector(64'hDEADBEEFDEADBEEF, 8'b00000000);
+#10;
+rst_in = 1;
+#10;
+$display("After reset, encoder_data_out: %h, Expected: 66'b0", encoder_data_out);
+#10;
+rst_in = 0;
+
+// Test Case 3: First control octet has bits set.
+apply_test_vector(64'hFFFFFFFFFFFFFFFF, 8'b00001111);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+
+// Test Case 4: Last control octet has bits set.
+apply_test_vector(64'h123456789ABCDEF0, 8'b10000001);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+
+// Test Case 5: Alternating bits in control octet are set.
+apply_test_vector(64'hA5A5A5A5A5A5A5A5, 8'b01010101);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+
+apply_test_vector(64'hA5A5A5A5A5A5A5A5, 8'b00000000);
+
+apply_test_vector(64'hFFFFFFFFFFFFFFFF, 8'b00001111);
+
+apply_test_vector(64'h123456789ABCDEF0, 8'b10000001);
+
+apply_test_vector(64'hA5A5A5A5A5A5A5A5, 8'b01010101);
+
+
+Score : 0.3902439024390244

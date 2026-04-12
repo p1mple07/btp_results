@@ -1,0 +1,31 @@
+// Task to Apply Reset
+task apply_reset;
+    input integer latency;
+    begin
+        if (latency == 0) begin
+            Rst_0 = 1;
+            @(posedge Clk_0);
+            @(posedge Clk_0);
+            Rst_0 = 0;
+        end else begin
+            Rst_1 = 1;
+            @(posedge Clk_1);
+            @(posedge Clk_1);
+            Rst_1 = 0;
+        end
+    end
+endtask
+
+// Test Case 9: Reset During Operation for Latency=0
+$display("\n=== Test Case 9: Reset During Operation (Latency=0) ===");
+In_Ratio_0 = 5;
+apply_strobe_divider(0, 5, 1, -1, 0);
+apply_reset(0);
+apply_strobe_divider(0, 10, 1, -1, 0);
+
+// Test Case 10: Reset During Operation for Latency=1
+$display("\n=== Test Case 10: Reset During Operation (Latency=1) ===");
+In_Ratio_1 = 5;
+apply_strobe_divider(1, 5, 1, -1, 0);
+apply_reset(1);
+apply_strobe_divider(1, 10, 1, -1, 0);

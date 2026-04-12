@@ -1,0 +1,31 @@
+{
+    "response": [
+        {
+            "code": `"always @(posedge clk or negedge reset_n) begin\n"
+                    "    if (!reset_n) begin\n"
+                    "        tb_counter <= 0;\n"
+                    "        tb_clk_pulse <= 0;\n"
+                    "    end else if (tb_counter == CLK_DIV - 1) begin\n"
+                    "        tb_counter <= 0;\n"
+                    "        tb_clk_pulse <= 1;\n"
+                    "    end else begin\n"
+                    "        tb_counter <= tb_counter + 1;\n"
+                    "        tb_clk_pulse <= 0;\n"
+                    "    end\n"
+            "end",
+            "comment": "Logic to mimic DUT's clock division and pulse generation."
+        },
+        {
+            "code": `"always @(posedge clk or negedge reset_n) begin\n"
+                    "    if (!reset_n) begin\n"
+                    "        tb_prev_value <= 0;\n"
+                    "        tb_prev_serial_in <= 0;\n"
+                    "    end else begin\n"
+                    "        tb_prev_value <= serial_in;\n"
+                    "        tb_prev_serial_in <= tb_prev_value;\n"
+                    "    end\n"
+            "end",
+            "comment": "Logic to update previous serial input state."
+        }
+    ]
+}

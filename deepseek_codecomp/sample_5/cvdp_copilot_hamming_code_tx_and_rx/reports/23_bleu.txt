@@ -1,0 +1,35 @@
+Reference:
+```
+  task automatic send_data(
+    input [ENCODED_DATA-1:0] original_data,
+    output reg [ENCODED_DATA-1:0] modified_data_out,
+    output reg [DATA_WIDTH-1:0] bit_pos
+  );
+    begin
+      modified_data_out = original_data;
+      bit_pos = $urandom_range(1, ENCODED_DATA-1);
+      modified_data_out[bit_pos] = ~modified_data_out[bit_pos];
+    end
+  endtask
+```
+
+
+Response:
+In the testbench `tb_hamming_rx`, the `send_data` task introduces a single-bit error by randomly selecting a bit position and flipping it.
+
+Here is the relevant code:
+
+`task automatic send_data(
+  input [ENCODED_DATA-1:0] original_data,
+  output reg [ENCODED_DATA-1:0] modified_data_out,
+  output reg [DATA_WIDTH-1:0] bit_pos
+);
+    modified_data_out = original_data;
+    bit_pos = $urandom_range(1, ENCODED_DATA-1);
+    modified_data_out[bit_pos] = ~modified_data_out[bit_pos];
+`
+
+This code simulates a realistic transmission error by flipping a single bit in the data stream.
+
+
+Score : 0.3526728079292991

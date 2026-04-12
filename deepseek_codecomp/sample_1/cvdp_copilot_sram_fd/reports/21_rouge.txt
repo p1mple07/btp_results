@@ -1,0 +1,57 @@
+Reference:
+```
+ce      = 1;
+a_we    = 0;
+a_oe    = 1;
+b_we    = 1;
+b_oe    = 0;
+a_addr  = $random();
+b_addr  = a_addr;
+b_wdata = $random();
+```
+```
+ce      = 1;
+a_we    = 1;
+a_oe    = 0;
+b_we    = 0;
+b_oe    = 1;
+a_addr  = $random();
+b_addr  = $random();
+a_wdata = $random();
+while(a_addr == b_addr) begin
+    b_addr  = $random();
+end
+```
+
+
+Response:
+{
+  "response": [
+    "// Task test_3() code section for same address parallel access"
+    "@(posedge clk); \n",
+    "@(posedge clk); \n",
+    "RAM[a_addr] = a_wdata; \n",
+    "@(posedge clk); \n",
+    "@(posedge clk); \n",
+    "if (a_rdata !== RAM[a_addr]) {\n",
+    "    $display(\"Error: Data retention failed. Expected=%h, Actual=%h\", RAM[a_addr], a_rdata);\n",
+    "} else {\n",
+    "    $display(\"Data retention successful. Data=%h\", a_rdata);\n",
+    "}"
+    
+    "// Task test_6() code section for different addresses parallel access"
+    "@(posedge_clk); \n",
+    "@(posedge_clk); \n",
+    "RAM[b_addr] = b_wdata; \n",
+    "@(posedge_clk); \n",
+    "@(posedge_clk); \n",
+    "if (a_rdata !== prev_a_rdata) {\n",
+    "    $display(\"Error: Port A output changed without operation. Prev=%h, Current=%h\", prev_a_rdata, a_rdata);\n",
+    "} else {\n",
+    "    $display(\"Port A output remains unchanged as expected.\");\n",
+    "}"
+  ]
+}
+
+
+Score : 0.0

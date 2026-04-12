@@ -1,0 +1,45 @@
+Reference:
+```systemverilog
+if (pop && !empty) begin
+  if (feedthrough_valid) begin
+    data_out <= feedthrough_data;  
+    feedthrough_valid <= 0;        
+  end else begin
+    top <= top - 1;               
+    data_out <= memory[top-1];    
+  end
+end
+```
+
+```systemverilog
+if (push && pop && empty) begin
+  data_out <= data_in;          
+  feedthrough_data <= data_in;   
+  feedthrough_valid <= 1;      
+end else begin
+  feedthrough_valid <= 0;       
+end
+```
+
+
+
+Response:
+{
+  "response": [
+    {
+      "name": "Pop Operation",
+      "code": "if (pop && !empty) begin\n  if (feedthrough_valid) begin\n    data_out <= feedthrough_data;\n    feedthrough_valid <= 0;\n  end else begin\n    top <= top - 1;\n    data_out <= memory[top-1];\n  end\n    empty <= (top == 0);\n    full  <= (top == (FILO_DEPTH));\nend"
+    ,
+    {
+      "name": "Feedthrough Mechanism",
+      "code": "if (push && pop && empty) begin\n    data_out <= data_in;\n    feedthrough_data <= data_in;\n    feedthrough_valid <= 1;\n  end else begin\n    if (push && !full) begin\n      memory[top]       <= data_in;\n      top               <= top + 1;\n      feedthrough_valid <= 0;\n    end
+    if (pop && !empty) begin\n      if (feedthrough_valid) begin\n        data_out <= feedthrough_data;\n        feedthrough_valid <= 0;\n      end else begin\n        top <= top - 1;\n        data_out <= memory[top-1];\n      end
+    end
+  end
+  empty <= (top == 0);\n  full  <= (top == (FILO_DEPTH));\n  feedthrough_valid <= 0;"
+    }
+  ]
+}
+
+
+Score : 0.22031581387041518

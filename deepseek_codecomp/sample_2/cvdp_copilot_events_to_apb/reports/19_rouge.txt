@@ -1,0 +1,37 @@
+Reference:
+```
+            select_c_pulse <= (select_c_i) ? 1'b1 : select_c_pulse; 
+```
+
+```
+            if (current_state == IDLE) begin
+               event_list <= (select_a_pulse ? 3'b001 : 3'b000) | 
+                               (select_b_pulse ? 3'b010 : 3'b000) |
+                               (select_c_pulse ? 3'b100 : 3'b000); 
+            end 
+```
+
+```
+                end else if (event_list[2]) begin
+                   next_state = SETUP;
+                   event_sel  = 3'b100;
+                end
+```
+
+```
+               select_c_pulse <= (event_sel[2]) ? 1'b0 : select_c_pulse;    
+               event_list   <= event_list & ~event_sel; 
+```
+
+
+Response:
+Identify the RTL code blocks responsible for managing the event queue:
+
+- The state transition logic in the IDLE state handles event prioritization and queue management.
+- The event_list assignment in IDLE and ACCESS states manages event storage and processing order.
+- The conditional checks for event_sel ensure events are processed in priority order.
+- The sel_addr_next and sel_data_next assignments prepare the queue for event processing.
+- The current_state transitions ensure proper queue handling after processing.
+
+
+Score : 0.0

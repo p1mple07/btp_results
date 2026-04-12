@@ -1,0 +1,30 @@
+Reference:
+```verilog
+    bit [MSHR_ADDR_WIDTH-1:0] allocated_ids[$];
+```
+```verilog 
+            allocated_ids.delete(); // Delete all entries
+```
+```verilog
+            allocated_ids.push_back(allocate_id);
+```
+
+```verilog
+                finalize_id = allocated_ids[queue_idx];
+```
+
+```verilog
+                allocated_ids.delete(queue_idx);
+```
+
+```verilog
+                random_index = $urandom_range(0, allocated_ids.size() - 1);
+                finalize_request(hit_random.hit, random_index);
+```
+
+
+Response:
+After carefully reviewing the code, there are no specific blocks that directly implement the functionality of ensuring that finalized requests use an index that was previously allocated. The functionality appears to rely on the natural behavior of the allocated_ids array and the ordering of allocations and finalizations.
+
+
+Score : 0

@@ -1,0 +1,20 @@
+Reference:
+```verilog
+always@(*) begin
+    if(done == 1) begin
+        if(SHIFT_RIGHT == 1) begin
+            for(i = 0; i < DATA_WIDTH; i = i + 1) begin
+                expected_parallel_out[i] = data_in[DATA_WIDTH - 1 - i]; 
+                expecetd_b2g_out = parallel_out ^ (parallel_out >> 1);
+            end
+        end
+    end
+end
+```
+
+
+Response:
+        In the `pis o_check()` task, the code computes `expected_parallel_out` and `expecetd_b2g_out` when `SHIFT_RIGHT` is HIGH. Here's how it works:        When `SHIFT_RIGHT` is HIGH (`SHIFT_RIGHT == 1`):        - For each bit position `i`, `expected_parallel_out[i]` is set to `data_in[DATA_WIDTH-1-i]`.        - `expecetd_b2g_out` is calculated as `parallel_out ^ (parallel_out >> 1)`.        This matches the logic described in the comment above the code block.    
+
+
+Score : 0.05921757522613834

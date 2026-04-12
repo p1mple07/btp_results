@@ -1,0 +1,68 @@
+Reference:
+``` 
+expected_gcd = compute_gcd(a_in, b_in, c_in);
+
+expected_gcd = expected_gcd & ((1 << WIDTH) - 1);
+```
+
+
+Response:
+Alright, I need to figure out how to modify the testbench so that the expected GCD value has its extra bits nullified before comparison with the DUT's output. Let me look at the provided code.
+
+First, the testbench uses a function `compute_gcd` which returns an integer. This integer might have more bits than the WIDTH specified in the DUT. So when comparing, we can't directly use the integer because it could have leading bits beyond the WIDTH.
+
+In the test case, the expected GCD is stored in `expected_gcd`. After computing it, I need to mask it to WIDTH bits. That way, any extra bits beyond WIDTH are cleared, ensuring it matches the WIDTH of the DUT's output.
+
+So, adding a line like `expected_gcd = expected_gcd & ((1 << WIDTH) - 1);` will truncate the higher bits, leaving only WIDTH significant bits. This should make the comparison accurate.
+
+I'll insert this line right after computing `expected_gcd` but before assigning it to the DUT. Looking at the code, after `expected_gcd = compute_gcd(...);`, I'll add the masking.
+
+That should do it. Now, when the test compares `OUT` with `expected_gcd`, both will have the same number of bits, ensuring correct validation.
+
+
+{
+    // Task to perform a test case
+    task automatic test_case(
+       input integer a_in,
+       input integer b_in,
+       input integer c_in
+    );
+      integer expected_gcd;
+      integer start_time, end_time, latency;
+      begin
+         @(negedge clk);
+         A <= a_in;
+         B <= b_in;
+         C <= c_in;
+         go <= 1;
+         @(posedge clk);
+         @(posedge clk);
+         go <= 0;
+
+         start_time = $time;
+
+         wait (done == 1);
+
+         end_time = $time;
+
+         latency = (end_time - start_time) / 10; 
+
+         @(posedge clk);
+         go <= 0;
+
+         expected_gcd = compute_gcd(a_in, b_in, c_in);
+
+         // Nullify extra bits beyond WIDTH
+         expected_gcd = expected_gcd & ((1 << WIDTH) - 1);
+
+         if (OUT !== expected_gcd) begin
+            $display("Test FAILED for inputs A=%0d, B=%0d, C=%0d: Expected GCD=%0d, Got=%0d at time %0t", a_in, b_in, c_in, expected_gcd, OUT, $time);
+         end else begin
+            $display("Test PASSED for inputs A=%0d, B=%0d, C=%0d: GCD=%0d, Latency=%0d cycles", a_in, b_in, c_in, OUT, latency);
+         end
+      end
+   endtask
+}
+
+
+Score : 0.03886505536412627

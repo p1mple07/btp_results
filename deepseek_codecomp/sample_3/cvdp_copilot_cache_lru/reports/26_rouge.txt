@@ -1,0 +1,47 @@
+Reference:
+```sv
+            $display("- Miss replaces the least frequently used, least way in order...");
+            @(negedge clock);
+            index = 1;
+            target_way = 0;
+            other_way_1 = 1;
+            other_way_2 = 2;
+            way_select = other_way_2;
+            hit = 0;
+            access = 1;
+
+            // Set initial frequencies
+            dut.frequency[index][(target_way * COUNTERW) +: COUNTERW] = COUNTERW'(0);
+            dut.frequency[index][(other_way_1 * COUNTERW) +: COUNTERW] = COUNTERW'(MAX_FREQUENCY);
+            dut.frequency[index][(other_way_2 * COUNTERW) +: COUNTERW] = COUNTERW'(0);
+            for (int i = 3; i < NWAYS; i++) begin
+                dut.frequency[index][(i * COUNTERW) +: COUNTERW] = COUNTERW'($urandom_range(1, MAX_FREQUENCY));
+            end
+            assert (dut.way_replace == target_way)
+            else begin
+                error = 1;
+                $error("Miss Test Failed: way_replace != %0d", target_way);
+            end
+
+            @(negedge clock);
+            access = 0;
+
+            assert (dut.frequency[index][(target_way * COUNTERW) +: COUNTERW] == COUNTERW'(1))
+            else begin
+                error = 1;
+                $error("Miss Test Failed: the frequency counter of replaced way was not initialized to 1");
+            end
+
+            assert (dut.way_replace == other_way_2)
+            else begin
+                error = 1;
+                $error("Miss Test Failed: way_replace != %0d", other_way_2);
+            end
+```
+
+
+Response:
+module lfu_counter_policy_tb
+
+
+Score : 0.0

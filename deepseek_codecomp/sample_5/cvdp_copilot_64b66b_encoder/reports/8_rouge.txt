@@ -1,0 +1,39 @@
+Reference:
+```verilog
+$display("Test Case 1");
+apply_test_vector(64'hA5A5A5A5A5A5A5A5, 8'b00000000);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b01, 64'hA5A5A5A5A5A5A5A5});
+```
+
+```verilog
+$display("Test Case 4");
+apply_test_vector(64'h123456789ABCDEF0, 8'b10000001);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+```
+
+```verilog
+$display("Test Case 6");
+apply_test_vector(64'h55555555AAAAAAAA, 8'b01010101);
+#10;
+$display("encoder_data_out: %h, Expected: %h", encoder_data_out, {2'b10, 64'b0});
+```
+
+
+Response:
+The following sections of the testbench validate the encoder's handling of 64-bit input data patterns:
+
+1. Section with no control symbols:
+`apply_test_vector(64'h0000000000000000, 8'b00000000);
+
+2. Section with first and last octets as control symbols:
+`apply_test_vector(64'h0000000000000000, 8'b00010000);
+
+3. Section with alternate octets as control symbols:
+`apply_test_vector(64'h0000000000000000, 8'b10101010);
+
+These sections cover the requested configurations.
+
+
+Score : 0.0

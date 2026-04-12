@@ -1,0 +1,59 @@
+Reference:
+```
+    else begin
+      for (gv1 = 0 ; gv1 < ROW_A ; gv1++) begin: out_row_a_gb
+        for (gv2 = 0 ; gv2 < COL_B ; gv2++) begin: out_col_b_gb
+          for (gv3 = 0 ; gv3 < MODIFIED_COL_A ; gv3++) begin: out_mult_gb
+            always_ff @(posedge clk)
+              if (srst)
+                matrix_c[((gv1*COL_B)+gv2)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= '0;
+              else if (valid_out_reg[$clog2(COL_A)])
+                matrix_c[((gv1*COL_B)+gv2)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH] <= mult_stage[((((gv1*COL_B)+gv2)*MODIFIED_COL_A)+0)*OUTPUT_DATA_WIDTH+:OUTPUT_DATA_WIDTH]; 
+          end
+        end
+      end
+    end
+```
+
+
+Response:
+if (HALF_MODIFIED_COL_A > 0) begin
+  logic [...] add_stage [...];
+  for (gv1 = 0 ; gv1 < ROW_A ; gv1++) begin: accum_row_a_gb
+    for (gv2 = 0 ; gv2 < COL_B ; gv2++) begin: accum_col_b_gb
+      for (gv3 = 0 ; gv3 < HALF_MODIFIED_COL_A ; gv3++) begin: accum_gb
+        always_ff @(posedge clk)
+          if (srst)
+            add_stage[...]:= '0;
+          else if (valid_out_reg[0])
+            add_stage[...]:= mult_stage[...1] + mult_stage[...2];
+          else if (...)
+            add_stage[...]:= add_stage[...1] + add_stage[...2];
+        end
+        for (gv3 = 0 ; gv3 < MODIFIED_COL_A ; gv3++) begin: out_add_gb
+          always_ff @(posedge clk)
+            if (srst)
+              matrix_c[...]:= '0;
+            else if (valid_out_reg[$clog2(COL_A)])
+              matrix_c[...]:= add_stage[...1]; 
+        end
+      end
+    end
+  end
+  else begin
+    for (gv1 = 0 ; gv1 < ROW_A ; gv1++) begin: out_row_a_gb
+      for (gv2 = 0 ; gv2 < COL_B ; gv2++) begin: out_col_b_gb
+        for (gv3 = 0 ; gv3 < MODIFIED_COL_A ; gv3++) begin: out_mult_gb
+          always_ff @(posedge clk)
+            if (srst)
+              matrix_c[...]:= '0;
+            else if (valid_out_reg[$clog2(COL_A)])
+              matrix_c[...]:= mult_stage[...1]; 
+        end
+      end
+    end
+  end
+endgenerate
+
+
+Score : 0.8292682926829268

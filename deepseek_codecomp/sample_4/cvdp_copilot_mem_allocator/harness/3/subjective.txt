@@ -1,0 +1,5 @@
+When both `release_en` and `acquire_en` are asserted simultaneously:
+
+1. If `release_addr` equals `acquire_addr`, the system effectively cancels itself out, leaving no change to the state variables. The same address is freed and then re-acquired.
+
+2. If `release_addr` and `acquire_addr` are different, the system allows both actions to proceed independently. The address specified by `release_addr` is released (marked as filled), and the address specified by `acquire_addr` is marked as free. This results in two distinct memory locations being managed without interference.

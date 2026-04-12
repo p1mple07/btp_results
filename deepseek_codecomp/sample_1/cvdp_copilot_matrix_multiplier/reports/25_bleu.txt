@@ -1,0 +1,32 @@
+Reference:
+```
+  task ref_mat(
+    input  logic [ROW_A*COL_A*INPUT_DATA_WIDTH-1:0] mat_a,
+    input  logic [ROW_B*COL_B*INPUT_DATA_WIDTH-1:0] mat_b,
+    output logic [ROW_A*COL_B*OUTPUT_DATA_WIDTH-1:0] ref_out
+  );
+    logic [INPUT_DATA_WIDTH-1:0] a_val, b_val;
+    logic [OUTPUT_DATA_WIDTH-1:0] partial_sum;
+
+    begin
+      for (int i = 0; i < ROW_A; i++) begin
+        for (int j = 0; j < COL_B; j++) begin
+          partial_sum = 0;
+          for (int k = 0; k < COL_A; k++) begin
+            a_val = mat_a[((i * COL_A) + k) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];
+            b_val = mat_b[((k * COL_B) + j) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];
+            partial_sum = partial_sum + (a_val * b_val);
+          end
+          ref_out[((i * COL_B) + j) * OUTPUT_DATA_WIDTH +: OUTPUT_DATA_WIDTH] = partial_sum;
+        end
+      end
+    end
+  endtask
+```
+
+
+Response:
+  task ref_mat(    input  logic [ROW_A*COL_A*INPUT_DATA_WIDTH-1:0] mat_a,    input  logic [ROW_B*COL_B*INPUT_DATA_WIDTH-1:0] mat_b,    output logic [ROW_A*COL_B*OUTPUT_DATA_WIDTH-1:0] ref_out  );    logic [INPUT_DATA_WIDTH-1:0] a_val, b_val;    logic [OUTPUT_DATA_WIDTH-1:0] partial_sum;    begin      for (int i = 0; i < ROW_A; i++) begin        for (int j = 0; j < COL_B; j++) begin          partial_sum = 0;          for (int k = 0; k < COL_A; k++) begin            a_val = mat_a[((i * COL_A) + k) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];            b_val = mat_b[((k * COL_B) + j) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];            partial_sum = partial_sum + (a_val * b_val);          end          ref_out[((i * COL_B) + j) * OUTPUT_DATA_WIDTH +: OUTPUT_DATA_WIDTH] = partial_sum;        end      end    end  endtask
+
+
+Score : 0.980392791272911

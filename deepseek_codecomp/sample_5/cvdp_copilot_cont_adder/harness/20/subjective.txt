@@ -1,0 +1,21 @@
+The test case is implemented in the verif/cont_adder_tb.sv file as follows:
+
+1. In the initial setup:
+logic signed [DATA_WIDTH-1:0] data_in;
+logic signed [DATA_WIDTH-1:0] data_in;
+
+2. Inside the test procedure:
+// Test Case 4: 
+if (SIGNED_INPUTS) begin
+    test_add_sequence(-30, -40, 20, 150,-30, -40, 20, 150);
+    check_output(THRESHOLD_VALUE);
+    $display("Test Case 4 (negative inputs) passed.");
+end
+
+3. Inside the check_output task:
+#10; 
+if ((sum_out != expected_sum) || (sum_ready != 1'b1)) begin
+    $error("Test failed: expected sum = %0d, got sum = %0d", expected_sum, sum_out);
+end else begin
+    $display("Test passed: expected sum = %0d, got sum = %0d", expected_sum, sum_out);
+end

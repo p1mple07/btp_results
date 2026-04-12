@@ -1,0 +1,50 @@
+Reference:
+```verilog
+data_in = 16'b1010_1111_0000_1100;
+shift_bits = 4;
+mode = 2'b00;
+left_right = 1; 
+expected = 16'b1111_0000_1100_0000;
+#10;
+
+$display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Logical), left_right = %b", data_in, shift_bits, mode, left_right);
+$display("Expected: %b, Actual: %b", expected, data_out);
+if (data_out === expected)
+    $display("Result: PASS\n");
+else
+    $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+```
+
+```verilog
+data_in = 16'b1010_1111_0000_1100;
+shift_bits = 4;
+mode = 2'b11;
+mask = 16'b1111_0000_1111_0000;
+left_right = 0;  
+expected = 16'b0000_0000_1111_0000;t
+#10;
+
+$display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Masked), left_right = %b, mask = %b", data_in, shift_bits, mode, left_right, mask);
+$display("Expected: %b, Actual: %b", expected, data_out);
+if (data_out === expected)
+    $display("Result: PASS\n");
+else
+    $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+```
+
+
+Response:
+{
+  "response": [
+    {
+      "name": "Logical Shift",
+      "code": "module tb_barrel_shifter;\n    reg [15:0] data_in;\n    reg [3:0] shift_bits;\n    reg [1:0] mode;\n    reg left_right;\n    reg [15:0] mask;\n    wire [15:0] data_out;\n    wire error;\n    \n    barrel_shifter #(.data_width(16), .shift_bits_width(4)) uut (\n        .data_in(data_in),\n        .shift_bits(shift_bits),\n        .mode(mode),\n        .left_right(left_right),\n        .mask(mask),\n        .data_out(data_out),\n        .error(error)\n    );\n    \n    reg [15:0] expected;  \n    initial begin\n        data_in = 16'b1010_1111_0000_1100;\n        shift_bits = 4;\n        mode = 2'b00;\n        left_right = 1;  \n        expected = 16'b1111_0000_1100_0000; \n        #10;\n        $display(\"Inputs: data_in = %b, shift_bits = %d, mode = %b (Logical), left_right = %b\", data_in, shift_bits, mode, left_right);\n        $display(\"Expected: %b, Actual: %b\", expected, data_out);\n        if (data_out === expected)\n            $display(\"Result: PASS\\n\");\n        else\n            $display(\"Result: FAIL (Expected: %b, Got: %b)\\n\", expected, data_out);\n        mode = 2'b01;\n        left_right = 0;  \n        expected = 16'b1111_1010_1111_0000; \n        #10;\n        $display(\"Inputs: data_in = %b, shift_bits = %d, mode = %b (Arithmetic), left_right = %b\", data_in, shift_bits, mode, left_right);\n        $display(\"Expected: %b, Actual: %b\", expected, data_out);\n        if (data_out === expected)\n            $display(\"Result: PASS\\n\");\n        else\n            $display(\"Result: FAIL (Expected: %b, Got: %b)\\n\", expected, data_out);\n    end\nendmodule"
+  ],
+    {
+      "name": "Masked Shift",
+      "code": "module tb_barrel_shifter;\n    reg [15:0] data_in;\n    reg [3:0] shift_bits;\n    reg [1:0] mode;\n    reg left_right;\n    reg [15:15] mask;\n    wire [15:0] data_out;\n    wire error;\n    \n    barrel_shifter #(.data_width(16), .shift_bits_width(4)) uut (\n        .data_in(data_in),\n        .shift_bits(shift_bits),\n        .mode(mode),\n        .left_right(left_right),\n        .mask(mask),\n        .data_out(data_out),\n        .error(error)\n    );\n    \n    reg [15:0] expected;  \n    initial begin\n        mode = 2'b11;\n        mask = 16'b1111_0000_1111_0000;\n        left_right = 0;  \n        expected = 16'b0000_0000_1111_0000; \n        #10;\n        $display(\"Inputs: data_in = %b, shift_bits = %d, mode = %b (Masked), left_right = %b, mask = %b\", data_in, shift_bits, mode, left_right, mask);\n        $display(\"Expected: %b, Actual: %b\", expected, data_out);\n        if (data_out === expected && error === 1)\n            $display(\"Result: PASS\\n\");\n        else\n            $display(\"Result: FAIL (Expected: %b, Got: %b, Error: %b)\\n\", expected, data_out, error);\n    end\nendmodule"
+  ]
+}
+
+
+Score : 0.2453549897637925

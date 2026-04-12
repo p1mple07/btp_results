@@ -1,0 +1,20 @@
+Reference:
+```
+if (sum_accum + data_in >= THRESHOLD_VALUE || sum_accum + data_in <= -1*THRESHOLD_VALUE) begin
+   sum_out   <= sum_accum + data_in;
+   sum_ready <= 1'b1;
+   sum_accum <= {DATA_WIDTH{1'b0}};
+end
+```
+
+
+Response:
+Within the `always_ff` block, when the summed value meets or exceeds the `THRESHOLD_VALUE`, the accumulator (`sum_accum`) is reset to zero. This occurs specifically in the following lines:
+
+
+- `sum_out <= sum_accum + data_in;`
+- `sum_ready <= 1'b1;`
+- `sum_accum <= {DATA_WIDTH{1'b0}};`
+
+
+Score : 0.4

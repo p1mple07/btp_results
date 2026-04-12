@@ -1,0 +1,48 @@
+Reference:
+```
+    H_PULSE_STATE: begin
+        h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+        hsync_reg <= LOW;
+        h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+    end
+```
+
+
+Response:
+In the `vga_controller` module, the horizontal synchronization logic is implemented in the following block:
+
+always_ff @(posedge clock or posedge reset) begin
+    if (reset) begin
+        ... 
+    end
+    else begin
+        case (h_state)
+            H_ACTIVE_STATE: begin
+                ... 
+                hsync_reg <= HIGH;
+            end
+            H_FRONT_STATE: begin
+                ... 
+                hsync_reg <= HIGH;
+            end
+            H_PULSE_STATE: begin
+                h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+                hsync_reg <= LOW;
+                h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+            end
+            H_BACK_STATE: begin
+                ... 
+                hsync_reg <= HIGH;
+            end
+        endcase
+        if (h_state == H_ACTIVE_STATE && v_state == V_ACTIVE_STATE) begin
+            ... 
+        end
+        else begin
+            ... 
+        end
+    end
+}
+
+
+Score : 0.26979316867441594

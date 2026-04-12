@@ -1,0 +1,31 @@
+Reference:
+```verilog
+always_ff @(posedge des_clock or posedge rst_in) begin
+    if (rst_in) begin
+        rst_des_synca <= 1'b1;
+        rst_des_syncb <= 1'b1;
+    end else begin
+        rst_des_synca <= 1'b0;
+        rst_des_syncb <= rst_des_synca;
+    end
+end
+
+assign rst_des_sync = rst_des_syncb;
+```
+
+
+Response:
+{
+  "response": "always_ff @(posedge des_clock or posedge rst_in) begin\n"
+             "    if (rst_in) begin\n"
+             "        rst_des_synca <= 1'b1;\n"
+             "        rst_des_syncb <= 1'b1;\n"
+             "    end else if (src_pulse) begin\n"
+             "        rst_des_synca <= 1'b0;\n"
+             "        rst_des_syncb <= rst_des_synca;\n"
+             "    end\n"
+             "end\n"
+}
+
+
+Score : 0.2692307692307692

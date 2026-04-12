@@ -1,0 +1,82 @@
+Reference:
+```verilog
+                    if ((l_addr <= left_end) && (r_addr <= right_end)) begin
+                        if (left_val <= right_val) begin
+                            tmp_merge[merge_idx] <= left_val;
+                            left_idx <= left_idx + 1;
+                        end else begin
+                            tmp_merge[merge_idx] <= right_val;
+                            right_idx <= right_idx + 1;
+                        end
+                        merge_idx <= merge_idx + 1;
+                    end
+```
+
+```verilog
+                        for (k = 0; k < N; k = k + 1) begin
+                            if ( (k < merge_idx) &&
+                                 (k < (subarray_size << 1)) &&
+                                 ((base_idx + k) < N) )
+                            begin
+                                data_mem[base_idx + k] <= tmp_merge[k];
+                            end
+                        end
+```
+
+
+Response:
+{
+  "response": [
+    "local integer left_idx, right_idx;\n",
+    "integer l_addr, r_addr;\n",
+    "\n",
+    "l_addr = base_idx + left_idx;\n",
+    "r_addr = base_idx + subarray_size + right_idx;\n",
+    "\n",
+    "if ((l_addr <= left_end) && (l_addr < N)) \n",
+    "    left_val = data_mem[l_addr];\n",
+    "else\n",
+    "    left_val = {WIDTH{1'b1}};\n",
+    "\n",
+    "if ((r_addr <= right_end) && (r_addr < N)) \n",
+    "    right_val = data_mem[r_addr];\n",
+    "else\n",
+    "    right_val = {WIDTH{1'b1}};\n",
+    "\n",
+    "if ((l_addr <= left_end) && (r_addr <= right_end)) begin\n",
+    "    if (left_val <= right_val) begin\n",
+    "        tmp_merge[merge_idx] <= left_val;\n",
+    "        left_idx <= left_idx + 1;\n",
+    "    end else begin\n",
+    "        tmp_merge[merge_idx] <= right_val;\n",
+    "        right_idx <= right_idx + 1;\n",
+    "    end\n",
+    "    merge_idx <= merge_idx + 1;\n",
+    "\n",
+    "    while (left_idx <= left_end || right_idx <= right_end)\n",
+    "    begin\n",
+    "        if (left_idx <= left_end) begin\n",
+    "            tmp_merge[merge_idx] <= left_val;\n",
+    "            left_idx <= left_idx + 1;\n",
+    "            merge_idx <= merge_idx + 1;\n",
+    "        end else if (right_idx <= right_end) begin\n",
+    "            tmp_merge[merge_idx] <= right_val;\n",
+    "            right_idx <= right_idx + 1;\n",
+    "            merge_idx <= merge_idx + 1;\n",
+    "        end else begin\n",
+    "            break;\n",
+    "        end\n",
+    "\n",
+    "        // Copy remaining elements back to data_mem\n",
+    "        for (k = 0; k < N; k = k + 1) begin\n",
+    "            if ( (k < merge_idx) && (k < (subarray_size << 1)) && ((base_idx + k) < N) )\n",
+    "            begin\n",
+    "                data_mem[base_idx + k] <= tmp_merge[k];\n",
+    "            end\n",
+    "        end\n",
+    "        base_idx  <= base_idx + (subarray_size << 1);\n",
+        ]
+}
+
+
+Score : 0.4716981132075472

@@ -1,0 +1,48 @@
+Reference:
+```verilog
+if (decrypt) begin
+    if (current_char >= "A" && current_char <= "Z") begin
+        output_phrase[i * 8 +: 8] = ((current_char - "A" - current_key + 26) % 26) + "A";
+    end
+```
+
+
+Response:
+{
+    "response": "always @(*) begin\n"
+                "    output_phrase = {PHRASE_WIDTH{1'b0}};\n"
+                "\n"
+                "    if (PHRASE_LEN > 0) begin\n"
+                "        for (i = 0; i < PHRASE_LEN; i = i + 1) begin\n"
+                "            current_char = input_phrase[i * 8 +: 8];\n"
+                "            current_key = key_phrase[i * 5 +: 5];\n"
+                "            \n"
+                "            if (decrypt) begin\n"
+                "                if (current_char >= \"A\" && current_char <= \"Z\") begin\n"
+                "                    output_phrase[i * 8 +: 8] = ((current_char - \"A\" - current_key + 26) % 26) + \"A\";\n"
+                "                end\n"
+                "                else if (current_char >= \"a\" && current_char <= \"z\") begin\n"
+                "                    output_phrase[i * 8 +: 8] = ((current_char - \"a\" - current_key + 26) % 26) + \"a\";\n"
+                "                end\n"
+                "                else begin\n"
+                "                    output_phrase[i * 8 +: 8] = current_char - current_key; \n"
+                "                end\n"
+                "            end\n"
+                "            else begin\n"
+                "                if (current_char >= \"A\" && current_char <= \"Z\") begin\n"
+                "                    output_phrase[i * 8 +: 8] = ((current_char - \"A\" + current_key) % 26) + \"A\";\n"
+                "                end\n"
+                "                else if (current_char >= \"a\" && current_char <= \"z\") begin\n"
+                "                    output_phrase[i * 8 +: 8] = ((current_char - \"a\" + current_key) % 26) + \"a\";\n"
+                "                end\n"
+                "                else begin\n"
+                "                    output_phrase[i * 8 +: 8] = current_char + current_key; \n"
+                "                end\n"
+                "            end\n"
+                "        end\n"
+                "    end\n"
+                "endmodule\n"
+}
+
+
+Score : 0.5789473684210527

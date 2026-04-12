@@ -1,0 +1,10 @@
+Reference:
+When subtracting a non-zero B from zero (A = 0), the testbench checks if the intermediate result is negative as it cannot be directly represented in BCD format. To correctly represent this negative result, the testbench adds the maximum N digit BCD value (based on the number of digits) to the negative intermediate value, effectively converting it into its ten's complement representation in BCD and sets the expected_carry_out (borrow) to 0. This approach allows the testbench to verify that the design handles negative results by producing the correct BCD representation and borrow-out signal.
+
+
+Response:
+The testbench `tb_multi_digit_bcd_add_sub` validates subtraction with negative intermediate values by setting A to zero and B to a non-zero value, triggering an underflow scenario. It converts these values to BCD, performs the subtraction, adjusts for underflow by adding `max_value`, and verifies the result matches the expected positive modulo value while capturing borrow signals.
+
+
+LLM Score (0-1) : 0.85
+Reasoning: The candidate correctly identifies the underflow scenario (A=0, B≠0), the adjustment by adding a max-value constant to form the ten’s complement, and the verification of the resulting BCD value along with borrow signaling. It omits some detail on using an N-digit maximum BCD value and explicitly setting the expected borrow to 0, but overall it captures the core mechanism and intent of the reference solution.

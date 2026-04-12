@@ -1,0 +1,36 @@
+Reference:
+```verilog
+// Calculate expected tens and units digits
+available_tens = expected_available_spaces / 10;
+available_units = expected_available_spaces % 10;
+count_tens = expected_count_car / 10;
+count_units = expected_count_car % 10;
+
+// Check seven-segment values for available spaces
+if (seven_seg_display_available_tens !== seven_segment_encoding(available_tens)) begin
+    $display("ERROR: Seven-segment available_tens mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(available_tens), seven_seg_display_available_tens);
+end
+if (seven_seg_display_available_units !== seven_segment_encoding(available_units)) begin
+    $display("ERROR: Seven-segment available_units mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(available_units), seven_seg_display_available_units);
+end
+
+// Check seven-segment values for count cars
+if (seven_seg_display_count_tens !== seven_segment_encoding(count_tens)) begin
+    $display("ERROR: Seven-segment count_tens mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(count_tens), seven_seg_display_count_tens);
+end
+if (seven_seg_display_count_units !== seven_segment_encoding(count_units)) begin
+    $display("ERROR: Seven-segment count_units mismatch! Expected: %b, Got: %b", 
+             seven_segment_encoding(count_units), seven_seg_display_count_units);
+end
+
+
+Response:
+Identify the block of code in the car_parking_system_tb testbench that calculates and verifies the expected values for the seven-segment displays based on available spaces and car count.
+
+The relevant block is the check_outputs task which contains the code to calculate the tens and units digits and verify the seven-segment display values.
+
+
+Score : 0.04995218160782418

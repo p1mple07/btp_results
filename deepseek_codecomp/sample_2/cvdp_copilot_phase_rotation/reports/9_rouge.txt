@@ -1,0 +1,35 @@
+Reference:
+```systemverilog
+   typedef struct packed {
+      logic signed [NBW_OUT_DATA-1:0] expected_re;
+      logic signed [NBW_OUT_DATA-1:0] expected_im;
+   } expected_outputs_t;
+
+   function automatic expected_outputs_t calculate_expected_outputs(
+      input signed [NBW_IN_DATA-1:0]  data_re,
+      input signed [NBW_IN_DATA-1:0]  data_im,
+      input signed [NBW_COS-1:0]      cos_val,
+      input signed [NBW_COS-1:0]      sin_val
+   );
+      logic signed [NBW_MULT-1:0] data_a;
+      logic signed [NBW_MULT-1:0] data_b;
+      logic signed [NBW_MULT-1:0] data_c;
+      logic signed [NBW_MULT-1:0] data_d;
+
+      data_a = cos_val * data_re;
+      data_b = sin_val * data_im;
+      data_c = sin_val * data_re;
+      data_d = cos_val * data_im;
+
+      calculate_expected_outputs.expected_re = data_a - data_b;
+      calculate_expected_outputs.expected_im = data_c + data_d;
+   endfunction
+```
+
+
+Response:
+{
+  "response": "The corresponding section in the testbench code (`tb_phase_rotation`) that performs a golden model verification is the `initial` section where multiple test cases are applied, computing expected outputs based on the golden model formula:\n\n1. `apply_inputs_and_check(8'sd10, 8'sd5, 8'sd3, 8'sd4);`\n   - Expected outputs: `expected_re = 10`, `expected_im = 55`\n2. `apply_inputs_and_check(-8'sd7, 8'sd2, 8'sd6, -8'sd1);`\n   - Expected outputs: `expected_re = (-8*6) - (2*-8) = -48 + 16 = -32`, \n     `expected_im = (2*6) + (-8*-8) = 12 + 64 = 76`\n3. `apply_inputs_and_check(8'sd127, -8'sd128, 8'sd127, -8'sd128);`\n   - Expected outputs: `expected_re = (127*127) - (-128*-128) = 16129 - 16384 = -255`,\n     `expected_im = (-128*127) + (127*-128) = -16256 - 16256 = -32512`\n4. `apply_inputs_and_check(8'sd0, 8'sd0, 8'sd0, 8'sd0);`\n   - Expected outputs: `expected_re = 0`, `expected_im = 0`\n5. `apply_inputs_and_check(8'sd127, 8'sd0, 8'sd127, 8'sd0);`\n   - Expected outputs: `expected_re = (127*127) - (0*0) = 16129`, `expected_im = (0*127) + (127*0) = 0`\n6. `apply_inputs_and_check(-8'sd128, -8'sd128, 8'sd0, 8'sd127);`\n   - Expected outputs: `expected_re = (0*(-8)) - (128*-128) = 0 + 16384 = 16384`,\n     `expected_im = (127*(-8)) + (0*-128) = -1016 + 0 = -1016`\n7. `apply_inputs_and_check(8'sd127, 8'sd127, -8'sd128, -8'sd128);`\n   - Expected outputs: `expected_re = (127*(-128)) - (127*127) = -16256 - 16129 = -32385`,\n     `expected_im = (-128*127) + (127*(-128)) = -16256 - 16256 = -32512`\n8. `apply_inputs_and_check(8'sd1, -8'sd1, -8'sd1, 8'sd1);`\n   - Expected outputs: `expected_re = (1*(-1)) - ((-1)*1) = -1 + 1 = 0`,\n     `expected_im = (1*1) + (1*(-1)) = 1 - 1 = 0\"\n}
+
+
+Score : 0.0

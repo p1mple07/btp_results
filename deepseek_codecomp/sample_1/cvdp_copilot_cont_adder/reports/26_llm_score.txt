@@ -1,0 +1,10 @@
+Reference:
+In `ACCUM_MODE=1`, the RTL accumulates the weighted input in `sum_accum` and increments the `sample_count` register for each valid data input. Once the `sample_count` equals or exceeds the `window_size`, the module asserts `sum_ready`, updates the `sum_out` and `avg_out` signals, and resets both `sum_accum` and `sample_count` for the next accumulation window. This ensures the output reflects the cumulative result of a fixed number of inputs, controlled by the `window_size` parameter. However, if `data_valid` is inconsistently asserted or the `window_size` is set to an unusually small value, the logic may exhibit unintended resets or frequent sum updates, which require careful simulation for validation.
+
+
+Response:
+The RTL continuous_adder maintains accumulation in ACCUM_MODE=1 by continuously adding weighted inputs to sum_accum until either the sum reaches the window_size or triggers a verification condition. The window_size register resets sum_accum and sample_count upon reaching its value, ensuring accurate tracking within a sliding window. In contrast, when ACCUM_MODE=0, the accumulator resets on every valid data input, effectively discarding older values beyond the current window.
+
+
+LLM Score (0-1) : 0.3
+Reasoning: The candidate captures the basic idea that ACCUM_MODE=1 adds inputs and that window_size resets sum_accum and sample_count, but it incorrectly describes the trigger (it refers to the sum rather than the sample_count), omits key behaviors such as asserting sum_ready and updating sum_out/avg_out, introduces irrelevant ACCUM_MODE=0 details, and fails to mention the incrementing of sample_count or the fixed-window semantics as in the reference.

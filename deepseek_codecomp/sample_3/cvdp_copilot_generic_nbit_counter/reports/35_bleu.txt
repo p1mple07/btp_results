@@ -1,0 +1,55 @@
+Reference:
+```verilog
+MODULO_256: begin
+    if (count == ref_modulo) begin
+        count <= {N{1'b0}};
+    end else begin
+        count <= count + 1;
+    end
+end
+```
+
+
+Response:
+{
+  "response": "always_ff @(posedge clk_in or posedge rst_in) begin\n"
+              "    if (rst_in) begin\n"
+              "        count <= {N{1'b0}};\n"
+              "    end else if (enable_in) begin\n"
+              "        case (mode_in)\n"
+              "            BINARY_UP: begin\n"
+              "                count <= count + 1;\n"
+              "            end\n"
+              "            BINARY_DOWN: begin\n"
+              "                count <= count - 1;\n"
+              "            end\n"
+              "            MODULO_256: begin\n"
+              "                if (count == ref_modulo) begin\n"
+              "                    count <= {N{1'b0}};\n"
+              "                end else begin\n"
+              "                    count <= count + 1;\n"
+              "                end\n"
+              "            end\n"
+              "            JOHNSON: begin\n"
+              "                count <= ~count[0], count[N-1:1];\n"
+              "            end\n"
+              "            GRAY: begin\n"
+              "                count <= count + 1;\n"
+              "            end\n"
+              "            RING: begin\n"
+              "                if (count == {N{1'b0}}) begin\n"
+              "                    count <= {{(N-1){1'b0}}, 1'b1};  // Start with LSB set to 1\n"
+              "                end else begin\n"
+              "                    count <= {count[N-2:0], count[N-1]};  // Shift left and wrap the MSB to LSB\n"
+              "                end\n"
+              "            end\n"
+              "            default: begin\n"
+              "                count <= {N{1'b0}};\n"
+              "            end\n"
+              "        endcase\n"
+              "    end\n"
+              "end\n"
+}
+
+
+Score : 0.07136488120509177

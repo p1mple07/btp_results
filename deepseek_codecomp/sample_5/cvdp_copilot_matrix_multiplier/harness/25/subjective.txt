@@ -1,0 +1,14 @@
+// Within the ref_mat task calculation section:
+  begin
+    for (int i = 0; i < ROW_A; i++) begin
+      for (int j = 0; j < COL_B; j++) begin
+        partial_sum = 0;
+        for (int k = 0; k < COL_A; k++) begin
+          a_val = mat_a[((i * COL_A) + k) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];
+          b_val = mat_b[((k * COL_B) + j) * INPUT_DATA_WIDTH +: INPUT_DATA_WIDTH];
+          partial_sum = partial_sum + (a_val * b_val);
+        end
+        ref_out[((i * COL_B) + j) * OUTPUT_DATA_WIDTH +: OUTPUT_DATA_WIDTH] = partial_sum;
+      end
+    end
+  end

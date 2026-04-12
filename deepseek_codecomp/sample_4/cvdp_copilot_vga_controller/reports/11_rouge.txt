@@ -1,0 +1,37 @@
+Reference:
+```
+    H_PULSE_STATE: begin
+        h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+        hsync_reg <= LOW;
+        h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+    end
+```
+
+
+Response:
+The HSYNC signal is driven LOW during the horizontal pulse period in the following code block:
+
+always_ff @(posedge clock or posedge reset) begin
+    if (reset) begin
+        ... 
+    end
+    else begin
+        case (h_state)
+            H_PULSE_STATE: begin
+                h_counter <= (h_counter == H_PULSE) ? 10'd0 : (h_counter + 10'd1);
+                hsync_reg <= LOW;
+                h_state <= (h_counter == H_PULSE) ? H_BACK_STATE : H_PULSE_STATE;
+                line_done <= (h_counter == (H_BACK - 1)) ? HIGH : LOW;
+            end
+        endcase
+        if (h_state == H_ACTIVE_STATE && v_state == V_ACTIVE_STATE) begin
+            ... 
+        end
+        else begin
+            ... 
+        end
+    end
+
+
+
+Score : 0.8666666666666667

@@ -1,0 +1,59 @@
+Reference:
+```verilog
+    case (ex_if_type_i)  
+```
+```
+      2'b01: begin  
+          case (data_addr_int[1:0])
+            2'b00:   dmem_be = 4'b0011;
+            2'b10:   dmem_be = 4'b1100;
+            default: begin
+                dmem_be = 4'b0000;
+                misaligned_addr = 1'b1;
+            end
+          endcase
+      end 
+```
+
+```verilog
+assign ex_req_fire = ex_if_req_i && !busy_q && !misaligned_addr;
+```
+
+
+Response:
+{
+  "response": [
+    "logic data_type_q :",
+    "  logic data_type_q ;
+  ",
+    "always_comb begin",
+    "  case (data_addr_int[1:0])",
+    "    2'b00: dmem_be = 4'b0001;",
+    "    2'b01: dmem_be = 4'b0010;",
+    "    2'b10: dmem_be = 4'b0100;",
+    "    default: dmem_be = 4'b0000;"
+   "endcase",
+    "end",
+    "always_comb begin",
+    "  case (data_addr_int[1:0])",
+    "    2'b00: dmem_be = 4'b0001;",
+    "    2'b10: dmem_be = 4'b0100;",
+    "    default: begin",
+    "      dmem_be = 4'b0000";
+    "      misaligned_addr = 1'b1;"
+   "endcase"
+  "end",
+  "always_comb begin",
+  "  case (data_addr_int[1:0])",
+  "    2'b00: dmem_be = 4'b0001;",
+  "    2'b10: dmem_be = 4'b0100;",
+  "    default: begin",
+  "      dmem_be = 4'b0000";
+  "      misaligned_addr = 1'b1;"
+  "endcase"
+ "end"
+]
+}
+
+
+Score : 0.0993399267798783

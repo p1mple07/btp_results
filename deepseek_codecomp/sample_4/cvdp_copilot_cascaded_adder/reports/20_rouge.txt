@@ -1,0 +1,23 @@
+Reference:
+```
+               always_comb sum_stage[i] = sum_stage[i-1] + in_data_2d[i];
+```
+
+
+Response:
+    if(REG[i]) begin
+        always_ff @(posedge clk or negedge rst_n) begin
+            if (! rst_n) begin
+               sum_stage[i] <= 0 ;
+            end
+            else begin
+               sum_stage[i] <= sum_stage[i-1] + in_data_2d[i];
+            end
+        end
+    else begin
+        always_comb sum_stage[i] = sum_stage[i-1] + in_data_2d[i];
+    end
+
+
+
+Score : 1.0

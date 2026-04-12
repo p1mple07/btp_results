@@ -1,0 +1,23 @@
+Reference:
+```
+            ACCESS: begin
+                if (apb_pready_i || count == 15) begin
+                    next_state = IDLE;
+                end
+            end
+```
+
+
+Response:
+always_ff @(posedgeclk or negedge reset_n) begin
+    if (!reset_n) begin
+        count <= 0;
+    end else if (current_state == ACCESS && !apb_preadyma) begin
+        count <= count + 1;
+    end else begin
+        count <= 0;
+    end
+end
+
+
+Score : 0.2

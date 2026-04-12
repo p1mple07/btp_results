@@ -1,0 +1,35 @@
+{
+  "code": [
+    {
+      "@": ["initial begin",
+        "mode = 3'b000;",
+        "'Calculate Expected Output':",
+        "case (mode)",
+        "3'b000: expected_out = serial_in; // NRZ",
+        "3'b001: expected_out = serial_in & tb_clk_pulse; // RZ",
+        "3'b010: expected_out = serial_in ^ tb_prev_serial_in; // Differential",
+        "3'b011: expected_out = ~serial_in; // Inverted NRZ",
+        "3'b100: expected_out = tb_alt_invert_state ? ~serial_in : serial_in; // Alternate Inversion",
+        "3'b101: expected_out = tb_parity_out ^ serial_in; // Parity-Added",
+        "3'b110: expected_out = serial_in ^ tb_counter[0]; // Scrambled NRZ",
+        "3'b111: expected_out = serial_in & ~tb_prev_serial_in; // Edge-Triggered NRZ",
+        "default: expected_out = 0;",
+        "'End of Calculate Expected Output';",
+        "endcase",
+        "end"
+      ],
+      "@": ["always @(posedge clk or negedge reset_n) begin",
+        "if (!reset_n) begin",
+        "tb_prev_value <= 0;",
+        "tb_prev_serial_in <= 0;",
+        "end else begin",
+        "tb_prev_value <= serial_in;",
+        "tb_prev_serial_in <= tb_prev_value;",
+        "end",
+        "'Verification and Logging':",
+        "check_output(expected_out, get_feature_name(mode), i)",
+        "end"
+      ]
+    ]
+  ]
+}

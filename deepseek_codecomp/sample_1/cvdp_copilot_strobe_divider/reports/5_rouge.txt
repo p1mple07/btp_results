@@ -1,0 +1,87 @@
+Reference:
+```systemverilog
+task apply_strobe_divider_with_out_ready;
+    input integer latency;
+    input integer cycles;
+    input integer deassert_at;
+    integer k;
+    begin
+        for (k = 0; k < cycles; k = k + 1) begin
+            @(posedge (latency == 0 ? Clk_0 : Clk_1));
+            if (k == deassert_at) begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 0; 
+                end else begin
+                    Out_Ready_1 <= 0; 
+                end
+            end else begin
+                if (latency == 0) begin
+                    Out_Ready_0 <= 1; 
+                end else begin
+                    Out_Ready_1 <= 1; 
+                end
+            end
+
+            // Toggle In_Valid
+            if (k % 2 == 0) begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 1;
+                end else begin
+                    In_Valid_1 <= 1;
+                end
+            end else begin
+                if (latency == 0) begin
+                    In_Valid_0 <= 0;
+                end else begin
+                    In_Valid_1 <= 0;
+                end
+            end
+        end
+    end
+endtask
+```
+
+```systemverilog
+always @(posedge Clk_1) begin
+    if (Out_Valid_1 && !Out_Ready_1) begin
+        $display("Latency=1 Backpressure: Out_Valid held high at Time=%t", $time);
+    end
+end
+```
+
+
+Response:
+{
+    "response": {
+        "testbench_code": "
+        // Test Case 4: Out_Ready deassertion (backpressure).
+        // Description: Reset during operation and observe valid pulse behavior.
+        $display("\n=== Test Case 4: Out_Ready Deassertion (Backpressure) ===");
+        In_Ratio_0 = 5;
+        apply_strobe_divider_with_out_ready(0, 5, 10);
+
+        // Wait for the system to stabilize after reset
+        $finish;
+        $finish;
+        $finish;
+
+        // Check that Out_Ready goes high before asserting
+        $display("After reset, Out_Ready should remain high until Out_Ready=1");
+        while (!Out_Ready_0) begin
+            $tick();
+        end
+
+        // Assert that Out_Valid remains high during stabilization
+        $display("During stabilization phase, Out_Valid should stay high");
+        while (Out_Valid_0) begin
+            $tick();
+        end
+
+        // Verify that after Out_Ready=1, Out_Valid can transition freely
+        $display("Once Out_Ready=1, Out_Valid should behave normally");
+        apply_strobe_divider(0, 100, 1, -1, 0);
+    }"
+}
+
+
+Score : 0.0

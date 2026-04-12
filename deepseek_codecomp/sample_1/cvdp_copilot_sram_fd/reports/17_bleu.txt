@@ -1,0 +1,31 @@
+Reference:
+```
+if (a_oe) begin
+   a_rdata     <= mem[a_addr];
+end
+if (a_we) begin
+   mem[a_addr] <= a_wdata;
+end
+```
+
+
+Response:
+In the rtl/cvdp_sram_fd.sv file, the block ensuring read operation takes priority is:
+
+always_ff @(posedge clk) begin
+    if (ce) begin
+        if (a_oe) begin
+            a_rdata     <= mem[a_addr];
+        end
+        if (a_we) begin
+            mem[a_addr] <= a_wdata;
+        end
+    end else begin
+        a_rdata         <= 'b0;
+    end
+end
+
+This block executes read operations before write operations when CE is high, thus prioritizing reads.
+
+
+Score : 0.24308621740219888

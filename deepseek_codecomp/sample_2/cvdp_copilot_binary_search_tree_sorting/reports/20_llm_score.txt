@@ -1,0 +1,11 @@
+Reference:
+The DUT (search_binary_search_tree) requires three key inputs for its operation; `keys` (The node values of the BST), `left_child`, and `right_child` (Indicate the structure of the BST i.e., the left and right children for each node). Rather than manually coding a BST the `BST_SUB_TREE` module is used to automate the process of constructing a BST from a given input array and generating the required inputs for the DUT. It ensures the tree adheres to BST properties, supports dynamic and randomized testing by generating valid and deterministic tree structures, and simplifies the testbench by eliminating the need for manual tree creation, thereby making the testing efficient, consistent, and robust. 
+The outputs of the `BST_SUB_TREE` module are the same signals provided as an input of the DUT. The testbench orchestrates the build-and-search sequence using `start_bst` and `done_bst`. The `BST_SUB_TREE` doesn’t assert `done_bst` until its `COMPLETE` state is reached, meaning the BST structure (`keys`, `left_child`, `right_child`) has valid pointers. The `search_binary_search_tree` module then waits for this done signal before asserting its own start signal.
+
+
+Response:
+The `BST_SUB_TREE` module is required to construct the binary search tree under test, providing a structured way to initialize the BST with specific data. It separates the process of BST generation from the search operation, ensuring clarity and modularity. During testing, the `BST_SUB_TREE` builds the BST using the provided input data, and the search is performed on this pre-built structure. This integration ensures that the search module operates on a valid BST, maintaining consistency and stability across tests by synchronizing their clocks and resets.
+
+
+LLM Score (0-1) : 0.35
+Reasoning: The candidate correctly identifies that BST_SUB_TREE modularizes and automates BST construction to ensure a valid tree for the search DUT, addressing part of the reference’s intent. However, it omits key details about the generated signals (`keys`, `left_child`, `right_child`), the handshake using `start_bst`/`done_bst`, and how the DUT waits for the completion signal. It also falls short of the requested seven sentences and lacks discussion of dynamic or randomized test support, so it only partially matches the completeness and integration specifics of the reference.

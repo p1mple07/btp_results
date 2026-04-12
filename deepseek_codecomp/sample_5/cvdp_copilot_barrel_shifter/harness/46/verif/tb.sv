@@ -1,0 +1,81 @@
+module tb_barrel_shifter;
+    reg [15:0] data_in;
+    reg [3:0] shift_bits;
+    reg [1:0] mode;
+    reg left_right;
+    reg [15:0] mask;
+    wire [15:0] data_out;
+    wire error;
+
+    barrel_shifter #(.data_width(16), .shift_bits_width(4)) uut (
+        .data_in(data_in),
+        .shift_bits(shift_bits),
+        .mode(mode),
+        .left_right(left_right),
+        .mask(mask),
+        .data_out(data_out),
+        .error(error)
+    );
+
+    reg [15:0] expected;  
+    initial begin
+        data_in = 16'b1010_1111_0000_1100;
+        shift_bits = 4;
+        mode = 2'b00;
+        left_right = 1;  
+        expected = 16'b1111_0000_1100_0000; 
+        #10;
+        $display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Logical), left_right = %b", data_in, shift_bits, mode, left_right);
+        $display("Expected: %b, Actual: %b", expected, data_out);
+        if (data_out === expected)
+            $display("Result: PASS\n");
+        else
+            $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+
+        mode = 2'b01;
+        left_right = 0;  
+        expected = 16'b1111_1010_1111_0000; 
+        #10;
+        $display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Arithmetic), left_right = %b", data_in, shift_bits, mode, left_right);
+        $display("Expected: %b, Actual: %b", expected, data_out);
+        if (data_out === expected)
+            $display("Result: PASS\n");
+        else
+            $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+
+        mode = 2'b10;
+        left_right = 1; 
+        expected = 16'b1111_0000_1100_1010;  
+        #10;
+        $display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Rotate), left_right = %b", data_in, shift_bits, mode, left_right);
+        $display("Expected: %b, Actual: %b", expected, data_out);
+        if (data_out === expected)
+            $display("Result: PASS\n");
+        else
+            $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+
+        mode = 2'b11;
+        mask = 16'b1111_0000_1111_0000;
+        left_right = 0;  
+        expected = 16'b0000_0000_1111_0000;  
+        #10;
+        $display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Masked), left_right = %b, mask = %b", data_in, shift_bits, mode, left_right, mask);
+        $display("Expected: %b, Actual: %b", expected, data_out);
+        if (data_out === expected)
+            $display("Result: PASS\n");
+        else
+            $display("Result: FAIL (Expected: %b, Got: %b)\n", expected, data_out);
+
+        mode = 2'bxx;  
+        expected = 16'b0000_0000_0000_0000; 
+        #10;
+        $display("Inputs: data_in = %b, shift_bits = %d, mode = %b (Invalid)", data_in, shift_bits, mode);
+        $display("Expected: %b, Actual: %b, Error Flag: %b", expected, data_out, error);
+        if (data_out === expected && error === 1)
+            $display("Result: PASS\n");
+        else
+            $display("Result: FAIL (Expected: %b, Got: %b, Error: %b)\n", expected, data_out, error);
+
+        $finish; 
+    end
+endmodule

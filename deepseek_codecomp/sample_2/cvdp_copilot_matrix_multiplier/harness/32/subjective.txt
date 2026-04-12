@@ -1,0 +1,17 @@
+The block of code that handles input delivery and verification using queues is:
+
+`initial
+begin
+  srst = 1'b1;
+  repeat(20) @(posedge clk);
+  srst = 1'b0;
+  repeat(20) @(posedge clk);
+  give_input = 1'b1;
+
+  $display("Starting input delivery");
+  while (valid_in) {
+    matrix_a_q.push_back(matrix_a);
+    matrix_b_q.push_back(matrix_b);
+  }
+
+  $display("Waiting for processing to complete..."));

@@ -1,0 +1,42 @@
+Reference:
+```
+  always_ff @(posedge clk)
+    if (srst)
+      valid_in <= '0;
+    else if (give_input_reg && (valid_in_cnt != NUM_SAMPLES))
+      valid_in <= FULL_THROUGHPUT ? 1 : $urandom_range(0,1);
+    else
+      valid_in <= '0;
+```
+```
+  always @(posedge clk)
+    if (valid_in)
+      matrix_a_q.push_back(matrix_a);
+
+  always @(posedge clk)
+    if (valid_in)
+      matrix_b_q.push_back(matrix_b);
+
+  always @(posedge clk)
+    if (valid_out)
+      matrix_c_q.push_back(matrix_c);
+```
+```
+    for (int i = 0 ; i < NUM_SAMPLES ; i++) begin
+      ref_mat(matrix_a_q.pop_front(),matrix_b_q.pop_front(),matrix_c_expected);
+      comp(matrix_c_q.pop_front(), matrix_c_expected, matrix_c_matched);
+    end
+```
+
+
+Response:
+The testbench implements two input delivery modes:
+1. Full-rate input (give_input=1 every clock cycle)
+2. Random delay between inputs
+It stores input matrices and outputs in FIFO queues:
+- matrix_a_q and matrix_b_q feed the multiplier
+- matrix_c_q stores expected results for verification
+Later compares actual outputs with expected results using the ref_mat and comp tasks.
+
+
+Score : 1.6170956589740033e-155

@@ -1,0 +1,9 @@
+always_ff @(posedge clk or negedge reset_n) begin
+    if (!reset_n) begin
+        count <= 0;
+    end else if (current_state == ACCESS && !apb_pready_i) begin
+        count <= count + 1;
+    end else begin
+        count <= 0;
+    end
+end

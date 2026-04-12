@@ -1,0 +1,10 @@
+Reference:
+If `POLY_TAP` exceeds `POLY_LENGTH`, the module attempts to access a shift register bit `prbs[i][POLY_TAP]` that doesn't exist since `prbs[i]` is only `POLY_LENGTH` bits long. The module does not include parameter checks to prevent this, so it cannot check if `POLY_TAP` is less than or equal to `POLY_LENGTH` or greater than it. This will lead to undefined output at `data_out`.
+
+
+Response:
+If POLY_TAP is set to a value greater than POLY_LENGTH, it results in an invalid index access during the generation of the PRBS pattern. The code does not include a check for this condition, which can lead to simulation errors or incorrect functionality.
+
+
+LLM Score (0-1) : 0.6
+Reasoning: The candidate correctly notes the invalid index access when POLY_TAP exceeds POLY_LENGTH and that no runtime checks exist, matching two key points of the reference. However, it fails to mention the undefined data_out behavior and does not provide the response in the requested three-sentence format.

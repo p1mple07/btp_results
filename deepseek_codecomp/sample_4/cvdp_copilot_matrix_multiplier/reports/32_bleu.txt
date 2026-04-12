@@ -1,0 +1,52 @@
+Reference:
+```
+  always_ff @(posedge clk)
+    if (srst)
+      valid_in <= '0;
+    else if (give_input_reg && (valid_in_cnt != NUM_SAMPLES))
+      valid_in <= FULL_THROUGHPUT ? 1 : $urandom_range(0,1);
+    else
+      valid_in <= '0;
+```
+```
+  always @(posedge clk)
+    if (valid_in)
+      matrix_a_q.push_back(matrix_a);
+
+  always @(posedge clk)
+    if (valid_in)
+      matrix_b_q.push_back(matrix_b);
+
+  always @(posedge clk)
+    if (valid_out)
+      matrix_c_q.push_back(matrix_c);
+```
+```
+    for (int i = 0 ; i < NUM_SAMPLES ; i++) begin
+      ref_mat(matrix_a_q.pop_front(),matrix_b_q.pop_front(),matrix_c_expected);
+      comp(matrix_c_q.pop_front(), matrix_c_expected, matrix_c_matched);
+    end
+```
+
+
+Response:
+// The testbench provides two modes of input delivery: full-rate inputs (every clock cycle) and random delays.
+// This is implemented using queues to store input matrices and later verify the design outputs against expected results.
+// The following code demonstrates how the testbench handles different test cases:
+// It ensures delivery happens in one of these modes
+// Uses queues to store the input matrices and their corresponding output matrices
+// Later verifies the design outputs in the queue against the computed expected results in the queue.
+// This is done using tasks ref_mat and comp which handle the multiplication and comparison respectively
+// The testbench also generates random matrices for testing using functions generate_random_matrix_a and generate_random_matrix_b
+// The display statements indicate the current test case being executed
+// The following code block shows the core logic that manages the test cases and verifies the results:
+
+// The actual implementation of the two modes of input delivery is handled by the following code block:
+// Here, the testbench uses random delays between samples to simulate different scenarios
+// When $urandom_range returns 1, it indicates a random delay between samples
+// This helps in thoroughly testing the design under varying input delivery conditions
+// The code below demonstrates how the testbench decides to deliver input data in full rate or delayed manner
+// By introducing randomness, it ensures comprehensive testing of the multiplier circuit
+
+
+Score : 9.751339724977927e-156

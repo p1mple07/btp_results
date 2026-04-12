@@ -1,0 +1,67 @@
+Reference:
+```verilog
+p_STATE_LOCKED: begin    
+    if ((i_addr == 0) && (i_data_in == p_unlock_code_0) && (!i_read_write_enable)) begin
+        r_unlock_state <= p_STATE_UNLOCK_STEP1; 
+    end
+end
+p_STATE_UNLOCK_STEP1: begin
+    if ((i_addr == 1) && (i_data_in == p_unlock_code_1) && (!i_read_write_enable)) begin
+        r_unlock_state <= p_STATE_UNLOCKED; 
+    end 
+    else begin
+        r_unlock_state <= p_STATE_LOCKED;
+    end
+end
+```
+
+
+
+Response:
+{
+    "response": "always @(posedge i_capture_pulse)\n"
+               "begin\n"
+               "\n"
+               "if (r_unlock_state == p_STATE_UNLOCKED)\n"
+               "begin\n"
+               "\n"
+               "if (i_read_write_enable)\n"
+               "begin\n"
+               "\n"
+               "if (i_addr == 0 || i_addr == 1)\n"
+               "begin\n"
+               "o_data_out <= 0;\n"
+               "end else begin\n"
+               "o_data_out <= r_register_bank[i_addr];\n"
+               "end\n"
+               "\n"
+               "else begin\n"
+               "\n"
+               "r_register_bank[i_addr] <= i_data_in;\n"
+               "o_data_out <= 0;\n"
+               "end\n"
+               "\n"
+               "end else begin\n"
+               "\n"
+               "if (i_read_write_enable)\n"
+               "begin\n"
+               "\n"
+               "o_data_out <= 0;\n"
+               "\n"
+               "end else begin\n"
+               "\n"
+               "if (i_addr == 0 || i_addr == 1)\n"
+               "begin\n"
+               "r_register_bank[i_addr] <= i_data_in;\n"
+               "\n"
+               "end\n"
+               "\n"
+               "o_data_out <= 0;\n"
+               "\n"
+               "end\n"
+               "\n"
+               "end\n"
+}
+
+
+Score : 4.5233228133342904e-155

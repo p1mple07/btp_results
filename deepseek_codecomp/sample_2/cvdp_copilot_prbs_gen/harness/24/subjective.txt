@@ -1,0 +1,24 @@
+Okay, so I'm trying to figure out where in the RTL code the comparison between data_in and the generated PRBS happens. Let me start by looking at the specifications provided. 
+
+In the docs/rtl_specification.md file, under the Checker Mode section, it says that each bit of data_in is compared with the expected PRBS bit. That means there's some logic in the hardware that takes data_in and compares it with the PRBS pattern being generated.
+
+Now, looking at the rtl/cvdp_prbs_gen.sv code, I need to find where this comparison is implemented. I remember that in Verilog, comparisons might involve something like assigning a new logic variable or maybe even a comparison operator directly in an assignment.
+
+I see several assignments happening inside the generate loop. There's this line: assign prbs_msb[i+1] = (CHECK_MODE==0) ? prbs_xor_a[i] : data_in[i]; Hmm, wait, that doesn't look like a comparison. Instead, it seems to be choosing between two values based on the check_mode.
+
+Then, later in the same loop, there's another assignment: assign prbs[i+1] = {prbs_msb[i+1], prbs[i][1:POLY_LENGTH-1]}; This also doesn't seem to compare data_in with anything. It looks more like shifting bits.
+
+Wait, but data_in is assigned to prbs_msb when CHECK_MODE is 1. So perhaps after generating prbs_msb, which comes from data_in, the data_out is then set to prbs_xor_b, which includes data_in. But how does that actually perform the comparison?
+
+Looking further down, outside the generate loop, the always_ff block handles the data_out assignment. Here, data_out is assigned prbs_xor_b. Now, prbs_xor_b was computed earlier as prbs_xor_a[i] ^ data_in[i]. If prbs_xor_a[i] is derived from the XOR of the taps, and then compared with data_in, then maybe prbs_xor_b is storing the result of these comparisons across all bits.
+
+But wait, how do we get individual bit comparisons? Maybe the final step is done elsewhere. Alternatively, perhaps the comparison occurs during the generation of prbs_xor_b.
+
+Alternatively, thinking about how the data_out is generated, prbs_xor_b might hold the result of the XOR operation between the generated PRBS and the incoming data. If that's the case, then any non-zero value would indicate a discrepancy because XOR gives 1 when inputs differ.
+
+So, putting it together, the comparison is happening implicitly when computing prbs_xor_b as prbs_xor_a[i] ^ data_in[i]. When CHECK_MODE is 1, data_in is used, so the XOR between prbs_xor_a and data_in effectively compares each corresponding bit.
+
+Therefore, the key part is the assignment of prbs_xor_b, which is where the comparison logic is implemented. So the code block doing the comparison is in the generate loop where prbs_xor_b is assigned.
+
+
+{ "response": "assign prbs_xor_b[i] = prbs_xor_a[i] ^ data_in[i];" }
